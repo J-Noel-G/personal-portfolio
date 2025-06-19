@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noel Garcia - Emergency Manager & Cybersecurity Enthusiast</title>
+    <!-- Load Tailwind CSS from CDN for easy styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS for font family and smooth scrolling -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        /* Optional: Smooth scroll for internal links */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-md p-4 sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <!-- Site Title/Logo -->
+            <a href="#" class="text-2xl font-bold text-indigo-600 rounded-lg p-2 hover:bg-indigo-50 transition-colors duration-200">Noel Garcia</a>
+
+            <!-- Navigation Links -->
+            <div class="flex space-x-6">
+                <a href="#home" class="text-lg text-gray-700 hover:text-indigo-600 transition-colors duration-200 rounded-lg px-3 py-2 hover:bg-gray-100">Home</a>
+                <a href="#about" class="text-lg text-gray-700 hover:text-indigo-600 transition-colors duration-200 rounded-lg px-3 py-2 hover:bg-gray-100">About</a>
+                <a href="#portfolio" class="text-lg text-gray-700 hover:text-indigo-600 transition-colors duration-200 rounded-lg px-3 py-2 hover:bg-gray-100">Projects</a>
+                <a href="#contact" class="text-lg text-gray-700 hover:text-indigo-600 transition-colors duration-200 rounded-lg px-3 py-2 hover:bg-gray-100">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section (Full width, center content, responsive padding) -->
+    <section id="home" class="relative bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-20 md:py-32 flex items-center justify-center min-h-[60vh] rounded-b-xl shadow-lg m-4">
+        <div class="container mx-auto text-center px-4">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 animate-fade-in-down">
+                Hello, I'm <span class="text-yellow-300">Noel Garcia</span>
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 opacity-90 animate-fade-in-up">
+                An Emergency Manager for the Air Force, passionate about cybersecurity and technology.
+            </p>
+            <a href="#portfolio" class="bg-white text-indigo-700 hover:bg-indigo-100 transition-all duration-300 font-bold py-3 px-8 rounded-full shadow-lg transform hover:scale-105 inline-block animate-bounce-once">
+                View My Work
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section (Responsive layout with image and text) -->
+    <section id="about" class="container mx-auto py-16 px-4 md:px-8">
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-indigo-700 mb-12">About Me</h2>
+        <div class="flex flex-col md:flex-row items-center md:space-x-12 bg-white p-8 rounded-xl shadow-lg">
+            <!-- Placeholder Image -->
+            <div class="w-full md:w-1/3 mb-8 md:mb-0 flex-shrink-0">
+                <!-- Replace with your actual photo. Example: "images/noel-garcia-photo.jpg" -->
+                <img src="https://placehold.co/400x400/6366F1/FFFFFF?text=Noel+Garcia" alt="Noel Garcia Photo" class="rounded-full w-48 h-48 md:w-64 md:h-64 object-cover mx-auto shadow-md border-4 border-indigo-200">
+            </div>
+            <!-- About Me Content -->
+            <div class="w-full md:w-2/3 text-lg leading-relaxed">
+                <p class="mb-4">
+                    Hi there! I'm <span class="font-semibold text-indigo-600">Noel Garcia</span>, currently serving as an Emergency Manager for the Air Force at MacDill AFB. My role involves critical planning and response, but my true passion lies in the dynamic world of technology and cybersecurity.
+                </p>
+                <p class="mb-4">
+                    I hold a degree in Cybersecurity and am continuously expanding my expertise. I've earned my **Security+** certification and am always pursuing additional certifications to deepen my knowledge and skills. My goal is to leverage my unique blend of emergency management experience and technical acumen to break into the cybersecurity field.
+                </p>
+                <p>
+                    I believe in hands-on learning and practical application. Outside of my military service, I dedicate my time to experimenting with new technologies, building out my home lab, and exploring innovative solutions in network security and system administration.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio/Projects Section (Grid layout for projects) -->
+    <section id="portfolio" class="container mx-auto py-16 px-4 md:px-8 bg-indigo-50 rounded-xl shadow-lg mb-8">
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-indigo-700 mb-12">My Projects</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Project Card 1: Home Lab VM Server -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
+                <img src="https://placehold.co/600x400/3B82F6/FFFFFF?text=Home+Lab+Proxmox" alt="Home Lab Project" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Proxmox Home Lab & VM Server</h3>
+                    <p class="text-gray-600 mb-4">
+                        A robust home lab setup utilizing Proxmox VE as the virtualization platform. I use this environment to deploy various operating systems, network services, and security tools, providing a hands-on sandbox for learning and experimentation in a controlled setting.
+                    </p>
+                    <a href="#" class="text-indigo-600 hover:text-indigo-800 font-medium inline-flex items-center">
+                        Learn More
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project Card 2: Network Monitoring Setup -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
+                <img src="https://placehold.co/600x400/059669/FFFFFF?text=Network+Monitor" alt="Network Monitoring Project" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Network Security Monitoring Implementation</h3>
+                    <p class="text-gray-600 mb-4">
+                        Designed and deployed a basic network monitoring solution to detect unusual traffic patterns and potential security threats. This project involves configuring tools for packet analysis and log aggregation.
+                    </p>
+                    <a href="#" class="text-indigo-600 hover:text-indigo-800 font-medium inline-flex items-center">
+                        Learn More
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project Card 3: Web Application Security Scan -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
+                <img src="https://placehold.co/600x400/c026d3/FFFFFF?text=Web+Security+Scan" alt="Web Application Security Project" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Vulnerability Assessment of Web Applications</h3>
+                    <p class="text-gray-600 mb-4">
+                        Conducted hands-on vulnerability assessments on sample web applications, identifying common security flaws such as SQL injection and XSS. This project highlights practical understanding of web security principles.
+                    </p>
+                    <a href="#" class="text-indigo-600 hover:text-indigo-800 font-medium inline-flex items-center">
+                        Learn More
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section (Simple form or contact info) -->
+    <section id="contact" class="container mx-auto py-16 px-4 md:px-8">
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-indigo-700 mb-12">Get In Touch</h2>
+        <div class="bg-white p-8 rounded-xl shadow-lg max-w-2xl mx-auto">
+            <p class="text-center text-lg mb-8">
+                I'd love to hear from you! Feel free to reach out for collaborations, questions, or just to say hello.
+            </p>
+            <!-- Basic Contact Form (action="#" means it won't submit anywhere by default) -->
+            <form action="#" method="POST" class="space-y-6">
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                    <input type="text" id="name" name="name" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Your Name" required>
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                    <input type="email" id="email" name="email" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="your.email@example.com" required>
+                </div>
+                <div>
+                    <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                    <textarea id="message" name="message" rows="5" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Your message..." required></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="inline-flex justify-center py-3 px-8 border border-transparent shadow-sm text-lg font-medium rounded-full text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200">
+                        Send Message
+                    </button>
+                </div>
+            </form>
+            <p class="text-center text-gray-600 mt-8">
+                You can also find me on:
+                <a href="#" class="text-indigo-600 hover:underline ml-2">LinkedIn</a> |
+                <a href="#" class="text-indigo-600 hover:underline ml-2">GitHub</a> |
+                <a href="#" class="text-indigo-600 hover:underline ml-2">Twitter</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-12 rounded-t-xl shadow-inner m-4">
+        <div class="container mx-auto text-center px-4">
+            <p>&copy; 2025 Noel Garcia. All rights reserved.</p>
+            <p class="text-sm mt-2">Built with ❤️ and Tailwind CSS.</p>
+        </div>
+    </footer>
+
+    <!-- Simple JavaScript for any future interactivity, currently not used -->
+    <script>
+        console.log("Website loaded successfully!");
+    </script>
+</body>
+</html>
