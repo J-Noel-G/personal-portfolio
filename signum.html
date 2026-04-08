@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGNUM | The Motives of Credibility</title>
+    
+    <!-- Google Fonts: Cinzel for headings, Merriweather for body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom Config & Styles -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'roma-dark': '#0f172a', /* Deep Slate */
+                        'roma-paper': '#e2e8f0', /* Off White */
+                        'roma-gold': '#d97706', /* Amber 600 */
+                        'roma-crimson': '#7f1d1d', /* Red 900 */
+                        'roma-charcoal': '#1e293b', /* Slate 800 */
+                    },
+                    fontFamily: {
+                        'serif': ['Cinzel', 'serif'],
+                        'body': ['Merriweather', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar for a manuscript feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #475569; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d97706; 
+        }
+
+        /* Utility for fading in content */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .active-nav {
+            background-color: #7f1d1d; /* roma-crimson */
+            color: #e2e8f0;
+            border-left: 4px solid #d97706; /* roma-gold */
+        }
+        
+        /* Tab Styles */
+        .tab-btn.active-tab {
+            border-bottom: 2px solid #d97706;
+            color: #d97706;
+        }
+
+        /* Image Placeholder Fallback Style */
+        img {
+            background-color: #1e293b;
+            min-height: 200px;
+            display: block;
+            object-fit: cover;
+        }
+        img::before { 
+            content: "Image Placeholder: " attr(alt);
+            display: block;
+            text-align: center;
+            padding-top: 40px;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-roma-dark text-roma-paper font-body antialiased overflow-hidden h-screen flex flex-col md:flex-row">
+
+    <!-- Mobile Header -->
+    <header class="md:hidden flex justify-between items-center p-4 bg-roma-charcoal border-b border-gray-700 z-50">
+        <h1 class="text-xl font-serif text-roma-gold tracking-widest">SIGNUM</h1>
+        <button id="mobile-menu-btn" class="text-roma-paper focus:outline-none">
+            <i class="fas fa-bars text-2xl"></i>
+        </button>
+    </header>
+
+    <!-- Sidebar Navigation -->
+    <nav id="sidebar" class="transform -translate-x-full md:translate-x-0 transition-transform duration-300 fixed md:relative z-40 w-72 h-full bg-roma-charcoal border-r border-gray-800 flex flex-col shadow-2xl shrink-0">
+        <div class="p-6 border-b border-gray-700 hidden md:block">
+            <h1 class="text-3xl font-serif text-roma-gold tracking-widest text-center">SIGNUM</h1>
+            <p class="text-[10px] text-center text-gray-400 mt-2 uppercase tracking-[0.2em]">Motives of Credibility</p>
+        </div>
+
+        <div class="overflow-y-auto flex-1 py-4 custom-scrollbar">
+            <ul class="space-y-1">
+                <li><button onclick="loadContent('intro')" class="nav-item w-full text-left px-6 py-3 hover:bg-gray-700 transition text-sm uppercase tracking-wider font-semibold text-gray-300">Introduction</button></li>
+                
+                <!-- Part I -->
+                <li class="px-6 py-2 text-[10px] text-gray-500 font-serif border-t border-gray-700 mt-2 pt-4 uppercase tracking-widest">PART I: THE EUCHARIST</li>
+                <li><button onclick="loadContent('lanciano')" class="nav-item w-full text-left px-6 py-3 hover:bg-gray-700 transition text-sm text-gray-300">The Miracle of Lanciano</button></li>
+                <li><button onclick="loadContent('buenosaires')" class="nav-item w-full text-left px-6 py-3 hover:bg-gray-700 transition text-sm text-gray-300">Buenos Aires (1996)</button></li>
+                
+                <!-- Part II -->
+                <li class="px-6 py-2 text-[10px] text-gray-500 font-serif border-t border-gray-700 mt-2 pt-4 uppercase tracking-widest">PART II: MARIAN APPARITIONS</li>
+                <li><button onclick="loadContent('guadalupe')" class="nav-item w-full text-left px-6 py-3 hover:bg-gray-700 transition text-sm text-gray-300">Guadalupe</button></li>
+                <li><button onclick="loadContent('fatima')" class="nav-item w-full text-left px-6 py-3 hover:bg-gray-700 transition text-sm text-gray-300">Fatima (Miracle of Sun)</button></li>
+                <li><button onclick="loadContent('zeitoun')" class="nav-item w-full text-left px-6 py-3 hover:bg-gray-700 transition text-sm text-gray-300">Zeitoun (Cairo 1968)</button></li>
+                <li><button onclick="loadContent('loreto')" class="nav-item w-full text-left px-6 py-3 hover:bg-gray-700 transition text-sm text-gray-300">The House of Loreto</button></li>
+                <li><button onclick="loadContent('lourdes')" class="nav-item w-full text-left px-6 py-3 hover:bg-gray-700 transition text-sm text-gray-300">Lourdes Medical Bureau</button></li>
+
+                <!-- Part III -->
+                <li class="px-6 py-2 text-[10px] text-gray-500 font-serif border-t border-gray-700 mt-2 pt-4 uppercase tracking-widest">PART III: THE PASSION</li>
+                <li><button onclick="loadContent('shroud')" class="nav-item w-full text-left px-6 py-3 hover:bg-gray-700 transition text-sm text-gray-300">Shroud of Turin</button></li>
+                <li><button onclick="loadContent('sudarium')" class="nav-item w-full text-left px-6 py-3 hover:bg-gray-700 transition text-sm text-gray-300">Sudarium of Oviedo</button></li>
+
+                <!-- Part IV -->
+                <li class="px-6 py-2 text-[10px] text-gray-500 font-serif border-t border-gray-700 mt-2 pt-4 uppercase tracking-widest">PART IV: THE SAINTS</li>
+                <li><button onclick="loadContent('incorruptibles')" class="nav-item w-full text-left px-6 py-3 hover:bg-gray-700 transition text-sm text-gray-300">The Incorruptibles</button></li>
+                <li><button onclick="loadContent('stigmata')" class="nav-item w-full text-left px-6 py-3 hover:bg-gray-700 transition text-sm text-gray-300">Stigmata (Padre Pio)</button></li>
+                <li><button onclick="loadContent('sangennaro')" class="nav-item w-full text-left px-6 py-3 hover:bg-gray-700 transition text-sm text-gray-300">Blood of San Gennaro</button></li>
+            </ul>
+        </div>
+        
+        <div class="p-4 border-t border-gray-700 text-[10px] text-center text-gray-500 uppercase tracking-widest">
+            &copy; 2025 Signum Guide
+        </div>
+    </nav>
+
+    <!-- Overlay for mobile -->
+    <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden md:hidden" onclick="toggleMobileMenu()"></div>
+
+    <!-- Main Content Area -->
+    <main id="main-content" class="flex-1 overflow-y-auto relative bg-roma-dark bg-[url('https://www.transparenttextures.com/patterns/dark-matter.png')]">
+        <div class="max-w-4xl mx-auto p-6 md:p-12 pb-24 fade-in" id="content-container">
+            <!-- Content Injected Here -->
+        </div>
+    </main>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // --- Fallback Image URL ---
+        // This generates a dark grey placeholder with orange text if the local image is missing
+        const getPlaceholder = (text) => `https://placehold.co/600x400/1e293b/d97706?text=${encodeURIComponent(text)}`;
+
+        // --- Data Store ---
+        const contentData = {
+            'intro': {
+                title: "The God of the Evidence",
+                subtitle: "Faith is not a blind leap into the dark. It is a reasonable step into the light.",
+                html: `
+                    <div class="prose prose-invert prose-lg max-w-none font-body">
+                        <p class="lead text-xl text-gray-300 mb-6">
+                            The modern world assumes that science has buried God. We are told that religion is just a "God of the Gaps" that shrinks every time we discover something new about physics or biology. But that narrative is outdated. In the last century, we have seen the rise of the God of the Evidence.
+                        </p>
+                        
+                        <p class="text-gray-300 mb-8 leading-relaxed">
+                            As our forensic tools become more precise, the case for certain Catholic claims has become stronger rather than weaker. We are not interested in pious legends or rumors. We are interested in hard data. This collection focuses on anomalies that have been subjected to rigorous scrutiny by secular scientists and still defy natural explanation.
+                        </p>
+
+                        <div class="bg-gray-800 p-6 rounded-lg border-l-4 border-roma-crimson my-8">
+                            <h3 class="font-serif text-white text-xl mb-3">The Church as Skeptic</h3>
+                            <p class="text-gray-300 text-sm leading-relaxed">
+                                You might be surprised to learn that the Catholic Church is the harshest skeptic of them all. For every miracle claim recognized, thousands are rejected. The Church invites atheist doctors and independent researchers to test these claims because it knows that the truth has nothing to fear. We are not looking for magic. We are looking for fingerprints.
+                            </p>
+                        </div>
+
+                        <h3 class="font-serif text-roma-gold text-2xl mt-8 mb-4">The Forensic Record</h3>
+                        <p class="text-gray-300 mb-6 leading-relaxed">
+                            When you strip away the sentimentality, you are left with physical contradictions that should not exist.
+                        </p>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-start">
+                                <i class="fas fa-microscope text-roma-gold mt-1 mr-3"></i>
+                                <span class="text-gray-300">We have pathology reports where consecrated bread analyzes as living heart tissue under a microscope. It is always from the left ventricle and it is always type AB blood.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-camera text-roma-gold mt-1 mr-3"></i>
+                                <span class="text-gray-300">We have ancient linens that contain 3D topographical data scorched by radiation rather than painted with pigment.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-hourglass-half text-roma-gold mt-1 mr-3"></i>
+                                <span class="text-gray-300">We have the bodies of saints that have refused to rot for centuries without any embalming.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-hand-holding-medical text-roma-gold mt-1 mr-3"></i>
+                                <span class="text-gray-300">We have wounds on mystics that remained open for fifty years without infection only to vanish at the moment of death.</span>
+                            </li>
+                        </ul>
+
+                        <h3 class="font-serif text-roma-gold text-2xl mt-8 mb-4">The Verdict</h3>
+                        <p class="text-gray-300 mb-4 leading-relaxed">
+                            This is not an invitation to superstition. It is a challenge to your curiosity. The materialist worldview requires that <em>every single one</em> of these cases be a hoax or a mistake. But if just one of them is authentic, then the universe is far more complex than we have been told.
+                        </p>
+                        <p class="text-white font-serif text-lg italic text-center mt-8">
+                            We present the evidence. You reach the verdict.
+                        </p>
+                    </div>
+                `
+            },
+            'lanciano': {
+                title: "The Miracle of Lanciano",
+                subtitle: "8th Century A.D. | Lanciano, Italy",
+                html: `
+                    <div class="mb-8">
+                        <p class="text-xs text-center text-gray-500 italic mb-2">"The flesh is true flesh. The blood is true blood."</p>
+                    </div>
+
+                    <!-- Tabs Header -->
+                    <div class="flex border-b border-gray-700 mb-6 overflow-x-auto">
+                        <button onclick="switchTab('lanciano-history')" class="tab-btn active-tab px-4 py-2 font-serif text-sm tracking-wider focus:outline-none transition-colors whitespace-nowrap">HISTORY</button>
+                        <button onclick="switchTab('lanciano-science')" class="tab-btn px-4 py-2 font-serif text-sm tracking-wider text-gray-400 hover:text-gray-200 focus:outline-none transition-colors whitespace-nowrap">FORENSIC DATA</button>
+                        <button onclick="switchTab('lanciano-skeptic')" class="tab-btn px-4 py-2 font-serif text-sm tracking-wider text-gray-400 hover:text-gray-200 focus:outline-none transition-colors whitespace-nowrap">THE SKEPTIC</button>
+                    </div>
+
+                    <!-- Tab: History -->
+                    <div id="lanciano-history" class="tab-content fade-in">
+                        <h4 class="font-serif text-white text-lg mb-4">The Crisis of Faith</h4>
+                        <p class="mb-4 text-gray-300">
+                            It was the middle of the 8th Century. The Iconoclast heresy was raging in the East, where emperors were smashing holy images. In the West, in the small, stone church of St. Legontian in Lanciano, a quiet crisis was unfolding.
+                        </p>
+                        <p class="mb-4 text-gray-300">
+                            A Basilian monk, a scholar of the Greek Rite, was celebrating the Latin Mass. Outwardly, he was pious. Inwardly, he was hollow. He was a man of science and letters, and the "mystery" of the Eucharist had become an intellectual stumbling block. He looked at the white host and the chalice of wine and his mind whispered: <em>"This is bread. This is wine. Nothing more. It is a symbol."</em>
+                        </p>
+                        <p class="mb-4 text-gray-300">
+                            He prayed, begging God to remove the coldness from his heart. The moment of Consecration arrived. He spoke the words of Jesus, "This is my Body... This is my Blood." As the last syllable left his lips, the church went silent.
+                        </p>
+                        <p class="mb-4 text-gray-300">
+                            The host in his hands did not just change in substance; it changed in <em>appearance</em>. The white wafer turned into a dark, fibrous piece of red muscle. The wine in the chalice thickened, swirled, and turned into bright red, arterial blood.
+                        </p>
+                        
+                        <!-- Image: The Reliquary -->
+                        <div class="my-6">
+                            <img src="signum_images/lanciano-reliquary.jpg?v=2" onerror="this.onerror=null;this.src=getPlaceholder('Lanciano Reliquary')" alt="The Reliquary of Lanciano showing the flesh and five blood globules" class="w-full md:w-3/4 lg:w-2/3 h-auto block mx-auto rounded-lg shadow-lg border border-gray-700">
+                            <p class="text-xs text-center text-gray-500 mt-2">The reliquary housing the miracle since 1713.</p>
+                        </div>
+
+                        <div class="bg-gray-800 p-4 border-l-2 border-roma-gold italic text-gray-400 text-sm my-6">
+                            "O fortunate witnesses, to whom the Blessed God, to confound my unbelief, has desired to reveal Himself in this Most Blessed Sacrament and to render Himself visible to our eyes!"
+                            <br><span class="text-xs text-roma-gold not-italic mt-1 block">- The Monk's declaration to the congregation</span>
+                        </div>
+                        <p class="text-gray-300">
+                            The blood eventually coagulated into five irregular globules, which tradition says represent the five wounds of Christ. The flesh remained intact. 
+                            For 1,200 years, through the fall of empires and two world wars, these relics were kept, waiting for a time when science could finally catch up to the miracle.
+                        </p>
+                    </div>
+
+                    <!-- Tab: Science -->
+                    <div id="lanciano-science" class="tab-content hidden fade-in">
+                        <div class="bg-gray-800 p-4 rounded mb-6 border border-gray-700">
+                            <h4 class="font-serif text-roma-gold text-lg mb-2">The Linoli Study (1970-1971)</h4>
+                            <p class="text-sm mb-4 text-gray-300">
+                                In 1970, the Church took a risk. They allowed Dr. Odoardo Linoli, a prominent Professor of Anatomy and Pathological Histology (and skeptical of medieval legends), 
+                                to sample the relics. He was assisted by Dr. Ruggero Bertelli. They used modern microscopy and chemical analysis.
+                            </p>
+                            
+                            <!-- Image: Microscopy -->
+                            <div class="my-4">
+                                <img src="signum_images/lanciano-microscope.jpg?v=2" onerror="this.onerror=null;this.src=getPlaceholder('Lanciano Microscope')" alt="Microscopic analysis of the Lanciano heart tissue" class="w-full md:w-3/4 lg:w-2/3 h-auto block mx-auto rounded shadow-md border border-gray-600">
+                                <p class="text-xs text-gray-500 mt-1">Histological slide showing striated myocardium fibers.</p>
+                            </div>
+
+                            <ul class="list-disc pl-5 space-y-4 text-sm text-gray-300">
+                                <li>
+                                    <strong>It is a Heart:</strong> The flesh is not just "meat." It is <em>myocardium</em>. 
+                                    Specifically, it is a cross-section of the <strong>Left Ventricle</strong>. It contains the endocardium, the myocardium, the vagus nerve, and the syncytium.
+                                </li>
+                                <li>
+                                    <strong>The Vagus Nerve:</strong> This nerve regulates the heartbeat. In a corpse, it decomposes almost immediately. 
+                                    In the Lanciano relic, it was preserved, suggesting the tissue was "suspended" in a living state.
+                                </li>
+                                <li>
+                                    <strong>Blood Type AB:</strong> Both the flesh and the five globules of blood are Type AB Positive. 
+                                    This matches the Shroud of Turin and the Sudarium of Oviedo—a statistical anomaly linking three relics across centuries and continents.
+                                </li>
+                                <li>
+                                    <strong>Fresh Blood Profile:</strong> Dr. Linoli fractionated the proteins in the blood. 
+                                    He found the ratio of albumin to globulin matched the profile of <strong>freshly drawn blood</strong> from a living person, not 1,200-year-old residue.
+                                </li>
+                                <li>
+                                    <strong>No Preservatives:</strong> Mass spectrometry looked for salts, mummification fluids, or resins. None were found. 
+                                    The preservation is scientifically inexplicable.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Tab: Skeptic -->
+                    <div id="lanciano-skeptic" class="tab-content hidden fade-in">
+                        <div class="space-y-4">
+                            <div class="bg-gray-800/50 p-4 rounded border-l-2 border-roma-crimson">
+                                <h5 class="text-roma-crimson font-bold text-sm">ARGUMENT 1: "It is a medieval fraud using a dead body."</h5>
+                                <p class="text-sm text-gray-300 mt-2">
+                                    <strong>Refutation:</strong> A medieval forger would need the skill of a 20th-century pathologist. 
+                                    To slice the left ventricle in this specific way—preserving the vagus nerve and the endocardium in a thin cross-section—requires anatomical knowledge 
+                                    that did not exist in the 8th century. Furthermore, untreated heart tissue putrefies in days. This has lasted 12 centuries.
+                                </p>
+                            </div>
+                            <div class="bg-gray-800/50 p-4 rounded border-l-2 border-roma-crimson">
+                                <h5 class="text-roma-crimson font-bold text-sm">ARGUMENT 2: "The blood is just ancient dried blood."</h5>
+                                <p class="text-sm text-gray-300 mt-2">
+                                    <strong>Refutation:</strong> Ancient blood loses its specific protein structure. The proteins break down. 
+                                    Dr. Linoli's electrophoresis showed that the proteins in the Lanciano blood were intact and in the same proportion as fresh blood. 
+                                    This defies the laws of organic chemistry regarding decay.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            'buenosaires': {
+                title: "The Event of Buenos Aires",
+                subtitle: "1996 | Buenos Aires, Argentina",
+                html: `
+                     <div class="mb-8 p-4 bg-gray-800 border-l-4 border-roma-gold">
+                        <p class="italic text-gray-300 font-serif">
+                            "I do not want to know where the sample comes from. I want to treat it as a blind test."
+                        </p>
+                        <p class="text-right text-xs text-roma-gold mt-2">- Dr. Frederick Zugibe to Dr. Castañón</p>
+                    </div>
+
+                    <!-- Tabs Header -->
+                    <div class="flex border-b border-gray-700 mb-6 overflow-x-auto">
+                        <button onclick="switchTab('ba-history')" class="tab-btn active-tab px-4 py-2 font-serif text-sm tracking-wider focus:outline-none transition-colors whitespace-nowrap">HISTORY</button>
+                        <button onclick="switchTab('ba-science')" class="tab-btn px-4 py-2 font-serif text-sm tracking-wider text-gray-400 hover:text-gray-200 focus:outline-none transition-colors whitespace-nowrap">THE BLIND TEST</button>
+                        <button onclick="switchTab('ba-implications')" class="tab-btn px-4 py-2 font-serif text-sm tracking-wider text-gray-400 hover:text-gray-200 focus:outline-none transition-colors whitespace-nowrap">IMPLICATIONS</button>
+                    </div>
+
+                    <!-- Tab: History -->
+                    <div id="ba-history" class="tab-content fade-in">
+                        <h4 class="font-serif text-white text-lg mb-4">The Discarded Host</h4>
+                        <p class="mb-4 text-gray-300">
+                            August 18, 1996. The bustling commercial parish of Santa Maria in Buenos Aires. It was a busy Sunday evening Mass. 
+                            As the people shuffled out, a woman approached the priest, Fr. Alejandro Pezet. She pointed to a discarded candlestick holder at the back of the church.
+                            "Father," she said, "someone dropped a host. It's dirty."
+                        </p>
+                        <p class="mb-4 text-gray-300">
+                            Fr. Pezet walked over. There it was—the Body of Christ, treating like trash, dusty and soiled. He could not consume it. 
+                            He followed the strict rubric of the Church: he placed the host in a vessel of water, locked it in the tabernacle, and waited for it to dissolve so he could pour the water into the earth.
+                        </p>
+                        <p class="mb-4 text-gray-300">
+                            On August 26, he opened the tabernacle to check on the progress. He expected to see cloudy water. 
+                            Instead, he recoiled. The host had not dissolved. It had bloomed. It was covered in a red, pulsing substance that looked like flesh. It had grown in size.
+                            Terrified, he called his auxiliary bishop, Jorge Bergoglio. Bergoglio—known for his caution—ordered: "Photograph it. Don't tell anyone. Leave it there. Let's see if it rots."
+                        </p>
+                        
+                        <!-- Image: Buenos Aires Host -->
+                        <div class="my-6">
+                            <img src="signum_images/buenos-aires-host.jpg?v=2" onerror="this.onerror=null;this.src=getPlaceholder('Buenos Aires Host')" alt="The Buenos Aires host transformed into bloody tissue" class="w-full md:w-3/4 lg:w-2/3 h-auto block mx-auto rounded-lg shadow-lg border border-gray-700">
+                        </div>
+
+                        <p class="text-gray-300">
+                            They waited three years. It didn't rot. It didn't smell. It remained there, a piece of flesh in a glass of tap water, defying biology.
+                        </p>
+                    </div>
+
+                    <!-- Tab: Science -->
+                    <div id="ba-science" class="tab-content hidden fade-in">
+                        <div class="space-y-6">
+                            <div class="bg-gray-800 p-5 rounded border border-gray-700">
+                                <h4 class="font-serif text-white text-lg mb-2">Dr. Frederick Zugibe's Analysis</h4>
+                                <p class="text-xs text-gray-500 mb-3">Forensic Pathologist, Rockland County, NY</p>
+                                
+                                <p class="text-sm mb-3 text-gray-300">
+                                    In 2005, Dr. Ricardo Castañón Gomez took the sample to New York. He gave it to Dr. Frederick Zugibe, one of the top forensic pathologists in the US, famous for his expertise in heart disease. 
+                                    Castañón did <strong>not</strong> tell him it was a host. He simply said: "Analyze this tissue."
+                                </p>
+                                
+                                <!-- Image: Microscope WBC -->
+                                <div class="my-4">
+                                    <img src="signum_images/buenos-aires-microscope.jpg?v=2" onerror="this.onerror=null;this.src=getPlaceholder('BA White Blood Cells')" alt="White Blood Cells found in the Buenos Aires sample" class="w-full md:w-3/4 lg:w-2/3 h-auto block mx-auto rounded shadow-md border border-gray-600">
+                                </div>
+
+                                <ul class="list-disc pl-5 space-y-4 text-sm text-gray-300">
+                                    <li><strong>The Diagnosis:</strong> Zugibe peered into the microscope. "This is heart muscle," he said immediately. "It is from the left ventricle."</li>
+                                    <li><strong>The Condition:</strong> "The heart muscle is in an inflammatory condition and contains a large number of white blood cells."</li>
+                                    <li>
+                                        <strong>The "Smoking Gun":</strong> <span class="text-roma-gold font-bold">Intact White Blood Cells (Leukocytes)</span>.
+                                        <br>
+                                        Zugibe turned to Castañón: "This heart is alive. White blood cells die minutes after being removed from the body. 
+                                        If this tissue were from a corpse, these cells would be gone. For them to be intact, the sample must have been taken while the heart was beating."
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h5 class="text-roma-crimson font-bold text-sm">The Reveal</h5>
+                                <p class="text-sm text-gray-300 mt-2">
+                                    Dr. Castañón then dropped the bombshell: "Doctor, how long would these white blood cells survive in water?"
+                                    <br>Zugibe replied: "Minutes. Maybe an hour."
+                                    <br>Castañón said: "This sample has been in tap water for three years."
+                                    <br>Zugibe was visibly shaken. When told it was a communion host, the man of science replied: 
+                                    <em class="text-gray-100">"How and why a communion host would become the living heart of a suffering man is a mystery to science."</em>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab: Implications -->
+                    <div id="ba-implications" class="tab-content hidden fade-in">
+                        <h4 class="font-serif text-white text-lg mb-4">The Theological Connection</h4>
+                        <p class="mb-4 text-gray-300">
+                            The forensic details paint a specific picture of the Passion.
+                        </p>
+                        <ul class="list-disc pl-5 space-y-2 text-sm text-gray-300">
+                            <li><strong>Trauma:</strong> The white blood cells had <em>penetrated</em> the myocardium. This is a "vital reaction." It means the heart was being beaten severely while alive. It matches the scourging.</li>
+                            <li><strong>Location:</strong> Like Lanciano, it is the Left Ventricle—the engine of the blood.</li>
+                            <li><strong>Continuity:</strong> This miracle happened under the watch of the future Pope Francis, linking the ancient tradition to the modern papacy.</li>
+                        </ul>
+                    </div>
+                `
+            },
+            'guadalupe': {
+                title: "Our Lady of Guadalupe",
+                subtitle: "1531 | Tepeyac Hill, Mexico",
+                html: `
+                    <div class="mb-6">
+                        <p class="text-sm text-gray-400 italic">"Am I not here, I who am your Mother?"</p>
+                    </div>
+
+                    <div class="flex border-b border-gray-700 mb-6 overflow-x-auto">
+                        <button onclick="switchTab('guad-history')" class="tab-btn active-tab px-4 py-2 font-serif text-sm tracking-wider focus:outline-none transition-colors whitespace-nowrap">THE STORY</button>
+                        <button onclick="switchTab('guad-science')" class="tab-btn px-4 py-2 font-serif text-sm tracking-wider text-gray-400 hover:text-gray-200 focus:outline-none transition-colors whitespace-nowrap">THE TILMA</button>
+                        <button onclick="switchTab('guad-eyes')" class="tab-btn px-4 py-2 font-serif text-sm tracking-wider text-gray-400 hover:text-gray-200 focus:outline-none transition-colors whitespace-nowrap">THE EYES</button>
+                    </div>
+
+                    <div id="guad-history" class="tab-content fade-in">
+                        <h4 class="font-serif text-white text-lg mb-4">A World in Ash</h4>
+                        <p class="mb-4 text-gray-300">
+                            1531. Mexico City. Just ten years earlier, this was the capital of the Aztec Empire. Now it was a graveyard. 
+                            The Spanish Conquistadors had toppled the empire. The indigenous people were shattered—their temples burned, their gods dead, their population decimated by smallpox.
+                            They were a people in absolute despair, practicing human sacrifice to gods who had failed them.
+                        </p>
+                        <p class="mb-4 text-gray-300">
+                            Juan Diego, a 57-year-old Aztec convert, was walking past Tepeyac Hill. This hill was significant; it was the former site of the temple to Tonantzin, the Aztec mother goddess.
+                            He heard birdsong, then a voice: "Juanito, Juan Dieguito." He found a young woman, glowing like the sun. She didn't speak Spanish; she spoke Nahuatl, the language of the oppressed. 
+                            She appeared not as a white European, but as a <em>mestiza</em>—a mix of Aztec and Spanish.
+                        </p>
+                        <p class="mb-4 text-gray-300">
+                            She asked for a church. But the Spanish Bishop, Zumárraga, was a pragmatist and a skeptic. "I need a sign," he said.
+                            It was December. Winter. The hill was barren stone. Yet, Juan Diego found Castilian roses—flowers that did not grow in Mexico—blooming in the frost. 
+                            He gathered them in his rough cactus-fiber cloak (tilma). When he entered the Bishop's court and opened his cloak, the roses fell... but the Bishop fell to his knees. 
+                            Painted on the rough fiber, glowing with colors that had no earthly source, was the woman herself.
+                        </p>
+                        
+                        <!-- Image: Guadalupe Full -->
+                        <div class="my-6">
+                            <img src="signum_images/guadalupe-tilma.jpg?v=2" onerror="this.onerror=null;this.src=getPlaceholder('Guadalupe Tilma')" alt="The miraculous image on the Tilma of Juan Diego" class="w-full md:w-3/4 lg:w-2/3 h-auto block mx-auto rounded-lg shadow-lg border border-gray-700">
+                        </div>
+
+                        <p class="text-roma-gold text-sm font-bold mt-4">Result: 9 million conversions in 7 years. The largest mass conversion in history.</p>
+                    </div>
+
+                    <div id="guad-science" class="tab-content hidden fade-in">
+                        <div class="space-y-6">
+                            <div class="bg-gray-800 p-4 rounded border border-gray-700">
+                                <h4 class="font-serif text-roma-gold text-lg mb-2">Material Impossibility</h4>
+                                <p class="text-sm text-gray-300">
+                                    The <em>tilma</em> is made of agave cactus fiber (ayate). It is a coarse netting, not canvas. In the salty, humid swamp air of 16th-century Mexico City, ayate fiber rots in 20 years. 
+                                    The Tilma is nearly 500 years old. It is soft as silk. It has survived floods, candle smoke, and handling by millions.
+                                </p>
+                                <p class="text-sm text-gray-300 mt-2"><strong>The Acid Test (1791):</strong> A worker accidentally spilled 50% nitric acid on the image. It should have dissolved instantly. It left a faint water stain that is disappearing over time.</p>
+                                <p class="text-sm text-gray-300 mt-2"><strong>The Bomb (1921):</strong> An atheist hid a bomb in roses at the altar. The explosion bent a heavy bronze crucifix into a U-shape. The glass covering the Tilma—inches away—did not even crack.</p>
+                            </div>
+                            <div class="bg-gray-800 p-4 rounded border border-gray-700">
+                                <h4 class="font-serif text-roma-gold text-lg mb-2">Infrared Analysis (1979)</h4>
+                                <p class="text-sm text-gray-300">
+                                    Dr. Philip Serna Callahan (NASA) scanned the image. He found <strong>no underdrawing</strong>. No sketch. No corrections. 
+                                    More impossibly, he found <strong>no sizing</strong> (primer). If you paint on raw fiber, the paint soaks through. 
+                                    Here, the image sits on top of the weave, "hovering" like a photograph.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="guad-eyes" class="tab-content hidden fade-in">
+                        <h4 class="font-serif text-white text-lg mb-4">The Photograph in the Eye</h4>
+                        <p class="mb-4 text-sm text-gray-300">
+                            In human eyes, we see reflections (Purkinje images). Dr. Jose Aste Tonsmann (Cornell engineer) magnified the Virgin's eyes 2,500 times.
+                        </p>
+                        
+                        <!-- Image: Guadalupe Eyes -->
+                        <div class="my-4">
+                            <img src="signum_images/guadalupe-eyes.jpg?v=2" onerror="this.onerror=null;this.src=getPlaceholder('Guadalupe Eyes Analysis')" alt="Digital analysis of the reflection in the Virgin's eyes" class="w-full md:w-3/4 lg:w-2/3 h-auto block mx-auto rounded shadow-md border border-gray-600">
+                        </div>
+
+                        <ul class="list-disc pl-5 space-y-2 text-sm text-gray-300">
+                            <li><strong>The Scene:</strong> Reflected in her corneas is the exact scene of December 12, 1531.</li>
+                            <li><strong>The Figures:</strong> You can see a bearded Spaniard (Bishop Zumárraga), a man with hands on his chest (Juan Diego), and a black woman (a known servant of the bishop).</li>
+                            <li><strong>The Geometry:</strong> The reflection follows the curvature of a living cornea. It is present in <em>both</em> eyes, with the correct stereoscopic distortion. No painter in 1531 knew about corneal reflections, let alone could paint them in microscopic detail on a cactus net.</li>
+                        </ul>
+                    </div>
+                `
+            },
+            'fatima': {
+                title: "The Miracle of the Sun",
+                subtitle: "Oct 13, 1917 | Fatima, Portugal",
+                html: `
+                    <div class="mb-6">
+                        <p class="text-sm text-gray-400 italic">"The sun trembled, made sudden incredible movements outside all cosmic laws." - O Século</p>
+                    </div>
+
+                    <div class="flex border-b border-gray-700 mb-6 overflow-x-auto">
+                        <button onclick="switchTab('fatima-event')" class="tab-btn active-tab px-4 py-2 font-serif text-sm tracking-wider focus:outline-none transition-colors whitespace-nowrap">THE DAY</button>
+                        <button onclick="switchTab('fatima-physics')" class="tab-btn px-4 py-2 font-serif text-sm tracking-wider text-gray-400 hover:text-gray-200 focus:outline-none transition-colors whitespace-nowrap">EVIDENCE</button>
+                        <button onclick="switchTab('fatima-skeptic')" class="tab-btn px-4 py-2 font-serif text-sm tracking-wider text-gray-400 hover:text-gray-200 focus:outline-none transition-colors whitespace-nowrap">SKEPTICISM</button>
+                    </div>
+
+                    <div id="fatima-event" class="tab-content fade-in">
+                        <h4 class="font-serif text-white text-lg mb-4">The Mud and the Fear</h4>
+                        <p class="mb-4 text-gray-300">
+                            October 13, 1917. The First World War was bleeding Europe dry. In Portugal, an atheist government, fiercely Masonic, had vowed to crush the Church within two generations.
+                            Three illiterate shepherd children claimed the Virgin Mary would perform a miracle at noon to prove her message.
+                        </p>
+                        <p class="mb-4 text-gray-300">
+                            70,000 people arrived. It was a disaster. Rain had fallen in sheets for hours. The field of the Cova da Iria was a bog of mud. The crowd—aristocrats, peasants, atheists, reporters—stood shivering, soaked to the bone. 
+                            At noon, nothing happened. The skeptics mocked. "Where is your miracle?"
+                        </p>
+                        
+                        <!-- Image: Fatima Crowd -->
+                        <div class="my-6">
+                            <img src="signum_images/fatima-crowd.jpg?v=2" onerror="this.onerror=null;this.src=getPlaceholder('Fatima Crowd')" alt="70,000 people looking up at the sky in Fatima" class="w-full md:w-3/4 lg:w-2/3 h-auto block mx-auto rounded-lg shadow-lg border border-gray-700">
+                        </div>
+
+                        <p class="text-gray-300">
+                            Then, Lucia pointed up. The clouds tore apart like a curtain. The sun appeared, but it was not the sun. It was a silver disc. It could be stared at without pain. 
+                            It began to spin. It shot out beams of colored light—red, violet, blue—painting the faces of the crowd. 
+                            Then, the terror began. The sun detached from the sky and plummeted toward the earth. 70,000 people fell to their knees in the mud, screaming their acts of contrition, believing the end of the world had come.
+                        </p>
+                    </div>
+
+                    <div id="fatima-physics" class="tab-content hidden fade-in">
+                        <div class="bg-gray-800 p-4 rounded border-l-4 border-roma-gold mb-6">
+                            <h4 class="font-serif text-white text-lg">Testimony of the Enemy</h4>
+                            
+                            <!-- Image: Newspaper -->
+                            <div class="my-4">
+                                <img src="signum_images/fatima-newspaper.jpg?v=2" onerror="this.onerror=null;this.src=getPlaceholder('O Seculo Newspaper')" alt="Front page of O Seculo reporting the miracle" class="w-full h-auto rounded shadow-md border border-gray-600">
+                            </div>
+
+                            <p class="text-sm text-gray-300 mt-2">
+                                Avelino de Almeida, editor of the pro-government, anti-clerical paper <em>O Século</em>, came to mock the "fraud." Instead, he wrote:
+                            </p>
+                            <p class="text-sm italic text-gray-200 mt-2 ml-4">
+                                "Before the astonished eyes of the crowd... the sun trembled, made sudden incredible movements outside all cosmic laws—the sun 'danced' according to the typical expression of the people."
+                            </p>
+                        </div>
+                        <h4 class="font-serif text-white text-lg mb-2">The "Dryness" Phenomenon</h4>
+                        <p class="text-sm text-gray-300">
+                            This is the physical proof that counters "hallucination." When the sun returned to its place, the crowd stood up. 
+                            They found their heavy wool clothes, which had been soaking wet for hours, were <strong>instantly dry</strong>. 
+                            The deep mud of the field was solid. 
+                            <br><br>
+                            <strong>Thermodynamics:</strong> The energy required to evaporate that much water in minutes would have incinerated the crowd. Yet, they were unharmed.
+                        </p>
+                    </div>
+
+                    <div id="fatima-skeptic" class="tab-content hidden fade-in">
+                        <div class="space-y-4">
+                            <div class="bg-gray-800/50 p-4 rounded border-l-2 border-roma-crimson">
+                                <h5 class="text-roma-crimson font-bold text-sm">"It was mass hallucination."</h5>
+                                <p class="text-sm text-gray-300 mt-2">
+                                    <strong>Refutation:</strong> Hallucinations are subjective. The sun was seen by people up to 25 miles away, in neighboring villages, 
+                                    who were going about their daily business and had no idea what was happening at the Cova. 
+                                    Furthermore, a hallucination cannot dry wet clothes.
+                                </p>
+                            </div>
+                            <div class="bg-gray-800/50 p-4 rounded border-l-2 border-roma-crimson">
+                                <h5 class="text-roma-crimson font-bold text-sm">"It was a sun dog or dust cloud."</h5>
+                                <p class="text-sm text-gray-300 mt-2">
+                                    <strong>Refutation:</strong> Sun dogs are stationary atmospheric reflections. They do not spin, change color, or zigzag. 
+                                    More importantly, atmospheric phenomena do not generate heat.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            'zeitoun': {
+                title: "The Virgin of Zeitoun",
+                subtitle: "1968-1971 | Cairo, Egypt",
+                html: `
+                    <div class="mb-6"><p class="text-sm text-gray-400 italic">"I saw a lady made of light." - Farouk Mohammed Atwa</p></div>
+
+                    <div class="flex border-b border-gray-700 mb-6 overflow-x-auto">
+                        <button onclick="switchTab('zeitoun-context')" class="tab-btn active-tab px-4 py-2 font-serif text-sm tracking-wider focus:outline-none transition-colors whitespace-nowrap">THE NIGHT</button>
+                        <button onclick="switchTab('zeitoun-witnesses')" class="tab-btn px-4 py-2 font-serif text-sm tracking-wider text-gray-400 hover:text-gray-200 focus:outline-none transition-colors whitespace-nowrap">THE INVESTIGATION</button>
+                        <button onclick="switchTab('zeitoun-skeptic')" class="tab-btn px-4 py-2 font-serif text-sm tracking-wider text-gray-400 hover:text-gray-200 focus:outline-none transition-colors whitespace-nowrap">SKEPTICISM</button>
+                    </div>
+
+                    <div id="zeitoun-context" class="tab-content fade-in">
+                        <h4 class="font-serif text-white text-lg mb-4">The Light in the Darkness</h4>
+                        <p class="mb-4 text-gray-300">
+                            1968. Cairo. Egypt was a nation in mourning. The Six-Day War against Israel had ended in a crushing defeat. The mood in the streets was one of despair and gloom. 
+                            On the night of April 2, Farouk Mohammed Atwa, a Muslim mechanic, was working across the street from the Coptic Church of Saint Mary.
+                        </p>
+                        <p class="mb-4 text-gray-300">
+                            He looked up at the dome of the church and shouted. He saw a woman dressed in white standing on the edge of the dome. He thought she was a nun about to commit suicide.
+                            "Don't jump!" he screamed. He ran to call the police.
+                        </p>
+                        <p class="text-gray-300">
+                            A crowd gathered. But then they realized something strange. The woman wasn't standing on the stone; she was floating above it. And she wasn't illuminated by streetlights; she <em>was</em> light. 
+                            She moved across the dome, bowing to the cross. White doves made of light flew around her. For the next three years, she would appear hundreds of times, sometimes for hours, witnessed by millions of Muslims, Christians, and atheists.
+                        </p>
+                        
+                        <!-- Image: Zeitoun Dome -->
+                        <div class="my-6">
+                            <img src="signum_images/zeitoun-dome.jpg?v=2" onerror="this.onerror=null;this.src=getPlaceholder('Zeitoun Apparition')" alt="The luminous figure atop the dome of the Coptic church in Zeitoun" class="w-full md:w-3/4 lg:w-2/3 h-auto block mx-auto rounded-lg shadow-lg border border-gray-700">
+                        </div>
+                    </div>
+
+                    <div id="zeitoun-witnesses" class="tab-content hidden fade-in">
+                        <div class="bg-gray-800 p-4 rounded border-l-4 border-roma-gold mb-6">
+                            <h4 class="font-serif text-white text-lg">The Police Report</h4>
+                            <p class="text-sm text-gray-300 mt-2">
+                                The Egyptian government, fearful of a hoax or foreign trickery, launched a ruthless investigation. 
+                                Police searched a 15-mile radius for projectors. They found nothing. 
+                                They tried to expose the "fraud" by cutting all electricity to the entire neighborhood of Zeitoun. 
+                                <br><br>
+                                <strong>Result:</strong> When the lights went out, the apparition glowed brighter.
+                            </p>
+                        </div>
+                        <h4 class="font-serif text-white text-lg mb-2">President Nasser's Witness</h4>
+                        <p class="text-sm text-gray-300">
+                            President Gamal Abdel Nasser, a secular socialist, went to the site personally to verify the phenomenon. He saw her. 
+                            The government declared the apparitions "an undeniable fact." It is the only miracle in history to be officially validated by a secular, Muslim government.
+                        </p>
+                    </div>
+
+                    <div id="zeitoun-skeptic" class="tab-content hidden fade-in">
+                        <div class="space-y-4">
+                            <div class="bg-gray-800/50 p-4 rounded border-l-2 border-roma-crimson">
+                                <h5 class="text-roma-crimson font-bold text-sm">"It was holograms or lasers."</h5>
+                                <p class="text-sm text-gray-300 mt-2">
+                                    <strong>Refutation:</strong> In 1968, holography was in its infancy (invented 1962). Creating a 3D, moving, life-sized hologram on a curved dome required massive, stationary equipment and mirrors. No such equipment existed in Egypt, let alone equipment that could be hidden from police searching the area.
+                                </p>
+                            </div>
+                            <div class="bg-gray-800/50 p-4 rounded border-l-2 border-roma-crimson">
+                                <h5 class="text-roma-crimson font-bold text-sm">"It was seismic lights (tectonic strain)."</h5>
+                                <p class="text-sm text-gray-300 mt-2">
+                                    <strong>Refutation:</strong> "Earthquake lights" are flashes or balls of light. They do not take the form of a human woman walking, bowing, and blessing crowds for hours at a time, repeatedly, in the exact same location for three years.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            'lourdes': {
+                title: "Lourdes Medical Bureau",
+                subtitle: "1858 - Present | Lourdes, France",
+                html: `
+                    <div class="mb-6"><p class="text-sm text-gray-400 italic">The Bureaucracy of Miracles</p></div>
+                    
+                    <div class="flex border-b border-gray-700 mb-6 overflow-x-auto">
+                        <button onclick="switchTab('lourdes-context')" class="tab-btn active-tab px-4 py-2 font-serif text-sm tracking-wider focus:outline-none transition-colors whitespace-nowrap">CONTEXT</button>
+                        <button onclick="switchTab('lourdes-criteria')" class="tab-btn px-4 py-2 font-serif text-sm tracking-wider text-gray-400 hover:text-gray-200 focus:outline-none transition-colors whitespace-nowrap">THE CRITERIA</button>
+                        <button onclick="switchTab('lourdes-case')" class="tab-btn px-4 py-2 font-serif text-sm tracking-wider text-gray-400 hover:text-gray-200 focus:outline-none transition-colors whitespace-nowrap">CASE STUDY</button>
+                    </div>
+
+                    <div id="lourdes-context" class="tab-content fade-in">
+                        <h4 class="font-serif text-white text-lg mb-4">The Garbage Dump</h4>
+                        <p class="mb-4 text-gray-300">
+                            1858. The Massabielle Grotto was a literal garbage dump on the outskirts of Lourdes. It was the place for pigs and refuse.
+                            Bernadette Soubirous was a 14-year-old girl, uneducated, living in an abandoned jail cell because her family was so destitute. She suffered from asthma and hunger.
+                        </p>
+                        
+                        <!-- Image: Lourdes Grotto -->
+                        <div class="my-6">
+                            <img src="signum_images/lourdes-grotto.jpg?v=2" onerror="this.onerror=null;this.src=getPlaceholder('Lourdes Grotto')" alt="The Grotto of Massabielle at Lourdes" class="w-full md:w-3/4 lg:w-2/3 h-auto block mx-auto rounded-lg shadow-lg border border-gray-700">
+                        </div>
+
+                        <p class="mb-4 text-gray-300">
+                            Here, in the filth, the "Beautiful Lady" appeared. She told Bernadette to dig in the mud. The crowd mocked her as she smeared dirt on her face. 
+                            But from that mud, a spring bubbled up. It flows to this day, 27,000 gallons a week.
+                        </p>
+                        <p class="text-gray-300">
+                            Lourdes is unique in religious history because it invited science in. The <strong>Medical Bureau (CMIL)</strong> was established to 
+                            <em>disprove</em> miracles. It is staffed by independent doctors, including atheists and skeptics.
+                            The Stats: Over 7,000 claimed cures. Only <strong>70</strong> declared miraculous. The Church's standard of proof is higher than any court of law.
+                        </p>
+                    </div>
+
+                    <div id="lourdes-criteria" class="tab-content hidden fade-in">
+                        <div class="bg-gray-800 p-4 rounded border border-gray-700">
+                            <h4 class="font-serif text-roma-gold text-lg mb-2">The Lambertini Criteria</h4>
+                            <p class="text-sm text-gray-400 mb-2">For a cure to be miraculous, it cannot just be "amazing." It must be impossible.</p>
+                            <ol class="list-decimal pl-5 space-y-2 text-sm text-gray-300">
+                                <li>Disease must be serious, organic, and incurable (no mental/psychosomatic conditions).</li>
+                                <li>Objective medical proof (X-rays, biopsies) must exist <em>before</em> the cure.</li>
+                                <li>The cure must be <strong>instantaneous</strong> (happening in seconds/minutes).</li>
+                                <li>The cure must be <strong>complete</strong> and <strong>permanent</strong>.</li>
+                                <li>No concurrent medical treatment can explain it.</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div id="lourdes-case" class="tab-content hidden fade-in">
+                        <h4 class="font-serif text-white text-lg mb-2">The Case of Vittorio Micheli (1962)</h4>
+                        
+                        <!-- Image: Lourdes Xray -->
+                        <div class="my-4">
+                            <img src="signum_images/lourdes-xray.jpg?v=2" onerror="this.onerror=null;this.src=getPlaceholder('Vittorio X-Ray')" alt="X-ray showing regrowth of the hip bone" class="w-full md:w-3/4 lg:w-2/3 h-auto block mx-auto rounded shadow-md border border-gray-600">
+                        </div>
+
+                        <p class="text-sm text-gray-300 mb-4">This is a case of biological creation ex nihilo.</p>
+                        <ul class="list-disc pl-5 space-y-2 text-sm text-gray-300 mb-4">
+                            <li><strong>Condition:</strong> Vittorio had a massive sarcoma (bone cancer) on his left hip. The tumor had eaten the bone. The iliac bone and socket were <em>gone</em>. His leg was attached only by skin and muscle. He was in a full body cast.</li>
+                            <li><strong>The Event:</strong> He was bathed in the waters of Lourdes while still in his cast. He felt a sudden heat and hunger.</li>
+                            <li><strong>The Evidence:</strong> He returned to the hospital. X-rays revealed the tumor had vanished. But the impossible part was that the <strong>bone had regrown</strong>.</li>
+                            <li><strong>Impossibility:</strong> The body can heal a fracture. The body cannot <em>regenerate</em> an entire missing joint and hip bone that has been destroyed by cancer. It is like a lizard growing a tail, but in a human skeleton.</li>
+                        </ul>
+                        <p class="text-xs text-gray-500">Declared miraculous in 1976 after 14 years of monitoring.</p>
+                    </div>
+                `
+            },
+            'shroud': {
+                title: "The Shroud of Turin",
+                subtitle: "Turin, Italy",
+                html: `
+                    <div class="mb-6"><p class="text-sm text-gray-400 italic">The Silent Witness of the Resurrection</p></div>
+
+                    <div class="flex border-b border-gray-700 mb-6 overflow-x-auto">
+                        <button onclick="switchTab('shroud-story')" class="tab-btn active-tab px-4 py-2 font-serif text-sm tracking-wider focus:outline-none transition-colors whitespace-nowrap">THE NEGATIVE</button>
+                        <button onclick="switchTab('shroud-sturp')" class="tab-btn px-4 py-2 font-serif text-sm tracking-wider text-gray-400 hover:text-gray-200 focus:outline-none transition-colors whitespace-nowrap">STURP 1978</button>
+                        <button onclick="switchTab('shroud-dating')" class="tab-btn px-4 py-2 font-serif text-sm tracking-wider text-gray-400 hover:text-gray-200 focus:outline-none transition-colors whitespace-nowrap">C-14 CONTROVERSY</button>
+                    </div>
+
+                    <div id="shroud-story" class="tab-content fade-in">
+                        <h4 class="font-serif text-white text-lg mb-4">The Darkroom Revelation</h4>
+                        <p class="mb-4 text-gray-300">
+                            May 28, 1898. Secondo Pia, an amateur photographer, was given permission to photograph the Shroud for the first time. 
+                            He worked in the dim light of the Cathedral, unsure if his primitive equipment would capture the faint, sepia stains on the linen.
+                        </p>
+                        <p class="mb-4 text-gray-300">
+                            Late that night, in his darkroom, he slid the glass plate into the developer bath. He watched under the red light. 
+                            As the image manifested, he nearly dropped the plate in terror. He did not see a negative (a light ghost with dark eyes). 
+                            He saw a <strong>positive</strong> face. A man of majesty, eyes closed in death, blood matted in his beard. 
+                        </p>
+                        
+                        <!-- Image: Shroud Negative -->
+                        <div class="my-6">
+                            <img src="signum_images/shroud-negative.jpg?v=2" onerror="this.onerror=null;this.src=getPlaceholder('Shroud Negative')" alt="The photographic negative of the Shroud of Turin" class="w-full md:w-3/4 lg:w-2/3 h-auto block mx-auto rounded-lg shadow-lg border border-gray-700">
+                        </div>
+
+                        <p class="text-gray-300">
+                            This revealed the impossible: The image on the cloth itself is a <em>negative</em>. 
+                            For a medieval forger to create this, he would have had to paint a perfect photographic negative hundreds of years before the concept of photography existed, and do it without being able to see his own work.
+                        </p>
+                    </div>
+
+                    <div id="shroud-sturp" class="tab-content hidden fade-in">
+                        <p class="mb-4 text-gray-300">In 1978, the Shroud of Turin Research Project (STURP), a team of American scientists (NASA, Los Alamos, JPL), was given 120 hours with the cloth.</p>
+                        
+                        <!-- Image: Shroud 3D -->
+                        <div class="my-4">
+                            <img src="signum_images/shroud-3d.jpg?v=2" onerror="this.onerror=null;this.src=getPlaceholder('Shroud 3D Map')" alt="VP-8 Image Analyzer 3D Map of the Shroud" class="w-full md:w-3/4 lg:w-2/3 h-auto block mx-auto rounded shadow-md border border-gray-600">
+                        </div>
+
+                        <ul class="list-disc pl-5 space-y-2 text-sm text-gray-300">
+                            <li><strong>No Pigment:</strong> There is no paint, dye, varnish, or stain. You cannot scrape the image off; it is part of the cellulose structure.</li>
+                            <li><strong>The Image Mechanism:</strong> The image is caused by the rapid oxidation/dehydration of the top 2-3 micro-fibrils of the linen. It is a scorch mark created by light/radiation, but without heat (the fibers aren't burned).</li>
+                            <li><strong>3D Data:</strong> When put through a VP-8 Image Analyzer (designed for mapping Mars), the Shroud yields a perfect 3D topographic map of a human body. Paintings or photos do not do this; they distort. The image contains distance information encoded in intensity.</li>
+                        </ul>
+                    </div>
+
+                    <div id="shroud-dating" class="tab-content hidden fade-in">
+                        <div class="bg-gray-800 p-4 rounded border-l-4 border-roma-gold">
+                            <h4 class="font-serif text-white text-lg">The 1988 C-14 Test</h4>
+                            <p class="text-sm text-gray-300 mt-2">Three labs dated the cloth to 1260-1390 AD. Headlines declared it a fake.</p>
+                            <h4 class="font-serif text-white text-lg mt-4">The Vindication</h4>
+                            <p class="text-sm text-gray-300 mt-2">
+                                In 2005, Ray Rogers (Los Alamos chemist) proved the sample was taken from a corner that had been <strong>re-woven</strong> in the middle ages to repair fire damage. The sample contained cotton and dye; the main shroud does not.
+                                <br><br>
+                                <strong>2022 Data:</strong> Dr. Liberato De Caro used Wide-Angle X-ray Scattering (WAXS) to date the cellulose. The result: <strong>1st Century AD</strong>, compatible with fabric from the siege of Masada.
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            'sudarium': {
+                title: "The Sudarium of Oviedo",
+                subtitle: "Oviedo, Spain",
+                html: `
+                    <div class="mb-6"><p class="text-sm text-gray-400 italic">"The napkin, which had been on his head..." - John 20:7</p></div>
+                    
+                    <div class="bg-gray-800 p-5 rounded border border-gray-700 mb-6">
+                        <h4 class="font-serif text-roma-gold text-lg mb-2">The Flight from Jerusalem</h4>
+                        
+                        <!-- Image: Sudarium Cloth -->
+                        <div class="my-4">
+                            <img src="signum_images/sudarium-cloth.jpg?v=2" onerror="this.onerror=null;this.src=getPlaceholder('Sudarium Cloth')" alt="The Sudarium of Oviedo" class="w-full md:w-3/4 lg:w-2/3 h-auto block mx-auto rounded shadow-md border border-gray-600">
+                        </div>
+
+                        <p class="text-sm text-gray-300">
+                            While the Shroud was the burial sheet, the Sudarium was the face cloth used to cover the head immediately after death (to catch blood) before burial. 
+                            Its history is a thriller. Taken from Jerusalem in 614 AD to escape the Persian invasion, it traveled across North Africa, ending up in Spain.
+                            It has been in Oviedo since the 8th century—predating the Shroud's disputed Carbon-14 date by hundreds of years.
+                        </p>
+                    </div>
+
+                    <h4 class="font-serif text-white text-lg mb-2">The Forensic Match</h4>
+                    
+                    <!-- Image: Sudarium Overlay -->
+                    <div class="my-4">
+                        <img src="signum_images/sudarium-overlay.jpg?v=2" onerror="this.onerror=null;this.src=getPlaceholder('Sudarium Overlay')" alt="Diagram showing the Sudarium matching the Shroud" class="w-full md:w-3/4 lg:w-2/3 h-auto block mx-auto rounded shadow-md border border-gray-600">
+                    </div>
+
+                    <p class="text-sm text-gray-300 mb-4">
+                        The Sudarium has no image, only bloodstains and pleural edema (lung fluid). But when forensic pathologists overlay the Sudarium stains onto the Shroud face, they match with mathematical precision.
+                    </p>
+                    <ul class="list-disc pl-5 space-y-2 text-sm text-gray-300">
+                        <li><strong>Blood Type:</strong> Type AB (Matches Shroud and Lanciano).</li>
+                        <li><strong>The Wounds:</strong> Both cloths show stains corresponding to the crown of thorns on the nape of the neck and forehead.</li>
+                        <li><strong>The Fluid:</strong> Both contain pleural edema fluid mixed with blood 1:6—a sign of death by asphyxiation/heart failure (Crucifixion).</li>
+                        <li><strong>Conclusion:</strong> The statistical probability of two separate medieval forgers creating random bloodstains that match perfectly on two different cloths is astronomically low. They covered the same face.</li>
+                    </ul>
+                `
+            },
+            'incorruptibles': {
+                title: "The Incorruptibles",
+                subtitle: "Defying Decay",
+                html: `
+                    <div class="flex border-b border-gray-700 mb-6 overflow-x-auto">
+                        <button onclick="switchTab('inc-story')" class="tab-btn active-tab px-4 py-2 font-serif text-sm tracking-wider focus:outline-none transition-colors whitespace-nowrap">THE EXHUMATION</button>
+                        <button onclick="switchTab('inc-science')" class="tab-btn px-4 py-2 font-serif text-sm tracking-wider text-gray-400 hover:text-gray-200 focus:outline-none transition-colors whitespace-nowrap">SCIENCE VS. MIRACLE</button>
+                    </div>
+
+                    <div id="inc-story" class="tab-content fade-in">
+                        <h4 class="font-serif text-white text-lg mb-4">St. Bernadette Soubirous (Died 1879)</h4>
+                        <p class="mb-4 text-gray-300">
+                            Bernadette, the visionary of Lourdes, died of tuberculosis of the bone. Her body was buried in the damp earth of the St. Gildard Convent in Nevers. 
+                            30 years later, for her cause of beatification, the grave was opened. Two doctors and nuns stood by, expecting the smell of decay and a skeleton.
+                        </p>
+                        
+                        <!-- Image: Bernadette -->
+                        <div class="my-6">
+                            <img src="signum_images/bernadette-body.jpg?v=2" onerror="this.onerror=null;this.src=getPlaceholder('St. Bernadette')" alt="The incorrupt body of St. Bernadette" class="w-full md:w-3/4 lg:w-2/3 h-auto block mx-auto rounded-lg shadow-lg border border-gray-700">
+                        </div>
+
+                        <p class="text-gray-300">
+                            They opened the lead coffin. The rosary in her hands was rusted black. The crucifix was oxidized green. The habit was damp and rotting from the moisture. 
+                            But Bernadette lay there as if sleeping. Her skin was soft. Her eyes were intact. She had not decayed. There was no smell of death, only a scent of flowers.
+                        </p>
+                    </div>
+
+                    <div id="inc-science" class="tab-content hidden fade-in">
+                        <div class="bg-gray-800 p-4 rounded border-l-2 border-roma-gold mb-6">
+                            <h4 class="font-serif text-white text-lg">Not Mummification</h4>
+                            <p class="text-sm text-gray-300 mt-2">
+                                Skeptics claim "natural mummification." 
+                                <br><strong>Mummification:</strong> Requires dryness. The body becomes hard, leathery, and dark.
+                                <br><strong>Saponification (Grave Wax):</strong> Requires moisture. The body becomes white, crumbly, and soapy.
+                                <br><strong>Incorruptibility:</strong> The body remains supple, flexible, and retains lifelike color, even in damp conditions that rot metal and wood.
+                            </p>
+                        </div>
+                        <p class="text-sm italic text-gray-400">
+                            "The skin has disappeared...?" No. "The skin is parchment-like...?" No. "The skin is soft and elastic to the touch." 
+                            <br>- Dr. Jourdan Report on Bernadette
+                        </p>
+                    </div>
+                `
+            },
+            'stigmata': {
+                title: "The Stigmata of Padre Pio",
+                subtitle: "1887-1968 | Pietrelcina, Italy",
+                html: `
+                    <div class="mb-6"><p class="text-sm text-gray-400 italic">"I am a mystery to myself."</p></div>
+
+                    <div class="bg-gray-800 p-5 rounded border border-gray-700 mb-6">
+                        <h4 class="font-serif text-roma-gold text-lg mb-2">The Medical Anomaly</h4>
+                        
+                        <!-- Image: Padre Pio Hands -->
+                        <div class="my-4">
+                            <img src="signum_images/padre-pio-hands.jpg?v=2" onerror="this.onerror=null;this.src=getPlaceholder('Padre Pio Hands')" alt="Padre Pio's stigmatized hands" class="w-full md:w-3/4 lg:w-2/3 h-auto block mx-auto rounded shadow-md border border-gray-600">
+                        </div>
+
+                        <p class="text-sm text-gray-300 mb-2">
+                            For 50 years, the Capuchin friar Padre Pio bore the open wounds of the Crucifixion on his hands, feet, and side. 
+                            The Church, fearing fraud, was his harshest judge. They banned him from saying public Mass for a decade. 
+                            They sent doctors, including the atheist pathologist Dr. Amico Bignami, to prove they were self-inflicted.
+                        </p>
+                        <ul class="list-disc pl-5 space-y-4 text-sm text-gray-300">
+                            <li>
+                                <strong>No Infection:</strong> An open wound in the pre-antibiotic era should have become infected, gangrenous, and necrotic within weeks. 
+                                Pio's wounds remained fresh, bloody, and sweet-smelling (odor of sanctity) for 50 years without treatment.
+                            </li>
+                            <li>
+                                <strong>Stalled Biology:</strong> The body has a natural drive to heal (cicatrization). Pio's wounds defied this law. They refused to heal, yet they refused to worsen. 
+                                They existed in a state of suspended biological law.
+                            </li>
+                            <li>
+                                <strong>The Disappearance:</strong> As he lay dying in 1968, the wounds began to close. By the moment of his death, they had vanished. 
+                                There were no scars. The skin was as smooth as a baby's. This rapid tissue regeneration is medically impossible.
+                            </li>
+                        </ul>
+                    </div>
+                `
+            },
+            'sangennaro': {
+                title: "The Blood of San Gennaro",
+                subtitle: "4th Century - Present | Naples, Italy",
+                html: `
+                    <div class="mb-6"><p class="text-sm text-gray-400 italic">"The miracle of the blood."</p></div>
+
+                    <div class="flex border-b border-gray-700 mb-6 overflow-x-auto">
+                        <button onclick="switchTab('sangennaro-story')" class="tab-btn active-tab px-4 py-2 font-serif text-sm tracking-wider focus:outline-none transition-colors whitespace-nowrap">THE PHENOMENON</button>
+                        <button onclick="switchTab('sangennaro-science')" class="tab-btn px-4 py-2 font-serif text-sm tracking-wider text-gray-400 hover:text-gray-200 focus:outline-none transition-colors whitespace-nowrap">SCIENTIFIC PUZZLE</button>
+                    </div>
+
+                    <div id="sangennaro-story" class="tab-content fade-in">
+                        <h4 class="font-serif text-white text-lg mb-4">The Martyr's Blood</h4>
+                        <p class="mb-4 text-gray-300">
+                            San Gennaro (Januarius), Bishop of Benevento, was beheaded during the Diocletian persecution in 305 AD. According to tradition, his blood was collected by a woman named Eusebia in two glass ampoules.
+                        </p>
+                        <p class="mb-4 text-gray-300">
+                            For most of the year, the substance in the sealed ampoule is a dark, solid crust. But three times a year (including Sept 19, his feast day), when brought near the saint's skull in the Cathedral of Naples, the solid mass transforms into bright red, bubbling liquid blood.
+                        </p>
+                        
+                        <!-- Image: San Gennaro -->
+                        <div class="my-6">
+                            <img src="signum_images/sangennaro-vial.jpg?v=2" onerror="this.onerror=null;this.src=getPlaceholder('San Gennaro Vial')" alt="The reliquary containing the blood of San Gennaro" class="w-full md:w-3/4 lg:w-2/3 h-auto block mx-auto rounded-lg shadow-lg border border-gray-700">
+                        </div>
+                    </div>
+
+                    <div id="sangennaro-science" class="tab-content hidden fade-in">
+                        <div class="bg-gray-800 p-4 rounded border-l-2 border-roma-gold mb-6">
+                            <h4 class="font-serif text-white text-lg">Physical Anomalies</h4>
+                            <p class="text-sm text-gray-300 mt-2">
+                                <strong>Spectroscopy (1902):</strong> Confirmed the substance contains the absorption spectrum of hemoglobin. It is real blood.
+                                <br><br>
+                                <strong>Variable Mass:</strong> Professor Sperindeo noted that when the blood liquefies, it sometimes increases in volume and weight, violating the conservation of mass. 
+                                <br><br>
+                                <strong>Thixotropy Refuted:</strong> Skeptics claim it is a thixotropic gel (liquefies when shaken). However, the blood sometimes liquefies while sitting still in the safe, and sometimes <em>refuses</em> to liquefy even after hours of handling/shaking by the Cardinal.
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            'loreto': {
+                title: "The Holy House of Loreto",
+                subtitle: "1294 AD | Loreto, Italy",
+                html: `
+                    <div class="mb-6"><p class="text-sm text-gray-400 italic">"Here the Word was made flesh."</p></div>
+
+                    <div class="flex border-b border-gray-700 mb-6 overflow-x-auto">
+                        <button onclick="switchTab('loreto-story')" class="tab-btn active-tab px-4 py-2 font-serif text-sm tracking-wider focus:outline-none transition-colors whitespace-nowrap">THE FLIGHT</button>
+                        <button onclick="switchTab('loreto-science')" class="tab-btn px-4 py-2 font-serif text-sm tracking-wider text-gray-400 hover:text-gray-200 focus:outline-none transition-colors whitespace-nowrap">ARCHAEOLOGY</button>
+                    </div>
+
+                    <div id="loreto-story" class="tab-content fade-in">
+                        <h4 class="font-serif text-white text-lg mb-4">The House of Nazareth</h4>
+                        <p class="mb-4 text-gray-300">
+                            Tradition holds this is the house where Mary was born and where the Annunciation occurred. In 1291, as Crusaders were losing the Holy Land to Muslim forces, the house disappeared from Nazareth. 
+                            It appeared inexplicably in Croatia, then disappeared again, landing in Recanati, Italy, and finally on a public road in Loreto in 1294.
+                        </p>
+                        
+                        <!-- Image: Loreto House -->
+                        <div class="my-6">
+                            <img src="signum_images/loreto-house.jpg?v=2" onerror="this.onerror=null;this.src=getPlaceholder('Holy House of Loreto')" alt="The stone walls of the Holy House inside the Basilica" class="w-full md:w-3/4 lg:w-2/3 h-auto block mx-auto rounded-lg shadow-lg border border-gray-700">
+                        </div>
+                    </div>
+
+                    <div id="loreto-science" class="tab-content hidden fade-in">
+                        <div class="bg-gray-800 p-4 rounded border-l-2 border-roma-gold mb-6">
+                            <h4 class="font-serif text-white text-lg">Structural Impossibilities</h4>
+                            <ul class="list-disc pl-5 space-y-2 text-sm text-gray-300 mt-2">
+                                <li><strong>No Foundation:</strong> The house sits directly on top of a public dirt road. It has no foundation. Yet, it has survived centuries of earthquakes that destroyed the basilica built around it.</li>
+                                <li><strong>Stone Origin:</strong> The stones are not Italian. They are chemically identical to the stones of Nazareth.</li>
+                                <li><strong>Mortar Analysis:</strong> Chemical analysis of the mortar shows it is a mixture of lime and ash typical of 1st-century Palestine, completely unknown in medieval Italy.</li>
+                                <li><strong>Graffiti:</strong> The stones contain graffiti in Judaeo-Christian characters (Hebrew/Greek) identical to those found in the Holy Land from the early Christian era.</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            }
+        };
+
+        // --- Core Logic ---
+
+        const mainContent = document.getElementById('main-content');
+        const contentContainer = document.getElementById('content-container');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+
+        // Load Content Function
+        function loadContent(key) {
+            const data = contentData[key];
+            if (!data) return;
+
+            // Update UI State (Active Nav)
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active-nav'));
+            
+            // Find the button that corresponds to this key to highlight it
+            const correspondingBtn = document.querySelector(`button[onclick="loadContent('${key}')"]`);
+            if (correspondingBtn) {
+                correspondingBtn.classList.add('active-nav');
+            }
+
+            // Fade Out
+            contentContainer.style.opacity = '0';
+            
+            setTimeout(() => {
+                // Inject HTML
+                contentContainer.innerHTML = `
+                    <div class="border-b-2 border-roma-gold pb-4 mb-8">
+                        <h2 class="text-3xl md:text-5xl font-serif text-roma-paper uppercase tracking-widest">${data.title}</h2>
+                        <p class="text-roma-gold font-body mt-2 italic text-lg">${data.subtitle}</p>
+                    </div>
+                    <div class="content-body text-gray-300 leading-relaxed font-body">
+                        ${data.html}
+                    </div>
+                `;
+                
+                // Fade In
+                contentContainer.style.opacity = '1';
+                contentContainer.classList.add('fade-in');
+                
+                // Scroll to top
+                mainContent.scrollTop = 0;
+            }, 200);
+
+            // Close mobile menu if open
+            if(window.innerWidth < 768) {
+                toggleMobileMenu();
+            }
+        }
+
+        // Tab Switching Logic (Global helper)
+        window.switchTab = function(tabId) {
+            // Safety check for event
+            if (!event || !event.target) return;
+
+            // Get the parent container of the clicked tab (to scope the search)
+            const parentContainer = document.getElementById(tabId).parentElement;
+            
+            // Hide all siblings that are tab-content
+            const allTabs = parentContainer.querySelectorAll('.tab-content');
+            allTabs.forEach(tab => {
+                tab.classList.add('hidden');
+            });
+
+            // Find the active tab and show it
+            document.getElementById(tabId).classList.remove('hidden');
+
+            // Handle button states
+            // Find the header container (previous sibling of the first tab content usually, or rely on event)
+            const btnContainer = event.target.parentElement;
+            const allBtns = btnContainer.querySelectorAll('.tab-btn');
+            
+            allBtns.forEach(btn => {
+                btn.classList.remove('active-tab');
+                btn.classList.add('text-gray-400');
+            });
+            
+            event.target.classList.add('active-tab');
+            event.target.classList.remove('text-gray-400');
+        };
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const isClosed = sidebar.classList.contains('-translate-x-full');
+            if (isClosed) {
+                sidebar.classList.remove('-translate-x-full');
+                overlay.classList.remove('hidden');
+            } else {
+                sidebar.classList.add('-translate-x-full');
+                overlay.classList.add('hidden');
+            }
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
+        // Initial Load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Manually trigger Intro load
+            const introBtn = document.querySelector('button[onclick="loadContent(\'intro\')"]');
+            if(introBtn) {
+                introBtn.classList.add('active-nav'); // Set initial active state manually since we aren't clicking
+                loadContent('intro'); 
+            }
+        });
+
+    </script>
+</body>
+</html>

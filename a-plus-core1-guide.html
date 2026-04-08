@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CompTIA A+ Core 1 (220-1201) Study Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #94a3b8;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+        .nav-link.active {
+            background-color: #e2e8f0;
+            color: #1e293b;
+            font-weight: 600;
+        }
+        #content-area code {
+            background-color: #f1f5f9;
+            color: #475569;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800">
+
+    <div class="flex h-screen">
+        <!-- Mobile Menu Button -->
+        <button id="menu-toggle" class="lg:hidden fixed top-4 left-4 z-30 bg-white p-2 rounded-md shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+        </button>
+
+        <!-- Left Pane: Navigation -->
+        <nav id="navigation-menu" class="bg-white w-80 h-full p-4 shadow-lg overflow-y-auto transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out fixed lg:relative z-20">
+            <h1 class="text-2xl font-bold text-slate-900 mb-6">A+ Core 1 Guide</h1>
+            <ul class="space-y-4">
+                <!-- Domains will be dynamically inserted here by JavaScript -->
+            </ul>
+        </nav>
+
+        <!-- Right Pane: Content -->
+        <main class="flex-1 p-6 sm:p-8 lg:p-12 overflow-y-auto">
+            <div id="content-area" class="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-md">
+                <!-- Content will be dynamically inserted here -->
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const studyGuideData = {
+            "welcome": {
+                title: "Welcome to the A+ Core 1 Study Guide!",
+                content: `
+                    <p class="text-lg mb-4">This interactive guide is designed to help you prepare for the CompTIA A+ Core 1 (220-1201) certification exam.</p>
+                    <p class="mb-4">The exam covers five main domains:</p>
+                    <ul class="list-disc list-inside mb-4 pl-4 space-y-2">
+                        <li><strong>Mobile Devices (15%)</strong></li>
+                        <li><strong>Networking (20%)</strong></li>
+                        <li><strong>Hardware (27%)</strong></li>
+                        <li><strong>Virtualization and Cloud Computing (11%)</strong></li>
+                        <li><strong>Hardware and Network Troubleshooting (27%)</strong></li>
+                    </ul>
+                    <p>Use the navigation menu on the left to select a domain and objective. The content for that topic will appear here. Good luck with your studies!</p>
+                    <div class="mt-6 p-4 bg-blue-50 border-l-4 border-blue-500 text-blue-800 rounded-r-lg">
+                        <h4 class="font-bold">How to Use This Guide</h4>
+                        <p>Click on any objective in the navigation panel to load the study material. The currently selected topic will be highlighted.</p>
+                    </div>
+                `
+            },
+            // Domain 1: Mobile Devices
+            "1.0": { title: "Domain 1.0: Mobile Devices", content: `<p>This domain covers the installation, configuration, and troubleshooting of laptops, mobile devices, and their associated hardware and software.</p>` },
+            "1.1": { title: "1.1 Laptop Hardware & Components", content: `<h3 class="text-xl font-semibold mb-3">Key Components & Installation</h3><ul class="list-disc list-inside space-y-2"><li><strong>RAM (SODIMM):</strong> Laptops use Small Outline Dual In-line Memory Modules, which are smaller than desktop DIMMs. To install, insert the module at a 45-degree angle into the slot, aligning the notch. Gently press down until the clips on both sides snap into place.</li><li><strong>Storage (SSD/HDD):</strong><ul class="list-circle list-inside ml-6 mt-2"><li><strong>2.5" SATA:</strong> A common form factor for both Hard Disk Drives and Solid State Drives. Typically slides into a caddy and is secured with screws.</li><li><strong>M.2:</strong> A smaller, faster form factor for SSDs that connects directly to the motherboard. It's installed similarly to RAM (at an angle) and secured with a single small screw at the opposite end. Pay attention to M.2 key types (B, M, or B+M) to ensure compatibility.</li></ul></li><li><strong>Wireless Card / Bluetooth Module:</strong> These are often a single combo card, typically using a Mini-PCIe or M.2 slot. Before inserting the card, you must connect the small antenna wires (usually black and white) to the corresponding connectors on the card.</li><li><strong>CPU:</strong> Laptop CPUs are highly integrated and usually soldered directly to the motherboard (a BGA - Ball Grid Array package), making them non-upgradable.</li></ul>` },
+            "1.2": { title: "1.2 Laptop Display Components", content: `<h3 class="text-xl font-semibold mb-3">Components within the Display Assembly</h3><ul class="list-disc list-inside space-y-2"><li><strong>Screen Types:</strong> Laptops use LCD (Liquid Crystal Display) panels. Older laptops used CCFL backlights, which required an <strong>inverter</strong> to convert DC power to high-voltage AC. Modern laptops use LED or OLED backlights, which are more power-efficient and do not need an inverter.</li><li><strong>Webcam & Microphone:</strong> These are small modules located in the top bezel of the display. They connect to the motherboard via a thin, flat cable that runs through the laptop's hinge.</li><li><strong>Wi-Fi Antenna:</strong> The antenna is not the wireless card itself. It consists of wires that are routed around the perimeter of the screen assembly to achieve the best possible signal reception. These wires connect to the wireless card in the laptop's main body.</li></ul>` },
+            "1.3": { title: "1.3 Laptop Features", content: `<h3 class="text-xl font-semibold mb-3">Common Laptop Features</h3><ul class="list-disc list-inside space-y-2"><li><strong>Special Function (Fn) Keys:</strong> A modifier key that, when pressed with another key (usually F1-F12), controls hardware functions like screen brightness, volume, keyboard backlight, display switching, and toggling Wi-Fi/Bluetooth.</li><li><strong>Docking Station vs. Port Replicator:</strong><ul class="list-circle list-inside ml-6 mt-2"><li><strong>Docking Station:</strong> A proprietary device that a laptop physically connects to, often through a connector on the bottom. It provides power and expands the laptop's I/O to desktop-like levels, potentially adding more display outputs, USB ports, and network jacks.</li><li><strong>Port Replicator:</strong> A more generic device, often connecting via USB or USB-C. It replicates common ports (USB, HDMI, Ethernet) but is generally less feature-rich than a docking station.</li></ul></li><li><strong>Physical Locks:</strong> Most business laptops include a Kensington lock slot, a small, reinforced hole used to secure the laptop to a desk with a cable lock, deterring theft.</li></ul>` },
+            "1.4": { title: "1.4 Other Mobile Devices", content: `<h3 class="text-xl font-semibold mb-3">Characteristics of Mobile Devices</h3><ul class="list-disc list-inside space-y-2"><li><strong>Connectivity:</strong> Mobile devices use various wireless technologies: <strong>NFC</strong> (Near Field Communication) for short-range data transfer and mobile payments; <strong>Bluetooth</strong> for connecting peripherals like headsets and speakers; and <strong>Cellular</strong> (4G LTE, 5G) for internet access on the go.</li><li><strong>Accessories:</strong> Common accessories include headsets (wired via 3.5mm jack or USB-C, or wireless via Bluetooth), speakers, game pads, and extra battery packs.</li><li><strong>AR vs. VR:</strong> <strong>Augmented Reality (AR)</strong> overlays digital information onto the real world (e.g., Pokémon Go). <strong>Virtual Reality (VR)</strong> creates a completely immersive, computer-generated environment, blocking out the real world.</li></ul>` },
+            // Domain 2: Networking
+            "2.0": { title: "Domain 2.0: Networking", content: `<p>This domain focuses on networking protocols, devices, and troubleshooting.</p>` },
+            "2.1": { title: "2.1 TCP vs. UDP Ports & Protocols", content: `<h3 class="text-xl font-semibold mb-3">TCP vs. UDP</h3><ul class="list-disc list-inside space-y-2"><li><strong>TCP (Transmission Control Protocol):</strong> Connection-oriented. Establishes a formal connection (three-way handshake) before sending data. It guarantees delivery and that packets are reassembled in the correct order. Slower but reliable. Used for web browsing, email, and file transfers.</li><li><strong>UDP (User Datagram Protocol):</strong> Connectionless. Sends data without establishing a connection. It's a "fire and forget" protocol with no guarantee of delivery or order. Much faster but unreliable. Used for streaming video, online gaming, and VoIP.</li></ul><h3 class="text-xl font-semibold my-3">Additional Common Ports</h3><ul class="list-disc list-inside space-y-2"><li><strong>SMB (Server Message Block) - Port 445:</strong> Used for file sharing in Windows networks.</li><li><strong>AFP (Apple Filing Protocol) - Port 548:</strong> The equivalent of SMB for macOS.</li><li><strong>RDP (Remote Desktop Protocol) - Port 3389:</strong> Used for remote access to Windows computers.</li></ul>` },
+            "2.2": { title: "2.2 Common Networking Hardware", content: `<h3 class="text-xl font-semibold mb-3">Networking Devices</h3><ul class="list-disc list-inside space-y-2"><li><strong>Router:</strong> A Layer 3 (Network Layer) device that makes forwarding decisions based on IP addresses. It connects different networks together (e.g., your home network to the internet).</li><li><strong>Switch:</strong> A Layer 2 (Data Link Layer) device that connects devices on the same local network. It learns the MAC addresses of connected devices and forwards traffic only to the intended recipient, unlike a hub which broadcasts to all.</li><li><strong>Access Point (AP):</strong> Not a router. An AP's job is to bridge wireless traffic to a wired network. It acts like a wireless switch.</li><li><strong>Firewall:</strong> A security device that filters network traffic based on a set of rules. It can be hardware-based (a dedicated appliance) or software-based (running on a computer or router).</li></ul>` },
+            "2.3": { title: "2.3 Wireless Networking Standards", content: `<h3 class="text-xl font-semibold mb-3">802.11 Standards & Features</h3><ul class="list-disc list-inside space-y-2"><li><strong>Frequencies:</strong> 2.4 GHz offers longer range but is more susceptible to interference from microwaves, cordless phones, etc. 5 GHz offers faster speeds and less interference but has a shorter range.</li><li><strong>Key Technologies:</strong><ul class="list-circle list-inside ml-6 mt-2"><li><strong>MIMO (Multiple-Input Multiple-Output):</strong> Used in 802.11n, it uses multiple antennas to send and receive multiple data streams simultaneously, increasing throughput.</li><li><strong>MU-MIMO (Multi-User MIMO):</strong> An enhancement in 802.11ac/ax that allows an access point to communicate with multiple devices at the same time, improving efficiency.</li></ul></li><li><strong>Channels:</strong> To avoid interference in the 2.4 GHz band, it's best to use non-overlapping channels: <strong>1, 6, or 11</strong>.</li></ul>` },
+            "2.4": { title: "2.4 Network Services", content: `<h3 class="text-xl font-semibold mb-3">Core Network Services</h3><ul class="list-disc list-inside space-y-2"><li><strong>DHCP (Dynamic Host Configuration Protocol):</strong> Automates IP address assignment. The process is <strong>DORA</strong>: <strong>D</strong>iscover (client broadcasts to find a server), <strong>O</strong>ffer (server offers an IP), <strong>R</strong>equest (client requests the offered IP), <strong>A</strong>cknowledge (server confirms the assignment).</li><li><strong>DNS (Domain Name System):</strong> The internet's phonebook. It resolves domain names to IP addresses. Key record types include: <strong>A</strong> (for IPv4 addresses), <strong>AAAA</strong> (for IPv6), <strong>CNAME</strong> (alias), and <strong>MX</strong> (mail exchange).</li><li><strong>NAT (Network Address Translation):</strong> The technology used by routers to allow multiple devices on a private network (using private IP ranges like 192.168.x.x) to share a single public IP address provided by the ISP.</li></ul>` },
+            "2.5": { title: "2.5 SOHO Network Configuration", content: `<h3 class="text-xl font-semibold mb-3">Common SOHO Router Settings</h3><ul class="list-disc list-inside space-y-2"><li><strong>Wireless Security:</strong> <strong>WPA2</strong> is the minimum standard; <strong>WPA3</strong> is the current, most secure standard. WEP and WPA are deprecated and insecure.</li><li><strong>MAC Filtering:</strong> A security feature that allows you to create a whitelist or blacklist of devices based on their physical MAC address. It can be easily spoofed, so it's considered weak security.</li><li><strong>Port Forwarding:</strong> Opens a specific port on the firewall and directs incoming traffic on that port to a specific device on the internal network. Essential for hosting servers or remote access.</li><li><strong>DMZ (Demilitarized Zone):</strong> A less secure area of the network. Placing a device in a DMZ exposes all of its ports to the internet. It's a security risk and should be used with caution.</li><li><strong>QoS (Quality of Service):</strong> Allows you to prioritize certain types of traffic (e.g., VoIP, gaming) to ensure they get enough bandwidth for smooth performance.</li></ul>` },
+            // Domain 3: Hardware
+            "3.0": { title: "Domain 3.0: Hardware", content: `<p>This domain covers identifying, using, and connecting hardware components and devices.</p>` },
+            "3.1": { title: "3.1 Cable Types", content: `<h3 class="text-xl font-semibold mb-3">Common Cable Types</h3><ul class="list-disc list-inside space-y-2"><li><strong>Video:</strong> <strong>HDMI</strong> and <strong>DisplayPort</strong> are modern digital standards that carry both video and audio. <strong>DVI</strong> is digital video only (in its most common form, DVI-D). <strong>VGA</strong> is an older analog standard.</li><li><strong>Data:</strong> <strong>SATA</strong> cables connect internal storage drives to the motherboard. <strong>Ethernet</strong> cables (with RJ-45 connectors) are used for wired networking. <strong>USB</strong> is the standard for connecting most peripherals.</li><li><strong>Power:</strong> <strong>Molex</strong> is an older 4-pin connector for peripherals. <strong>SATA power</strong> is a wider, L-shaped connector for modern drives. <strong>PCIe power</strong> (6-pin or 8-pin) provides extra power to high-end graphics cards.</li></ul>` },
+            "3.2": { title: "3.2 Connector Types", content: `<h3 class="text-xl font-semibold mb-3">Connector Identification</h3><ul class="list-disc list-inside space-y-2"><li><strong>USB:</strong> <strong>USB-C</strong> is the modern, reversible oval connector that supports high speeds and power delivery. <strong>USB-A</strong> is the classic rectangular connector. <strong>Micro-USB</strong> and <strong>Mini-USB</strong> are older, smaller connectors for mobile devices.</li><li><strong>Motherboard:</strong> The <strong>24-pin ATX connector</strong> is the main power connection. A separate <strong>4-pin or 8-pin connector</strong> provides power to the CPU. <strong>Front panel connectors</strong> (for power button, LEDs, etc.) are a set of small, individual pins that must be connected correctly.</li><li><strong>Networking:</strong> <strong>RJ-45</strong> is the standard connector for Ethernet cables. <strong>RJ-11</strong> is a smaller connector used for traditional telephone lines.</li></ul>` },
+            "3.3": { title: "3.3 Peripheral Devices", content: `<h3 class="text-xl font-semibold mb-3">Installing Peripherals</h3><ul class="list-disc list-inside space-y-2"><li><strong>Input:</strong> Keyboard, mouse, scanner, webcam, microphone.</li><li><strong>Output:</strong> Printer, speakers, display, projector.</li><li><strong>Drivers vs. Firmware:</strong> A <strong>driver</strong> is software that allows the operating system to communicate with a hardware device. <strong>Firmware</strong> is software that is permanently stored on the hardware device itself (e.g., the BIOS/UEFI on a motherboard).</li></ul>` },
+            "3.4": { title: "3.4 System Components", content: `<h3 class="text-xl font-semibold mb-3">Installing System Components</h3><ul class="list-disc list-inside space-y-2"><li><strong>Motherboard Form Factors:</strong> <strong>ATX</strong> is the standard full-size board. <strong>Micro-ATX</strong> is shorter with fewer expansion slots. <strong>Mini-ITX</strong> is a very small form factor for compact builds.</li><li><strong>CPU Installation:</strong> Align the triangle on the CPU with the triangle on the motherboard socket. Gently place the CPU in the socket (do not force it). Close the retention lever. Apply a pea-sized amount of thermal paste to the center of the CPU before attaching the heat sink.</li><li><strong>RAM:</strong> Ensure you are using the correct RAM slots for dual-channel mode (often slots 2 and 4, check the motherboard manual).</li><li><strong>Expansion Cards:</strong> The top-most PCIe x16 slot is typically reserved for the primary graphics card.</li></ul>` },
+            "3.5": { title: "3.5 Printer Technologies", content: `<h3 class="text-xl font-semibold mb-3">Printer Types and Processes</h3><ul class="list-disc list-inside space-y-2"><li><strong>Laser Printer Process (7 Steps):</strong> 1. <strong>Processing:</strong> The printer converts the data into a printable image. 2. <strong>Charging:</strong> A high-voltage corona wire charges the imaging drum. 3. <strong>Exposing:</strong> A laser beam writes the image onto the drum, discharging the areas it hits. 4. <strong>Developing:</strong> Toner (which is positively charged) is attracted to the discharged areas of the drum. 5. <strong>Transferring:</strong> The toner is transferred from the drum to the paper. 6. <strong>Fusing:</strong> Heat and pressure from the fuser assembly melt the toner permanently onto the paper. 7. <strong>Cleaning:</strong> Excess toner is scraped off the drum.</li><li><strong>Inkjet Printer Maintenance:</strong> Requires periodic <strong>print head cleaning</strong> to clear clogged nozzles and <strong>calibration</strong> to align the print heads for sharp output.</li></ul>` },
+            // Domain 4: Virtualization and Cloud Computing
+            "4.0": { title: "Domain 4.0: Virtualization & Cloud", content: `<p>This domain covers cloud computing concepts, client-side virtualization, and basic cloud concepts.</p>` },
+            "4.1": { title: "4.1 Cloud Computing Concepts", content: `<h3 class="text-xl font-semibold mb-3">Cloud Models & Characteristics</h3><ul class="list-disc list-inside space-y-2"><li><strong>Service Models:</strong> <strong>IaaS</strong> (you manage OS, apps), <strong>PaaS</strong> (you manage apps), <strong>SaaS</strong> (provider manages everything).</li><li><strong>Key Characteristics:</strong> <strong>On-demand self-service</strong> (provision resources without human interaction), <strong>Rapid elasticity</strong> (scale resources up or down as needed), <strong>Resource pooling</strong> (provider's resources are shared among multiple customers), <strong>Measured service</strong> (you only pay for what you use).</li><li><strong>Deployment Models:</strong> <strong>Public</strong> (on provider's infrastructure), <strong>Private</strong> (on your own infrastructure), <strong>Hybrid</strong> (a mix of public and private).</li></ul>` },
+            "4.2": { title: "4.2 Client-Side Virtualization", content: `<h3 class="text-xl font-semibold mb-3">Virtualization Basics</h3><ul class="list-disc list-inside space-y-2"><li><strong>Hypervisor:</strong> The software that manages VMs. <strong>Type 1 (Bare-Metal)</strong> runs directly on the host's hardware (e.g., VMware ESXi). <strong>Type 2 (Hosted)</strong> runs as an application on top of an existing OS (e.g., VirtualBox, VMware Workstation).</li><li><strong>Resource Requirements:</strong> Virtualization is resource-intensive. You need a CPU with virtualization support (<strong>Intel VT-x</strong> or <strong>AMD-V</strong>), which must be enabled in the BIOS/UEFI. You also need plenty of RAM and storage for the host and all guest VMs.</li><li><strong>Network Configuration:</strong> Virtual network adapters can be configured in different modes, such as <strong>Bridged</strong> (VM gets its own IP on the physical network) or <strong>NAT</strong> (VM shares the host's IP).</li></ul>` },
+            // Domain 5: Hardware and Network Troubleshooting
+            "5.0": { title: "Domain 5.0: Troubleshooting", content: `<p>This domain covers the application of troubleshooting methodology to diagnose and resolve hardware, software, and network problems.</p>` },
+            "5.1": { title: "5.1 Troubleshooting Methodology", content: `<h3 class="text-xl font-semibold mb-3">The 6-Step Process</h3><ol class="list-decimal list-inside space-y-2"><li><strong>Identify the problem:</strong> Gather information from the user. Identify any recent changes. Check for error messages.</li><li><strong>Establish a theory of probable cause:</strong> Start with the simplest explanations first ("Occam's Razor"). Is it plugged in? Is it turned on?</li><li><strong>Test the theory:</strong> If you suspect a bad cable, try a known-good cable. If you suspect a software setting, check it.</li><li><strong>Establish a plan of action and implement it:</strong> Once the cause is confirmed, plan the repair. Get user confirmation before making changes.</li><li><strong>Verify full system functionality:</strong> After the fix, test to make sure the problem is gone and that you haven't created a new problem.</li><li><strong>Document findings, actions, and outcomes:</strong> Record what the problem was, what you did to fix it, and the final result. This helps with future issues.</li></ol>` },
+            "5.2": { title: "5.2 Core Hardware Troubleshooting", content: `<h3 class="text-xl font-semibold mb-3">Common Issues</h3><ul class="list-disc list-inside space-y-2"><li><strong>POST Errors:</strong> The Power-On Self-Test runs when a computer boots. Errors are reported via <strong>beep codes</strong> or on-screen messages. These often point to critical hardware failures like bad RAM, CPU, or video card.</li><li><strong>BSOD (Blue Screen of Death) / Spinning Pinwheel:</strong> These indicate a system crash. A BSOD often includes an error code that can be researched. They can be caused by faulty hardware, bad drivers, or corrupted system files.</li><li><strong>Overheating:</strong> Symptoms include unexpected shutdowns, throttling (slow performance), and loud fans. The cause is often dust buildup in fans and heat sinks, or failed thermal paste.</li></ul>` },
+            "5.3": { title: "5.3 Storage Troubleshooting", content: `<h3 class="text-xl font-semibold mb-3">Drive Issues</h3><ul class="list-disc list-inside space-y-2"><li><strong>S.M.A.R.T. (Self-Monitoring, Analysis, and Reporting Technology):</strong> Drives monitor their own health and can report impending failure. If you see S.M.A.R.T. errors, back up data immediately and replace the drive.</li><li><strong>Read/Write Errors:</strong> Can indicate physical damage to the drive. Use the <code>chkdsk</code> command in Windows to scan for and repair file system errors and bad sectors.</li><li><strong>Failure to Boot:</strong> The OS may be corrupted, or the bootloader is damaged. Check the boot order in the BIOS/UEFI first. Use OS recovery tools like Startup Repair (Windows) to fix boot issues.</li></ul>` },
+            "5.4": { title: "5.4 Display Troubleshooting", content: `<h3 class="text-xl font-semibold mb-3">Video Problems</h3><ul class="list-disc list-inside space-y-2"><li><strong>No Display:</strong> First, check that the monitor has power and the video cable is securely connected at both ends. Try a different monitor and cable to isolate the problem. If the PC has onboard video, try removing the dedicated graphics card.</li><li><strong>Artifacts/Distortion:</strong> This is often a sign of a failing or overheating GPU. Update or reinstall graphics drivers first. If the problem persists, the card may need to be replaced.</li><li><strong>Burn-in:</strong> When a static image is displayed for too long, leaving a permanent "ghost" image on the screen. Common on OLED displays.</li></ul>` },
+            "5.5": { title: "5.5 Mobile Device Troubleshooting", content: `<h3 class="text-xl font-semibold mb-3">Common Mobile Issues</h3><ul class="list-disc list-inside space-y-2"><li><strong>Poor Battery Life:</strong> Identify power-hungry apps in the battery settings. Perform a battery calibration (let it drain completely, then charge to 100%). A factory reset can resolve software-related drain.</li><li><strong>Slow Performance:</strong> A simple restart can fix many issues. Clear the system cache partition. Free up storage space. As a last resort, perform a factory reset after backing up data.</li><li><strong>Frozen Screen:</strong> Attempt a force restart. The key combination varies by device (e.g., holding Power + Volume Down).</li></ul>` },
+            "5.6": { title: "5.6 Printer Troubleshooting", content: `<h3 class="text-xl font-semibold mb-3">Printer Problems</h3><ul class="list-disc list-inside space-y-2"><li><strong>No Connectivity:</strong> If networked, ping the printer's IP address. If connected via USB, check Device Manager to ensure it's recognized. Restart the <strong>Print Spooler</strong> service on the computer, which manages print jobs.</li><li><strong>Garbled Characters:</strong> This is almost always a driver issue. Install the correct driver for your specific printer model and OS.</li><li><strong>Streaks/Smudges:</strong> On an inkjet, run the print head cleaning utility. On a laser printer, this could be a scratched imaging drum (part of the toner cartridge) or a dirty fuser assembly.</li></ul>` },
+            "5.7": { title: "5.7 Network Troubleshooting", content: `<h3 class="text-xl font-semibold mb-3">Connectivity Issues & Tools</h3><ul class="list-disc list-inside space-y-2"><li><strong>APIPA (Automatic Private IP Addressing):</strong> If a Windows client cannot contact a DHCP server, it will assign itself an IP address in the <code>169.254.x.x</code> range. This allows communication on the local network but not the internet. It's a clear sign of a DHCP problem.</li><li><strong>Command-Line Tools:</strong><ul class="list-circle list-inside ml-6 mt-2"><li><code>ping</code>: Tests basic connectivity to another device by sending ICMP echo requests.</li><li><code>ipconfig</code> (Windows) / <code>ifconfig</code> (Linux/macOS): Displays IP configuration details.</li><li><code>tracert</code> (Windows) / <code>traceroute</code> (Linux/macOS): Shows the path (hops) that packets take to a destination.</li><li><code>nslookup</code>: Used to query DNS servers and troubleshoot name resolution issues.</li></ul></li></ul>` },
+        };
+
+        const objectives = {
+            "1.0 Mobile Devices": ["1.1", "1.2", "1.3", "1.4"],
+            "2.0 Networking": ["2.1", "2.2", "2.3", "2.4", "2.5"],
+            "3.0 Hardware": ["3.1", "3.2", "3.3", "3.4", "3.5"],
+            "4.0 Virtualization & Cloud": ["4.1", "4.2"],
+            "5.0 Troubleshooting": ["5.1", "5.2", "5.3", "5.4", "5.5", "5.6", "5.7"],
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const navMenu = document.querySelector('#navigation-menu ul');
+            const contentArea = document.getElementById('content-area');
+            const menuToggle = document.getElementById('menu-toggle');
+            const navigationMenu = document.getElementById('navigation-menu');
+
+            // Populate Navigation Menu
+            for (const domain in objectives) {
+                const domainLi = document.createElement('li');
+                
+                const domainButton = document.createElement('button');
+                domainButton.className = 'w-full text-left font-semibold text-lg text-slate-700 p-2 rounded-md hover:bg-slate-100';
+                domainButton.textContent = domain;
+                
+                const objectivesUl = document.createElement('ul');
+                objectivesUl.className = 'mt-2 ml-4 space-y-1';
+                objectivesUl.style.display = 'none'; // Initially collapsed
+
+                objectives[domain].forEach(objId => {
+                    const objectiveLi = document.createElement('li');
+                    const objectiveLink = document.createElement('a');
+                    objectiveLink.href = '#';
+                    objectiveLink.textContent = studyGuideData[objId].title;
+                    objectiveLink.dataset.objective = objId;
+                    objectiveLink.className = 'nav-link block p-2 rounded-md text-slate-600 hover:bg-slate-100 transition-colors';
+                    objectiveLi.appendChild(objectiveLink);
+                    objectivesUl.appendChild(objectiveLi);
+                });
+
+                domainButton.onclick = () => {
+                    const isHidden = objectivesUl.style.display === 'none';
+                    objectivesUl.style.display = isHidden ? 'block' : 'none';
+                };
+
+                domainLi.appendChild(domainButton);
+                domainLi.appendChild(objectivesUl);
+                navMenu.appendChild(domainLi);
+            }
+            
+            // Function to load content
+            function loadContent(id) {
+                const data = studyGuideData[id];
+                if (data) {
+                    contentArea.innerHTML = `<h2 class="text-3xl font-bold mb-6 border-b pb-4">${data.title}</h2><div>${data.content}</div>`;
+                }
+            }
+
+            // Event Delegation for nav links
+            navMenu.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A' && e.target.dataset.objective) {
+                    e.preventDefault();
+                    const objectiveId = e.target.dataset.objective;
+                    loadContent(objectiveId);
+
+                    // Update active class
+                    document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+                    e.target.classList.add('active');
+
+                    // Close menu on mobile after selection
+                    if (window.innerWidth < 1024) {
+                        navigationMenu.classList.add('-translate-x-full');
+                    }
+                }
+            });
+
+            // Mobile menu toggle
+            menuToggle.addEventListener('click', () => {
+                navigationMenu.classList.toggle('-translate-x-full');
+            });
+
+            // Load welcome content initially
+            loadContent('welcome');
+            
+            // Auto-expand all domains
+            const domainButtons = navMenu.querySelectorAll('button');
+            domainButtons.forEach(button => button.click());
+
+        });
+    </script>
+</body>
+</html>

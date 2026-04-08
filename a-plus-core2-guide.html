@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CompTIA A+ 220-1202 Interactive Study Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .sidebar-scrollbar::-webkit-scrollbar {
+            width: 5px;
+        }
+        .sidebar-scrollbar::-webkit-scrollbar-track {
+            background: #1f2937;
+        }
+        .sidebar-scrollbar::-webkit-scrollbar-thumb {
+            background: #4b5563;
+            border-radius: 10px;
+        }
+        .sidebar-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #6b7280;
+        }
+        .content-card {
+            background-color: #1f2937; /* bg-gray-800 */
+            border-radius: 0.75rem; /* rounded-xl */
+            padding: 1.5rem; /* p-6 */
+            margin-bottom: 1.5rem; /* mb-6 */
+            border: 1px solid #374151; /* border-gray-700 */
+            transition: all 0.3s ease;
+        }
+        .content-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+        }
+        .active-link {
+            background-color: #3b82f6;
+            color: white;
+        }
+        code {
+            background-color: #111827; /* bg-gray-900 */
+            color: #93c5fd; /* text-blue-300 */
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.25rem;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200">
+
+    <!-- Overlay for mobile menu -->
+    <div id="overlay" class="fixed inset-0 bg-black bg-opacity-60 z-30 hidden md:hidden"></div>
+
+    <div class="relative min-h-screen md:flex">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-80 bg-gray-800 border-r border-gray-700 flex flex-col transition-transform duration-300 ease-in-out -translate-x-full md:relative md:translate-x-0">
+            <div class="p-4 border-b border-gray-700">
+                <h1 class="text-xl font-bold text-white">A+ 1202 Study Guide</h1>
+                <p class="text-sm text-gray-400">Official Objectives</p>
+            </div>
+            <nav class="flex-1 overflow-y-auto sidebar-scrollbar p-4 space-y-2">
+                <!-- Navigation items will be injected by JS -->
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 flex flex-col overflow-hidden">
+            <header class="bg-gray-800 border-b border-gray-700 p-4 flex justify-between items-center">
+                 <button id="menu-toggle" class="p-2 rounded-md text-gray-400 hover:bg-gray-700 hover:text-white md:hidden">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+                <h2 id="content-title" class="text-lg font-semibold text-white text-right md:text-left flex-1">Welcome!</h2>
+            </header>
+            <div id="content-area" class="flex-1 overflow-y-auto p-4 md:p-8">
+                <!-- Content will be injected by JS -->
+                 <div class="content-card">
+                    <h3 class="text-2xl font-bold text-blue-400 mb-4">Welcome to Your A+ 1202 Study Guide!</h3>
+                    <p class="text-gray-300">This guide has been restructured to align perfectly with the official CompTIA A+ Core 2 (220-1202) exam objectives.</p>
+                    <p class="mt-4 text-gray-300">Use the navigation menu on the left (or the ☰ button on mobile) to explore the exam domains. Each section corresponds directly to an official objective number.</p>
+                    <p class="mt-6 text-sm text-gray-400">Good luck with your studies!</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const contentData = {
+            // Domain 1.0: Operating Systems
+            '1.1': {
+                title: '1.1 Compare and contrast common operating system types and their purposes.',
+                content: `
+                    <div class="content-card">
+                        <h3 class="text-xl font-bold text-blue-400 mb-4">Desktop vs. Mobile Operating Systems</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li><strong>Microsoft Windows:</strong> The most common desktop OS in the world, known for its wide range of hardware and software compatibility. Used extensively in corporate and home environments.</li>
+                            <li><strong>macOS:</strong> Apple's desktop OS, known for its user-friendly interface, strong security, and integration with the Apple ecosystem. It runs exclusively on Apple hardware.</li>
+                            <li><strong>Linux:</strong> An open-source family of operating systems known for its stability, security, and flexibility. It powers the vast majority of servers, but is also used on desktops (e.g., Ubuntu, Mint).</li>
+                            <li><strong>ChromeOS:</strong> A lightweight, browser-centric OS from Google, designed for web applications and cloud storage. Runs on Chromebooks.</li>
+                            <li><strong>Android:</strong> Google's open-source mobile OS, dominant in the smartphone market. Known for its customizability and wide range of devices from various manufacturers.</li>
+                            <li><strong>iOS:</strong> Apple's closed-source mobile OS for iPhones. Known for its smooth performance, strong security, and tightly controlled App Store.</li>
+                        </ul>
+                    </div>
+                    <div class="content-card">
+                        <h3 class="text-xl font-bold text-blue-400 mb-4">File Systems</h3>
+                        <p>A file system defines how data is stored and retrieved. Different OSes use different file systems.</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li><strong>NTFS (Windows):</strong> Modern Windows file system. Supports large file sizes, permissions, encryption (EFS), compression, and journaling.</li>
+                            <li><strong>FAT32/exFAT (Cross-platform):</strong> FAT32 is older but highly compatible. exFAT is modern and optimized for flash drives, supporting large files, making it ideal for external drives used between Windows and macOS.</li>
+                            <li><strong>APFS (Apple File System):</strong> The default file system for modern macOS, iOS, and other Apple devices. Optimized for solid-state drives (SSDs) and features strong encryption.</li>
+                            <li><strong>HFS+ (Mac OS Extended):</strong> The older file system for macOS, replaced by APFS.</li>
+                            <li><strong>ext4 (Linux):</strong> The most common file system for Linux distributions, known for its stability and performance.</li>
+                        </ul>
+                    </div>
+                `
+            },
+            '1.2': {
+                title: '1.2 Identify common features and tools of the Microsoft Windows OS.',
+                content: `
+                    <div class="content-card">
+                        <h3 class="text-xl font-bold text-blue-400 mb-4">Windows Editions</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li><strong>Home:</strong> Standard edition for consumers. Lacks advanced features like BitLocker, Group Policy Editor, and Domain Join.</li>
+                            <li><strong>Pro (Professional):</strong> For small businesses and power users. Includes all Home features plus BitLocker, Remote Desktop Host, Group Policy Editor (gpedit.msc), and the ability to join a domain.</li>
+                            <li><strong>Enterprise/Education:</strong> For large organizations and academic institutions. Includes all Pro features plus advanced tools like AppLocker and DirectAccess.</li>
+                        </ul>
+                    </div>
+                     <div class="content-card">
+                        <h3 class="text-xl font-bold text-blue-400 mb-4">Key Administrative & System Tools</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li><strong>Computer Management (compmgmt.msc):</strong> A console that groups several tools like Device Manager, Disk Management, Services, and Event Viewer.</li>
+                            <li><strong>System Information (msinfo32):</strong> Provides a detailed summary of system hardware, components, and software environment.</li>
+                            <li><strong>Task Manager:</strong> View running processes, monitor performance, manage startup apps.</li>
+                            <li><strong>Disk Management:</strong> Manage disks, partitions, volumes, drive letters, and file systems.</li>
+                            <li><strong>Windows Sandbox:</strong> A lightweight, isolated, temporary desktop environment where you can run untrusted software safely. (Pro/Enterprise).</li>
+                            <li><strong>Windows Subsystem for Linux (WSL):</strong> Allows developers to run a GNU/Linux environment directly on Windows.</li>
+                        </ul>
+                    </div>
+                `
+            },
+            '1.3': {
+                title: '1.3 Given a scenario, use Microsoft Windows Control Panel utilities.',
+                content: `
+                    <div class="content-card">
+                        <h3 class="text-xl font-bold text-blue-400 mb-4">Essential Control Panel Applets</h3>
+                        <p>While the Settings app is becoming more common, the Control Panel still holds critical tools for system administration.</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li><strong>Programs and Features:</strong> The primary location for uninstalling or changing installed applications.</li>
+                            <li><strong>Network and Sharing Center:</strong> A central hub for viewing network status, changing adapter settings, and configuring network sharing options.</li>
+                            <li><strong>Devices and Printers:</strong> Manage and troubleshoot connected hardware like printers and external devices.</li>
+                            <li><strong>Power Options:</strong> Customize power plans to balance performance and energy consumption. Configure what happens when the power button is pressed or the lid is closed.</li>
+                            <li><strong>System and Security:</strong> A category that provides access to Windows Defender Firewall, System properties, and Administrative Tools.</li>
+                            <li><strong>File Explorer Options:</strong> Customize the view of File Explorer, such as showing hidden files, file extensions, and changing search options.</li>
+                            <li><strong>User Accounts:</strong> Manage local user accounts, passwords, and account types (Standard vs. Administrator).</li>
+                        </ul>
+                    </div>
+                `
+            },
+            '1.4': {
+                title: '1.4 Given a scenario, use the appropriate Microsoft Windows settings.',
+                content: `
+                    <div class="content-card">
+                        <h3 class="text-xl font-bold text-blue-400 mb-4">Key Utilities in the Settings App</h3>
+                        <p>The modern Settings app is designed for user-friendly configuration of common system settings.</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li><strong>System > Display:</strong> Configure screen resolution, orientation, scaling, and multiple display layouts.</li>
+                            <li><strong>System > Storage:</strong> View disk space usage, enable Storage Sense to automatically free up space, and manage temporary files.</li>
+                            <li><strong>Apps > Apps & features:</strong> An alternative location to uninstall or modify applications.</li>
+                            <li><strong>Apps > Startup:</strong> Enable or disable applications that launch automatically when Windows starts.</li>
+                            <li><strong>Accounts:</strong> Manage sign-in options (like Windows Hello), sync your settings with a Microsoft account, and manage other user accounts.</li>
+                            <li><strong>Privacy & security > Windows Security:</strong> Access the Windows Security dashboard, which includes Virus & threat protection, Firewall & network protection, and App & browser control.</li>
+                            <li><strong>Privacy & security > BitLocker:</strong> Enable and manage full-disk encryption (on Pro/Enterprise editions).</li>
+                            <li><strong>Windows Update:</strong> Check for updates, view update history, and configure active hours to control when restarts occur.</li>
+                        </ul>
+                    </div>
+                `
+            },
+            '1.5': {
+                title: '1.5 Given a scenario, use Microsoft Windows command-line tools.',
+                content: `
+                    <div class="content-card">
+                        <h3 class="text-xl font-bold text-blue-400 mb-4">Essential Commands</h3>
+                        <div class="overflow-x-auto mt-4">
+                            <table class="min-w-full bg-gray-800 border border-gray-700">
+                                <thead class="bg-gray-700">
+                                    <tr>
+                                        <th class="p-3 text-left font-semibold text-white">Command</th>
+                                        <th class="p-3 text-left font-semibold text-white">Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-600">
+                                    <tr class="hover:bg-gray-700/50"><td class="p-3"><code>ping</code></td><td class="p-3">Tests connectivity to a host.</td></tr>
+                                    <tr class="hover:bg-gray-700/50"><td class="p-3"><code>ipconfig</code></td><td class="p-3">Displays IP configuration. Use <code>/all</code> for details, <code>/release</code> and <code>/renew</code> for DHCP.</td></tr>
+                                    <tr class="hover:bg-gray-700/50"><td class="p-3"><code>tracert</code></td><td class="p-3">Traces the route (hops) to a destination host.</td></tr>
+                                    <tr class="hover:bg-gray-700/50"><td class="p-3"><code>netstat</code></td><td class="p-3">Displays active network connections. <code>-an</code> shows all connections and listening ports.</td></tr>
+                                    <tr class="hover:bg-gray-700/50"><td class="p-3"><code>nslookup</code></td><td class="p-3">Queries DNS to resolve hostnames to IP addresses.</td></tr>
+                                    <tr class="hover:bg-gray-700/50"><td class="p-3"><code>net</code></td><td class="p-3">Manages network resources (e.g., <code>net user</code>, <code>net view</code>, <code>net share</code>).</td></tr>
+                                    <tr class="hover:bg-gray-700/50"><td class="p-3"><code>shutdown</code></td><td class="p-3">Shuts down or restarts the computer. <code>/s</code> for shutdown, <code>/r</code> for restart, <code>/t 0</code> for immediately.</td></tr>
+                                    <tr class="hover:bg-gray-700/50"><td class="p-3"><code>dism</code></td><td class="p-3">Deployment Image Servicing and Management. Used to repair Windows images.</td></tr>
+                                    <tr class="hover:bg-gray-700/50"><td class="p-3"><code>sfc</code></td><td class="p-3">System File Checker. Scans and repairs protected system files. <code>/scannow</code> is the key switch.</td></tr>
+                                    <tr class="hover:bg-gray-700/50"><td class="p-3"><code>chkdsk</code></td><td class="p-3">Checks a disk for file system errors. <code>/f</code> fixes errors, <code>/r</code> locates bad sectors.</td></tr>
+                                    <tr class="hover:bg-gray-700/50"><td class="p-3"><code>diskpart</code></td><td class="p-3">Manages disks, partitions, and volumes.</td></tr>
+                                    <tr class="hover:bg-gray-700/50"><td class="p-3"><code>gpupdate</code></td><td class="p-3">Refreshes Group Policy settings. <code>/force</code> reapplies all policies.</td></tr>
+                                    <tr class="hover:bg-gray-700/50"><td class="p-3"><code>gpresult</code></td><td class="p-3">Displays the Resultant Set of Policy (RSoP) for a user/computer.</td></tr>
+                                    <tr class="hover:bg-gray-700/50"><td class="p-3"><code>copy</code>, <code>xcopy</code>, <code>robocopy</code></td><td class="p-3">File copy utilities, from basic to robust.</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                `
+            },
+            '1.6': {
+                title: '1.6 Given a scenario, use features and tools of the macOS.',
+                content: `
+                    <div class="content-card">
+                        <h3 class="text-2xl font-bold text-blue-400 mb-4">In-Depth: macOS Features</h3>
+                        <p class="mb-4">macOS is a Unix-based operating system known for its user-friendly graphical interface and strong integration with Apple hardware.</p>
+                        <ul class="list-disc list-inside space-y-3 text-gray-300">
+                            <li><strong>Finder & Dock:</strong> Finder is the core file management application, equivalent to Windows File Explorer. The Dock is a customizable bar for quick access to frequently used apps, folders, and minimized windows.</li>
+                            <li><strong>Mission Control & Spaces:</strong> Mission Control gives you a "bird's-eye view" of all open windows, grouped by application. Spaces are virtual desktops, allowing you to organize workspaces for different tasks. You can switch between them with a trackpad gesture or keyboard shortcut.</li>
+                            <li><strong>Spotlight:</strong> A powerful, system-wide search tool (Cmd+Space) that can find files, launch apps, do calculations, and look up information online. Much more integrated than Windows Search.</li>
+                            <li><strong>Time Machine:</strong> An incredibly simple and powerful backup utility. Once you assign an external drive as a Time Machine disk, it automatically creates hourly, daily, and weekly backups. Restoring files is done through a visual interface that lets you "travel back in time" to find lost or previous versions of files.</li>
+                            <li><strong>Gatekeeper:</strong> A security technology that enforces code signing and verifies downloaded apps before allowing them to run. In System Settings, you can choose to allow apps from the "App Store" only, or from the "App Store and identified developers." This is a primary defense against malware.</li>
+                            <li><strong>Keychain Access:</strong> A password management system. It securely stores all your passwords (for websites, Wi-Fi, apps), private keys, and certificates. Apps can request access to stored credentials, simplifying logins.</li>
+                            <li><strong>Disk Utility:</strong> The tool for managing storage devices. You use it to format disks (with file systems like APFS or Mac OS Extended), partition drives, create disk images (.dmg files), and run "First Aid" to check for and repair file system errors.</li>
+                        </ul>
+                    </div>
+                `
+            },
+             '1.7': {
+                title: '1.7 Given a scenario, use features and tools of the Linux client/desktop OS.',
+                content: `
+                    <div class="content-card">
+                        <h3 class="text-2xl font-bold text-blue-400 mb-4">In-Depth: Linux Concepts</h3>
+                        <p class="mb-4">Linux is not one single OS, but a family of open-source, Unix-like operating systems built around the Linux kernel. It's known for its power, flexibility, and dominance in the server market.</p>
+                        <ul class="list-disc list-inside space-y-3 text-gray-300">
+                            <li><strong>Distributions (Distros):</strong> A "distro" is a complete operating system created from the Linux kernel, a package management system, a desktop environment (for graphical versions), and a collection of pre-installed software. Major families include:
+                                <ul class="list-disc list-inside ml-6 mt-1 text-gray-400">
+                                    <li><strong>Debian-based:</strong> Ubuntu, Linux Mint. Known for stability and a vast software repository. Uses <code>apt</code> package manager.</li>
+                                    <li><strong>Red Hat-based:</strong> Fedora, CentOS, Rocky Linux. Common in enterprise environments. Uses <code>dnf</code>/<code>yum</code> package managers.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Desktop Environments (DE):</strong> The graphical user interface. Unlike Windows or macOS, you can choose your DE. Common choices are <strong>GNOME</strong> (modern, streamlined), <strong>KDE Plasma</strong> (highly customizable, feature-rich), and <strong>XFCE</strong> (lightweight, fast, for older hardware).</li>
+                            <li><strong>Filesystem Hierarchy Standard (FHS):</strong> Linux organizes files in a strict, tree-like structure starting from the root (<code>/</code>). Key directories include:
+                                <ul class="list-disc list-inside ml-6 mt-1 text-gray-400">
+                                    <li><code>/bin</code>, <code>/sbin</code>: Essential user and system binaries (commands).</li>
+                                    <li><code>/etc</code>: System-wide configuration files.</li>
+                                    <li><code>/home</code>: User's personal directories.</li>
+                                    <li><code>/var</code>: Variable data, like logs (<code>/var/log</code>).</li>
+                                    <li><code>/mnt</code>, <code>/media</code>: Mount points for temporary filesystems (like USB drives).</li>
+                                </ul>
+                            </li>
+                            <li><strong>Package Managers:</strong> The primary way to install, update, and remove software. They handle dependencies automatically. For the exam, know <code>apt</code> (Debian/Ubuntu) and <code>dnf</code>/<code>yum</code> (Red Hat/Fedora).</li>
+                        </ul>
+                    </div>
+                `
+            },
+            '1.8': {
+                title: '1.8 Given a scenario, use the appropriate commands in the Linux client/desktop OS.',
+                content: `
+                    <div class="content-card">
+                        <h3 class="text-xl font-bold text-blue-400 mb-4">Essential Linux Commands</h3>
+                        <div class="overflow-x-auto mt-4">
+                            <table class="min-w-full bg-gray-800 border border-gray-700">
+                                <thead class="bg-gray-700">
+                                    <tr>
+                                        <th class="p-3 text-left font-semibold text-white">Command</th>
+                                        <th class="p-3 text-left font-semibold text-white">Description & Example</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-600">
+                                    <tr class="hover:bg-gray-700/50"><td><code>ls</code></td><td>Lists directory contents. <code>ls -l</code> for long format.</td></tr>
+                                    <tr class="hover:bg-gray-700/50"><td><code>cd</code></td><td>Changes directory. <code>cd /home/user/Documents</code></td></tr>
+                                    <tr class="hover:bg-gray-700/50"><td><code>pwd</code></td><td>Prints the current working directory.</td></tr>
+                                    <tr class="hover:bg-gray-700/50"><td><code>cp</code></td><td>Copies files or directories. <code>cp source.txt destination.txt</code></td></tr>
+                                    <tr class="hover:bg-gray-700/50"><td><code>mv</code></td><td>Moves or renames files/directories. <code>mv oldname.txt newname.txt</code></td></tr>
+                                    <tr class="hover:bg-gray-700/50"><td><code>rm</code></td><td>Removes files. <code>rm -r directory</code> to remove a directory and its contents.</td></tr>
+                                    <tr class="hover:bg-gray-700/50"><td><code>mkdir</code></td><td>Creates a new directory. <code>mkdir new_folder</code></td></tr>
+                                    <tr class="hover:bg-gray-700/50"><td><code>grep</code></td><td>Searches for text within files. <code>grep "error" /var/log/syslog</code></td></tr>
+                                    <tr class="hover:bg-gray-700/50"><td><code>ps</code></td><td>Lists running processes. <code>ps aux</code> shows all processes.</td></tr>
+                                    <tr class="hover:bg-gray-700/50"><td><code>kill</code></td><td>Terminates a process by its ID (PID). <code>kill 1234</code></td></tr>
+                                    <tr class="hover:bg-gray-700/50"><td><code>chmod</code></td><td>Changes file permissions (e.g., read, write, execute). <code>chmod 755 script.sh</code></td></tr>
+                                    <tr class="hover:bg-gray-700/50"><td><code>chown</code></td><td>Changes file ownership. <code>chown user:group file.txt</code></td></tr>
+                                    <tr class="hover:bg-gray-700/50"><td><code>ip a</code> or <code>ifconfig</code></td><td>Displays IP addresses and network interface information. (<code>ip</code> is modern, <code>ifconfig</code> is older).</td></tr>
+                                    <tr class="hover:bg-gray-700/50"><td><code>sudo</code></td><td>Executes a command with superuser (root) privileges.</td></tr>
+                                    <tr class="hover:bg-gray-700/50"><td><code>apt</code>/<code>dnf</code>/<code>yum</code></td><td>Package managers. <code>sudo apt update</code>, <code>sudo dnf install htop</code></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                `
+            },
+            '1.9': {
+                title: '1.9 Given a scenario, install and configure the Microsoft Windows OS.',
+                 content: `
+                    <div class="content-card">
+                        <h3 class="text-xl font-bold text-blue-400 mb-4">Installation Methods</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li><strong>USB/Solid-state/Flash Drives:</strong> Most common method. A bootable USB drive is created using the Media Creation Tool or by imaging an ISO file.</li>
+                            <li><strong>Optical Media (DVD):</strong> Traditional method, less common now. Requires a DVD drive.</li>
+                            <li><strong>Network (PXE Boot):</strong> Preboot Execution Environment. Allows a computer to boot from its network card to load an installation image from a server like Windows Deployment Services (WDS).</li>
+                            <li><strong>Internet-based:</strong> Cloud deployment services like Microsoft Intune or Autopilot allow for zero-touch provisioning of new devices over the internet.</li>
+                        </ul>
+                    </div>
+                    <div class="content-card">
+                        <h3 class="text-xl font-bold text-blue-400 mb-4">Partitioning and Formatting</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li><strong>Partitioning Scheme:</strong> You must choose between MBR (older, for BIOS systems) and GPT (modern, for UEFI systems). GPT is required for disks larger than 2TB and is the standard today.</li>
+                            <li><strong>File System:</strong> For a Windows system drive, you must format the partition as NTFS.</li>
+                            <li><strong>Clean Install:</strong> During the installation process, you can delete existing partitions and create new ones to perform a clean install, which erases all data on the target drive.</li>
+                        </ul>
+                    </div>
+                `
+            },
+            '1.10': {
+                title: '1.10 Given a scenario, perform Microsoft Windows OS upgrades.',
+                content: `
+                    <div class="content-card">
+                        <h3 class="text-xl font-bold text-blue-400 mb-4">Upgrade Paths & Methods</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li><strong>In-place Upgrade:</strong> This method installs a newer version of Windows directly on top of the current version, preserving all user files, applications, and settings. It's the most convenient method but can sometimes carry over problems from the old OS.</li>
+                            <li><strong>Upgrade Paths:</strong> You can typically upgrade from a previous version of Windows (e.g., Windows 10 to Windows 11) and from a lower edition to a higher one (e.g., Windows 11 Home to Windows 11 Pro). You cannot upgrade from a higher edition to a lower one (Pro to Home) or from a 32-bit OS to a 64-bit OS without a clean install.</li>
+                            <li><strong>Pre-upgrade Checklist:</strong>
+                                <ul class="list-disc list-inside ml-6 mt-1 text-gray-400">
+                                    <li><strong>Check Minimum Requirements:</strong> Ensure the hardware meets the requirements for the new OS (e.g., TPM 2.0 for Windows 11). Use the PC Health Check app for Windows 11.</li>
+                                    <li><strong>Back Up Data:</strong> Always perform a full backup of user data before starting an upgrade.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                `
+            },
+            '1.11': {
+                title: '1.11 Explain application architecture, installation, and configuration concepts.',
+                content: `
+                    <div class="content-card">
+                        <h3 class="text-xl font-bold text-blue-400 mb-4">Application Architecture & Installation</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                             <li><strong>32-bit vs. 64-bit:</strong> A 64-bit OS can run both 32-bit and 64-bit applications. A 32-bit OS can only run 32-bit applications. 64-bit is standard today and allows access to more than 4GB of RAM. 32-bit applications are typically installed in <code>C:\\Program Files (x86)</code> on a 64-bit system.</li>
+                            <li><strong>Installation Methods:</strong> Apps can be installed locally from media (USB, DVD), from the Microsoft Store, or deployed over a network share in an enterprise environment.</li>
+                            <li><strong>Impact to Device:</strong> Installing applications consumes disk space, RAM, and CPU resources. Poorly written applications can impact system performance and stability.</li>
+                        </ul>
+                    </div>
+                `
+            },
+            // Domain 2.0: Security
+            '2.1': {
+                title: '2.1 Summarize security fundamentals.',
+                content: `
+                    <div class="content-card">
+                        <h3 class="text-xl font-bold text-blue-400 mb-4">The Security Triad (CIA)</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li><strong>Confidentiality:</strong> Preventing the unauthorized disclosure of information. Enforced with encryption and access controls.</li>
+                            <li><strong>Integrity:</strong> Ensuring that data has not been modified or tampered with. Enforced with hashing algorithms and digital signatures.</li>
+                            <li><strong>Availability:</strong> Ensuring that systems and data are accessible to authorized users when needed. Enforced with redundancy, backups, and fault tolerance.</li>
+                        </ul>
+                    </div>
+                     <div class="content-card">
+                        <h3 class="text-xl font-bold text-blue-400 mb-4">Core Security Concepts</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li><strong>Principle of Least Privilege:</strong> Give users only the permissions they absolutely need to perform their job, and no more. This limits the damage that can be done if an account is compromised.</li>
+                            <li><strong>Zero Trust:</strong> A modern security framework that assumes no user or device is trusted by default. It requires strict verification for every person and device trying to access resources, regardless of their location. "Never trust, always verify."</li>
+                        </ul>
+                    </div>
+                `
+            },
+            '2.2': {
+                title: '2.2 Explain the purpose of authentication and authorization controls.',
+                content: `
+                    <div class="content-card">
+                        <h3 class="text-xl font-bold text-blue-400 mb-4">Authentication vs. Authorization</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li><strong>Authentication:</strong> Proving you are who you say you are. This is the process of verifying a user's identity.</li>
+                            <li><strong>Authorization:</strong> Determining what you are allowed to do. This is the process of granting or denying access to resources based on the user's identity.</li>
+                        </ul>
+                    </div>
+                    <div class="content-card">
+                        <h3 class="text-xl font-bold text-blue-400 mb-4">Authentication Methods</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li><strong>Single-Factor Authentication (SFA):</strong> Uses only one category of authentication (e.g., just a password).</li>
+                            <li><strong>Multi-Factor Authentication (MFA):</strong> The gold standard. Requires two or more factors from different categories:
+                                <ul class="list-disc list-inside ml-6 mt-1 text-gray-400">
+                                    <li><strong>Something you know:</strong> Password, PIN.</li>
+                                    <li><strong>Something you have:</strong> Smartphone (for an authenticator app), hardware token, smart card.</li>
+                                    <li><strong>Something you are:</strong> Biometrics (fingerprint, face scan).</li>
+                                </ul>
+                            </li>
+                            <li><strong>Single Sign-On (SSO):</strong> Allows a user to log in with a single ID and password to gain access to multiple connected systems without being prompted for credentials again.</li>
+                        </ul>
+                    </div>
+                `
+            },
+            '2.3': {
+                title: '2.3 Given a scenario, apply security best practices.',
+                content: `
+                    <div class="content-card">
+                        <h3 class="text-xl font-bold text-blue-400 mb-4">Password & Account Management</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li><strong>Password Policies:</strong> Enforce strong password requirements through Group Policy or local security policy, including complexity (uppercase, lowercase, numbers, symbols), length (12+ characters), history, and expiration.</li>
+                            <li><strong>Account Lockout:</strong> Configure policies to automatically lock an account after a certain number of failed login attempts to thwart brute-force attacks.</li>
+                            <li><strong>Disabling Accounts:</strong> When a user leaves the organization, disable their account immediately instead of deleting it. This preserves their data and access history while preventing login.</li>
+                        </ul>
+                    </div>
+                    <div class="content-card">
+                        <h3 class="text-xl font-bold text-blue-400 mb-4">Physical Security</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li><strong>Asset Management:</strong> Use asset tags to track and inventory equipment.</li>
+                            <li><strong>Physical Access Control:</strong> Use locks on doors and server cabinets, surveillance cameras, and require key fobs or badges for entry into sensitive areas.</li>
+                        </ul>
+                    </div>
+                `
+            },
+            '2.4': {
+                title: '2.4 Explain the purpose of anti-malware tools.',
+                content: `
+                    <div class="content-card">
+                        <h3 class="text-xl font-bold text-blue-400 mb-4">Types of Malware</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li><strong>Virus:</strong> Malicious code that attaches to a program and requires human action to spread.</li>
+                            <li><strong>Worm:</strong> Self-replicating malware that spreads across networks without human intervention.</li>
+                            <li><strong>Trojan:</strong> Malware disguised as legitimate software.</li>
+                            <li><strong>Ransomware:</strong> Encrypts a user's data and demands a ransom for the decryption key.</li>
+                            <li><strong>Spyware/Keylogger:</strong> Secretly gathers information, such as recording keystrokes to steal credentials.</li>
+                            <li><strong>Rootkit:</strong> Gains administrative-level control over a system and hides its presence.</li>
+                        </ul>
+                    </div>
+                    <div class="content-card">
+                        <h3 class="text-xl font-bold text-blue-400 mb-4">Anti-Malware Software</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li><strong>Antivirus (AV):</strong> Software designed to detect and remove viruses and other types of malware. It uses signature-based detection (matching known malware files) and heuristic analysis (detecting suspicious behavior).</li>
+                            <li><strong>Windows Security:</strong> The built-in anti-malware solution in modern Windows, which includes Virus & threat protection, a firewall, and other security features.</li>
+                            <li><strong>Keeping it Effective:</strong> For any anti-malware tool to be effective, its definition files must be updated regularly to recognize the latest threats. Regular system scans should also be scheduled.</li>
+                        </ul>
+                    </div>
+                `
+            },
+            '2.5': {
+                title: '2.5 Given a scenario, use data destruction and disposal methods.',
+                content: `
+                    <div class="content-card">
+                        <h3 class="text-xl font-bold text-blue-400 mb-4">Data Destruction Methods</h3>
+                        <p>When a storage device reaches the end of its life, the data on it must be securely destroyed to prevent it from being recovered by unauthorized individuals.</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li><strong>Formatting (Not Secure):</strong> A standard format (even a full format) is not a secure method of data destruction. Data can often be recovered with specialized software.</li>
+                            <li><strong>Degaussing:</strong> Uses a powerful magnetic field to destroy the data on magnetic media like traditional hard disk drives (HDDs) and tapes. This will also destroy the drive itself. It is not effective on SSDs.</li>
+                            <li><strong>Drilling / Shredding:</strong> Physical destruction is the most secure method. Drilling holes through the platters of an HDD or physically shredding an SSD ensures the data is completely unrecoverable.</li>
+                            <li><strong>Cryptographic Erase (Crypto-erase):</strong> A feature of self-encrypting drives (SEDs). This method involves deleting the media encryption key, which instantly renders all encrypted data on the drive unreadable. It is a very fast and secure method for sanitizing SSDs.</li>
+                        </ul>
+                    </div>
+                `
+            },
+            '2.6': {
+                title: '2.6 Given a scenario, configure security on a SOHO wireless network.',
+                content: `
+                    <div class="content-card">
+                        <h3 class="text-xl font-bold text-blue-400 mb-4">Wireless Security Best Practices</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li><strong>Change Default Credentials:</strong> The very first step after setting up a new router is to change the default administrator username and password.</li>
+                            <li><strong>SSID Management:</strong> Change the default SSID (network name) to something that doesn't identify the owner or router model. While you can disable the SSID broadcast, this is a weak security measure ("security through obscurity") and should not be relied upon.</li>
+                            <li><strong>Wireless Encryption:</strong> This is the most important setting. Use <strong>WPA3</strong> if available. If not, use <strong>WPA2</strong> with AES encryption. Never use the outdated and insecure WEP or WPA protocols.</li>
+                            <li><strong>MAC Filtering:</strong> You can create a list of allowed MAC addresses that can connect to your network. This can add a layer of security but can be cumbersome to manage and can be bypassed by spoofing a MAC address.</li>
+                            <li><strong>Firmware Updates:</strong> Regularly check for and install firmware updates for the router to patch security vulnerabilities.</li>
+                        </ul>
+                    </div>
+                `
+            },
+            '2.7': {
+                title: '2.7 Given a scenario, configure security on a mobile device.',
+                content: `
+                    <div class="content-card">
+                        <h3 class="text-xl font-bold text-blue-400 mb-4">Mobile Device Security</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li><strong>Screen Locks & Biometrics:</strong> Enforce the use of a screen lock with a strong PIN, password, or pattern. Use biometrics (fingerprint or facial recognition) for convenience and security.</li>
+                            <li><strong>Remote Wipe/Lock & Locator Apps:</strong> Enable services like Find My iPhone (iOS) or Find My Device (Android). These allow you to locate a lost device on a map, lock it remotely, or erase all data if it is stolen.</li>
+                            <li><strong>Full Device Encryption:</strong> Modern smartphones (iOS and Android) are encrypted by default, but you should ensure this setting is enabled. This protects the data at rest if the device is lost or stolen.</li>
+                            <li><strong>Authenticator Apps:</strong> Use applications like Google Authenticator or Microsoft Authenticator to generate time-based one-time passcodes for MFA.</li>
+                            <li><strong>Software Updates:</strong> Keep the mobile OS and all applications updated to protect against known vulnerabilities.</li>
+                        </ul>
+                    </div>
+                `
+            },
+            '2.8': {
+                title: '2.8 Given a scenario, secure a Microsoft Windows workstation.',
+                content: `
+                    <div class="content-card">
+                        <h3 class="text-xl font-bold text-blue-400 mb-4">Workstation Hardening Checklist</h3>
+                        <p>Securing a workstation involves a layered approach, combining multiple security controls.</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li><strong>User and Group Management:</strong>
+                                <ul class="list-disc list-inside ml-6 mt-1 text-gray-400">
+                                    <li>Adhere to the principle of least privilege. Users should run as Standard Users, not Administrators.</li>
+                                    <li>Use User Account Control (UAC) to ensure administrative tasks require explicit permission.</li>
+                                    <li>Implement strong password policies.</li>
+                                </ul>
+                            </li>
+                             <li><strong>System Security:</strong>
+                                <ul class="list-disc list-inside ml-6 mt-1 text-gray-400">
+                                    <li>Keep the OS and applications fully patched via Windows Update.</li>
+                                    <li>Ensure Windows Security (or a third-party equivalent) is active and updated.</li>
+                                    <li>Enable and configure the Windows Defender Firewall to block unsolicited inbound traffic.</li>
+                                    <li>Enable BitLocker full-disk encryption to protect data at rest.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                `
+            },
+            // Domain 3.0: Software Troubleshooting
+            '3.1': {
+                title: '3.1 Given a scenario, troubleshoot Microsoft Windows OS problems.',
+                content: `
+                    <div class="content-card">
+                        <h3 class="text-xl font-bold text-blue-400 mb-4">Common Issues and Symptoms</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li><strong>Blue Screen of Death (BSOD) / Stop Errors:</strong> Indicates a critical system failure, often caused by a faulty driver, hardware issue, or corrupted system file. Note the error code (e.g., <code>IRQL_NOT_LESS_OR_EQUAL</code>) for research.</li>
+                            <li><strong>Black Screen:</strong> Can be caused by a video driver issue, a problem with the display connection, or a more serious boot failure.</li>
+                            <li><strong>Slow Performance / Freezing:</strong> Can result from malware, insufficient RAM, a failing hard drive, or a process consuming excessive CPU resources.</li>
+                            <li><strong>Application Crashes:</strong> May be caused by a bug in the application, a corrupted installation, or a conflict with another program or system component.</li>
+                            <li><strong>Spontaneous Shutdowns/Restarts:</strong> Often a sign of overheating, a failing power supply, or a critical hardware error.</li>
+                        </ul>
+                    </div>
+                `
+            },
+            '3.2': {
+                title: '3.2 Given a scenario, use the appropriate tools to troubleshoot Microsoft Windows OS problems.',
+                content: `
+                    <div class="content-card">
+                        <h3 class="text-xl font-bold text-blue-400 mb-4">Key Troubleshooting Tools & Steps</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li><strong>Event Viewer:</strong> The first place to look for error messages. Check Application, System, and Security logs for clues about what went wrong and when.</li>
+                            <li><strong>Safe Mode:</strong> Boots Windows with a minimal set of drivers and services. If the problem disappears in Safe Mode, it's likely a third-party software or driver issue.</li>
+                            <li><strong>System Restore:</strong> Reverts system files, drivers, and registry settings to a previous point in time. Does not affect personal files.</li>
+                            <li><strong>Startup Repair:</strong> An automated tool in the Windows Recovery Environment (WinRE) that can fix common boot problems like a missing or corrupt bootloader.</li>
+                            <li><strong>System File Checker (<code>sfc /scannow</code>):</strong> Scans and repairs corrupted or missing protected system files.</li>
+                            <li><strong>Check Disk (<code>chkdsk /f</code>):</strong> Checks the file system for errors and attempts to fix them.</li>
+                            <li><strong>Task Manager:</strong> Use the Performance tab to identify bottlenecks (CPU, RAM, Disk) and the Processes tab to find resource-hogging applications.</li>
+                            <li><strong>Registry Editor (regedit):</strong> A powerful tool for viewing and editing system settings. Should be used with extreme caution, as incorrect changes can render the system unbootable. Always back up the registry before making changes.</li>
+                        </ul>
+                    </div>
+                `
+            },
+             '3.3': {
+                title: '3.3 Given a scenario, troubleshoot security-related issues.',
+                content: `
+                    <div class="content-card">
+                        <h3 class="text-xl font-bold text-blue-400 mb-4">Troubleshooting Common Security Problems</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li><strong>Pop-ups and Browser Redirection:</strong> Classic signs of adware or browser hijacking malware. Run anti-malware scans and check browser extensions for suspicious add-ons.</li>
+                            <li><strong>Invalid Certificate Errors:</strong> When a browser shows a certificate error, it can indicate a problem with the website's security, an incorrect system clock on the client machine, or potentially a man-in-the-middle attack.</li>
+                            <li><strong>Authentication & Permission Issues ("Access Denied"):</strong>
+                                <ul class="list-disc list-inside ml-6 mt-1">
+                                    <li>Check the user's group memberships and the resource's permissions (both NTFS and Share).</li>
+                                    <li>For login failures, check for a locked account, expired password, or disabled account.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Blocked Services/Applications:</strong> If an application can't connect to the network, check if the Windows Defender Firewall (or a third-party firewall) is blocking it. You may need to create an exception rule.</li>
+                        </ul>
+                    </div>
+                `
+            },
+            '3.4': {
+                title: '3.4 Given a scenario, troubleshoot mobile OS and application issues.',
+                content: `
+                    <div class="content-card">
+                        <h3 class="text-xl font-bold text-blue-400 mb-4">Common Mobile Problems & Solutions</h3>
+                        <div class="overflow-x-auto mt-4">
+                            <table class="min-w-full bg-gray-800 border border-gray-700">
+                                <thead class="bg-gray-700">
+                                    <tr>
+                                        <th class="p-3 text-left font-semibold text-white">Issue</th>
+                                        <th class="p-3 text-left font-semibold text-white">Troubleshooting Steps</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-600">
+                                    <tr class="hover:bg-gray-700/50">
+                                        <td class="p-3">Slow Performance / Frozen</td>
+                                        <td class="p-3">Reboot device. Close running apps. Clear app cache. Check storage space.</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-700/50">
+                                        <td class="p-3">Excessive Battery Drain</td>
+                                        <td class="p-3">Check battery usage by app in settings. Reduce screen brightness. Disable background app refresh. Check for a physically failing battery.</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-700/50">
+                                        <td class="p-3">Overheating</td>
+                                        <td class="p-3">Stop resource-intensive apps (gaming, video). Remove from direct sunlight. Remove case to help dissipate heat.</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-700/50">
+                                        <td class="p-3">Connectivity Issues (Wi-Fi/Cellular/Bluetooth)</td>
+                                        <td class="p-3">Toggle Airplane mode on/off. Forget the network/device and reconnect. Reset network settings.</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-700/50">
+                                        <td class="p-3">App Crashing</td>
+                                        <td class="p-3">Force stop the app. Clear app cache/data. Check for app updates. Reinstall the app.</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-700/50">
+                                        <td class="p-3">Touchscreen Unresponsive</td>
+                                        <td class="p-3">Clean the screen. Reboot the device. Remove screen protector to test. Could indicate hardware failure.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mt-4 p-3 bg-gray-900 rounded-lg">
+                            <p class="font-semibold text-yellow-400">Last Resort: Factory Reset</p>
+                            <p class="text-sm mt-2 text-gray-300">If all else fails, a factory reset will wipe the device and restore it to its original state. <strong>Always back up user data first!</strong></p>
+                        </div>
+                    </div>
+                `
+            },
+            '3.5': {
+                title: '3.5 Given a scenario, troubleshoot mobile OS and application security issues.',
+                content: `
+                    <div class="content-card">
+                        <h3 class="text-xl font-bold text-blue-400 mb-4">Mobile Security Troubleshooting</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li><strong>Unintended Wi-Fi/Bluetooth connections:</strong> If a device is connecting to unknown networks or devices, it could be a sign of malware or a misconfiguration. "Forget" all unknown networks and devices. Perform a "Reset Network Settings".</li>
+                            <li><strong>Unauthorized account access / Data leakage:</strong> If a user reports unauthorized activity on their accounts, their device may be compromised. Change all associated passwords immediately from a separate, trusted device. Review app permissions to see which apps have access to contacts, location, etc.</li>
+                            <li><strong>High resource utilization:</strong> Unusually high data usage, battery drain, or CPU activity can be a symptom of spyware or other malware running in the background. Check data and battery usage statistics in the device settings to identify the culprit app.</li>
+                            <li><strong>Signal drop/weak signal:</strong> While often a carrier or location issue, this can sometimes be a symptom of malware interfering with the device's radio.</li>
+                            <li><strong>Power drain:</strong> Similar to high resource utilization, this can be a key indicator of malicious background processes.</li>
+                            <li><strong>Unauthorized camera/microphone activation:</strong> Most modern mobile OSes show an indicator on screen when the camera or microphone is active. If this indicator appears when no app is intentionally using it, it's a major red flag for spyware. Review app permissions immediately.</li>
+                        </ul>
+                    </div>
+                `
+            },
+            '3.6': {
+                title: '3.6 Given a scenario, apply the malware removal process.',
+                content: `
+                    <div class="content-card">
+                        <h3 class="text-xl font-bold text-blue-400 mb-4">The 7-Step Malware Removal Procedure</h3>
+                        <ol class="list-decimal list-inside space-y-2 text-gray-300">
+                            <li><strong>Identify and research malware symptoms.</strong> (Pop-ups, slow performance, browser redirects).</li>
+                            <li><strong>Quarantine the infected system.</strong> (Disconnect from all networks immediately).</li>
+                            <li><strong>Disable System Restore.</strong> (Prevents malware from hiding in restore points).</li>
+                            <li><strong>Remediate the infected systems.</strong>
+                                <ul class="list-disc list-inside ml-6 mt-1 text-gray-400">
+                                    <li>Update anti-malware software definitions.</li>
+                                    <li>Boot into Safe Mode (if necessary) and run scans with your anti-malware tools.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Schedule scans and run updates.</strong> (Ensure automatic scans and OS/application updates are enabled).</li>
+                            <li><strong>Enable System Restore and create a new restore point.</strong> (After you are certain the system is clean).</li>
+                            <li><strong>Educate the end user.</strong> (Explain how the infection likely occurred to prevent it from happening again).</li>
+                        </ol>
+                    </div>
+                `
+            },
+            // Domain 4.0: Operational Procedures
+            '4.1': {
+                title: '4.1 Given a scenario, use best practices associated with documentation, change management, and disaster prevention/recovery.',
+                content: `
+                    <div class="content-card">
+                        <h3 class="text-xl font-bold text-blue-400 mb-4">Documentation & Change Management</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li><strong>Documentation:</strong> Always document your work in a ticketing system. Good documentation should include the initial problem, steps taken, and the final resolution. Network diagrams and asset management records are also key forms of documentation.</li>
+                            <li><strong>Change Management:</strong> A formal process for making changes to IT systems. It involves planning, getting approval, testing, scheduling the change (often during a maintenance window), and documenting the outcome. This prevents unplanned outages.</li>
+                        </ul>
+                    </div>
+                    <div class="content-card">
+                        <h3 class="text-xl font-bold text-blue-400 mb-4">Disaster Prevention & Recovery</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li><strong>Backup Strategies:</strong> Use a combination of full, incremental, and differential backups. Follow the 3-2-1 rule: <strong>3</strong> copies of your data, on <strong>2</strong> different media types, with <strong>1</strong> copy off-site.</li>
+                            <li><strong>Recovery Objectives:</strong>
+                                <ul class="list-disc list-inside ml-6 mt-1 text-gray-400">
+                                    <li><strong>RTO (Recovery Time Objective):</strong> How quickly you must recover.</li>
+                                    <li><strong>RPO (Recovery Point Objective):</strong> How much data you can afford to lose.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Hardware Redundancy:</strong> Use RAID (especially RAID 1, 5, or 10) for disk fault tolerance and uninterruptible power supplies (UPS) to protect against power outages.</li>
+                        </ul>
+                    </div>
+                `
+            },
+            '4.2': {
+                title: '4.2 Explain the basics of scripting.',
+                content: `
+                    <div class="content-card">
+                        <h3 class="text-xl font-bold text-blue-400 mb-4">Scripting Fundamentals</h3>
+                        <p>Scripting allows you to automate repetitive tasks, saving time and reducing human error.</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li><strong>Scripting Languages:</strong>
+                                <ul class="list-disc list-inside ml-6 mt-1">
+                                    <li><strong>PowerShell (.ps1):</strong> The standard for Windows automation. Uses "cmdlets" (e.g., <code>Get-Process</code>).</li>
+                                    <li><strong>Bash (.sh):</strong> The standard shell for Linux and macOS.</li>
+                                    <li><strong>Python (.py):</strong> A versatile, cross-platform language popular for automation and general programming.</li>
+                                    <li><strong>Batch files (.bat):</strong> Legacy scripting for Windows using old DOS commands.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Basic Constructs:</strong>
+                                <ul class="list-disc list-inside ml-6 mt-1">
+                                    <li><strong>Variables:</strong> Named containers for storing data (e.g., <code>$username = "admin"</code>).</li>
+                                    <li><strong>Loops:</strong> Repeat a block of code (e.g., <code>for</code>, <code>while</code>).</li>
+                                    <li><strong>Conditional Statements:</strong> Perform actions based on a condition (e.g., <code>if/else</code>).</li>
+                                    <li><strong>Comments:</strong> Lines that are ignored by the interpreter, used to explain the code (e.g., <code># This is a comment</code>).</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                `
+            },
+            '4.3': {
+                title: '4.3 Given a scenario, use remote access technologies.',
+                content: `
+                    <div class="content-card">
+                        <h3 class="text-xl font-bold text-blue-400 mb-4">Remote Access Technologies</h3>
+                        <p>Remote access tools are essential for modern IT support, allowing technicians to manage and troubleshoot systems without being physically present.</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li><strong>Remote Desktop Protocol (RDP):</strong> A Microsoft protocol that provides a user with a full graphical interface to a remote computer. The technician logs in as a user on the remote machine and has full control. RDP uses port 3389.</li>
+                            <li><strong>Windows Remote Assistance:</strong> A feature that allows a user to request help from another person. The helper can view the user's screen and, with permission, take control of their mouse and keyboard to resolve issues. This is an "over-the-shoulder" support tool.</li>
+                            <li><strong>Secure Shell (SSH):</strong> A command-line protocol used to securely access and manage devices (like servers, routers, and switches) over an unsecured network. It provides a secure, encrypted terminal session. SSH uses port 22.</li>
+                            <li><strong>Third-Party Tools:</strong> Many commercial remote access tools exist, such as TeamViewer, AnyDesk, and VNC, which provide cross-platform remote access with features like file transfer and session recording.</li>
+                        </ul>
+                    </div>
+                `
+            },
+            '4.4': {
+                title: '4.4 Identify the basics of virtualization.',
+                content: `
+                    <div class="content-card">
+                        <h3 class="text-xl font-bold text-blue-400 mb-4">Virtualization Concepts</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li><strong>Hypervisor:</strong> The software that creates and runs virtual machines (VMs).
+                                <ul class="list-disc list-inside ml-6 mt-1">
+                                    <li><strong>Type 1 (Bare-metal):</strong> Runs directly on the host's hardware (e.g., VMware ESXi, Microsoft Hyper-V). More efficient and used in data centers.</li>
+                                    <li><strong>Type 2 (Hosted):</strong> Runs as an application on top of an existing OS (e.g., VMware Workstation, Oracle VirtualBox). Easier for desktop use and testing.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Virtual Machine (VM):</strong> A complete, isolated guest operating system running on a host computer. It has its own virtualized CPU, RAM, storage, and networking.</li>
+                            <li><strong>Containers:</strong> A lighter-weight form of virtualization where applications run in isolated user spaces but share the host OS kernel. They are faster to create and use fewer resources than VMs (e.g., Docker).</li>
+                            <li><strong>Snapshots:</strong> A point-in-time copy of a VM's state, including its memory, settings, and virtual disks. Allows you to quickly revert the VM to that state. It is not a substitute for a proper backup.</li>
+                        </ul>
+                    </div>
+                `
+            },
+            '4.5': {
+                title: '4.5 Summarize cloud computing concepts.',
+                content: `
+                    <div class="content-card">
+                        <h3 class="text-xl font-bold text-blue-400 mb-4">Cloud Computing Concepts</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li><strong>Service Models (The "as a Service" Stack):</strong>
+                                <ul class="list-disc list-inside ml-6 mt-1">
+                                    <li><strong>IaaS (Infrastructure):</strong> The cloud provider manages the physical hardware (servers, storage, networking). You manage the OS, applications, and data. (e.g., AWS EC2, Azure VMs).</li>
+                                    <li><strong>PaaS (Platform):</strong> The provider manages the hardware and the OS. You manage the application and data. (e.g., AWS Elastic Beanstalk, Azure App Service).</li>
+                                    <li><strong>SaaS (Software):</strong> The provider manages everything. You just use the software via a web browser. (e.g., Microsoft 365, Google Workspace, Salesforce).</li>
+                                </ul>
+                            </li>
+                            <li><strong>Deployment Models:</strong>
+                                <ul class="list-disc list-inside ml-6 mt-1">
+                                    <li><strong>Public Cloud:</strong> Services are offered over the public internet and are available to anyone who wants to purchase them (e.g., AWS, Azure, GCP).</li>
+                                    <li><strong>Private Cloud:</strong> The cloud infrastructure is operated solely for a single organization. It can be managed internally or by a third party and can exist on or off premises.</li>
+                                    <li><strong>Hybrid Cloud:</strong> A combination of public and private clouds, bound together by technology that allows data and applications to be shared between them.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                `
+            },
+            'default': {
+                title: 'Select a Topic',
+                content: `<div class="content-card"><p>Please select a topic from the navigation menu to see the content.</p></div>`
+            }
+        };
+
+        const navStructure = [
+            {
+                domain: "1.0 Operating Systems (27%)",
+                topics: [
+                    { id: '1.1', name: '1.1 OS Types & Purposes' },
+                    { id: '1.2', name: '1.2 Windows Features & Tools' },
+                    { id: '1.3', name: '1.3 Windows Control Panel' },
+                    { id: '1.4', name: '1.4 Windows Settings' },
+                    { id: '1.5', name: '1.5 Windows CLI' },
+                    { id: '1.6', name: '1.6 macOS Features & Tools' },
+                    { id: '1.7', name: '1.7 Linux Features & Tools' },
+                    { id: '1.8', name: '1.8 Linux CLI' },
+                    { id: '1.9', name: '1.9 Windows Installation' },
+                    { id: '1.10', name: '1.10 Windows Upgrades' },
+                    { id: '1.11', name: '1.11 Application Concepts' },
+                ]
+            },
+            {
+                domain: "2.0 Security (24%)",
+                topics: [
+                    { id: '2.1', name: '2.1 Security Fundamentals' },
+                    { id: '2.2', name: '2.2 Authentication/Authorization' },
+                    { id: '2.3', name: '2.3 Security Best Practices' },
+                    { id: '2.4', name: '2.4 Anti-Malware Tools' },
+                    { id: '2.5', name: '2.5 Data Destruction' },
+                    { id: '2.6', name: '2.6 SOHO Wireless Security' },
+                    { id: '2.7', name: '2.7 Mobile Device Security' },
+                    { id: '2.8', name: '2.8 Securing Windows' },
+                ]
+            },
+            {
+                domain: "3.0 Software Troubleshooting (26%)",
+                topics: [
+                    { id: '3.1', name: '3.1 Troubleshoot Windows OS' },
+                    { id: '3.2', name: '3.2 Windows Troubleshooting Tools' },
+                    { id: '3.3', name: '3.3 Troubleshoot Security Issues' },
+                    { id: '3.4', name: '3.4 Troubleshoot Mobile OS' },
+                    { id: '3.5', name: '3.5 Troubleshoot Mobile Security' },
+                    { id: '3.6', name: '3.6 Malware Removal Process' },
+                ]
+            },
+            {
+                domain: "4.0 Operational Procedures (23%)",
+                topics: [
+                    { id: '4.1', name: '4.1 Best Practices' },
+                    { id: '4.2', name: '4.2 Basics of Scripting' },
+                    { id: '4.3', name: '4.3 Remote Access' },
+                    { id: '4.4', name: '4.4 Virtualization Basics' },
+                    { id: '4.5', name: '4.5 Cloud Computing Concepts' },
+                ]
+            }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const sidebar = document.getElementById('sidebar');
+            const navContainer = sidebar.querySelector('nav');
+            const contentArea = document.getElementById('content-area');
+            const contentTitle = document.getElementById('content-title');
+            const menuToggle = document.getElementById('menu-toggle');
+            const overlay = document.getElementById('overlay');
+
+            // Populate navigation
+            navStructure.forEach(domainItem => {
+                const domainDiv = document.createElement('div');
+                const domainHeader = document.createElement('h3');
+                domainHeader.className = 'px-4 py-2 text-sm font-semibold text-gray-400 cursor-pointer hover:bg-gray-700 rounded-md';
+                domainHeader.textContent = domainItem.domain;
+                domainDiv.appendChild(domainHeader);
+
+                const topicList = document.createElement('ul');
+                topicList.className = 'ml-4 mt-1 space-y-1 hidden';
+
+                domainItem.topics.forEach(topic => {
+                    const listItem = document.createElement('li');
+                    const link = document.createElement('a');
+                    link.href = '#';
+                    link.dataset.topicId = topic.id;
+                    link.textContent = topic.name;
+                    link.className = 'block px-4 py-2 text-sm rounded-md hover:bg-gray-600 transition-colors duration-200';
+                    listItem.appendChild(link);
+                    topicList.appendChild(listItem);
+                });
+
+                domainDiv.appendChild(topicList);
+                navContainer.appendChild(domainDiv);
+
+                domainHeader.addEventListener('click', () => {
+                    topicList.classList.toggle('hidden');
+                });
+            });
+            
+            const closeMenu = () => {
+                sidebar.classList.add('-translate-x-full');
+                overlay.classList.add('hidden');
+            };
+
+            const openMenu = () => {
+                sidebar.classList.remove('-translate-x-full');
+                overlay.classList.remove('hidden');
+            };
+
+            menuToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openMenu();
+            });
+
+            overlay.addEventListener('click', closeMenu);
+
+            // Handle content loading
+            navContainer.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    e.preventDefault();
+                    const topicId = e.target.dataset.topicId;
+                    
+                    document.querySelectorAll('nav a').forEach(a => a.classList.remove('active-link'));
+                    e.target.classList.add('active-link');
+                    
+                    const data = contentData[topicId] || contentData['default'];
+                    contentTitle.textContent = data.title;
+                    contentArea.innerHTML = data.content;
+                    contentArea.scrollTop = 0;
+
+                    if (window.innerWidth < 768) {
+                        closeMenu();
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

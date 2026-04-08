@@ -1,0 +1,1799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS SAA-C03 Study Guide</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Inter font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom scrollbar for content pane */
+        #content-pane::-webkit-scrollbar {
+            width: 8px;
+        }
+        #content-pane::-webkit-scrollbar-track {
+            background: #f1f5f9; /* gray-100 */
+        }
+        #content-pane::-webkit-scrollbar-thumb {
+            background: #cbd5e1; /* gray-300 */
+            border-radius: 4px;
+        }
+        #content-pane::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; /* gray-400 */
+        }
+
+        /* Custom scrollbar for sidebar */
+        #sidebar-content::-webkit-scrollbar {
+            width: 6px;
+        }
+        #sidebar-content::-webkit-scrollbar-track {
+            background: #1e293b; /* gray-800 */
+        }
+        #sidebar-content::-webkit-scrollbar-thumb {
+            background: #475569; /* gray-600 */
+            border-radius: 3px;
+        }
+        #sidebar-content::-webkit-scrollbar-thumb:hover {
+            background: #64748b; /* gray-500 */
+        }
+
+        /* Active link styling */
+        .nav-link.active {
+            background-color: #f97316; /* orange-500 */
+            color: #ffffff;
+            font-weight: 600;
+        }
+        
+        /* Content heading styles */
+        .content-section h1 {
+            font-size: 2.25rem; /* text-3xl */
+            font-weight: 700;
+            color: #1e293b; /* gray-800 */
+            border-bottom: 2px solid #f97316; /* orange-500 */
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .content-section h2 {
+            font-size: 1.875rem; /* text-2xl */
+            font-weight: 600;
+            color: #334155; /* gray-700 */
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        .content-section h3 {
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 600;
+            color: #475569; /* gray-600 */
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .content-section p, .content-section ul, .content-section ol {
+            font-size: 1rem; /* text-base */
+            line-height: 1.75;
+            color: #334155; /* gray-700 */
+            margin-bottom: 1rem;
+        }
+        .content-section ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+        }
+        .content-section ol {
+            list-style-type: decimal;
+            margin-left: 1.5rem;
+        }
+        .content-section li {
+            margin-bottom: 0.5rem;
+        }
+        .content-section code {
+            background-color: #f1f5f9; /* gray-100 */
+            color: #dd1144;
+            padding: 0.125rem 0.375rem;
+            border-radius: 0.25rem;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+        .content-section strong {
+            color: #1e293b; /* gray-800 */
+        }
+        
+        /* Note box styling for different domains */
+        .content-section .note-d1 { /* Secure */
+            background-color: #fffbeb; /* yellow-50 */
+            border-left: 4px solid #f59e0b; /* yellow-500 */
+            padding: 1rem; margin: 1.5rem 0; border-radius: 0 0.5rem 0.5rem 0;
+        }
+        .content-section .note-d1 strong { color: #b45309; /* yellow-700 */ }
+        
+        .content-section .note-d2 { /* Resilient */
+            background-color: #eff6ff; /* blue-50 */
+            border-left: 4px solid #2563eb; /* blue-600 */
+            padding: 1rem; margin: 1.5rem 0; border-radius: 0 0.5rem 0.5rem 0;
+        }
+        .content-section .note-d2 strong { color: #1e40af; /* blue-800 */ }
+
+        .content-section .note-d3 { /* High-Performing */
+            background-color: #f0fdf4; /* green-50 */
+            border-left: 4px solid #16a34a; /* green-600 */
+            padding: 1rem; margin: 1.5rem 0; border-radius: 0 0.5rem 0.5rem 0;
+        }
+        .content-section .note-d3 strong { color: #14532d; /* green-800 */ }
+        
+        .content-section .note-d4 { /* Cost-Optimized */
+            background-color: #f5f3ff; /* purple-50 */
+            border-left: 4px solid #7c3aed; /* purple-600 */
+            padding: 1rem; margin: 1.5rem 0; border-radius: 0 0.5rem 0.5rem 0;
+        }
+        .content-section .note-d4 strong { color: #5b21b6; /* purple-800 */ }
+        
+        .scenario-diagram {
+            display: block;
+            margin: 1.5rem auto;
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #e2e8f0; /* gray-200 */
+            border-radius: 0.5rem; /* rounded-lg */
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); /* shadow-md */
+        }
+        
+        /* --- NEW QUIZ STYLES --- */
+        /* --- END QUIZ STYLES --- */
+    </style>
+</head>
+<body class="bg-gray-100 font-sans antialiased" style="font-family: 'Inter', sans-serif;">
+
+    <div class="relative min-h-screen md:flex">
+
+        <!-- Mobile Menu Button -->
+        <button id="menu-toggle" class="md:hidden fixed top-4 left-4 z-30 p-2 bg-gray-800 text-white rounded-md">
+            <!-- Hamburger Icon -->
+            <svg id="menu-open-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+            <!-- Close Icon (hidden by default) -->
+            <svg id="menu-close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+
+        <!-- Sidebar -->
+        <aside id="sidebar" class="bg-gray-800 text-gray-200 w-72 h-screen fixed md:sticky top-0 z-20
+                            transform -translate-x-full md:translate-x-0 
+                            transition-all duration-300 ease-in-out
+                            flex flex-col shadow-lg">
+            
+            <!-- Logo/Header -->
+          <div id="sidebar-header" class="p-5 h-16 flex items-center justify-between bg-gray-900 shadow-md">
+             <h1 id="sidebar-logo" class="text-xl font-bold text-white tracking-wide transition-opacity duration-300">SAA-C03 Guide</h1>
+              <!-- Desktop Collapse Toggle -->
+              <button id="desktop-toggle-btn" title="Collapse sidebar" class="hidden md:block p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded-lg transition-colors">
+                  <!-- Icon: Chevron Double Left (Collapse) -->
+                  <svg id="collapse-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M18.75 19.5l-7.5-7.5 7.5-7.5m-6 15L5.25 12l7.5-7.5" />
+                  </svg>
+                  <!-- Icon: Chevron Double Right (Expand) - hidden by default -->
+                  <svg id="expand-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 hidden">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5" />
+                  </svg>
+             </button>
+           </div>
+ 
+            <!-- Navigation -->
+            <nav id="sidebar-content" class="flex-1 px-4 py-4 overflow-y-auto">
+                <ul class="space-y-1">
+                    <li>
+                        <a href="#" class="nav-link home-link active flex items-center p-3 rounded-lg hover:bg-gray-700 transition-colors" data-target="home">
+                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6-4a1 1 0 001-1v-1a1 1 0 10-2 0v1a1 1 0 001 1z"></path></svg>
+                           <span class="link-text transition-opacity duration-300">Home</span>
+                        </a>
+                    </li>
+                    
+                    <!-- NEW KEY TERMS LINK -->
+                    <li>
+                        <a href="#" class="nav-link flex items-center p-3 rounded-lg hover:bg-gray-700 transition-colors" data-target="key-terms">
+                            <svg class="w-5 h-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                            </svg>
+                           <span class="link-text transition-opacity duration-300">Key Terms & Core Services</span>
+                        </a>
+                    </li>
+                    
+                    <!-- Domain 1 -->
+                    <li>
+                        <span class="px-3 pt-3 pb-2 text-xs font-semibold text-gray-400 uppercase tracking-wider block link-text transition-opacity duration-300">Domain 1: Secure (30%)</span>
+                        <ul class="space-y-1 mt-1">
+                           <li><a href="#" class="nav-link flex items-center p-3 pl-10 text-sm rounded-lg hover:bg-gray-700 transition-colors" data-target="d1-t1"><span class="link-text transition-opacity duration-300">1.1: Design secure access to AWS resources</span></a></li>
+                           <li><a href="#" class="nav-link flex items-center p-3 pl-10 text-sm rounded-lg hover:bg-gray-700 transition-colors" data-target="d1-t2"><span class="link-text transition-opacity duration-300">1.2: Design secure workloads and applications</span></a></li>
+                           <li><a href="#" class="nav-link flex items-center p-3 pl-10 text-sm rounded-lg hover:bg-gray-700 transition-colors" data-target="d1-t3"><span class="link-text transition-opacity duration-300">1.3: Determine appropriate data security controls</span></a></li>
+                        </ul>
+                    </li>
+ 
+                    <!-- Domain 2 -->
+                    <li>
+                       <span class="px-3 pt-3 pb-2 text-xs font-semibold text-gray-400 uppercase tracking-wider block link-text transition-opacity duration-300">Domain 2: Resilient (26%)</span>
+                        <ul class="space-y-1 mt-1">
+                           <li><a href="#" class="nav-link flex items-center p-3 pl-10 text-sm rounded-lg hover:bg-gray-700 transition-colors" data-target="d2-t1"><span class="link-text transition-opacity duration-300">2.1: Design scalable and loosely coupled architectures</span></a></li>
+                           <li><a href="#" class="nav-link flex items-center p-3 pl-10 text-sm rounded-lg hover:bg-gray-700 transition-colors" data-target="d2-t2"><span class="link-text transition-opacity duration-300">2.2: Design highly available and/or fault-tolerant architectures</span></a></li>
+                        </ul>
+                    </li>
+ 
+                    <!-- Domain 3 -->
+                    <li>
+                       <span class="px-3 pt-3 pb-2 text-xs font-semibold text-gray-400 uppercase tracking-wider block link-text transition-opacity duration-300">Domain 3: High-Performing (24%)</span>
+                        <ul class="space-y-1 mt-1">
+                           <li><a href="#" class="nav-link flex items-center p-3 pl-10 text-sm rounded-lg hover:bg-gray-700 transition-colors" data-target="d3-t1"><span class="link-text transition-opacity duration-300">3.1: Determine high-performing and/or scalable storage solutions</span></a></li>
+                           <li><a href="#" class="nav-link flex items-center p-3 pl-10 text-sm rounded-lg hover:bg-gray-700 transition-colors" data-target="d3-t2"><span class="link-text transition-opacity duration-300">3.2: Design high-performing and elastic compute solutions</span></a></li>
+                           <li><a href="#" class="nav-link flex items-center p-3 pl-10 text-sm rounded-lg hover:bg-gray-700 transition-colors" data-target="d3-t3"><span class="link-text transition-opacity duration-300">3.3: Determine high-performing database solutions</span></a></li>
+                           <li><a href="#" class="nav-link flex items-center p-3 pl-10 text-sm rounded-lg hover:bg-gray-700 transition-colors" data-target="d3-t4"><span class="link-text transition-opacity duration-300">3.4: Determine high-performing and/or scalable network architectures</span></a></li>
+                           <li><a href="#" class="nav-link flex items-center p-3 pl-10 text-sm rounded-lg hover:bg-gray-700 transition-colors" data-target="d3-t5"><span class="link-text transition-opacity duration-300">3.5: Determine high-performing data ingestion and transformation solutions</span></a></li>
+                        </ul>
+                    </li>
+ 
+                    <!-- Domain 4 -->
+                    <li>
+                       <span class="px-3 pt-3 pb-2 text-xs font-semibold text-gray-400 uppercase tracking-wider block link-text transition-opacity duration-300">Domain 4: Cost-Optimized (20%)</span>
+                        <ul class="space-y-1 mt-1">
+                           <li><a href="#" class="nav-link flex items-center p-3 pl-10 text-sm rounded-lg hover:bg-gray-700 transition-colors" data-target="d4-t1"><span class="link-text transition-opacity duration-300">4.1: Design cost-optimized storage solutions</span></a></li>
+                           <li><a href="#" class="nav-link flex items-center p-3 pl-10 text-sm rounded-lg hover:bg-gray-700 transition-colors" data-target="d4-t2"><span class="link-text transition-opacity duration-300">4.2: Design cost-optimized compute solutions</span></a></li>
+                           <li><a href="#" class="nav-link flex items-center p-3 pl-10 text-sm rounded-lg hover:bg-gray-700 transition-colors" data-target="d4-t3"><span class="link-text transition-opacity duration-300">4.3: Design cost-optimized database solutions</span></a></li>
+                           <li><a href="#" class="nav-link flex items-center p-3 pl-10 text-sm rounded-lg hover:bg-gray-700 transition-colors" data-target="d4-t4"><span class="link-text transition-opacity duration-300">4.4: Design cost-optimized network architectures</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+
+        </aside>
+ 
+        <!-- Content Pane -->
+       <main id="content-pane" class="flex-1 p-4 md:p-8 overflow-y-auto transition-all duration-300 ease-in-out">
+            <!-- Home/Welcome Section -->
+            <div id="home" class="content-section">
+                <h1>Welcome to the AWS SAA-C03 Study Guide</h1>
+                <p>This is an interactive guide designed to help you prepare for the <strong>AWS Certified Solutions Architect – Associate (SAA-C03)</strong> exam. The content is structured based on the official exam guide, broken down by domains and task statements.</p>
+                <p>Use the navigation menu on the left to select a topic. The content for that topic will appear here in the reading pane.</p>
+                
+                <h2 class="!text-2xl !mt-8">What is AWS?</h2>
+                <p><strong>Amazon Web Services (AWS)</strong> is a comprehensive and broadly adopted cloud computing platform, offering over 200 fully featured services from data centers globally. At its core, AWS provides on-demand computing power (like Amazon EC2), storage (like Amazon S3), databases (like Amazon RDS and DynamoDB), networking, and other foundational services. It allows you to build, deploy, and scale applications quickly and cost-effectively, paying only for what you use instead of buying and maintaining your own physical servers.</p>
+                
+
+                <h2 class="!text-2xl !mt-8">Understanding the SAA-C03 Domains</h2>
+                <p>The Solutions Architect - Associate exam is about how to *combine* these services to build secure, resilient, high-performing, and cost-effective solutions. The four domains are the pillars of this "Well-Architected" philosophy and are interconnected.</p>
+
+                <h3 class="!text-xl !mt-6">Domain 1: Design Secure Architectures</h3>
+                <p>This is the foundation. Before you can build anything else, you must know how to secure it. This domain covers <strong>identity</strong> (who can log in and what can they do, using IAM), <strong>network security</strong> (creating an isolated network with VPC, firewalls with Security Groups), and <strong>data protection</strong> (encrypting data at rest and in transit).</p>
+                
+                <h3 class="!text-xl !mt-6">Domain 2: Design Resilient Architectures</h3>
+                <p>This is about building applications that can withstand failure. A resilient system doesn't go down just because one server fails. This domain focuses on <strong>high availability</strong> (using multiple Availability Zones), <strong>scalability</strong> (using Auto Scaling Groups to handle load), and <strong>loose coupling</strong> (using services like SQS and SNS so that components can fail independently without breaking the whole system).</p>
+                
+                <h3 class="!text-xl !mt-6">Domain 3: Design High-Performing Architectures</h3>
+                <p>Once your application is secure and resilient, you need to make it fast. This domain is about <strong>performance optimization</strong>. It covers choosing the right <strong>compute</strong> (e.g., EC2 instance types), <strong>storage</strong> (e.g., SSD vs. HDD), and <strong>database</strong> (e.g., RDS vs. DynamoDB) for your specific workload. It also includes <strong>caching</strong> (with ElastiCache) and global content delivery (with CloudFront).</p>
+
+                <h3 class="!text-xl !mt-6">Domain 4: Design Cost-Optimized Architectures</h3>
+                <p>Finally, you must build all of the above without wasting money. This domain is about <strong>financial governance</strong>. It covers <strong>purchasing options</strong> (like Spot Instances and Savings Plans to get discounts), <strong>right-sizing</strong> (not using an expensive server for a small job), and choosing the most cost-effective <strong>storage tiers</strong> (like moving old data to S3 Glacier).</p>
+
+                <h2 class="!text-2xl !mt-12">Exam Overview</h2>
+                <p>The exam is divided into these four domains, each with a specific weighting:</p>
+                <ul class="list-none !ml-0 space-y-3">
+                    <li class="flex items-center p-4 bg-white rounded-lg shadow-sm border border-gray-200">
+                        <span class="flex-shrink-0 w-16 h-16 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center font-bold text-xl">30%</span>
+                        <span class="ml-4 text-lg font-semibold text-gray-700">Domain 1: Design Secure Architectures</span>
+                    </li>
+                    <li class="flex items-center p-4 bg-white rounded-lg shadow-sm border border-gray-200">
+                        <span class="flex-shrink-0 w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold text-xl">26%</span>
+                        <span class="ml-4 text-lg font-semibold text-gray-700">Domain 2: Design Resilient Architectures</span>
+                    </li>
+                    <li class="flex items-center p-4 bg-white rounded-lg shadow-sm border border-gray-200">
+                        <span class="flex-shrink-0 w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center font-bold text-xl">24%</span>
+                        <span class="ml-4 text-lg font-semibold text-gray-700">Domain 3: Design High-Performing Architectures</span>
+                    </li>
+                    <li class="flex items-center p-4 bg-white rounded-lg shadow-sm border border-gray-200">
+                        <span class="flex-shrink-0 w-16 h-16 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center font-bold text-xl">20%</span>
+                        <span class="ml-4 text-lg font-semibold text-gray-700">Domain 4: Design Cost-Optimized Architectures</span>
+                    </li>
+                </ul>
+                <p class="mt-6">Good luck with your studies!</p>
+
+                <h2 class="!text-2xl !mt-12">Putting It All Together: A Real-World Example</h2>
+                <p>This guide covers many individual services. The *most important* skill is combining them to solve a business problem. Here is a classic example that touches all four domains.</p>
+                
+                <div class="p-6 bg-white rounded-lg shadow-md border border-gray-200">
+                    <h3 class="!text-xl !mt-0">Scenario: The New E-commerce Website</h3>
+                    <p>A startup is launching a new e-commerce store. They expect moderate traffic, but need the site to be 100% available and handle massive, "spiky" traffic spikes during holiday sales. They also must protect customer data.</p>
+                    
+                    <h4 class="font-semibold text-gray-700 mt-4">The "Client" (Business) Perspective:</h4>
+                    <ul class="!mb-0">
+                        <li>"The site can <strong>never</strong> go down, especially not during a sale!" (Need: High Availability & Resilience)</li>
+                        <li>"If a million people visit on Black Friday, the site must stay fast." (Need: Scalability & Performance)</li>
+                        <li>"We are storing customer addresses and payments. We cannot have a data breach." (Need: Security)</li>
+                        <li>"I don't want to pay for 20 massive servers all year when I only need them for one weekend." (Need: Cost-Optimization & Elasticity)</li>
+                    </ul>
+
+                    <img src="https" alt="A multi-tier AWS web architecture diagram" class="scenario-diagram" onerror="this.src='https://placehold.co/600x350/e2e8f0/475569?text=Architecture+Diagram'; this.alt='Multi-tier architecture diagram placeholder'">
+
+                    <h4 class="font-semibold text-gray-700 mt-6">The "Expert" (Architect) Solution:</h4>
+                    <p>This is the classic "Well-Architected" web application, touching all four domains:</p>
+                    <ol>
+                        <li><strong>Domain 1 (Security):</strong> We start with a <strong>VPC</strong>, creating <strong>Public Subnets</strong> for web servers and <strong>Private Subnets</strong> for the database. <strong>Security Groups</strong> (firewalls) restrict traffic: the web SG allows port 443 (HTTPS) from the internet, and the database SG allows port 3306 (MySQL) *only* from the web server's SG. We use <strong>AWS WAF</strong> to block SQL injection and <strong>ACM</strong> for a free SSL certificate.</li>
+                        
+                        <li><strong>Domain 2 (Resilience & Scalability):</strong> We use an <strong>Auto Scaling Group (ASG)</strong> of <strong>EC2 instances</strong> spanning <strong>multiple Availability Zones</strong>. An <strong>Application Load Balancer (ALB)</strong> distributes traffic across them. If an instance or an entire AZ fails, the ALB reroutes traffic. The ASG uses a <strong>Target Tracking</strong> policy (e.g., "keep CPU at 50%") to automatically launch new instances during the Black Friday spike and terminate them after, achieving elasticity.</li>
+                        
+                        <li><strong>Domain 3 (Performance):</strong> We use <strong>Amazon Aurora (RDS)</strong> as our database, which is faster than standard MySQL. For HA, we enable <strong>Multi-AZ</strong>. To handle read traffic, we add <strong>Aurora Read Replicas</strong>. We use <strong>Amazon ElastiCache (Redis)</strong> to cache common database queries in memory. We use <strong>Amazon CloudFront (CDN)</strong> to cache all our static images and CSS at edge locations worldwide, making the site load instantly for all users.</li>
+
+                        <li><strong>Domain 4 (Cost-Optimization):</strong> The <strong>Auto Scaling Group</strong> is the primary cost saver, ensuring we only pay for compute we need. Using <strong>Aurora Serverless</strong> could be an option if traffic is very unpredictable. Caching with <strong>ElastiCache</strong> and <strong>CloudFront</strong> also saves money by reducing the load on our backend EC2 instances and database.</li>
+                    </ol>
+                    <p class="mt-4"><strong>Key Services Used:</strong> <code>VPC</code>, <code>Security Groups</code>, <code>ALB</code>, <code>EC2 Auto Scaling Group</code>, <code>RDS Aurora (Multi-AZ + Read Replicas)</code>, <code>ElastiCache</code>, <code>CloudFront</code>, <code>WAF</code>, <code>ACM</code>.</p>
+                </div>
+            </div>
+
+            <!-- ########## NEW KEY TERMS SECTION ########## -->
+            <div id="key-terms" class="content-section hidden">
+                <h1>Key Terms & Core Services</h1>
+                <p>A glossary of the foundational concepts and most common services you must know for the SAA-C03 exam. The four domains of the exam are based on the principles of the Well-Architected Framework.</p>
+                
+                <h2>The 6 Pillars of the AWS Well-Architected Framework</h2>
+                <ul class="!list-none !ml-0 space-y-3">
+                    <li class="p-4 bg-white rounded-lg shadow-sm border border-gray-200">
+                        <strong>1. Operational Excellence:</strong> The ability to run and monitor systems to deliver business value and to continually improve supporting processes and procedures.
+                    </li>
+                    <li class="p-4 bg-white rounded-lg shadow-sm border border-gray-200">
+                        <strong>2. Security:</strong> The ability to protect information, systems, and assets while delivering business value through risk assessments and mitigation strategies. (Exam Domain 1)
+                    </li>
+                    <li class="p-4 bg-white rounded-lg shadow-sm border border-gray-200">
+                        <strong>3. Reliability:</strong> The ability of a workload to perform its intended function correctly and consistently when it’s expected to. This includes the ability to operate and test the workload through its total lifecycle. (Exam Domain 2)
+                    </li>
+                    <li class="p-4 bg-white rounded-lg shadow-sm border border-gray-200">
+                        <strong>4. Performance Efficiency:</strong> The ability to use computing resources efficiently to meet system requirements, and to maintain that efficiency as demand changes and technologies evolve. (Exam Domain 3)
+                    </li>
+                    <li class="p-4 bg-white rounded-lg shadow-sm border border-gray-200">
+                        <strong>5. Cost Optimization:</strong> The ability to run systems to deliver business value at the lowest price point. (Exam Domain 4)
+                    </li>
+                    <li class="p-4 bg-white rounded-lg shadow-sm border border-gray-200">
+                        <strong>6. Sustainability:</strong> The ability to continually improve sustainability impacts by reducing energy consumption and increasing efficiency. (A newer pillar, but good to know).
+                    </li>
+                </ul>
+
+                <h2 class="!text-2xl !mt-12">Core AWS Services by Category</h2>
+                
+                <h3>Compute</h3>
+                <ul>
+                    <li><strong>EC2 (Elastic Compute Cloud):</strong> Virtual servers in the cloud. The "workhorse" of AWS.</li>
+                    <li><strong>Auto Scaling Group (ASG):</strong> Automatically adds or removes EC2 instances to meet demand, ensuring performance and fault tolerance.</li>
+                    <li><strong>Lambda:</strong> Serverless compute. Run code in response to events without managing servers.</li>
+                    <li><strong>ECS (Elastic Container Service):</strong> AWS's proprietary container orchestration service.</li>
+                    <li><strong>EKS (Elastic Kubernetes Service):</strong> Managed Kubernetes service for running containerized applications.</li>
+                    <li><strong>Fargate:</strong> Serverless compute *for containers*. It works with both ECS and EKS, removing the need to manage EC2 instances.</li>
+                </ul>
+
+                <h3>Storage</h3>
+                <ul>
+                    <li><strong>S3 (Simple Storage Service):</strong> Infinitely scalable object storage for files, backups, and data lakes. Accessed via API.</li>
+                    <li><strong>EBS (Elastic Block Store):</strong> A "virtual hard drive" or block-level storage volume that attaches to a *single* EC2 instance.</li>
+                    <li><strong>EFS (Elastic File System):</strong> A shared, elastic file system for Linux (NFS protocol) that can be mounted by *many* EC2 instances.</li>
+                    <li><strong>S3 Glacier:</strong> Low-cost, long-term archival storage (e.g., Glacier Deep Archive is the cheapest).</li>
+                    <li><strong>Storage Gateway:</strong> A hybrid service that connects your on-premises applications to AWS storage.</li>
+                </ul>
+
+                <h3>Database</h3>
+                <ul>
+                    <li><strong>RDS (Relational Database Service):</strong> Managed relational databases (e.g., MySQL, PostgreSQL, SQL Server).</li>
+                    <li><strong>Aurora:</strong> AWS's cloud-native, high-performance database, compatible with MySQL & PostgreSQL. Features Multi-AZ storage.</li>
+                    <li><strong>DynamoDB:</strong> Fully managed NoSQL key-value database. Delivers single-digit millisecond performance at any scale.</li>
+                    <li><strong>ElastiCache:</strong> Managed in-memory cache service (Redis or Memcached) to speed up applications.</li>
+                    <li><strong>RDS Proxy:</strong> A connection pooler for RDS that improves scalability and resilience, especially for Lambda.</li>
+                </ul>
+
+                <h3>Networking & Content Delivery</h3>
+                <ul>
+                    <li><strong>VPC (Virtual Private Cloud):</strong> Your own private, isolated network section in AWS where you launch resources.</li>
+                    <li><strong>Security Group (SG):</strong> A stateful firewall at the *instance* level. Controls inbound/outbound traffic.</li>
+                    <li><strong>Network ACL (NACL):</strong> A stateless firewall at the *subnet* level. An optional, second layer of defense.</li>
+                    <li><strong>Route 53:</strong> AWS's managed Domain Name System (DNS) service. Also handles routing policies (failover, latency, etc.).</li>
+                    <li><strong>CloudFront:</strong> AWS's Content Delivery Network (CDN) that caches content at edge locations globally for low-latency delivery.</li>
+                    <li><strong>Application Load Balancer (ALB):</strong> Layer 7 (HTTP/S) load balancer. Routes based on content (e.g., URL path).</li>
+                    <li><strong>Network Load Balancer (NLB):</strong> Layer 4 (TCP/UDP) high-performance load balancer. Can provide a static IP.</li>
+                    <li><strong>Direct Connect (DX):</strong> A dedicated, private network connection from your on-premises data center to AWS.</li>
+                    <li><strong>Transit Gateway (TGW):</strong> A central network hub for connecting thousands of VPCs and on-premises networks.</li>
+                </ul>
+
+                <h3>Security, Identity & Compliance</h3>
+                <ul>
+                    <li><strong>IAM (Identity and Access Management):</strong> Manages AWS users, groups, roles, and their permissions (policies).</li>
+                    * <strong>Role:</strong> An identity with temporary credentials, assumable by users, services, or external entities.
+                    <li><strong>KMS (Key Management Service):</strong> Creates and manages encryption keys used to encrypt your data.</li>
+                    <li><strong>WAF (Web Application Firewall):</strong> Protects web apps (on ALB, CloudFront, API Gateway) from common exploits like SQL injection.</li>
+                    <li><strong>Shield:</strong> Managed DDoS (Distributed Denial of Service) protection. (Standard is free, Advanced is paid).</li>
+                    <li><strong>Secrets Manager:</strong> A service for securely storing, retrieving, and automatically rotating secrets (like database passwords).</li>
+                    <li><strong>Cognito:</strong> Provides user identity management (sign-up/sign-in) for your *applications*, not for AWS.</li>
+                </ul>
+
+                <h3>Management & Governance</h3>
+                <ul>
+                    <li><strong>CloudWatch:</strong> The monitoring and observability service. Collects metrics, logs, and sends alarms.</li>
+                    <li><strong>CloudTrail:</strong> Logs all API calls in your account for auditing, compliance, and governance. "Who did what, when?"</li>
+                    <li><strong>CloudFormation:</strong> Infrastructure as Code (IaC). Define your entire AWS infrastructure in a JSON or YAML template.</li>
+                    <li><strong>Organizations:</strong> Centrally manage and govern multiple AWS accounts. Used for consolidated billing and Service Control Policies (SCPs).</li>
+                </ul>
+                
+                <h3>Application Integration (Loose Coupling)</h3>
+                <ul>
+                    <li><strong>SQS (Simple Queue Service):</strong> A managed message queue service. Used to decouple components by allowing them to send and receive messages asynchronously.</li>
+                    <li><strong>SNS (Simple Notification Service):</strong> A managed pub/sub (publish/subscribe) service. "Fans out" a single message to many subscribers (e.g., SQS, Lambda, email).</li>
+                    <li><strong>EventBridge:</strong> A serverless event bus that routes events from various sources (AWS services, custom apps, SaaS) to targets.</li>
+                    <li><strong>Step Functions:</strong> A serverless visual workflow service for orchestrating multi-step applications (especially Lambda functions).</li>
+                </ul>
+
+            </div>
+
+            <!-- ########## DOMAIN 1: SECURE ########## -->
+            <div id="d1-t1" class="content-section hidden">
+                <h1>1.1: Design secure access to AWS resources</h1>
+                <p>This task statement focuses on the foundation of AWS security: controlling who (authentication) can do what (authorization) within your AWS environment. It covers identity management, permissions, and multi-account strategies.</p>
+
+                <h2>Knowledge of:</h2>
+                
+                <h3>Access controls and management across multiple accounts</h3>
+                <ul>
+                    <li><strong>AWS Organizations:</strong> A service that allows you to centrally manage and govern your environment as you grow and scale your AWS resources. You can create a "root" organization and invite other accounts to join.</li>
+                    <li><strong>Service Control Policies (SCPs):</strong> A feature of AWS Organizations. SCPs are "guardrails" that apply to the root, an Organizational Unit (OU), or an individual account. They define the *maximum* permissions allowed for IAM entities in that account. For example, you could use an SCP to block access to services you don't want anyone to use. <strong>Important:</strong> SCPs do not grant permissions; they only filter or restrict.</li>
+                </ul>
+
+                <h3>AWS federated access and identity services</h3>
+                <ul>
+                    <li><strong>AWS IAM Identity Center (formerly AWS Single Sign-On):</strong> The recommended service for managing access across multiple accounts and business applications. It can connect to your external IdP (like Active Directory, Okta, Azure AD) or act as its own IdP. Users log in once and get a portal to access all their assigned AWS accounts and roles.</li>
+                    <li><strong>IAM Federation (SAML 2.0 & OIDC):</strong> The underlying mechanism. You establish a "trust" relationship between your IdP and AWS. The IdP authenticates the user and sends a SAML assertion to AWS STS, which then provides temporary credentials for an IAM Role.</li>
+                </ul>
+
+                <h3>AWS global infrastructure (for example, Availability Zones, AWS Regions)</h3>
+                <p>Understanding the infrastructure is key to security. A <strong>Region</strong> is a physical location in the world with multiple, isolated <strong>Availability Zones (AZs)</strong>. An AZ is one or more discrete data centers. IAM is a global service, meaning users, groups, roles, and policies are created globally and are not specific to one Region. However, most other resources (like EC2 instances, VPCs) are Regional.</p>
+
+
+                <h3>AWS security best practices (for example, the principle of least privilege)</h3>
+                <p><strong>The Principle of Least Privilege:</strong> This is the most critical concept. You should grant only the minimum permissions necessary for a user, group, or service to perform its required tasks, and nothing more. Avoid using overly permissive policies like <code>"Effect": "Allow", "Action": "*", "Resource": "*"</code>.</p>
+
+                <h3>The AWS shared responsibility model</h3>
+                <p>AWS is responsible for the security <strong>OF</strong> the cloud (hardware, global infrastructure, managed services). You, the customer, are responsible for security <strong>IN</strong> the cloud (your data, IAM configuration, OS patching, network security groups, encryption). For example, with EC2, AWS secures the data center, but you must secure the operating system and the data on the instance.</p>
+
+                <h2>Skills in:</h2>
+                
+                <h3>Applying AWS security best practices to IAM users and root users</h3>
+                <ul>
+                    <li><strong>Root User:</strong> This is the "owner" account. It has unrestricted access. <strong>Best Practice:</strong> Do NOT use the root user for daily tasks.</li>
+                    <li><strong>MFA (Multi-Factor Authentication):</strong> You MUST secure the root user with MFA. You should also enforce MFA for all IAM users, especially administrative ones.</li>
+                    <li><strong>Access Keys:</strong> Do not generate long-term access keys (<code>AWS_ACCESS_KEY_ID</code>, <code>AWS_SECRET_ACCESS_KEY</code>) for the root user. If you must use them for programmatic access, create an IAM user or role instead.</li>
+                </ul>
+                
+                <h3>Designing a flexible authorization model that includes IAM users, groups, roles, and policies</h3>
+                <ul>
+                    <li><strong>Users:</strong> An entity (person or application) that interacts with AWS.</li>
+                    <li><strong>Groups:</strong> A collection of IAM users. You apply policies to a group, and all users in that group inherit those permissions. This is much easier than managing policies for individual users.</li>
+                    <li><strong>Roles:</strong> An identity with permissions that can be "assumed" by a trusted entity. Roles do not have their own long-term credentials. They are the preferred way to grant permissions to services (e.g., an EC2 instance needing to write to S3) or for federated/cross-account access.</li>
+                    <li><strong>Policies:</strong> The JSON documents that define permissions. An <strong>Identity-based Policy</strong> is attached to a user, group, or role. A <strong>Resource-based Policy</strong> is attached to a resource (e.g., an S3 bucket policy).</li>
+                </ul>
+                <div class="note-d1"><strong>Exam Tip:</strong> An <strong>Identity-based Policy</strong> (on an IAM user) answers "What can this user do?". A <strong>Resource-based Policy</strong> (on an S3 bucket) answers "Who can access this resource?". Both are evaluated together. A <code>Deny</code> in *either* policy will always win.</div>
+                
+                <h3>Designing a role-based access control strategy (for example, AWS STS, role switching, cross-account access)</h3>
+                <p>To allow an IAM user in Account A (Dev) to access resources in Account B (Prod), you would:</p>
+                <ol>
+                    <li>In Account B (Prod), create an IAM Role (e.g., <code>ProdReadOnlyRole</code>) that has the required permissions (e.g., <code>s3:GetObject</code>).</li>
+                    <li>In that role's "Trust Policy," specify that it trusts Account A.</li>
+                    <li>In Account A (Dev), grant your IAM user (e.g., <code>DevUser</code>) permission to call <code>sts:AssumeRole</code> on the <code>ProdReadOnlyRole</code> ARN.</li>
+                    <li>The <code>DevUser</code> can then "switch roles" (which uses AWS STS) to get temporary credentials for Account B.</li>
+                </ol>
+
+                <h3>Designing a security strategy for multiple AWS accounts (for example, AWS Control Tower, service control policies [SCPs])</h3>
+                <p><strong>AWS Control Tower</strong> provides the easiest way to set up and govern a new, secure, multi-account AWS environment based on best practices. It automates the setup of AWS Organizations, creates core OUs (like "Security" and "Sandbox"), and implements preventive and detective "guardrails" (which are based on SCPs and AWS Config rules).</p>
+
+                <h3>Determining the appropriate use of resource policies for AWS services</h3>
+                <p>Resource-based policies are powerful for cross-account access and public access. The most common example is an <strong>S3 Bucket Policy</strong>. You can use it to:
+                    <ul>
+                        <li>Grant public read access to objects.</li>
+                        <li>Grant another AWS account (or specific users in it) access to your bucket.</li>
+                        <li>Deny access if the request doesn't come from a specific IP address or VPC.</li>
+                    </ul>
+                </p>
+
+                <h3>Determining when to federate a directory service with IAM roles</h3>
+                <p>You should federate when you already have an existing identity provider (like Microsoft Active Directory, Okta, Ping, or Azure AD) and you want your users to use their existing corporate credentials to access AWS. This avoids managing two sets of passwords, simplifies on-boarding/off-boarding, and centralizes identity management.</p>
+
+                <!-- NEW QUIZ BOX -->
+                <!-- END NEW QUIZ BOX -->
+
+            </div>
+
+            <!-- Domain 1, Task 2 -->
+            <div id="d1-t2" class="content-section hidden">
+                <h1>1.2: Design secure workloads and applications</h1>
+                <p>This section moves from "who" can log in to "how" your applications and network are protected from threats. This is primarily about VPC design, network firewalls, and application-layer security.</p>
+                
+                <h2>Knowledge of:</h2>
+                
+                <h3>Application configuration and credentials security</h3>
+                <p><strong>Never hardcode secrets!</strong> Do not store database passwords, API keys, or other credentials in your code or EC2 User Data. Use a dedicated service:</p>
+                <ul>
+                    <li><strong>AWS Secrets Manager:</strong> The preferred service for secrets. It can store, retrieve, and automatically rotate credentials (e.g., RDS database passwords). Applications can query the Secrets Manager API (using an IAM role) to get credentials at runtime.</li>
+                    <li><strong>AWS Systems Manager (SSM) Parameter Store:</strong> Can store plain-text or encrypted (using KMS) configuration data and secrets. It's a good general-purpose service. Secrets Manager is better for automated rotation.</li>
+                </ul>
+                <div class="note-d1"><strong>Exam Tip:</strong> Choose <strong>Secrets Manager</strong> if you need automatic key rotation (e.g., for RDS). Choose <strong>SSM Parameter Store</strong> for simpler configuration data or secrets that don't need rotation. Parameter Store has a free standard tier, while Secrets Manager has a cost per secret.</div>
+
+                <h3>AWS service endpoints</h3>
+                <p>By default, when your EC2 instance communicates with a service like S3, the traffic goes over the public internet. <strong>VPC Endpoints</strong> allow you to keep this traffic within the AWS network, improving security and performance.</p>
+                <ul>
+                    <li><strong>Gateway Endpoints:</strong> A gateway that you add as a target in your route table. It's free. Only supports <strong>S3</strong> and <strong>DynamoDB</strong>.</li>
+                    <li><strong>Interface Endpoints (AWS PrivateLink):</strong> Uses an Elastic Network Interface (ENI) with a private IP address in your subnet. It acts as an entry point to the service. It supports most AWS services, costs money, and works with on-premises connections (via VPN or Direct Connect).</li>
+                </ul>
+                
+                <h3>Control ports, protocols, and network traffic on AWS</h3>
+                <ul>
+                    <li><strong>Security Groups (SGs):</strong> Act as a firewall at the *instance level*. They are <strong>stateful</strong> (if you allow inbound port 80, the outbound return traffic is automatically allowed). You can only create <strong>allow</strong> rules.</li>
+                    <li><strong>Network ACLs (NACLs):</strong> Act as a firewall at the *subnet level*. They are <strong>stateless</strong> (if you allow inbound port 80, you must *also* explicitly allow outbound ports 32768-65535 for the return traffic). They have <strong>allow</strong> and <strong>deny</strong> rules, processed in order.</li>
+                </ul>
+                <div class="note-d1"><strong>Exam Tip:</strong> Remember SGs are stateful/instance-level, and NACLs are stateless/subnet-level. SGs are your first line of defense; NACLs are a broader, secondary defense.</div>
+
+                <h3>Secure application access</h3>
+                <p><strong>Amazon Cognito:</strong> This service is for your *application's users*, not your AWS account users (that's IAM). It provides authentication, authorization, and user management for web and mobile apps.</p>
+                <ul>
+                    <li><strong>User Pools:</strong> A user directory. Handles user sign-up, sign-in, and password reset. Can federate with social (Google, Facebook) and SAML IdPs.</li>
+                    <li><strong>Identity Pools:</strong> Grants users (from a User Pool or other IdP) temporary AWS credentials to access specific AWS services (e.g., allows an app user to upload directly to an S3 bucket).</li>
+                </ul>
+
+                <h3>Security services with appropriate use cases</h3>
+                <ul>
+                    <li><strong>Amazon GuardDuty:</strong> A smart, "hands-off" threat detection service. It continuously monitors your AWS account's CloudTrail logs, VPC Flow Logs, and DNS logs for malicious activity (e.g., crypto-mining, communication with known bad IPs, port scanning) and alerts you.</li>
+                    <li><strong>Amazon Macie:</strong> A data security service that uses machine learning to discover, classify, and protect sensitive data (like PII or financial info) stored in <strong>Amazon S3</strong>.</li>
+                </ul>
+
+                <h3>Threat vectors external to AWS</h3>
+                <ul>
+                    <li><strong>DDoS (Distributed Denial of Service):</strong> An attempt to overwhelm an application with traffic.
+                        <ul>
+                            <li><strong>AWS Shield Standard:</strong> Free, automatically enabled for all customers. Protects against common Layer 3/4 DDoS attacks.</li>
+                            <li><strong>AWS Shield Advanced:</strong> A paid service for enhanced protection against large-scale DDoS attacks. Includes 24/7 DDoS response team support and integrates with AWS WAF.</li>
+                        </ul>
+                    </li>
+                    <li><strong>SQL Injection / Cross-Site Scripting (XSS):</strong> Application-layer attacks.
+                        <ul>
+                            <li><strong>AWS WAF (Web Application Firewall):</strong> A Layer 7 firewall that lets you block common web exploits like SQL injection and XSS. You can apply it to an <strong>Application Load Balancer (ALB)</strong>, <strong>API Gateway</strong>, or <strong>CloudFront</strong>.</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h2>Skills in:</h2>
+                
+                <h3>Designing VPC architectures with security components</h3>
+                <p>A standard, secure VPC design is the "multi-tier" architecture:</p>
+                <ul>
+                    <li><strong>VPC:</strong> A logically isolated network.</li>
+                    <li><strong>Subnets:</strong> A range of IP addresses in your VPC.
+                        <ul>
+                            <li><strong>Public Subnets:</strong> Have a route table entry pointing to an <strong>Internet Gateway (IGW)</strong>. Resources here (like web servers or NAT Gateways) can be reached from the internet.</li>
+                            <li><strong>Private Subnets:</strong> Do not have a route to an IGW. Resources here (like application servers or databases) are isolated.</li>
+                        </ul>
+                    </li>
+                    <li><strong>NAT Gateway (Network Address Translation):</strong> A managed AWS service that you place in a *public subnet*. It allows instances in a *private subnet* to initiate outbound traffic to the internet (e.g., for software updates) while blocking all inbound traffic.</li>
+                    <li><strong>Security Groups & NACLs:</strong> Used to control traffic flow. E.g., the web-tier SG allows port 443 from <code>0.0.0.0/0</code>. The app-tier SG allows port 8080 only from the *web-tier SG*. The db-tier SG allows port 3306 only from the *app-tier SG*.</li>
+                </ul>
+
+                <h3>Determining network segmentation strategies</h3>
+                <p>This is the public/private subnet strategy described above. By segmenting your network, you create a "defense-in-depth" model. If an attacker compromises your web server (public), they are still firewalled off from your database (private).</p>
+
+                <h3>Integrating AWS services to secure applications</h3>
+                <p>A secure architecture combines services. A common pattern is:</p>
+                <p><strong>Route 53</strong> (DNS) -> <strong>CloudFront</strong> (CDN, with <strong>Shield Advanced</strong>) -> <strong>AWS WAF</strong> (blocking SQLi) -> <strong>Application Load Balancer</strong> (distributing traffic) -> <strong>EC2 Instances</strong> (in a private subnet) -> <strong>Secrets Manager</strong> (to get DB creds) -> <strong>RDS Database</strong> (in a private subnet).</p>
+                <p>This architecture uses AWS Shield, WAF, and Secrets Manager to secure the application at multiple layers.</p>
+
+                <h3>Securing external network connections to and from the AWS Cloud</h3>
+                <p>When you need to connect your on-premises data center to your VPC:</p>
+                <ul>
+                    <li><strong>AWS Site-to-Site VPN:</strong> Creates an encrypted (IPsec) tunnel between your VPC (using a Virtual Private Gateway) and your on-premises network (using a Customer Gateway). This connection travels over the <strong>public internet</strong>.</li>
+                    <li><strong>AWS Direct Connect (DX):</strong> A dedicated, private, physical network connection between your data center and an AWS DX location. It's high-bandwidth, consistent, and <strong>does not use the internet</strong>. It's more expensive and takes longer to set up.</li>
+                </ul>
+            </div>
+            
+            <!-- Domain 1, Task 3 -->
+            <div id="d1-t3" class="content-section hidden">
+                <h1>1.3: Determine appropriate data security controls</h1>
+                <p>This section is all about protecting your data itself, primarily through encryption (at rest and in transit) and controlling access to that data.</p>
+                
+                <h2>Knowledge of:</h2>
+                
+                <h3>Data access and governance</h3>
+                <p>This involves using policies to control who can access what data. This includes IAM policies, S3 Bucket Policies, and S3 Access Points. Governance involves auditing access (CloudTrail) and managing data lifecycles.</p>
+
+                <h3>Data recovery</h3>
+                <p>This means having a plan to recover data in case of accidental deletion or corruption. Key services are:</p>
+                <ul>
+                    <li><strong>AWS Backup:</strong> A centralized, managed service to automate backups across services like EBS, RDS, EFS, and DynamoDB.</li>
+                    <li><strong>S3 Versioning:</strong> Keeps a full copy of every version of an object. Allows you to "roll back" to a previous version or recover a deleted object.</li>
+                    <li><strong>EBS & RDS Snapshots:</strong> Point-in-time backups of your volumes and databases.</li>
+                </ul>
+
+                <h3>Data retention and classification</h3>
+                <ul>
+                    <li><strong>Data Retention:</strong> How long you need to keep data. This is often for compliance.
+                        <ul>
+                            <li><strong>S3 Lifecycle Policies:</strong> Automate the movement of data to cheaper storage tiers (e.g., Standard -> Glacier) and its eventual deletion.</li>
+                            <li><strong>S3 Object Lock:</strong> Enforces WORM (Write-Once, Read-Many) policies. Used for compliance to ensure data cannot be deleted or overwritten for a fixed period.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Data Classification:</strong> Identifying what data is sensitive (e.g., PII). <strong>Amazon Macie</strong> is the key service here for S3.</li>
+                </ul>
+
+                <h3>Encryption and appropriate key management</h3>
+                <p>This is the most important topic in this section. <strong>AWS Key Management Service (KMS)</strong> is the central service for creating and managing encryption keys.</p>
+                
+                <h2>Skills in:</h2>
+                
+                <h3>Aligning AWS technologies to meet compliance requirements</h3>
+                <p>If you need to meet compliance standards like PCI-DSS or HIPAA:</p>
+                <ul>
+                    <li><strong>AWS Artifact:</strong> A self-service portal where you can download AWS's compliance reports (e.g., SOC 2 report) to show to your auditors.</li>
+                    <li><strong>AWS CloudTrail:</strong> Records every API call in your account. This provides the audit trail (who did what, when) required for compliance.</li>
+                    <li><strong>AWS Config:</strong> Assesses, audits, and evaluates the configurations of your resources. You can create rules (e.g., "all EBS volumes must be encrypted") and be alerted if a resource becomes non-compliant.</li>
+                </ul>
+
+                <h3>Encrypting data at rest (for example, AWS Key Management Service [AWS KMS])</h3>
+                <p>This means encrypting data that is stored on disk. Most AWS storage services offer encryption, typically using keys from KMS.</p>
+                <ul>
+                    <li><strong>Server-Side Encryption (SSE):</strong> AWS encrypts the data for you after receiving it.
+                        <ul>
+                            <li><strong>SSE-S3:</strong> S3 manages the encryption keys. Easiest, no extra cost.</li>
+                            <li><strong>SSE-KMS:</strong> S3 calls KMS to use a key that you manage (either AWS-managed or Customer-Managed). This gives you control over the key and an audit trail in CloudTrail.</li>
+                            <li><strong>SSE-C:</strong> You provide your own encryption key with every request. AWS does not store the key.</li>
+                        </ul>
+                    </li>
+                    <div class="note-d1"><strong>Exam Tip:</strong> Use <strong>SSE-S3</strong> for basic, "check-the-box" encryption. Use <strong>SSE-KMS</strong> when you need to control the key, manage its rotation, or provide an audit trail of who used the key (via CloudTrail). SSE-C is rare and used when you have strict requirements to manage your own keys outside of AWS.</div>
+                    <li><strong>EBS Encryption:</strong> You can enable a setting to encrypt all new EBS volumes by default. This uses KMS.</li>
+                    <li><strong>RDS Encryption:</strong> You can enable encryption when creating a database. This also uses KMS.</li>
+                </ul>
+
+                <h3>Encrypting data in transit (for example, AWS Certificate Manager [ACM] using TLS)</h3>
+                <p>This means encrypting data as it travels over a network (e.g., HTTPS).</p>
+                <ul>
+                    <li><strong>AWS Certificate Manager (ACM):</strong> Provides free, auto-renewing public SSL/TLS certificates. You can easily attach these to <strong>Application Load Balancers (ALBs)</strong> and <strong>CloudFront Distributions</strong> to enable HTTPS.</li>
+                    <li><strong>Enforce Encryption:</strong> You should configure your ALB or CloudFront to redirect all HTTP traffic to HTTPS.</li>
+                </ul>
+
+                <h3>Implementing access policies for encryption keys</h3>
+                <p>In KMS, the <strong>Key Policy</strong> is the primary document that controls access. It defines who can *manage* the key and who can *use* the key (for encrypt/decrypt operations). You must attach a key policy. IAM policies can also be used to grant permissions, but only if the key policy allows it.</p>
+
+                <h3>Implementing data backups and replications</h3>
+                <ul>
+                    <li><strong>Backups:</strong> Use AWS Backup, or manually create EBS/RDS snapshots.</li>
+                    <li><strong>Replication:</strong>
+                        <ul>
+                            <li><strong>S3 Cross-Region Replication (CRR):</strong> Automatically copies objects from a bucket in one region to a bucket in another. Used for DR and lower latency.</li>
+                            <li><strong>RDS Read Replicas:</strong> Can be created in the same region or a different region (for DR).</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h3>Implementing policies for data access, lifecycle, and protection</h3>
+                <p>This combines several skills. For example, a complete S3 strategy would include:</p>
+                <ol>
+                    <li>A <strong>Bucket Policy</strong> to restrict access (e.g., deny deletes, require encryption).</li>
+                    <li><strong>Versioning</strong> and <strong>MFA Delete</strong> enabled for protection.</li>
+                    <li>A <strong>Lifecycle Policy</strong> to move 30-day-old data to S3-IA and 90-day-old data to Glacier Deep Archive.</li>
+                </ol>
+
+                <h3>Rotating encryption keys and renewing certificates</h3>
+                <ul>
+                    <li><strong>KMS Key Rotation:</strong> For <strong>Customer Managed Keys (CMKs)</strong>, you can enable automatic annual key rotation. KMS handles this for you.</li>
+                    <li><strong>Certificate Renewal:</strong> Certificates provisioned from <strong>ACM</strong> that are attached to AWS services (like ALB, CloudFront) will be <strong>automatically renewed</strong> by AWS.</li>
+                </ul>
+            </div>
+
+            <!-- Domain 2, Task 1 -->
+            <div id="d2-t1" class="content-section hidden">
+                <h1>2.1: Design scalable and loosely coupled architectures</h1>
+                <p>This is one of the most important domains. It's about building modern applications that can handle growth (scalability) and where components are independent (loose coupling), which improves fault tolerance and maintainability.</p>
+                
+                <h2>Knowledge of:</h2>
+
+                <h3>API creation and management</h3>
+                <p><strong>Amazon API Gateway:</strong> A fully managed service that acts as the "front door" for your application's backend. It's often used with AWS Lambda. It can handle API versioning, request/response transformation, user authentication (e.g., with Cognito), request throttling, and caching.</p>
+
+                <h3>AWS managed services with appropriate use cases</h3>
+                <p>The core of loose coupling is using messaging services to decouple your components:</p>
+                <ul>
+                    <li><strong>Amazon SQS (Simple Queue Service):</strong> A fully managed message queue. A component (producer) sends a message to a queue. Another component (consumer) polls the queue, retrieves the message, processes it, and then deletes it. This decouples the producer and consumer. If the consumer fails, messages simply pile up in the queue, and no data is lost.
+                        <ul>
+                            <li><strong>Standard Queue:</strong> At-least-once delivery, best-effort ordering. High throughput.</li>
+                            <li><strong>FIFO Queue:</strong> Exactly-once processing, first-in-first-out ordering. Lower throughput.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Amazon SNS (Simple Notification Service):</strong> A fully managed pub/sub (publish/subscribe) service. A producer sends one message to an SNS "topic." SNS then "fans out" that message to all subscribers (e.g., SQS queues, Lambda functions, email addresses, SMS).</li>
+                    <li>Other managed services like <strong>AWS Transfer Family</strong> (for SFTP) and <strong>Secrets Manager</strong> (for credentials) also reduce operational overhead and are inherently resilient.</li>
+                </ul>
+                <div class="note-d2"><strong>Exam Tip:</strong> Use <strong>SQS</strong> for <strong>decoupling</strong> two components (one-to-one). Use <strong>SNS</strong> for <strong>fan-out</strong> (one-to-many). They are often used together: SNS -> SQS.</div>
+
+                <h3>Caching strategies</h3>
+                <p>Caching is used to store frequently accessed data in a faster, temporary location to reduce latency and load on your backend (like a database).</p>
+                <ul>
+                    <li><strong>Amazon ElastiCache:</strong> A managed in-memory cache service. Supports <strong>Redis</strong> (more features: data persistence, replication) and <strong>Memcached</strong> (simpler). Used to cache database query results or user session data.</li>
+                    <li><strong>Amazon CloudFront (CDN):</strong> A global Content Delivery Network. It caches your static and dynamic content at "Edge Locations" around the world, closer to your users. This dramatically reduces latency.</li>
+                    <li><strong>API Gateway Caching:</strong> Can cache responses from your API, reducing the number of calls to your backend (e.g., Lambda).</li>
+                </ul>
+
+                <h3>Design principles for microservices</h3>
+                <p>Microservices architecture breaks a large application into a collection of smaller, independent services. A key principle is making these services <strong>stateless</strong>. A stateless workload (like a Lambda function or a container) does not store any persistent data on its local disk. All "state" (like a user's session) must be externalized to a database (like DynamoDB) or a cache (like ElastiCache).</p>
+
+                <h3>Event-driven architectures</h3>
+                <p>An architecture where services react to "events." For example: a user uploads an image to S3 (the event), which triggers a Lambda function (the compute) to create a thumbnail. <strong>Amazon EventBridge</strong> is a serverless event bus that simplifies building event-driven apps by routing events from AWS services, custom apps, and SaaS partners to targets like Lambda.</p>
+                <div class="note-d2"><strong>Exam Tip: SQS vs. SNS vs. EventBridge</strong>
+                    <ul>
+                        <li><strong>SQS:</strong> One-to-one, asynchronous decoupling. A message is processed by *one* consumer. Use it to buffer or queue work.</li>
+                        <li><strong>SNS:</strong> One-to-many, "fan-out." A message is sent to *all* subscribers. Use it for notifications or to trigger multiple independent actions.</li>
+                        <li><strong>EventBridge:</strong> Many-to-many, event-based routing. It's like SNS but much more powerful. It can *filter* events based on their content (the event "payload") and route them to different targets. It's the standard for building modern event-driven applications.</li>
+                    </ul>
+                </div>
+
+                <h3>Horizontal scaling and vertical scaling</h3>
+                <ul>
+                    <li><strong>Vertical Scaling:</strong> Increasing the size of a single instance (e.g., moving from a <code>t3.micro</code> to a <code>t3.large</code>). You eventually hit a limit, and it usually requires downtime.</li>
+                    <li><strong>Horizontal Scaling (Scaling Out):</strong> Adding *more* instances. This is the cloud-native, preferred way to scale. It's an almost "infinite" capacity and can be done automatically with <strong>Auto Scaling Groups (ASGs)</strong>.</li>
+                </ul>
+
+                <h3>Load balancing concepts</h3>
+                <p>A load balancer distributes incoming traffic across multiple targets (like EC2 instances) in multiple Availability Zones. This is essential for both scalability and high availability.</p>
+                <ul>
+                    <li><strong>Application Load Balancer (ALB):</strong> Layer 7 (HTTP/S). "Content-based" routing. It can route traffic based on the URL path (e.g., <code>/api</code> goes to one set of servers, <code>/images</code> goes to another). Ideal for microservices.</li>
+                    <li><strong>Network Load Balancer (NLB):</strong> Layer 4 (TCP/UDP). "Flow-based" routing. It's extremely fast, has ultra-low latency, and can provide a static IP address per AZ. Ideal for high-performance or non-HTTP traffic.</li>
+                    <li><strong>Gateway Load Balancer (GWLB):</strong> Layer 3/4. Used to route traffic through third-party virtual appliances (e.g., firewalls, packet inspection).</li>
+                </ul>
+
+                <h3>Multi-tier architectures</h3>
+                <p>The classic "Web Tier, App Tier, DB Tier" design, typically segmented using public and private subnets. (Covered in 1.2).</p>
+
+                <h3>Serverless technologies and patterns</h3>
+                <ul>
+                    <li><strong>AWS Lambda:</strong> Function-as-a-Service (FaaS). You upload your code, and it runs in response to an event (like an API call or S3 upload). You pay only for the milliseconds it runs.</li>
+                    <li><strong>AWS Fargate:</strong> Serverless compute *for containers* (used with ECS or EKS). You just define your container and its resource needs, and Fargate runs it without you ever seeing the underlying EC2 instance.</li>
+                    <li>Other serverless services: S3, DynamoDB, API Gateway, SQS, SNS, EventBridge.</li>
+                </ul>
+
+                <h3>Storage types with associated characteristics</h3>
+                <ul>
+                    <li><strong>Object (Amazon S3):</strong> Infinitely scalable, highly durable, accessed via HTTP API. For files, backups, data lakes, static websites.</li>
+                    <li><strong>File (Amazon EFS):</strong> A managed Network File System (NFS) that can be mounted by *many* EC2 instances at once. Scales automatically.</li>
+                    <li><strong>Block (Amazon EBS):</strong> A "virtual hard drive" that attaches to a *single* EC2 instance. It's what your EC2 instance boots from.</li>
+                </ul>
+                <div class="note-d2"><strong>Exam Tip:</strong> S3 = "Infinite", shared via web. EFS = Shared file system for Linux EC2. EBS = Hard drive for one EC2.</div>
+                
+                <h3>Orchestration of containers</h3>
+                <ul>
+                    <li><strong>Amazon ECS (Elastic Container Service):</strong> AWS's proprietary, simple container orchestrator.</li>
+                    <li><strong>Amazon EKS (Elastic Kubernetes Service):</strong> AWS's managed Kubernetes service. More complex, but industry-standard.</li>
+                    <li>Both can run on EC2 instances you manage or on Fargate (serverless).</li>
+                </ul>
+
+                <h3>When to use read replicas</h3>
+                <p>In a database, a <strong>Read Replica</strong> is a read-only copy of your primary database. You use them to offload read-heavy traffic from your primary DB, improving read performance. They use *asynchronous* replication.</p>
+
+                <h3>Workflow orchestration</h3>
+                <p><strong>AWS Step Functions:</strong> A serverless visual workflow service. It's used to coordinate multiple AWS services (especially Lambda functions) into a complete, stateful workflow. It handles retries, error handling, and parallel execution.</p>
+
+                <h2>Skills in:</h2>
+                
+                <h3>Designing event-driven, microservice, and/or multi-tier architectures</h3>
+                <p>This is about combining the services above.
+                    <ul>
+                        <li><strong>Serverless Microservice:</strong> API Gateway (API) -> Lambda (compute) -> DynamoDB (database).</li>
+                        <li><strong>Event-Driven:</strong> S3 object upload (event) -> SNS (fan-out) -> SQS (buffer) -> Lambda (process).</li>
+                        <li><strong>Multi-Tier:</strong> ALB (load balancer) -> EC2 ASG (web tier) -> EC2 ASG (app tier) -> RDS (database).</li>
+                    </ul>
+                </p>
+                
+                <h3>Determining scaling strategies for components</h3>
+                <p>An Auto Scaling Group (ASG) scales EC2 instances. Key strategies:
+                    <ul>
+                        <li><strong>Dynamic Scaling:</strong> "Scale out when CPU > 70%."</li>
+                        <li><strong>Target Tracking:</strong> A type of dynamic scaling. "Keep the average CPU at 50%." (This is the simplest and preferred method).</li>
+                        <li><strong>Scheduled Scaling:</strong> "Scale out to 10 instances at 9 AM, scale in to 2 at 5 PM."</li>
+                    </ul>
+                </p>
+
+                <h3>Determining the AWS services required to achieve loose coupling</h3>
+                <p>The answer is almost always <strong>Amazon SQS</strong>, <strong>Amazon SNS</strong>, or <strong>Amazon EventBridge</strong>. These services break the direct dependencies between components.</p>
+
+                <h3>Determining when to use containers vs. serverless</h3>
+                <ul>
+                    <li>Use <strong>Serverless (Lambda)</strong> for: Event-driven tasks, short-running jobs (max 15 min), APIs that have inconsistent traffic (spiky).</li>
+                    <li>Use <strong>Containers (ECS/EKS with Fargate/EC2)</strong> for: Migrating existing applications, long-running processes, complex microservices, or when you need fine-grained control over the compute environment (e.g., specific GPU).</li>
+                </ul>
+                
+                <h3>Recommending and using purpose-built AWS services</h3>
+                <p>This skill involves choosing the right tool for the job. For example, instead of running a MySQL database on EC2 (which requires manual management), use <strong>RDS</strong>. Instead of building a message queue with RabbitMQ, use <strong>SQS</strong>. Instead of writing custom code to analyze text, use <strong>Amazon Comprehend</strong>. Using managed, purpose-built services improves resilience and reduces operational overhead.</p>
+
+                <h2 class="!text-2xl !mt-12">Real-World Example: Serverless Thumbnail Generator</h2>
+                <div class="p-6 bg-white rounded-lg shadow-md border border-gray-200">
+                    <h3 class="!text-xl !mt-0">Scenario: The Serverless Photo Thumbnail Generator</h3>
+                    <p>A mobile app startup wants users to upload photos. Every time a user uploads a "profile.jpg" to a specific S3 bucket, a 100x100 thumbnail must be created and saved in a *different* bucket.</p>
+
+                    <h4 class="font-semibold text-gray-700 mt-4">The "Client" (Business) Perspective:</h4>
+                    <ul class="!mb-0">
+                        <li>"It needs to happen instantly when the user uploads." (Need: Event-Driven, Low Latency)</li>
+                        <li>"We might get 10 uploads one day and 10 million the next. I have no idea." (Need: Massive & Automatic Scalability)</li>
+                        <li>"This is a tiny feature. I refuse to pay for a 24/7 server just to wait for uploads." (Need: Extreme Cost-Optimization / Pay-per-use)</li>
+                    </ul>
+
+                    <img src="https" alt="A serverless event-driven architecture diagram" class="scenario-diagram" onerror="this.src='https://placehold.co/600x250/e2e8f0/475569?text=S3+%E2%86%92+Lambda+%E2%86%92+S3'; this.alt='Serverless architecture diagram placeholder'">
+
+                    <h4 class="font-semibold text-gray-700 mt-6">The "Expert" (Architect) Solution:</h4>
+                    <p>This is a classic serverless, event-driven pattern that perfectly demonstrates loose coupling.</p>
+                    <ol>
+                        <li><strong>Storage:</strong> We create two <strong>S3 Buckets</strong>: <code>app-uploads</code> and <code>app-thumbnails</code>.</li>
+                        <li><strong>The Event:</strong> We configure an <strong>S3 Event Notification</strong> on the <code>app-uploads</code> bucket. We set it to trigger on <code>s3:ObjectCreated:Put</code>.</li>
+                        <li><strong>The Compute:</strong> The target for that event will be an <strong>AWS Lambda</strong> function.</li>
+                        <li><strong>The Logic:</strong> We write a simple Lambda function that receives the event, gets the image from <code>app-uploads</code>, resizes it, and puts the new thumbnail into the <code>app-thumbnails</code> bucket.</li>
+                        <li><strong>Security:</strong> The Lambda function is given an <strong>IAM Role</strong> that grants it *only* the permissions it needs: <code>s3:GetObject</code> on <code>app-uploads/*</code> and <code>s3:PutObject</code> on <code>app-thumbnails/*</code> (Principle of Least Privilege).</li>
+                    </ol>
+                    
+                    <h4 class="font-semibold text-gray-700 mt-6">Why this is the perfect solution:</h4>
+                    <ul>
+                        <li><strong>Cost (Domain 4):</strong> If there are 0 uploads, you pay **$0.00**. You are *only* charged for the milliseconds the Lambda function runs.</li>
+                        <li><strong>Scalability (Domain 2):</strong> If 10,000 users upload at the *exact same second*, AWS will simply run 10,000 concurrent copies of your Lambda function. The scaling is massive and automatic.</li>
+                        <li><strong>Resilience (Domain 2):</strong> It's fully "loosely coupled." S3 and Lambda are both highly available managed services. There are no servers to manage or patch.</li>
+                    </ul>
+                    <p class="mt-4"><strong>Key Services Used:</strong> <code>S3</code>, <code>AWS Lambda</code>, <code>IAM</code>.</p>
+                </div>
+
+                <!-- NEW QUIZ BOX FOR D2-T1 -->
+                <!-- END NEW QUIZ BOX -->
+
+            </div>
+
+            <!-- Domain 2, Task 2 -->
+            <div id="d2-t2" class="content-section hidden">
+                <h1>2.2: Design highly available and/or fault-tolerant architectures</h1>
+                <p>High Availability (HA) means your application can withstand the failure of one or more components (like an EC2 instance or an entire data center) without downtime. Fault Tolerance is the ability to withstand failure. They are closely related.</p>
+                
+                <h2>Knowledge of:</h2>
+
+                <h3>AWS global infrastructure (for example, Availability Zones, AWS Regions)</h3>
+                <p>This is the foundation of HA.
+                    <ul>
+                        <li><strong>Region:</strong> A geographically isolated area (e.g., <code>us-east-1</code>).</li>
+                        <li><strong>Availability Zone (AZ):</strong> One or more discrete data centers within a Region, with redundant power, networking, and connectivity. AZs are physically separate.</li>
+                    </ul>
+                </p>
+                <div class="note-d2"><strong>Rule #1 of HA:</strong> To be highly available, you must run your application across <strong>multiple Availability Zones</strong>. A failure of a single AZ should not take your application offline.</div>
+                
+                <h3>AWS managed services and distributed design patterns</h3>
+                <p>Using AWS managed services (like S3, RDS, DynamoDB, or even AI services like <strong>Amazon Comprehend</strong> or <strong>Amazon Polly</strong>) inherently improves resilience, as AWS manages the high availability of the service itself. This is part of a distributed design, where you rely on managed, resilient components instead of building them yourself.</p>
+
+                <h3>Disaster recovery (DR) strategies</h3>
+                <p>DR is about recovering from a large-scale disaster (like an entire Region failing). This is different from HA (which is usually about AZ failure). You must know the DR strategies and the two key metrics:</p>
+                <ul>
+                    <li><strong>RPO (Recovery Point Objective):</strong> How much data can you afford to *lose*? (Measured in time, e.g., 15 minutes of data loss).</li>
+                    <li><strong>RTO (Recovery Time Objective):</strong> How *long* can your application be down? (Measured in time, e.g., 1 hour of downtime).</li>
+                </ul>
+                <p>The four DR strategies, from cheapest/slowest to most expensive/fastest:</p>
+                <ol>
+                    <li><strong>Backup and Restore:</strong> Back up your data (e.g., S3, RDS Snapshots) to your DR region. To recover, you deploy your infrastructure (from CloudFormation) and restore the data. <strong>Highest RTO/RPO.</strong></li>
+                    <li><strong>Pilot Light:</strong> Your core infrastructure (e.g., your database) is always running in the DR region, but scaled down. App servers are off. To recover, you turn on/scale up the app servers and point DNS. <strong>Faster RTO/RPO.</strong></li>
+                    <li><strong>Warm Standby:</strong> A scaled-down, but fully functional, version of your application is always running in the DR region. To recover, you scale it up and point DNS. <strong>Low RTO/RPO.</strong></li>
+                    <li><strong>Multi-Site Active-Active:</strong> A full-scale application is running in both regions. <strong>Amazon Route 53</strong> distributes traffic to both. If one region fails, Route 53 routes all traffic to the healthy one. <strong>Near-zero RTO/RPO.</strong> Most complex and expensive.</li>
+                </ol>
+                
+                <h3>Failover strategies</h3>
+                <p><strong>Amazon Route 53</strong> is key for DNS-level failover, especially for DR. You can configure a <strong>Failover Routing Policy</strong>. Route 53 monitors the health of your primary region's endpoint. If it becomes unhealthy, Route 53 automatically starts routing all traffic to your secondary (DR) endpoint.</p>
+
+                <h3>Immutable infrastructure</h3>
+                <p>This is a principle where you *never* log in to a running server to patch or update it. Instead, to deploy a new version, you build a new, patched machine image (AMI), deploy a new set of servers from that image, test them, and then terminate the old servers. This is often called a <strong>Blue/Green deployment</strong>. It's safer and more repeatable.</p>
+                
+                <h3>Load balancing concepts (for example, Application Load Balancer)</h3>
+                <p>ALBs and NLBs are a critical HA component. They are designed to be highly available themselves and will automatically route traffic *only* to the healthy instances in your Auto Scaling Group. If an instance in one AZ fails a health check, the ALB stops sending it traffic.</p>
+                
+                <h3>Proxy concepts (for example, Amazon RDS Proxy)</h3>
+                <p><strong>RDS Proxy:</strong> A managed database connection pooler. Applications (like Lambda) often open and close database connections very rapidly, which can overwhelm a database. RDS Proxy sits in front of your RDS database, pools and shares connections, and makes applications more resilient to database failovers (it holds app connections open while the DB fails over).</p>
+                
+                <h3>Service quotas and throttling</h3>
+                <p>Every AWS account has service quotas (formerly "limits") (e.g., you can only run 20 On-Demand EC2 instances). AWS services also "throttle" API calls to prevent abuse. For a resilient architecture, you must monitor your usage against quotas and request increases *before* you hit them. For DR, you must ensure your quotas in your standby region are high enough to run your full production load.</p>
+
+                <h3>Storage options and characteristics (for example, durability, replication)</h3>
+                <ul>
+                    <li><strong>S3:</strong> 99.999999999% (11 9s) of durability. It automatically stores your data across at least 3 AZs. It's natively HA and durable.</li>
+                    <li><strong>EBS:</strong> A block store tied to a *single AZ*. If the AZ fails, the EBS volume is unavailable. To make it durable, you must take <strong>EBS Snapshots</strong> (which are stored in S3).</li>
+                    <li><strong>EFS:</strong> A file system that stores data across *multiple AZs* within a region. It's natively HA.</li>
+                    <li><strong>RDS Multi-AZ:</strong> This is a key HA feature. When enabled, RDS creates a *synchronous* standby replica of your database in a *different AZ*. If your primary DB fails, RDS automatically fails over to the standby with no data loss (RPO=0) and minimal downtime (RTO=minutes). This is for HA, *not* for read scaling (that's Read Replicas).</li>
+                </ul>
+                
+                <h3>Workload visibility (for example, AWS X-Ray)</h3>
+                <p>To build a resilient system, you must know when it's failing. <strong>AWS X-Ray</strong> is a service that helps you debug and analyze microservices and distributed applications. It traces requests as they travel through your application (e.g., from API Gateway -> Lambda -> DynamoDB), showing you a service map and identifying bottlenecks or errors.</p>
+
+                <h2>Skills in:</h2>
+                
+                <h3>Determining automation strategies to ensure infrastructure integrity</h3>
+                <p><strong>AWS CloudFormation:</strong> Infrastructure as Code (IaC). You define your entire infrastructure (VPC, EC2, SGs, etc.) in a JSON or YAML template. This allows you to deploy your *exact* infrastructure stack repeatably, in any region. This is essential for DR automation.</p>
+
+                <h3>Determining the AWS services required to provide a highly available and/or fault-tolerant architecture</h3>
+                <p>A typical HA architecture includes:</p>
+                <ul>
+                    <li><strong>Route 53</strong> for DNS.</li>
+                    <li><strong>Application Load Balancer</strong> distributing traffic across...</li>
+                    <li><strong>Multiple AZs</strong>. Inside each AZ, you have...</li>
+                    <li>An <strong>Auto Scaling Group</strong> managing <strong>EC2 instances</strong>.</li>
+                    <li>An <strong>RDS Multi-AZ Database</strong> for state.</li>
+                    <li>This design requires identifying the right metrics for health checks (e.g., HTTP 200) and scaling (e.g., CPU) to deliver on business requirements (e.g., "99.9% uptime").</li>
+                </ul>
+
+                <h3>Implementing designs to mitigate single points of failure</h3>
+                <p>A single point of failure (SPOF) is any component that would take down your app if it failed.
+                    <ul>
+                        <li><strong>SPOF:</strong> An EC2 instance in one AZ. <strong>Fix:</strong> Use an ASG with instances in multiple AZs.</li>
+                        <li><strong>SPOF:</strong> An RDS database in one AZ. <strong>Fix:</strong> Enable RDS Multi-AZ.</li>
+                        <li><strong>SPOF:</strong> A NAT Gateway in one AZ. <strong>Fix:</strong> Deploy a NAT Gateway in *each* AZ that contains private subnets, and configure route tables accordingly. This also involves designing resilient route tables that can fail over.</li>
+                    </ul>
+                </p>
+                <div class="note-d2"><strong>Exam Tip:</strong> The NAT Gateway is a classic Single Point of Failure (SPOF). If the AZ it's in fails, all private instances in *other* AZs that route through it will lose internet access. The resilient solution is to deploy a NAT Gateway in *each* AZ and have instances in that AZ use their local gateway.</div>
+
+                <h3>Implementing strategies to ensure the durability and availability of data</h3>
+                <ul>
+                    <li><strong>Durability (Data won't be lost):</strong> S3 (by default), EBS Snapshots, RDS Snapshots, S3 Versioning.</li>
+                    <li><strong>Availability (Data can be accessed):</strong> S3 (by default), EFS (by default), RDS Multi-AZ.</li>
+                </ul>
+                
+                <h3>Selecting an appropriate DR strategy to meet business requirements</h3>
+                <p>This is a classic exam scenario. They will give you an RTO and RPO, and you must pick the DR strategy (Backup/Restore, Pilot Light, Warm Standby, Active-Active) that meets those requirements at the lowest cost.</p>
+                
+                <h3>Using AWS services to improve the reliability of legacy applications</h3>
+                <p>If you have a legacy application that you cannot change, you can still improve its reliability. For example, if an application constantly opens/closes database connections, placing <strong>RDS Proxy</strong> in front of the database can absorb this "bad" behavior and protect the database, improving reliability without any application code changes.</p>
+            </div>
+            
+            <!-- ########## DOMAIN 3: HIGH-PERFORMING ########## -->
+
+            <!-- Domain 3, Task 1 -->
+            <div id="d3-t1" class="content-section hidden">
+                <h1>3.1: Determine high-performing and/or scalable storage solutions</h1>
+                <p>This section focuses on selecting the right storage service based on its performance (IOPS, throughput) and scalability characteristics.</p>
+                
+                <h2>Knowledge of:</h2>
+                
+                <h3>Storage types with associated characteristics (object, file, block)</h3>
+                <p>This is the fundamental concept for all storage decisions.</p>
+                <ul>
+                    <li><strong>Object (Amazon S3):</strong> Accessed via HTTP API (GET, PUT, POST). Not mountable as a file system. Delivers massive scalability (unlimited storage) and high throughput. Ideal for web content, backups, data lakes, and static assets.</li>
+                    <li><strong>File (Amazon EFS):</strong> A shared file system (NFS protocol) that can be mounted by thousands of EC2 instances simultaneously (Linux-based). It's elastic, growing and shrinking as you add/remove files. Performance is measured in throughput.</li>
+                    <li><strong>Block (Amazon EBS):</strong> A "virtual hard drive" that attaches to a *single* EC2 instance in the *same AZ*. Performance is measured in <strong>IOPS</strong> (Input/Output Operations Per Second) and <strong>Throughput</strong> (MB/s). This is your boot volume and is used for high-performance databases or applications requiring low-latency disk access.</li>
+                </ul>
+
+                <h3>Storage services with appropriate use cases</h3>
+                <ul>
+                    <li><strong>Amazon S3:</strong> Use for "unlimited" storage, high-throughput data lakes, website assets, and backups.
+                        <ul>
+                            <li><strong>S3 Standard:</strong> Highest performance, for frequently accessed data.</li>
+                            <li><strong>S3 Intelligent-Tiering:</strong> Automatically moves data between frequent and infrequent access tiers to optimize costs, with no performance impact.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Amazon EFS:</strong> Use when you need a *shared file system* for multiple EC2 instances. Examples: a shared code repository, a content management system's web root.
+                        <ul>
+                            <li><strong>Performance Modes:</strong> <strong>General Purpose</strong> (default, low latency) vs. <strong>Max I/O</strong> (higher throughput, higher latency, for large-scale data processing).</li>
+                            <li><strong>Throughput Modes:</strong> <strong>Bursting</strong> (default, throughput scales with file system size) vs. <strong>Provisioned</strong> (you set a fixed throughput).</li>
+                        </ul>
+                    </li>
+                    <div class="note-d3"><strong>Exam Tip:</strong> For <strong>EFS</strong>, use <strong>General Purpose</strong> performance mode for most workloads (like web servers). Only use <strong>Max I/O</strong> for highly parallelized, high-throughput jobs where latency doesn't matter. For throughput, use <strong>Bursting</strong> unless you have a large file system that needs more throughput than its size provides, then use <strong>Provisioned</strong>.</div>
+                    <li><strong>Amazon EBS:</strong> Use for boot volumes and for any single-instance, high-performance workload (like a relational database).
+                        <ul>
+                            <li><strong>General Purpose SSD (gp3, gp2):</strong> The default. A balance of price and performance. <code>gp3</code> is the modern standard, allowing you to provision IOPS and throughput independently of size.</li>
+                            <li><strong>Provisioned IOPS SSD (io2 Block Express, io1):</strong> Highest performance. For critical, I/O-intensive workloads (e.g., large production databases) where you need to guarantee a high number of IOPS (up to 256,000 with io2 Block Express).</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h3>Hybrid storage solutions to meet business requirements</h3>
+                <p><strong>AWS Storage Gateway:</strong> A service that connects your on-premises environment to AWS cloud storage.
+                <ul>
+                    <li><strong>S3 File Gateway:</strong> Presents an S3 bucket as an NFS or SMB file share to your on-premises servers. A "front-end" cache provides low-latency access to frequently used files.</li>
+                    <li><strong>FSx File Gateway:</strong> Presents your Amazon FSx for Windows File Server as an on-premises SMB share, providing a fully managed Windows file server backend with local caching.</li>
+                    <li><strong>Volume Gateway:</strong> Presents cloud storage as iSCSI block volumes to your on-premises applications.</li>
+                    <li><strong>Tape Gateway:</strong> Replaces physical tapes with virtual tapes backed by S3 and Glacier.</li>
+                </ul>
+
+                <h2>Skills in:</h2>
+                
+                <h3>Determining storage services and configurations that meet performance demands</h3>
+                <p>This is about matching the workload to the service:</p>
+                <ul>
+                    <li><strong>Workload:</strong> Big data analytics, massive parallel reads. <strong>Solution:</strong> <strong>S3</strong>. It has massive parallel throughput.</li>
+                    <li><strong>Workload:</strong> Shared web content for a fleet of EC2 instances. <strong>Solution:</strong> <strong>EFS</strong>.</li>
+                    <li><strong>Workload:</strong> A high-performance production database (MySQL, PostgreSQL). <strong>Solution:</strong> <strong>EBS</strong> with <strong>Provisioned IOPS (io2)</strong> volumes attached to an EC2 instance.</li>
+                    <li><strong>Workload:</strong> A read-heavy application on a single EC2 instance. <strong>Solution:</strong> Use an EBS volume with an <strong>EC2 Instance Store</strong> (fast, *ephemeral* block storage) as a local cache.</li>
+                </ul>
+
+                <h3>Determining storage services that can scale to accommodate future needs</h3>
+                <ul>
+                    <li><strong>S3:</strong> Scales "infinitely" by default.</li>
+                    <li><strong>EFS:</strong> Scales elastically (storage and throughput) by default.</li>
+                    <li><strong>EBS:</strong> Does *not* scale automatically. You must manually resize an EBS volume (which can be done while in-use, but may require OS-level commands) or rely on EC2 Auto Scaling, which scales by adding *new instances* with *new volumes*.</li>
+                </ul>
+            </div>
+
+            <!-- Domain 3, Task 2 -->
+            <div id="d3-t2" class="content-section hidden">
+                <h1>3.2: Design high-performing and elastic compute solutions</h1>
+                <p>This section is about choosing the right compute service and size, and ensuring it can scale to meet demand.</p>
+                
+                <h2>Knowledge of:</h2>
+                
+                <h3>AWS compute services with appropriate use cases</h3>
+                <ul>
+                    <li><strong>Amazon EC2:</strong> Virtual servers. The "IAAS" (Infrastructure-as-a-Service) workhorse. You manage the OS and everything on it.</li>
+                    <li><strong>AWS Lambda:</strong> Serverless functions. For short-running, event-driven tasks. Scales automatically from 0 to thousands of concurrent executions.</li>
+                    <li><strong>AWS Fargate:</strong> Serverless compute for containers (ECS/EKS). You don't manage the underlying EC2 instances.</li>
+                    <li><strong>Amazon ECS/EKS on EC2:</strong> You manage the cluster of EC2 "worker nodes" that your containers run on. This gives you more control (e.c., for GPUs) but requires more management.</li>
+                    <li><strong>AWS Batch:</strong> For running batch computing jobs (e.g., scientific computing, financial analysis) at scale. It manages a queue of jobs and provisions the right compute (EC2 or Spot) to run them.</li>
+                    <li><strong>Amazon EMR (Elastic MapReduce):</strong> Managed big data platform (e.g., Spark, Hadoop) for processing and analyzing massive datasets.</li>
+                </ul>
+                
+                <h3>Distributed computing concepts</h3>
+                <p>This refers to using AWS's global infrastructure. For a global application, you can deploy your compute (EC2, Lambda) in multiple Regions closer to your users. You can also use edge services like <strong>Lambda@Edge</strong> (which runs your Lambda function at CloudFront edge locations) for ultra-low latency request processing.</p>
+
+                <h3>Queuing and messaging concepts</h3>
+                <p>As covered in 2.1, <strong>SQS</strong> is key for performance. It allows a front-end (e.g., an API) to accept requests and "queue" them for processing by a backend (e.g., an Auto Scaling Group of EC2 instances or Lambda functions). This smooths out "spiky" traffic, preventing the backend from being overwhelmed and allowing it to process items at its own pace.</p>
+
+                <h3>Scalability capabilities</h3>
+                <p><strong>Amazon EC2 Auto Scaling:</strong> The service that performs horizontal scaling for EC2.
+                <ul>
+                    <li><strong>Auto Scaling Group (ASG):</strong> A collection of EC2 instances, defined by a <strong>Launch Template</strong> (which specifies the AMI, instance type, etc.).</li>
+                    <li><strong>Scaling Policies:</strong> The rules that trigger scaling.
+                        <ul>
+                            <li><strong>Target Tracking:</strong> "Keep average CPU utilization at 50%." (Simplest, most common).</li>
+                            <li><strong>Step/Simple Scaling:</strong> "If CPU > 80% for 5 mins, add 2 instances."</li>
+                            <li><strong>Scheduled Scaling:</strong> "Set desired instances to 10 at 9 AM."</li>
+                        </ul>
+                    </li>
+                    <li><strong>AWS Auto Scaling:</strong> A higher-level service that can automatically scale *other* services, not just EC2 (e.g., DynamoDB capacity, ECS tasks).</li>
+                </ul>
+                
+                <h2>Skills in:</h2>
+                
+                <h3>Decoupling workloads so that components can scale independently</h3>
+                <p>This is the SQS pattern. Imagine a monolith application that ingests an image, creates a thumbnail, and adds a watermark. This is slow. A high-performance, decoupled design would be:</p>
+                <p>API Gateway -> Lambda (ingest) -> S3 (raw image) & SQS (job) -> EC2 ASG (thumbnail) -> SQS (job) -> EC2 ASG (watermark) -> S3 (final image).</p>
+                <p>In this model, the "thumbnail" ASG can scale independently of the "watermark" ASG based on the depth of its own SQS queue.</p>
+                
+                <h3>Identifying metrics and conditions to perform scaling actions</h3>
+                <p>The metric you scale on must match the bottleneck.
+                <ul>
+                    <li><strong>CPU-bound application:</strong> Scale on <strong>Average CPU Utilization</strong>.</li>
+                    <li><strong>Memory-bound application:</strong> Scale on <strong>Average Memory Utilization</strong> (requires the CloudWatch Agent).</li>
+                    <li><strong>Request-bound application:</strong> Scale on <strong>RequestCountPerTarget</strong> (an ALB metric).</li>
+                    <li><strong>Queue-processing application:</strong> Scale on <strong>ApproximateNumberOfMessagesVisible</strong> (an SQS metric).</li>
+                </ul>
+                
+                <h3>Selecting the appropriate compute options and features</h3>
+                <p><strong>EC2 Instance Families:</strong>
+                <ul>
+                    <li><strong>T-family:</strong> (e.g., <code>t3.medium</code>) <strong>Burstable</strong>. Good for low-to-moderate baseline CPU with occasional spikes (e.g., dev/test, small websites).</li>
+                    <li><strong>M-family:</strong> (e.g., <code>m5.large</code>) <strong>General Purpose</strong>. A balance of CPU, memory, and network. The workhorse.</li>
+                    <li><strong>C-family:</strong> (e.g., <code>c5.xlarge</code>) <strong>Compute Optimized</strong>. High CPU. Good for media encoding, batch processing, CPU-bound web servers.</li>
+                    <li><strong>R-family:</strong> (e.g., <code>r5.xlarge</code>) <strong>Memory Optimized</strong>. High RAM. Good for in-memory caches (ElastiCache), large databases (RDS), or memory-intensive analytics.</li>
+                </ul>
+                <p><strong>EC2 Placement Groups:</strong> A logical grouping of instances to influence their placement for performance.</p>
+                <ul>
+                    <li><strong>Cluster:</strong> Packs instances close together in a single AZ. Use for lowest latency and highest network bandwidth (e.g., High-Performance Computing).</li>
+                    <li><strong>Spread:</strong> Spreads instances across different underlying hardware (and different racks). Use for high availability and to reduce correlated failures (e.g., for critical databases or a small number of instances).</li>
+                    <li><strong>Partition:</strong> Spreads instances across different "partitions" (groups of racks) within an AZ. Use for large, distributed workloads like HDFS, HBase, Cassandra.</li>
+                </ul>
+                <p><strong>EC2 Enhanced Networking:</strong> Uses Single Root I/O Virtualization (SR-IOV) for high-performance networking. Provides higher bandwidth, higher Packets Per Second (PPS), and lower latency. It's enabled by default on all modern instance types.</p>
+                
+                <h3>Selecting the appropriate resource type and size</h3>
+                <p>For <strong>AWS Lambda</strong>, performance is directly tied to the <strong>Memory</strong> setting. When you increase a function's memory, you also proportionally increase its CPU and network performance. If your function is slow, increasing its memory (e.g., from 128MB to 512MB) is the primary way to make it run faster.</p>
+            </div>
+
+            <!-- Domain 3, Task 3 -->
+            <div id="d3-t3" class="content-section hidden">
+                <h1>3.3: Determine high-performing database solutions</h1>
+                <p>This section is critical. It covers choosing the right database service for your workload's access patterns and performance needs.</p>
+                
+                <h2>Knowledge of:</h2>
+                
+                <h3>Database types and services (relational, non-relational, in-memory)</h3>
+                <ul>
+                    <li><strong>Relational (OLTP): Amazon RDS.</strong> Your classic SQL database (MySQL, PostgreSQL, SQL Server, etc.). Used for structured data, complex queries, and transactions (e.g., e-commerce, financial systems).
+                        <ul>
+                            <li><strong>Amazon Aurora:</strong> AWS's "cloud-native" relational database. It's compatible with MySQL and PostgreSQL but has much higher performance, durability (data replicated 6 ways across 3 AZs), and faster failover. <strong>This is often the correct "high-performance" RDS answer.</strong></li>
+                            <li><strong>Aurora Serverless:</strong> An on-demand, auto-scaling version of Aurora. Perfect for intermittent or "spiky" database workloads.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Non-relational (NoSQL): Amazon DynamoDB.</strong> A fully managed key-value and document database. Delivers consistent, single-digit millisecond latency at *any* scale. Use for high-traffic web apps, mobile apps, gaming, IoT—anywhere you need high speed and massive, predictable scale, but don't need complex joins.</li>
+                    <li><strong>In-Memory: Amazon ElastiCache.</strong> A managed cache service (Redis or Memcached). Used to store temporary data in RAM for sub-millisecond access.</li>
+                </ul>
+
+                <h3>Data access patterns (read-intensive vs. write-intensive)</h3>
+                <p>This is key to your design.
+                <ul>
+                    <li><strong>Read-Intensive Workload:</strong> (e.g., a blog, a product catalog). The best way to scale is with <strong>Read Replicas</strong> (for RDS/Aurora) and <strong>Caching</strong> (ElastiCache, DynamoDB DAX).</li>
+                    <li><strong>Write-Intensive Workload:</strong> (e.g., IoT data ingestion, logging). This is harder to scale. For RDS, you must <strong>Vertical Scale</strong> (a bigger instance) or "shard" (split) your data. For <strong>DynamoDB</strong>, you just increase the <strong>Write Capacity Units (WCUs)</strong>. DynamoDB is built for write-heavy workloads.</li>
+                </ul>
+
+                <h3>Database capacity planning</h3>
+                <ul>
+                    <li><strong>RDS:</strong> You provision an <strong>instance size</strong> (e.g., <code>db.r5.large</code>) and <strong>EBS volume</strong> (size and Provisioned IOPS). You can scale these up.</li>
+                    <li><strong>DynamoDB:</strong> You provision <strong>Read Capacity Units (RCUs)</strong> and <strong>Write Capacity Units (WCUs)</strong>.
+                        <ul>
+                            <li><strong>Provisioned Mode:</strong> You set the RCU/WCU manually. Good for predictable workloads.</li>
+                            <li><strong>On-Demand Mode:</strong> DynamoDB instantly scales to meet traffic. Pay-per-request. Good for unpredictable or "spiky" workloads.</li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="note-d3"><strong>Exam Tip:</strong> For <strong>DynamoDB</strong>, use <strong>Provisioned Mode with Auto Scaling</strong> for predictable traffic patterns. Use <strong>On-Demand Mode</strong> for new applications, spiky traffic, or when you can't predict capacity. On-Demand is often simpler and can be cheaper than heavily overprovisioning.</div>
+                
+                <h3>Database connections and proxies</h3>
+                <p><strong>Amazon RDS Proxy:</strong> A managed database connection pooler that sits in front of RDS. It's crucial for performance in serverless (Lambda) applications, as it pools and reuses database connections, avoiding the high cost of opening/closing new connections for every function invocation. It also improves failover times.</p>
+
+                <h3>Database engines and migrations</h3>
+                <p><strong>AWS Database Migration Service (DMS):</strong> A service to help you migrate databases to AWS.
+                <ul>
+                    <li><strong>Homogeneous Migration:</strong> Same engine to same engine (e.g., on-premises MySQL to RDS MySQL).</li>
+                    <li><strong>Heterogeneous Migration:</strong> Different engine to different engine (e.g., on-premises Oracle to RDS PostgreSQL). This also requires the <strong>Schema Conversion Tool (SCT)</strong>.</li>
+                    <li>Determining the right engine (e.g., MySQL vs. PostgreSQL) depends on application compatibility, cost, and feature requirements.</li>
+                </ul>
+                
+                <h3>Database replication (for example, read replicas)</h3>
+                <p>This is the most important concept for scaling database reads.</p>
+                <ul>
+                    <li><strong>RDS Read Replicas:</strong>
+                        <ul>
+                            <li>Used for <strong>read scaling</strong>.</li>
+                            <li>Use <strong>asynchronous replication</strong>. (This means there can be a small "replication lag".)</li>
+                            <li>Can be in the same AZ, a different AZ, or a different <strong>Region</strong>.</li>
+                            <li>You can have up to 15 replicas (for MySQL/PostgreSQL).</li>
+                        </ul>
+                    </li>
+                    <li><strong>RDS Multi-AZ:</strong>
+                        <ul>
+                            <li>Used for <strong>High Availability (HA) / failover</strong>.</li>
+                            <li>Uses <strong>synchronous replication</strong> to a standby in a different AZ. (No data loss).</li>
+                            <li>You *cannot* send read traffic to the standby. It's just for failover.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Amazon Aurora:</strong> Aurora's architecture is different. Its single storage volume is shared across 3 AZs. <strong>Aurora Replicas</strong> (up to 15) all share this volume, have sub-10ms replication lag, and also act as HA failover targets. They are superior to standard RDS Read Replicas.</li>
+                </ul>
+                <div class="note-d3"><strong>Exam Tip:</strong> HA (Failover) = <strong>RDS Multi-AZ</strong>. Performance (Scaling) = <strong>Read Replicas</strong>. Aurora Replicas do <strong>both</strong>.</div>
+
+                <h3>AWS global infrastructure</h3>
+                <p><strong>Amazon Aurora Global Database:</strong> A high-performance option for global applications. It consists of one primary region (for reads/writes) and one or more secondary regions (read-only). It uses dedicated infrastructure for replication with sub-second latency, allowing for fast global reads and a low-RTO (sub-minute) DR failover to a secondary region.</p>
+
+                <h2>Skills in:</h2>
+                
+                <h3>Designing database architectures</h3>
+                <p>This skill involves combining the knowledge above. For example, designing a global, read-heavy application would involve <strong>Aurora Global Database</strong>. Designing a serverless API backend would involve <strong>DynamoDB</strong> or <strong>Aurora Serverless</strong> with <strong>RDS Proxy</strong>.</p>
+                
+                <h3>Configuring read replicas to meet business requirements</h3>
+                <p>If an application is read-heavy and the primary database is overloaded, the solution is to create one or more Read Replicas and direct the application's read traffic (e.g., <code>SELECT</code> statements) to the replica endpoint.</p>
+
+                <h3>Determining an appropriate database type (e.g., Aurora vs. DynamoDB)</h3>
+                <p>This is a classic exam question.
+                <ul>
+                    <li>Need complex SQL joins, transactions, and structured data? <strong>RDS or Aurora.</strong></li>
+                    <li>Need massive scale, millisecond latency, and have simple key-value lookups? <strong>DynamoDB.</strong></li>
+                    <li>Migrating a "lift-and-shift" enterprise app (Oracle, SQL Server)? <strong>RDS.</strong></li>
+                    <li>Building a new, high-performance cloud-native relational app? <strong>Aurora.</strong></li>
+                </ul>
+                
+                <h3>Integrating caching to meet business requirements</h3>
+                <p>If an RDS-based application is slow due to complex, frequent read queries, <strong>ElastiCache</strong> is the solution. If a DynamoDB-based application is read-heavy (or has a "hot key"), <strong>DAX</strong> is the solution.</p>
+
+                <!-- NEW QUIZ BOX FOR D3-T3 -->
+                <!-- END NEW QUIZ BOX -->
+
+            </div>
+
+            <!-- Domain 3, Task 4 -->
+            <div id="d3-t4" class="content-section hidden">
+                <h1>3.4: Determine high-performing and/or scalable network architectures</h1>
+                <p>This section is about making your network fast, scalable, and resilient, especially for global or hybrid applications.</p>
+                
+                <h2>Knowledge of:</h2>
+                
+                <h3>Edge networking services</h3>
+                <p>These services accelerate content delivery to users by using AWS's global edge network.</p>
+                <ul>
+                    <li><strong>Amazon CloudFront:</strong> A <strong>Content Delivery Network (CDN)</strong>. It caches your static (images, video, JS) and dynamic content at Edge Locations around the world, close to your users. When a user requests content, it's served from the nearest edge location, which is much faster than fetching it from your origin (e.g., S3 or ALB) in a single region.</li>
+                    <li><strong>AWS Global Accelerator:</strong> This service improves the performance and availability of your *applications* for a global audience. It uses the AWS global network to route user traffic to the optimal application endpoint (e.g., the closest, healthiest Region). It gives you <strong>two static Anycast IP addresses</strong> that act as a fixed entry point to your application, simplifying failover and firewall rules.</li>
+                </ul>
+                <div class="note-d3"><strong>Exam Tip: CloudFront vs. Global Accelerator</strong>
+                    <ul>
+                        <li>Use <strong>CloudFront</strong> to cache *content* (images, videos, static files) at the edge for fast delivery. It's for HTTP/S.</li>
+                        <li>Use <strong>Global Accelerator</strong> to get a static IP and route *application traffic* (HTTP, TCP, UDP) over the fast AWS global network to the best endpoint. It's for non-cachable dynamic content, gaming, IoT, or VoIP.</li>
+                    </ul>
+                </div>
+
+                <h3>How to design network architecture (e.g., subnet tiers, routing, IP addressing)</h3>
+                <p>This refers to the multi-tier VPC design (public/private subnets) and the routing tables that control traffic. For performance, a key concept is <strong>VPC Endpoints</strong> (covered in 1.2). By using Gateway or Interface Endpoints, you keep traffic destined for AWS services (like S3 or DynamoDB) *within* the high-performance AWS network, rather than sending it over the internet.</p>
+
+                <h3>Load balancing concepts</h3>
+                <p>This is a recap of 2.1, but with a performance focus.</p>
+                <ul>
+                    <li><strong>Application Load Balancer (ALB):</strong> Layer 7. Flexible, great for web apps.</li>
+                    <li><strong>Network Load Balancer (NLB):</strong> Layer 4. Highest performance. Can handle millions of requests per second at ultra-low latency. It preserves the source IP address of the client. Ideal for high-performance TCP/UDP applications.</li>
+                </ul>
+
+                <h3>Network connection options</h3>
+                <p>This is about connecting your on-premises data center to AWS.</p>
+                <ul>
+                    <li><strong>AWS VPN:</strong> An encrypted IPsec tunnel over the <strong>public internet</strong>. Performance can be variable.</li>
+                    <li><strong>AWS Direct Connect (DX):</strong> A <strong>dedicated private physical connection</strong> (1 Gbps, 10 Gbps, 100 Gbps). Bypasses the internet. Provides consistent, high-bandwidth, low-latency performance. This is the high-performance solution for hybrid connectivity.</li>
+                    <li><strong>AWS PrivateLink:</strong> This is the technology behind Interface Endpoints. It allows you to *privately* access services (even third-party SaaS services) from your VPC as if they were running locally, without using the internet, NAT Gateways, or VPN.</li>
+                </ul>
+
+                <h2>Skills in:</h2>
+                
+                <h3>Creating a network topology for various architectures</h3>
+                <ul>
+                    <li><strong>Global:</strong> Use <strong>Route 53</strong> for DNS, <strong>CloudFront</strong> for cached content, and <strong>Global Accelerator</strong> for application endpoints. Deploy your application in multiple Regions.</li>
+                    <li><strong>Hybrid:</strong> Use <strong>Direct Connect</strong> for high-performance, consistent connectivity between on-premises and your VPC. Use a <strong>Transit Gateway</strong> to act as a central hub to connect multiple VPCs and your on-premises network.</li>
+                    <li><strong>Multi-tier:</strong> Use public/private subnets, ALBs, and Security Groups to segment traffic.</li>
+                </ul>
+                
+                <h3>Determining network configurations that can scale to accommodate future needs</h3>
+                <p>A key scalable design is using a <strong>Transit Gateway (TGW)</strong>. In a growing organization, instead of "meshing" every new VPC to every other VPC with VPC Peering (which becomes complex), you connect all VPCs to a central TGW. The TGW handles all the inter-VPC and on-premises routing, acting as a scalable cloud router.</p>
+
+                <h3>Determining the appropriate placement of resources</h3>
+                <p>For high performance:
+                <ul>
+                    <li>Place EC2 instances that need to communicate with each other in a <strong>Cluster Placement Group</strong>. This packs them into a single AZ to get the lowest latency and highest network bandwidth.</li>
+                    <li>Place your database (RDS) in the same Region as your application (EC2/Lambda) to minimize latency.</li>
+                    <li>For global users, place your content on <strong>CloudFront</strong>.</li>
+                </ul>
+                
+                <h3>Selecting the appropriate load balancing strategy</h3>
+                <ul>
+                    <li><strong>Scenario:</strong> A standard web application with microservices. <strong>Answer: Application Load Balancer (ALB)</strong>.</li>
+                    <li><strong>Scenario:</strong> A high-performance gaming application running on UDP. <strong>Answer: Network Load Balancer (NLB)</strong>.</li>
+                    <li><strong>Scenario:</strong> You need a static IP for your load balancer that is used by clients. <strong>Answer: Network Load Balancer (NLB)</strong>.</li>
+                </ul>
+            </div>
+
+            <!-- Domain 3, Task 5 -->
+            <div id="d3-t5" class="content-section hidden">
+                <h1>3.5: Determine high-performing data ingestion and transformation solutions</h1>
+                <p>This section is about getting data *into* AWS (ingestion) and changing its format (transformation) efficiently.</p>
+                
+                <h2>Knowledge of:</h2>
+                
+                <h3>Data ingestion patterns (for example, frequency)</h3>
+                <ul>
+                    <li><strong>Streaming:</strong> Continuous, real-time data (e.g., IoT sensor data, clickstreams, logs).</li>
+                    <li><strong>Batch:</strong> Large, discrete chunks of data (e.g., daily sales reports, periodic backups).</li>
+                </ul>
+
+                <h3>Data transfer services</h3>
+                <ul>
+                    <li><strong>AWS DataSync:</strong> A high-performance service for <strong>online batch data transfer</strong>. It accelerates moving large amounts of data between on-premises (NFS, SMB) and AWS storage (S3, EFS, FSx). It's much faster than using open-source tools over the internet.</li>
+                    <li><strong>AWS Storage Gateway:</strong> (Covered in 3.1). A hybrid solution for *ongoing* use of cloud storage from on-premises, not a one-time migration.</li>
+                    <li><strong>AWS Transfer Family:</strong> A fully managed service for file transfers *into and out of* Amazon S3 using protocols like <strong>SFTP, FTPS, and FTP</strong>. Use this when you need to securely exchange files with third parties.</li>
+                    <li><strong>AWS Snow Family (Snowball Edge, Snowmobile):</strong> Physical devices used to transfer petabyte-scale data when network transfer is not feasible.</li>
+                </ul>
+                
+                <h3>Streaming data services</h3>
+                <p><strong>Amazon Kinesis:</strong> The platform for real-time streaming data.
+                <ul>
+                    <li><strong>Kinesis Data Streams:</strong> The core service. A "stream" is made of one or more "shards." You ingest data into shards, and consumers (like Lambda or Kinesis Data Analytics) process it in real-time. You manage the number of shards to scale throughput.</li>
+                    <li><strong>Kinesis Data Firehose:</strong> The *easiest* way to ingest streaming data. It's fully managed. You just point a source (like Data Streams) at it, and Firehose automatically batches, (optionally) transforms, and loads the data into a destination like <strong>S3</strong>, <strong>Redshift</strong>, or <strong>Splunk</strong>.</li>
+                </ul>
+                <div class="note-d3"><strong>Exam Tip: Kinesis Data Streams vs. Firehose</strong>
+                    <ul>
+                        <li>Use <strong>Data Streams</strong> when you need *real-time processing* (sub-second) or multiple, custom applications consuming the same stream. You manage scaling (shards).</li>
+                        <li>Use <strong>Data Firehose</strong> when your goal is simply to *load* streaming data into a destination (like S3 or Redshift). It's fully managed and includes batching and transformation.</li>
+                    </ul>
+                </div>
+                
+                <h3>Data transformation services</h3>
+                <p><strong>AWS Glue:</strong> A fully managed <strong>ETL (Extract, Transform, Load)</strong> service. You point it at your data (e.g., in S3), and the <strong>Glue Data Catalog</strong> crawls it to discover the schema. You can then use Glue to run serverless Spark jobs to transform the data (e.g., convert CSV to Parquet) and load it into a data warehouse.</p>
+                
+                <h3>Data analytics and visualization services</h3>
+                <ul>
+                    <li><strong>Amazon Athena:</strong> A serverless, interactive query service. It allows you to run standard <strong>SQL queries directly on your data in S3</strong> (e.g., query your log files). You only pay for the queries you run.</li>
+                    <li><strong>AWS Lake Formation:</strong> A service that simplifies setting up a secure data lake in S3. It helps manage data ingestion, cataloging, and provides fine-grained (table and column-level) access control.</li>
+                    <li><strong>Amazon QuickSight:</strong> A serverless Business Intelligence (BI) service. It's used to create interactive dashboards and visualizations from your data.</li>
+                </ul>
+                
+                <h3>Secure access to ingestion access points</h3>
+                <p>This involves using services like <strong>VPC Endpoints</strong> to allow services (like Kinesis) to be accessed privately from your VPC. It also involves using <strong>IAM roles</strong> and policies to grant services (like Kinesis Firehose) permission to write to destinations (like S3).</p>
+                
+                <h2>Skills in:</h2>
+
+                <h3>Designing data streaming architectures</h3>
+                <p>A common high-performance pattern:
+                IoT Devices -> <strong>Kinesis Data Streams</strong> (ingestion) -> <strong>Kinesis Data Analytics</strong> (real-time analysis) -> <strong>Kinesis Data Firehose</strong> (batching & loading) -> <strong>S3</strong> (data lake storage) -> <strong>Athena</strong> (ad-hoc SQL querying).</p>
+
+                <h3>Designing data transfer solutions</h3>
+                <ul>
+                    <li><strong>Requirement:</strong> One-time, 100TB migration of a file share from on-premises to S3 over a 1 Gbps link. <strong>Solution: AWS DataSync</strong>.</li>
+                    <li><strong>Requirement:</strong> Securely receive daily CSV files from a partner via SFTP. <strong>Solution: AWS Transfer Family</strong>.</li>
+                    <li><strong>Requirement:</strong> A 500 PB (petabyte) data transfer from a data center with no internet. <strong>Solution: AWS Snowmobile</strong> (a literal truck). For <10 PB, use <strong>AWS Snowball Edge</strong>.</li>
+                </ul>
+                
+                <h3>Building and securing data lakes</h3>
+                <p>This involves using <strong>AWS Lake Formation</strong> to define security policies and access controls for your S3 data lake, and using <strong>AWS Glue</strong> to catalog the data so it can be queried by <strong>Amazon Athena</strong>.</p>
+                
+                <h3>Selecting appropriate compute options for data processing</h3>
+                <p>This involves choosing the right tool for transformation. <strong>AWS Glue</strong> is serverless and best for many ETL jobs. For large-scale big data processing (Spark, Hadoop), <strong>Amazon EMR (Elastic MapReduce)</strong> provides a managed cluster, offering more control and power.</p>
+
+                <h3>Implementing visualization strategies</h3>
+                <p>This skill involves using <strong>Amazon QuickSight</strong> to connect to your data sources (like Athena, RDS, or S3) to build and share interactive BI dashboards with business users.</p>
+
+                <h3>Transforming data between formats (for example, .csv to .parquet)</h3>
+                <p><strong>Parquet</strong> is an open-source, <strong>columnar</strong> storage format. Storing data in a columnar format (instead of row-based like CSV) is *dramatically* more performant and cost-effective for analytics queries (like those from <strong>Athena</strong>), because the query only needs to read the columns it cares about.</p>
+                <p>The standard tool to perform this CSV-to-Parquet transformation is <strong>AWS Glue</strong>.</p>
+                <div class="note-d3"><strong>Exam Tip:</strong> Any time you see a question about optimizing <strong>Athena</strong> query performance or cost, the answer is almost always to <strong>convert the data to Parquet</strong> and/or partition the data (e.g., by date).</div>
+            </div>
+
+            <!-- ########## DOMAIN 4: COST-OPTIMIZED ########## -->
+            
+            <!-- Domain 4, Task 1 -->
+            <div id="d4-t1" class="content-section hidden">
+                <h1>4.1: Design cost-optimized storage solutions</h1>
+                <p>This entire domain is about saving money. This section focuses on choosing the right storage service, tier, and lifecycle policy to meet requirements at the lowest possible cost.</p>
+                
+                <h2>Knowledge of:</h2>
+                
+                <h3>AWS cost management tools</h3>
+                <ul>
+                    <li><strong>AWS Cost Explorer:</strong> A tool to visualize and forecast your costs and usage over time. You can filter and group data (e.g., by service, by tag) to understand your spending.</li>
+                    <li><strong>AWS Budgets:</strong> Allows you to set custom budgets (e.g., "$500/month for EC2") and receive alerts when your costs or usage *exceed* (or are forecasted to exceed) your budget.</li>
+                    <li><strong>Cost Allocation Tags:</strong> These are labels (key-value pairs) you apply to your resources (like EC2, S3, RDS). You can "activate" these tags in the billing console to see a detailed cost breakdown by tag (e.g., cost by "Project", "Department", or "Environment").</li>
+                    <li><strong>AWS Cost and Usage Report (CUR):</strong> The most detailed billing report. It's a large CSV file delivered to S3 that contains line-item level detail of all your charges.</li>
+                    <li><strong>Multi-Account Billing:</strong> With AWS Organizations, all costs roll up to the management account, allowing you to see a consolidated bill.</li>
+                </ul>
+
+                <h3>Storage types and AWS storage services</h3>
+                <p>The key here is that different services have different cost models:
+                <ul>
+                    <li><strong>S3 (Object):</strong> You pay for storage (per GB/month) AND data transfer (per GB) AND requests (per 1,000 requests). It's very cheap for storage. S3 also has an access option called <strong>Requester Pays</strong>, where the *requester* (not the bucket owner) pays for data transfer costs.</li>
+                    <li><strong>EBS (Block):</strong> You pay for the storage you *provision* (per GB/month), regardless of whether you use it. You also pay for IOPS (for io1/io2/gp3).</li>
+                    <li><strong>EFS (File):</strong> You pay for the storage you *use* (per GB/month). It's more expensive than S3 or EBS, but you're paying for the convenience of an elastic, shared file system.</li>
+                    <li><strong>Amazon FSx:</strong> Managed file systems (for Windows File Server, Lustre). More specialized and priced based on provisioned throughput, storage, and other features. FSx for Windows is the cost-optimized choice for "lift-and-shift" Windows applications.</li>
+                </ul>
+                
+                <h3>Storage tiering (for example, cold tiering for object storage)</h3>
+                <p>This is the most important topic for S3 cost optimization. You move data to cheaper tiers as it becomes less frequently accessed.</p>
+                <ul>
+                    <li><strong>S3 Standard:</strong> For frequent access. Most expensive, highest performance.</li>
+                    <li><strong>S3 Standard-Infrequent Access (S3-IA):</strong> For long-lived, less-frequently accessed data. Cheaper storage price, but has a *per-GB retrieval fee*. (Min. 30 days).</li>
+                    <li><strong>S3 One Zone-IA:</strong> Same as S3-IA, but stores data in only *one* AZ. It's 20% cheaper. Use for data that is non-critical and can be easily recreated.</li>
+                    <li><strong>S3 Glacier Instant Retrieval:</strong> For long-term archival with *millisecond* retrieval. Cheaper storage than S3-IA, but higher retrieval fee. (Min. 90 days).</li>
+                    <li><strong>S3 Glacier Flexible Retrieval:</strong> (Formerly S3 Glacier). For long-term archival, retrieval takes *minutes to hours*. Very cheap storage. (Min. 90 days).</li>
+                    <li><strong>S3 Glacier Deep Archive:</strong> The cheapest storage on AWS. For long-term archival where retrieval time of *12+ hours* is acceptable. (Min. 180 days).</li>
+                </ul>
+                <div class="note-d4"><strong>Exam Tip:</strong> For unknown or changing access patterns, <strong>S3 Intelligent-Tiering</strong> is the best choice. It monitors your data's access patterns and automatically moves objects to the most cost-effective tier (e.g., from frequent to infrequent access) without any performance impact or retrieval fees.</div>
+                
+                <h3>Data lifecycles & Storage access patterns</h3>
+                <p>You must understand the access pattern to choose the right tier.
+                <ul>
+                    <li><strong>Pattern:</strong> User-uploaded photos, accessed daily. <strong>Tier:</strong> S3 Standard.</li>
+                    <li><strong>Pattern:</strong> Monthly log files, accessed once a week for the first month, then rarely. <strong>Tier:</strong> Start in S3 Standard, use a Lifecycle Policy to move to S3-IA or Glacier.</li>
+                    <li><strong>Pattern:</strong> 10 years of compliance data that must be kept but will likely never be accessed. <strong>Tier:</strong> S3 Glacier Deep Archive.</li>
+                </ul>
+                
+                <h3>Block storage options (HDD vs. SSD)</h3>
+                <p>For EBS, you can choose SSD (fast, expensive) or HDD (slow, cheap).
+                <ul>
+                    <li><strong>General Purpose SSD (gp3):</strong> Best for most workloads (boot volumes, dev/test).</li>
+                    <li><strong>Provisioned IOPS SSD (io2):</strong> Best for high-performance databases.</li>
+                    <li><strong>Throughput Optimized HDD (st1):</strong> Low-cost magnetic storage. Good for *high-throughput*, large, sequential I/O (e.g., data warehouses, log processing).</li>
+                    <li><strong>Cold HDD (sc1):</strong> The cheapest EBS volume. For *infrequently* accessed data.</li>
+                </ul>
+                
+                <h3>Backup strategies & Hybrid storage options</h3>
+                <p><strong>Backup Strategies:</strong> Don't pay for backups you don't need. Configure your <strong>AWS Backup</strong> retention policies to match your business requirements, not longer.
+                <p><strong>Hybrid Storage:</strong> Using <strong>Storage Gateway</strong> can be a cost-optimization strategy. For example, using S3 File Gateway allows you to store the bulk of your data in low-cost S3 while keeping only a small, frequently-accessed cache on-premises, reducing your on-premises storage footprint.</p>
+                
+                <h2>Skills in:</h2>
+                
+                <h3>Managing S3 object lifecycles</h3>
+                <p>This is the skill of creating the automation rules (Lifecycle Policies) to move data between storage tiers or delete it, based on the object's age.</p>
+
+                <h3>Selecting the most cost-effective storage service for a workload</h3>
+                <ul>
+                    <li><strong>Workload:</strong> Backups. <strong>Cost-effective:</strong> S3, with a lifecycle policy to Glacier Deep Archive.</li>
+                    <li><strong>Workload:</strong> Shared file system for EC2. <strong>Cost-effective:</strong> EFS. (Don't try to build your own NFS server on EC2+EBS, it's not as cost-effective or resilient).</li>
+                    <li><strong>Workload:</strong> Boot volume. <strong>Cost-effective:</strong> EBS <code>gp3</code>.</li>
+                    <li><strong>Workload:</strong> Big data log processing. <strong>Cost-effective:</strong> EBS <code>st1</code> or S3.</li>
+                </ul>
+                
+                <h3>Designing appropriate storage strategies</h3>
+                <p>This includes choices like S3 upload strategy. For large files, using <strong>S3 Multipart Upload</strong> is more resilient and performant. For ingesting many small files, it may be more cost-effective (and performant) to <strong>batch</strong> them into larger archives (like .zip or .tar.gz) before uploading, as this reduces the per-request cost.</p>
+                
+                <h3>Determining storage size and auto scaling</h3>
+                <p>This skill is about "right-sizing." For EBS, this means provisioning a volume that is large enough, but not *too* large. For EFS and S3, scaling is automatic. For <strong>FSx</strong>, you must provision a specific size, so it's important to monitor and resize as needed.</p>
+                
+                <h3>Selecting backup, archival, and data migration solutions</h3>
+                <p>This is about choosing the lowest-cost solution.
+                <ul>
+                    <li><strong>Backup/Archival:</strong> Use <strong>AWS Backup</strong> to manage backups and tier them to cold storage. Use <strong>S3 Glacier Deep Archive</strong> for long-term archival.</li>
+                    <li><strong>Migration:</strong> For online migration, <strong>DataSync</strong> is often the most cost-effective, high-speed option. For offline, use <strong>Snowball Edge</strong>.</li>
+                </ul>
+
+                <h2 class="!text-2xl !mt-12">Real-World Example: Secure Data Archival</h2>
+                <div class="p-6 bg-white rounded-lg shadow-md border border-gray-200">
+                    <h3 class="!text-xl !mt-0">Scenario: Secure, Cost-Effective Data Archival</h3>
+                    <p>A financial services company has 50 TB of end-of-year trade data. Compliance rules state this data must be kept for 7 years. It must be 100% secure and un-changeable. It will *probably* never be accessed, but if a regulator asks for it, they must be able to retrieve it within 48 hours.</p>
+
+                    <h4 class="font-semibold text-gray-700 mt-4">The "Client" (Business) Perspective:</h4>
+                    <ul class="!mb-0">
+                        <li>"I have to keep this data for 7 years, or I'll be fined." (Need: Durability, Retention Policy)</li>
+                        <li>"Nobody is allowed to delete or change this data. Not even our own admins." (Need: WORM / Immutability)</li>
+                        <li>"I'm 99% sure we'll never look at it. I want to pay the *absolute minimum* cost for this." (Need: Cost-Optimization)</li>
+                        <li>"If we do need it, getting it back in 2 days is fine." (Need: Non-urgent Retrieval Time)</li>
+                    </ul>
+
+                    <img src="https" alt="A data lifecycle diagram from S3 to Glacier" class="scenario-diagram" onerror="this.src='https://placehold.co/600x250/e2e8f0/475569?text=S3+Standard+%E2%86%92+S3+Glacier+Deep+Archive'; this.alt='Data lifecycle diagram placeholder'">
+
+                    <h4 class="font-semibold text-gray-700 mt-6">The "Expert" (Architect) Solution:</h4>
+                    <p>This is a perfect use case for S3 storage classes and lifecycle policies.</p>
+                    <ol>
+                        <li><strong>Storage Service (Domain 4):</strong> We will use <strong>S3 Glacier Deep Archive</strong>. This is the cheapest storage on AWS, designed for exactly this "write-once, access-never" pattern.</li>
+                        <li><strong>Immutability (Domain 1):</strong> To meet the "no-deletes" requirement, we will enable <strong>S3 Object Lock</strong> on the bucket in "Compliance Mode." This makes the data immutable for the 7-year retention period. *Nobody* (not even the root user) can delete the objects.</li>
+                        <li><strong>Automation (Domain 4):</strong> We will create an <strong>S3 Lifecycle Policy</strong>. All data will first be uploaded to an S3 "landing" bucket (in S3 Standard). The lifecycle policy will automatically transition all objects to <strong>S3 Glacier Deep Archive</strong> after 1 day.</li>
+                        <li><strong>Retrieval (Domain 2):</strong> The client's 48-hour (2-day) retrieval RTO is easily met. S3 Glacier Deep Archive has a standard retrieval time of 12 hours.</li>
+                    </ol>
+                    
+                    <h4 class="font-semibold text-gray-700 mt-6">Why this is the perfect solution:</h4>
+                    <ul>
+                        <li><strong>Cost (Domain 4):</strong> This is the primary driver. By using S3 Glacier Deep Archive, the client will pay a tiny fraction of the cost of storing this data in S3 Standard.</li>
+                        <li><strong>Compliance (Domain 1):</strong> S3 Object Lock meets the strict "immutable" compliance requirement.</li>
+                    </ul>
+                    <p class="mt-4"><strong>Key Services Used:</strong> <code>S3 Standard</code>, <code>S3 Lifecycle Policy</code>, <code>S3 Glacier Deep Archive</code>, <code>S3 Object Lock</code>.</p>
+                </div>
+                
+            </div>
+
+            <!-- Domain 4, Task 2 -->
+            <div id="d4-t2" class="content-section hidden">
+                <h1>4.2: Design cost-optimized compute solutions</h1>
+                <p>Compute is often the largest part of an AWS bill. This section is about reducing that cost through purchasing options and right-sizing.</p>
+                
+                <h2>Knowledge of:</h2>
+                
+                <h3>AWS cost management tools</h3>
+                <p>Use <strong>Cost Explorer</strong> to analyze compute spend, <strong>Cost Allocation Tags</strong> to assign costs to projects/teams, and <strong>AWS Budgets</strong> to get alerted if compute costs are rising unexpectedly.</p>
+                
+                <h3>AWS purchasing options</h3>
+                <p>This is the single most important topic for compute cost-optimization.
+                <ul>
+                    <li><strong>On-Demand:</strong> Pay-by-the-hour/second. No commitment. Most expensive, most flexible. Use for unpredictable workloads, or dev/test.</li>
+                    <li><strong>Reserved Instances (RIs):</strong> A <strong>1-year or 3-year commitment</strong> to a specific instance family, region, (and sometimes AZ). Gives a large discount (up to 72%) vs. On-Demand. Use for *steady-state*, predictable workloads (e.g., your production database or web servers that run 24/7).</li>
+                    <li><strong>Savings Plans:</strong> A <strong>1-year or 3-year commitment</strong> to a specific *dollar amount* of compute spend (e.g., "$10/hour"). This is more flexible than RIs.
+                        <ul>
+                            <li><strong>Compute Savings Plan:</strong> Applies to any EC2 instance family, in any region, and also to Fargate and Lambda. Most flexible.</li>
+                            <li><strong>EC2 Instance Savings Plan:</strong> Applies to a specific instance family in a specific region (like an RI), but not to a specific AZ.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Spot Instances:</strong> Uses spare, unused EC2 capacity at a *massive* discount (up to 90%). <strong>The catch:</strong> AWS can terminate your instance with a 2-minute warning. <strong>Use for:</strong> Fault-tolerant, stateless workloads that can be interrupted. Examples: batch processing, data analysis, CI/CD jobs. Do *not* use for databases or critical servers.</li>
+                </ul>
+                <div class="note-d4"><strong>Exam Tip: Savings Plans vs. Reserved Instances</strong>
+                    <ul>
+                        <li><strong>Savings Plans (Compute)</strong> are the new, more flexible standard. They apply to EC2, Fargate, and Lambda. They are the best choice for most general-purpose cost savings.</li>
+                        <li><strong>Reserved Instances (Standard)</strong> are still useful if you need to guarantee capacity in a *specific Availability Zone*. Convertible RIs offer less discount but let you change instance families.</li>
+                    </ul>
+                </div>
+                
+                <h3>Instance types, families, and sizes (for example, memory optimized, compute optimized, virtualization)</h3>
+                <p>This is about <strong>Right-Sizing</strong>. Don't use a <code>c5.2xlarge</code> (8 vCPUs) for a small web server that only uses 5% CPU. Use a smaller, cheaper instance (like a <code>t3.medium</code>). Use tools like <strong>AWS Compute Optimizer</strong> to get recommendations on right-sizing your instances based on their actual CloudWatch metrics.</p>
+
+                <h3>Optimization of compute utilization</h3>
+                <p>The most cost-optimized compute is compute you don't pay for.
+                <ul>
+                    <li><strong>Serverless (Lambda, Fargate):</strong> You pay *only* for what you use, down to the millisecond. You don't pay for idle servers. This is extremely cost-effective for "spiky" or unpredictable traffic.</li>
+                    <li><strong>Containers (ECS/Fargate):</strong> Containers allow you to "bin-pack" multiple applications onto a single EC2 instance, improving its utilization.</li>
+                    <li><strong>Auto Scaling:</strong> By scaling in (terminating instances) when traffic is low, you stop paying for compute you don't need.</li>
+                </ul>
+                
+                <h3>Scaling strategies (for example, auto scaling, hibernation)</h3>
+                <p><strong>EC2 Hibernation:</strong> For instances that are used intermittently (e.g., a dev desktop used 9-5). When "stopped", the instance's RAM is saved to the EBS volume. When "started", it resumes from its previous state. This gives you a faster startup time, and you only pay for the EBS storage while it's hibernated (not the instance cost).</p>
+                
+                <h3>Distributed and hybrid compute</h3>
+                <ul>
+                    <li><strong>Distributed Compute:</strong> Using edge services like <strong>CloudFront</strong> and <strong>Lambda@Edge</strong> can reduce compute costs by caching responses at the edge, reducing the load on your origin compute.</li>
+                    <li><strong>Hybrid Compute:</strong> <strong>AWS Outposts</strong> brings AWS racks to your data center, but this is a high-cost solution for low-latency needs. <strong>AWS Snowball Edge</strong> can provide compute capabilities in disconnected environments.</li>
+                </ul>
+                
+                <h2>Skills in:</h2>
+                
+                <h3>Determining cost-effective AWS compute services</h3>
+                <ul>
+                    <li><strong>Workload:</strong> Unpredictable API, runs 10 times a second. <strong>Cost-effective:</strong> <strong>Lambda</strong>.</li>
+                    <li><strong>Workload:</strong> 24/7 production web server. <strong>Cost-effective:</strong> <strong>EC2</strong> with <strong>Savings Plans</strong> or <strong>Reserved Instances</strong>.</li>
+                    <li><strong>Workload:</strong> Batch data processing job that runs nightly and can be interrupted. <strong>Cost-effective:</strong> <strong>Spot Instances</strong>.</li>
+                    <li><strong>Workload:</strong> Migrating a containerized application. <strong>Cost-effective:</strong> <strong>Fargate</strong> (to avoid managing/paying for idle EC2 capacity).</li>
+                </ul>
+                
+                <h3>Determining an appropriate load balancing strategy</h3>
+                <p>While ALB/NLB/GWLB have different performance, they also have different costs. An ALB or NLB is generally low-cost. A GWLB is for specialized (and often costly) third-party appliances. Don't provision a load balancer if it's not needed (e.g., for a single-instance dev server).</p>
+
+                <h3>Determining availability for workloads</h3>
+                <p>Don't pay for high availability you don't need. A production workload needs a Multi-AZ architecture. A non-production or dev/test workload can run on a single instance in a single AZ, which is significantly cheaper.</p>
+
+                <h3>Selecting the appropriate instance family for a workload</h3>
+                <p>This is about right-sizing. Don't use a Memory Optimized (R-family) instance for a CPU-bound (C-family) job. Use the instance family that matches your bottleneck. <strong>AWS Compute Optimizer</strong> is the tool for this.</p>
+
+                <!-- NEW QUIZ BOX FOR D4-T2 -->
+                <!-- END NEW QUIZ BOX -->
+
+            </div>
+
+            <!-- Domain 4, Task 3 -->
+            <div id="d4-t3" class="content-section hidden">
+                <h1>4.3: Design cost-optimized database solutions</h1>
+                <p>This section focuses on choosing the right database service, capacity mode, and data policies to minimize cost.</p>
+                
+                <h2>Knowledge of:</h2>
+                
+                <h3>AWS cost management tools</h3>
+                <p>Use <strong>Cost Explorer</strong>, <strong>AWS Budgets</strong>, and <strong>Cost Allocation Tags</strong> to track your database spend. Use the <strong>AWS Cost and Usage Report (CUR)</strong> for highly detailed analysis. In a multi-account setup, all database costs will roll up to the management account.</p>
+
+                <h3>Database types and services (e.g., relational vs. non-relational, Aurora, DynamoDB)</h3>
+                <p>Choosing the wrong database is a common cost mistake.
+                <ul>
+                    <li><strong>Don't use RDS/Aurora for simple key-value lookups.</strong> <strong>DynamoDB</strong> is often more cost-effective at scale for this pattern.</li>
+                    <li><strong>Don't use DynamoDB if you need complex SQL joins.</strong> The application-side logic to "fake" joins will be complex and expensive.</li>
+                </ul>
+                
+                <h3>Database capacity planning (for example, capacity units)</h3>
+                <p>This is a major cost optimization skill.
+                <ul>
+                    <li><strong>RDS:</strong> Change the instance size (e.g., <code>db.r5.large</code> -> <code>db.r5.medium</code>) if it's overprovisioned.</li>
+                    <li><strong>DynamoDB:</strong>
+                        <ul>
+                            <li><strong>Provisioned Mode:</strong> Use <strong>Auto Scaling</strong> to scale your RCUs/WCUs up and down with traffic. Don't leave them provisioned for peak 24/7.</li>
+                            <li><strong>On-Demand Mode:</strong> Use this for new or unpredictable workloads. It's often cheaper than overprovisioning in Provisioned Mode.</li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <h3>Caching strategies</h3>
+                <p>Using a cache like <strong>Amazon ElastiCache</strong> can reduce cost by offloading read traffic from your database, allowing you to run a smaller, cheaper database instance.</p>
+
+                <h3>Amazon Aurora Serverless</h3>
+                <p><strong>Amazon Aurora Serverless:</strong> An on-demand, auto-scaling version of Aurora. It's perfect for intermittent, "spiky", or unpredictable database workloads (like dev/test). It can scale *down to zero*, at which point you pay only for storage. This is a huge cost-saver compared to running a traditional RDS instance 24/7.</p>
+                
+                <h3>Database connections, proxies, engines, and migrations</h3>
+                <ul>
+                    <li><strong>Connections/Proxies:</strong> Using <strong>RDS Proxy</strong> can save costs with Lambda by reducing the number of connections and allowing for more efficient processing.</li>
+                    <li><strong>Engines/Migrations:</strong> Migrating from a commercial engine (like Oracle or SQL Server) to an open-source engine (like PostgreSQL or MySQL) using <strong>DMS</strong> and <strong>SCT</strong> can dramatically reduce licensing costs.</li>
+                </ul>
+                
+                <h3>Database replication and data retention</h3>
+                <ul>
+                    <li><strong>Replication:</strong> Read Replicas add cost (for the instance and storage). Only use them if you have a clear performance need.</li>
+                    <li><strong>Retention:</strong> Don't store data you don't need. For RDS, automated backups and snapshots cost money. Configure your retention policy (e.g., "keep backups for 7 days, not 30") to match your business requirements.</li>
+                </ul>
+
+                <h2>Skills in:</h2>
+                
+                <h3>Designing appropriate backup and retention policies</h3>
+                <p>If you have an automated RDS backup with a 7-day retention, but you also have a manual snapshot that is 3 years old, investigate if that snapshot is still needed. It's costing you money every month in S3 storage.</p>
+
+                <h3>Determining cost-effective AWS database services</h3>
+                <ul>
+                    <li><strong>Workload:</strong> Dev/Test database, used 9-5 on weekdays. <strong>Cost-effective:</strong> <strong>Aurora Serverless</strong>, which can scale to 0 when not in use.</li>
+                    <li><strong>Workload:</strong> Massive-scale IoT data ingestion. <strong>Cost-effective:</strong> <strong>DynamoDB</strong> (not RDS, which would require a huge, expensive instance).</li>
+                    <li><strong>Workload:</strong> 24/7 production database. <strong>Cost-effective:</strong> <strong>RDS or Aurora</strong>, paid for with <strong>Reserved Instances</strong>.</li>
+                </ul>
+                
+                <h3>Determining cost-effective database engines and types</h3>
+                <ul>
+                    <li><strong>Engine:</strong> To save on licensing, migrate from <strong>RDS for Oracle</strong> to <strong>RDS for PostgreSQL</strong>.</li>
+                    <li><strong>Type (Time Series, Columnar):</strong> For analytics queries, storing data in a columnar format (e.g., in Redshift or as Parquet in S3) is far more cost-effective than querying an RDS instance. For time-series data (like IoT metrics), <strong>Amazon Timestream</strong> may be more cost-effective than DynamoDB.</li>
+                </ul>
+                
+                <h3>Migrating database schemas and data</h3>
+                <p>This skill involves using <strong>AWS DMS</strong> and <strong>SCT</strong> to perform heterogeneous migrations, with the primary goal of moving to a more cost-effective, open-source, or cloud-native database engine.</p>
+            </div>
+
+            <!-- Domain 4, Task 4 -->
+            <div id="d4-t4" class="content-section hidden">
+                <h1>4.4: Design cost-optimized network architectures</h1>
+                <p>Network costs are often overlooked. The primary cost is <strong>Data Transfer Out (DTO)</strong> to the internet. Data transfer *into* AWS is free, and data transfer *within* a Region is often free or cheap.</p>
+                
+                <h2>Knowledge of:</h2>
+                
+                <h3>AWS cost management tools</h3>
+                <p>Use <strong>Cost Explorer</strong> to analyze DTO costs. Use <strong>Cost Allocation Tags</strong> on resources like NAT Gateways to track which projects are generating network traffic.</p>
+                
+                <h3>Load balancing concepts</h3>
+                <p>Load Balancers (ALB, NLB) have both a fixed hourly cost and a data processing fee. Ensure you are using them efficiently and not leaving idle load balancers running in test accounts.</p>
+                
+                <h3>NAT gateways (for example, NAT instance costs compared with NAT gateway costs)</h3>
+                <p>Instances in a private subnet need a way to access the internet.
+                <ul>
+                    <li><strong>NAT Gateway:</strong> Fully managed, scales automatically, highly available. You pay a per-hour fee *and* a per-GB data processing fee. This can get expensive.</li>
+                    <li><strong>NAT Instance:</strong> An EC2 instance (e.g., <code>t3.micro</code>) in a public subnet that you configure (with a script) to do routing. <strong>Cost:</strong> You just pay for the EC2 instance (which can be a cheap burstable instance or even a Spot instance). <strong>Downside:</strong> You must manage it, scale it, and it's a single point of failure (unless you build an HA architecture for it).</li>
+                </ul>
+                <div class="note-d4"><strong>Exam Tip:</strong> For *low-traffic* environments (like dev/test), a <strong>NAT Instance</strong> is often more cost-effective. For *high-traffic*, critical production workloads, the reliability of a <strong>NAT Gateway</strong> is worth the cost.</div>
+
+                <h3>Network connectivity (for example, private lines, dedicated lines, VPNs)</h3>
+                <ul>
+                    <li><strong>AWS Direct Connect (DX):</strong> High bandwidth, but has a fixed monthly port fee. The *data transfer out* (DTO) rate over DX is significantly *cheaper* than DTO over the internet.</li>
+                    <li><strong>AWS VPN:</strong> Cheaper setup (no port fee), but data transfer costs are the same as standard internet DTO.</li>
+                </ul>
+                <p><strong>Skill:</strong> If you are transferring *massive* amounts of data (terabytes) out of AWS back to your on-premises data center every month, <strong>Direct Connect</strong> will be more cost-effective than VPN, despite its higher setup cost.</p>
+
+                <h3>Network routing, topology, and peering (for example, AWS Transit Gateway, VPC peering)</h3>
+                <p>When connecting VPCs, <strong>VPC Peering</strong> is just a network connection. Data transfer across peering connections *within the same region* is free.</p>
+                <p><strong>AWS Transit Gateway:</strong> Has a per-hour cost and a per-GB data processing fee. This is simpler to manage at scale, but you must account for the TGW processing fee in your costs.</p>
+                
+                <h3>Network services (for example, DNS)</h3>
+                <p><strong>Amazon Route 53</strong> has costs for hosted zones and for queries. For internal DNS, you can use <strong>VPC Route 53 Resolver</strong>, which has different cost implications.</p>
+
+                <h2>Skills in:</h2>
+                
+                <h3>Configuring appropriate network routes to minimize network transfer costs</h3>
+                <p>This is the most important skill in this section.
+                <ul>
+                    <li><strong>Problem:</strong> Your private EC2 instance is talking to S3, and the traffic is going through your NAT Gateway. <strong>Cost:</strong> You are paying the NAT Gateway data processing fee for every GB. <strong>Solution:</strong> Create a <strong>Gateway VPC Endpoint for S3</strong>. Route traffic to S3 through this endpoint. The endpoint is *free* and the data transfer is *free*, as it stays within the AWS network.</li>
+                    <li><strong>Problem:</strong> Your EC2 instances in 3 different AZs are all sending traffic to a single NAT Gateway in AZ-A. <strong>Cost:</strong> You are paying Inter-AZ data transfer fees for the instances in AZ-B and AZ-C. <strong>Solution:</strong> Create a NAT Gateway *in each AZ* and configure the route tables so instances use their local NAT Gateway. This eliminates the Inter-AZ cost.</li>
+                </ul>
+                <div class="note-d4"><strong>Exam Tip:</strong> Remember that data transfer *between Availability Zones* in the same region is *not free*. You are billed for traffic in both directions. This is why placing your NAT Gateway in each AZ (as in the example above) is a key cost-saving and resilient pattern.</div>
+                
+                <h3>Determining strategic needs for content delivery networks (CDNs) and edge caching</h3>
+                <p><strong>Amazon CloudFront (CDN):</strong> This is a key cost-optimization tool. When CloudFront serves a cached file from an edge location, it's *cheaper* than serving it from your origin (S3 or ALB), because the DTO rates from CloudFront are lower. It also reduces the load (and cost) on your origin servers.</p>
+                
+                <h3>Reviewing existing workloads for network optimizations</h3>
+                <p>This involves using tools like <strong>VPC Flow Logs</strong> to analyze traffic patterns. You might discover that a misconfigured application is sending terabytes of data over the internet or across regions, incurring unnecessary costs that could be fixed with a VPC Endpoint or a change in architecture.</p>
+                
+                <h3>Selecting appropriate throttling and bandwidth allocation</h3>
+                <ul>
+                    <li><strong>Throttling:</strong> Using <strong>API Gateway</strong> to throttle requests can prevent runaway costs from a misbehaving client or a malicious attack.</li>
+                    <li><strong>Bandwidth:</strong> For <strong>Direct Connect</strong>, you must select the right bandwidth (e.g., 1 Gbps vs. 10 Gbps). Overprovisioning will cost you money, while underprovisioning will create a bottleneck.</li>
+                </ul>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menu-toggle');
+            const menuOpenIcon = document.getElementById('menu-open-icon');
+            const menuCloseIcon = document.getElementById('menu-close-icon');
+            const sidebar = document.getElementById('sidebar');
+            const contentPane = document.getElementById('content-pane');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const contentSections = document.querySelectorAll('.content-section');
+
+            // Function to handle link clicks
+            function selectLink(link) {
+                // Get target ID from data attribute
+                const targetId = link.dataset.target;
+                if (!targetId) return;
+
+                const targetSection = document.getElementById(targetId);
+
+                // Remove 'active' class from all links
+                navLinks.forEach(navLink => {
+                    navLink.classList.remove('active');
+                });
+
+                // Add 'active' class to the clicked link
+                link.classList.add('active');
+
+                // Hide all content sections
+                contentSections.forEach(section => {
+                    section.classList.add('hidden');
+                });
+
+                // Show the target content section
+                if (targetSection) {
+                    targetSection.classList.remove('hidden');
+                }
+                
+                // Reset scroll position of content pane
+                contentPane.scrollTop = 0;
+
+                // If on mobile, close the sidebar after clicking a link
+                if (window.innerWidth < 768) {
+                    sidebar.classList.add('-translate-x-full');
+                    menuOpenIcon.classList.remove('hidden');
+                    menuCloseIcon.classList.add('hidden');
+                }
+            }
+ 
+            // Add click event listener to menu toggle button
+            menuToggle.addEventListener('click', () => {
+                sidebar.classList.toggle('-translate-x-full');
+                menuOpenIcon.classList.toggle('hidden');
+                menuCloseIcon.classList.toggle('hidden');
+            });
+
+           // --- Desktop Collapse Logic ---
+           const desktopToggleBtn = document.getElementById('desktop-toggle-btn');
+           const collapseIcon = document.getElementById('collapse-icon');
+           const expandIcon = document.getElementById('expand-icon');
+           const sidebarHeader = document.getElementById('sidebar-header');
+           const sidebarLogo = document.getElementById('sidebar-logo');
+           const linkTexts = document.querySelectorAll('.link-text');
+
+            // Add click event listener to all nav links
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault(); // Prevent default anchor behavior
+                    selectLink(link);
+                });
+            });
+            
+            // --- Desktop Collapse Logic ---
+            let isCollapsed = false;
+
+            desktopToggleBtn.addEventListener('click', () => {
+                isCollapsed = !isCollapsed;
+                
+                // Toggle icons
+                collapseIcon.classList.toggle('hidden', isCollapsed);
+                expandIcon.classList.toggle('hidden', !isCollapsed);
+
+                if (isCollapsed) {
+                    // --- Collapse ---
+                    sidebar.classList.remove('w-72');
+                    sidebar.classList.add('w-20');
+                    
+                    /* REMOVED contentPane margin updates */
+                    
+                    sidebarHeader.classList.remove('justify-between');
+                    sidebarHeader.classList.add('justify-center');
+                    
+                    sidebarLogo.classList.add('opacity-0', 'scale-0', 'w-0');
+                    sidebarLogo.classList.remove('opacity-100', 'scale-100');
+
+                    linkTexts.forEach(text => {
+                        text.classList.add('opacity-0', 'scale-0', 'hidden');
+                        text.classList.remove('opacity-100', 'scale-100');
+                    });
+                    
+                    // Center icons in links
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.add('justify-center');
+                        link.querySelector('svg').classList.remove('mr-3');
+                    });
+                     // Adjust padding for domain headers
+                    document.querySelectorAll('span.link-text.uppercase').forEach(header => {
+                        header.classList.remove('px-3');
+                    });
+
+                } else {
+                    // --- Expand ---
+                    sidebar.classList.add('w-72');
+                    sidebar.classList.remove('w-20');
+
+                    /* REMOVED contentPane margin updates */
+                    
+                    sidebarHeader.classList.add('justify-between');
+                    sidebarHeader.classList.remove('justify-center');
+                    
+                    sidebarLogo.classList.remove('opacity-0', 'scale-0', 'w-0');
+                    sidebarLogo.classList.add('opacity-100', 'scale-100');
+
+                    linkTexts.forEach(text => {
+                        text.classList.remove('opacity-0', 'scale-0', 'hidden');
+                        text.classList.add('opacity-100', 'scale-100');
+                    });
+                    
+                    // Reset icons in links
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('justify-center');
+                         if (link.classList.contains('home-link')) {
+                            link.querySelector('svg').classList.add('mr-3');
+                        }
+                    });
+                    
+                    // Reset padding for domain headers
+                    document.querySelectorAll('span.link-text.uppercase').forEach(header => {
+                        header.classList.add('px-3');
+                    });
+                }
+            });
+
+            // --- REVISED Quiz Logic ---
+            // --- END REVISED Quiz Logic ---
+
+        });
+    </script>
+</body>
+</html>
+
