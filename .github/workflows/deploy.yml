@@ -1,0 +1,19 @@
+name: Deploy to Proxmox
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Copy files to Web Directory
+        run: |
+          # This copies your repo files to the folder Nginx/Apache uses
+          sudo cp -r . /var/www/html/
+          # This ensures the webserver can read the new files
+          sudo chown -R www-data:www-data /var/www/html/
