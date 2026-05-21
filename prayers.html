@@ -120,9 +120,10 @@
     </script>
 
     <!-- Main React Application -->
-    <script type="text/babel">
-      const { useState, useEffect, useRef, useMemo, Fragment } = React;
-
+    <script>
+      // PERFORMANCE FIX: Data moved outside of Babel. 
+      // The browser parses standard JS data natively and instantly. 
+      // This saves Babel from transpiling hundreds of lines of heavy text objects.
       const PrayerCategory = {
         MASS_RESPONSES: 'Mass Responses',
         BASIC: 'Basic Prayers',
@@ -133,6 +134,7 @@
         ACTIVITIES: 'Daily Activities',
         MEAL: 'Meal Prayers',
         ACTS: 'Acts of Faith, Hope, Love',
+        LITANIES: 'Litanies',
       };
 
       const CATEGORY_TRANSLATIONS = {
@@ -145,10 +147,10 @@
         [PrayerCategory.ACTIVITIES]: { es: 'Actividades Diarias', la: 'Actus Cotidiani' },
         [PrayerCategory.MEAL]: { es: 'Oraciones para las Comidas', la: 'Orationes pro Mensa' },
         [PrayerCategory.ACTS]: { es: 'Actos de Fe, Esperanza y Caridad', la: 'Actus Fidei, Spei, Caritatis' },
+        [PrayerCategory.LITANIES]: { es: 'Letanías', la: 'Litaniae' },
       };
 
       const ViewMode = { HOME: 'HOME', CATEGORY: 'CATEGORY', PRAYER_DETAIL: 'PRAYER_DETAIL', ROSARY_FULL: 'ROSARY_FULL', MASS_FULL: 'MASS_FULL', DIVINE_MERCY_FULL: 'DIVINE_MERCY_FULL' };
-      const GameType = { NONE: 'NONE', READ: 'READ', FILL_BLANKS: 'FILL_BLANKS', ORDER_LINES: 'ORDER_LINES', FIRST_LETTERS: 'FIRST_LETTERS', QUIZ: 'QUIZ' };
       const Lang = { EN: 'en', ES: 'es', LA: 'la' };
       const Role = { PRIEST: 'PRIEST', PEOPLE: 'PEOPLE', RUBRIC: 'RUBRIC', RESPONSE: 'RESPONSE' };
 
@@ -479,139 +481,134 @@
           id: 'magnificat', title: 'The Magnificat', title_es: 'El Magníficat', latinTitle: 'Magnificat', category: PrayerCategory.BASIC,
           text: `My soul proclaims the greatness of the Lord,\nmy spirit rejoices in God my Savior,\nfor he has looked with favor on his lowly servant.\nFrom this day all generations will call me blessed:\nthe Almighty has done great things for me,\nand holy is his Name.\nHe has mercy on those who fear him\nin every generation.\nHe has shown the strength of his arm,\nhe has scattered the proud in their conceit.\nHe has cast down the mighty from their thrones,\nand has lifted up the lowly.\nHe has filled the hungry with good things,\nand the rich he has sent away empty.\nHe has come to the help of his servant Israel\nfor he has remembered his promise of mercy,\nthe promise he made to our fathers,\nto Abraham and his children for ever.`,
           text_es: `Proclama mi alma la grandeza del Señor,\nse alegra mi espíritu en Dios, mi salvador;\nporque ha mirado la humillación de su esclava.\nDesde ahora me felicitarán todas las generaciones,\nporque el Poderoso ha hecho obras grandes por mí:\nsu nombre es santo,\ny su misericordia llega a sus fieles\nde generación en generación.\nÉl hace proezas con su brazo:\ndispersa a los soberbios de corazón,\nderriba del trono a los poderosos\ny enaltece a los humildes,\na los hambrientos los colma de bienes\ny a los ricos los despide vacíos.\nAuxilia a Israel, su siervo,\nacordándose de la misericordia\n—como lo había prometido a nuestros padres—\nen favor de Abrahán y su descendencia por siempre.`,
-          text_la: `Magnificat anima mea Dominum,\net exsultavit spiritus meus in Deo salutari meo,\nquia respexit humilitatem ancillae suae.\nEcce enim ex hoc beatam me dicent omnes generationes,\nquia fecit mihi magna, qui potens est,\net sanctum nomen eius,\net misericordia eius in progenies et progenies\ntimentibus eum.\nFecit potentiam in brachio suo,\ndispersit superbos mente cordis sui;\ndeposuit potentes de sede\net exaltavit humiles;\nesurientes implevit bonis\net divites dimisit inanes.\nSuscepit Israel puerum suum,\nrecordatus misericordiae,\nsicut locutus est ad patres nostros,\nAbraham et semini eius in saecula.`
+          text_la: `Magnificat anima mea Dominum,\net exsultavit spiritus meus in Deo salutari meo,\nquia respexit humilitatem ancillae suae.\nEcce enim ex hoc beatam me dicent omnes generationes,\nquia fecit mihi magna, qui potens est,\net sanctum nomen eius,\net misericordia eius in progenies et progenies\ntimentibus eum.\nFecit potentiam in brachio suo,\ndispersit superbos mente cordis sui;\ndeposuit potentes de sede\net exaltavit humiles;\nesurientes implevit bonis\net divites dimisit inanes.\nSuscepit Israel Israel puerum suum,\nrecordatus misericordiae,\nsicut locutus est ad patres nostros,\nAbraham et semini eius in saecula.`
         },
-        // --- Saints ---
+        // --- Angels moved to Basic ---
         {
-          id: 'st-michael', title: 'St. Michael the Archangel', title_es: 'San Miguel Arcángel', latinTitle: 'Sancte Michael Archangele', category: PrayerCategory.SAINTS,
+          id: 'st-michael', title: 'St. Michael the Archangel', title_es: 'San Miguel Arcángel', latinTitle: 'Sancte Michael Archangele', category: PrayerCategory.BASIC,
           text: `St. Michael the Archangel, defend us in battle.\nBe our defense against the wickedness and snares of the Devil.\nMay God rebuke him, we humbly pray,\nand do thou, O Prince of the heavenly hosts,\nby the power of God,\nthrust into hell Satan, and all the evil spirits,\nwho prowl about the world seeking the ruin of souls. Amen.`,
           text_es: `San Miguel Arcángel, defiéndenos en la batalla.\nSé nuestro amparo contra la perversidad y acechanzas del demonio.\n¡Reprímale Dios!, pedimos suplicantes,\ny tú, oh Príncipe de la Milicia Celestial,\narroja al infierno con el divino poder\na Satanás y a los otros espíritus malignos\nque andan dispersos por el mundo\npara la perdición de las almas. Amén.`,
           text_la: `Sancte Michael Archangele, defende nos in proelio,\ncontra nequitiam et insidias diaboli esto praesidium.\nImperet illi Deus, supplices deprecamur:\ntuque, Princeps militiae caelestis,\nSatanam aliosque spiritus malignos,\nqui ad perditionem animarum pervagantur in mundo,\ndivina virtute, in infernum detrude. Amen.`
         },
         {
-          id: 'st-joseph', title: 'Prayer to St. Joseph', title_es: 'Oración a San José', latinTitle: 'Ad Te Beate Ioseph', category: PrayerCategory.SAINTS,
-          text: `To you, O blessed Joseph, do we come in our tribulation,\nand having implored the help of your most holy Spouse,\nwe confidently invoke your patronage also.\n\nThrough that charity which bound you to the Immaculate Virgin Mother of God\nand through the paternal love with which you embraced the Child Jesus,\nwe humbly beg you graciously to regard the inheritance\nwhich Jesus Christ has purchased by his Blood,\nand with your power and strength to aid us in our necessities.\n\nO most watchful guardian of the Holy Family,\ndefend the chosen children of Jesus Christ;\nO most loving father, ward off from us every contagion of error and corrupting influence;\nO our most mighty protector, be kind to us and from heaven assist us in our struggle\nwith the power of darkness.\n\nAs once you rescued the Child Jesus from deadly peril,\nso now protect God's Holy Church from the snares of the enemy and from all adversity;\nshield, too, each one of us by your constant protection,\nso that, supported by your example and your aid,\nwe may be able to live piously, to die in holiness,\nand to obtain eternal happiness in heaven. Amen.`,
-          text_es: `A ti, bienaventurado José, acudimos en nuestra tribulación,\ny después de implorar el auxilio de tu Santísima Esposa,\nsolicitamos también confiadamente tu patrocinio.\n\nPor aquella caridad que con la Inmaculada Virgen María, Madre de Dios,\nte tuvo unido y por el paterno amor con que abrazaste al Niño Jesús,\nhumildemente te suplicamos que vuelvas benigno los ojos\na la herencia que con su Sangre adquirió Jesucristo,\ny con tu poder y auxilio socorras nuestras necesidades.\n\nProtege, oh providentísimo Custodio de la divina Familia,\nla escogida descendencia de Jesucristo;\naleja de nosotros, oh padre amantísimo,\neste flagelo de errores y vicios.\nAsístenos propicio desde el cielo, en esta lucha contra el poder de las tinieblas;\ny como en otro tiempo libraste de la muerte la vida amenazada del Niño Jesús,\nasí ahora defiende a la santa Iglesia de Dios de las hostiles insidias y de toda adversidad.\n\nY a cada uno de nosotros protégenos con tu constante patrocinio,\npara que, a ejemplo tuyo y sostenidos por tu auxilio,\npodamos vivir y morir santamente y alcanzar en los cielos la eterna bienaventuranza. Amén.`
-        },
-        {
-          id: 'guardian-angel', title: 'Guardian Angel', title_es: 'Ángel de la Guarda', latinTitle: 'Angele Dei', category: PrayerCategory.SAINTS,
+          id: 'guardian-angel', title: 'Guardian Angel', title_es: 'Ángel de la Guarda', latinTitle: 'Angele Dei', category: PrayerCategory.BASIC,
           text: `Angel of God,\nmy guardian dear,\nto whom God's love commits me here,\never this day be at my side,\nto light and guard, to rule and guide. Amen.`,
           text_es: `Ángel de mi guarda,\ndulce compañía,\nno me desampares\nni de noche ni de día.\nNo me dejes solo\nque me perdería. Amén.`,
           text_la: `Angele Dei,\nqui custos es mei,\nme, tibi commissum pietate superna,\nillumina, custodi,\nrege et guberna. Amen.`
-        },
-        {
-          id: 'peace-prayer', title: 'Peace Prayer of St. Francis', title_es: 'Oración por la Paz', latinTitle: 'Instrumentum Pacis', category: PrayerCategory.SAINTS,
-          text: `Lord, make me an instrument of your peace.\nWhere there is hatred, let me sow love;\nwhere there is injury, pardon;\nwhere there is doubt, faith;\nwhere there is despair, hope;\nwhere there is darkness, light;\nand where there is sadness, joy.\n\nO Divine Master, grant that I may not so much seek\nto be consoled as to console;\nto be understood as to understand;\nto be loved as to love.\nFor it is in giving that we receive;\nit is in pardoning that we are pardoned;\nand it is in dying that we are born to eternal life. Amen.`,
-          text_es: `Señor, hazme un instrumento de tu paz.\nQue donde haya odio, siembre yo amor;\ndonde haya injuria, perdón;\ndonde haya duda, fe;\ndonde haya desesperanza, esperanza;\ndonde haya tinieblas, luz;\ndonde haya tristeza, alegría.\n\nOh Divino Maestro, concédeme que no busque tanto\nser consolado como consolar;\nser comprendido como comprender;\nser amado como amar.\nPorque dando es como recibimos;\nperdonando es como somos perdonados;\ny muriendo es como nacemos a la vida eterna. Amén.`
-        },
-        {
-          id: 'st-patrick', title: 'Breastplate of St. Patrick', title_es: 'Coraza de San Patricio', latinTitle: 'Lorica Sancti Patricii', category: PrayerCategory.SAINTS,
-          text: `Christ with me,\nChrist before me,\nChrist behind me,\nChrist in me,\nChrist beneath me,\nChrist above me,\nChrist on my right,\nChrist on my left,\nChrist when I lie down,\nChrist when I sit down,\nChrist when I arise,\nChrist in the heart of every man who thinks of me,\nChrist in the mouth of everyone who speaks of me,\nChrist in every eye that sees me,\nChrist in every ear that hears me.`,
-          text_es: `Cristo conmigo,\nCristo ante mí,\nCristo tras de mí,\nCristo en mí,\nCristo bajo mí,\nCristo sobre mí,\nCristo a mi derecha,\nCristo a mi izquierda,\nCristo cuando me acuesto,\nCristo cuando me siento,\nCristo cuando me levanto,\nCristo en el corazón de todo hombre que piensa en mí,\nCristo en la boca de todo hombre que hable de mí,\nCristo en todo ojo que me ve,\nCristo en todo oído que me escucha.`
-        },
-        {
-          id: 'st-teresa', title: 'Nada Te Turbe', title_es: 'Nada Te Turbe', latinTitle: 'Nihil Te Turbet', category: PrayerCategory.SAINTS,
-          text: `Let nothing disturb you,\nLet nothing frighten you,\nAll things are passing away:\nGod never changes.\nPatience obtains all things.\nWhoever has God lacks nothing;\nGod alone suffices.`,
-          text_es: `Nada te turbe,\nnada te espante,\ntodo se pasa,\nDios no se muda.\nLa paciencia todo lo alcanza;\nquien a Dios tiene nada le falta:\nSólo Dios basta.`
-        },
-        {
-          id: 'suscipe', title: 'Suscipe (St. Ignatius)', title_es: 'Tomad, Señor', latinTitle: 'Suscipe, Domine', category: PrayerCategory.SAINTS,
-          text: `Take, Lord, and receive all my liberty,\nmy memory, my understanding,\nand my entire will,\nAll I have and call my own.\nYou have given all to me.\nTo you, Lord, I return it.\nEverything is yours; do with it what you will.\nGive me only your love and your grace,\nthat is enough for me.`,
-          text_es: `Tomad, Señor, y recibid toda mi libertad,\nmi memoria, mi entendimiento\ny toda mi voluntad,\ntodo mi haber y mi poseer.\nVos me lo disteis,\na Vos, Señor, lo torno.\nTodo es vuestro; disponed a toda vuestra voluntad.\nDadme vuestro amor y gracia,\nque ésta me basta.`
         },
         // --- Activities ---
         {
           id: 'driving', title: 'Prayer Before Driving', title_es: 'Oración del Conductor', latinTitle: 'Oratio pro Itinere', category: PrayerCategory.ACTIVITIES,
           text: `Grant me, O Lord, a steady hand and watchful eye,\nthat no one shall be hurt as I pass by.\nYou gave life, I pray no act of mine\nmay take away or mar that gift of Thine.\nShelter those, dear Lord, who bear me company,\nfrom the evils of fire and all calamity.\nTeach me, to use my car for others need;\nnor miss through love of undue speed\nthe beauty of the world; that thus I may\nwith joy and courtesy go on my way. Amen.`,
-          text_es: `Dame, Dios mío, mano firme y mirada vigilante,\npara que a mi paso no cause daño a nadie.\nTú diste la vida, y ruego que ningún acto mío\npueda quitar o dañar ese don Tuyo.\nProtege, querido Señor, a quienes me acompañan,\nde los males del fuego y de toda calamidad.\nEnséñame a usar mi coche para la necesidad de otros;\ny que no pierda, por amor a la velocidad excesiva,\nla belleza del mundo; para que así pueda\nseguir mi camino con alegría y cortesía. Amén.`
+          text_es: `Dame, Dios mío, mano firme y mirada vigilante,\npara que a mi paso no cause daño a nadie.\nTú diste la vida, y ruego que ningún acto mío\npueda quitar o dañar ese don Tuyo.\nProtege, querido Señor, a quienes me acompañan,\nde los males del fuego y de toda calamidad.\nEnséñame a usar mi coche para la necesidad de otros;\ny que no pierda, por amor a la velocidad excesiva,\nla belleza del mundo; para que así pueda\nseguir mi camino con alegría y cortesía. Amén.`,
+          text_la: `Concede mihi, Domine, manum firmam et oculum vigilem,\nne quis a me laedatur dum transeo.\nTu vitam dedisti; precor ne ullum actum meum\ntollat aut vitiet illud donum tuum.\nProtege, bone Domine, eos qui mecum iter faciunt\na malis ignis et omni calamitate.\nDoce me vehiculo meo pro aliorum necessitatibus uti;\nnec propter nimiam celeritatem amittere\npulchritudinem mundi; ut sic\ncum gaudio et urbanitate in via mea pergam. Amen.`
         },
         {
           id: 'study', title: 'Prayer Before Study', title_es: 'Antes del Estudio', latinTitle: 'Oratio ante Studium', category: PrayerCategory.ACTIVITIES,
           text: `Come, Holy Spirit, Divine Creator, true source of light and fountain of wisdom!\nPour forth your brilliance upon my dense intellect,\ndissipate the darkness which covers me, that of sin and of ignorance.\nGrant me a penetrating mind to understand, a retentive memory, method and ease in learning,\nthe lucidity to comprehend, and abundant grace in expressing myself.\nGuide the beginning of my work, direct its progress, and bring it to successful completion.\nThis I ask through Jesus Christ, true God and true man,\nliving and reigning with You and the Father, forever and ever. Amen.`,
-          text_es: `¡Oh inefable Creador nuestro, fuente verdadera de luz y sabiduría!\nDignate infundir el rayo de tu claridad en las tinieblas de mi inteligencia,\nremoviendo la doble oscuridad con que nací: la del pecado y la de la ignorancia.\nDame agudeza para entender, capacidad para retener, método y facilidad para aprender,\nsutileza para interpretar y gracia para hablar.\nDanos acierto al empezar, dirección al progresar y perfección al acabar.\nTú que eres verdadero Dios y verdadero Hombre,\nque vives y reinas por los siglos de los siglos. Amén.`
+          text_es: `¡Oh inefable Creador nuestro, fuente verdadera de luz y sabiduría!\nDignate infundir el rayo de tu claridad en las tinieblas de mi inteligencia,\nremoviendo la doble oscuridad con que nací: la del pecado y la de la ignorancia.\nDame agudeza para entender, capacidad para retener, método y facilidad para aprender,\nsutileza para interpretar y gracia para hablar.\nDanos acierto al empezar, dirección al progresar y perfección al acabar.\nTú que eres verdadero Dios y verdadero Hombre,\nque vives y reinas por los siglos de los siglos. Amén.`,
+          text_la: `Creator ineffabilis, qui de thesauris sapientiae tuae tres Angelorum hierarchias designasti...\nTu, inquam, qui verus fons luminis et sapientiae diceris atque supereminens principium, infundere digneris super intellectus mei tenebras tuae radium claritatis, duplicem, in qua natus sum, a me removens ignorantiam et peccatum.\nTu, qui linguas infantium facis disertas, linguam meam erudias atque in labiis meis gratiam tuae benedictionis infundas.\nDa mihi intelligendi acumen, retinendi capacitatem, addiscendi modum et facilitatem, interpretandi subtilitatem, loquendi gratiam copiosam.\nIngressum instruas, progressum dirigas, egressum compleas.\nTu, qui es verus Deus et homo, qui vivis et regnas in saecula saeculorum. Amen.`
         },
         {
           id: 'work', title: 'Prayer Before Work', title_es: 'Oración Antes del Trabajo', latinTitle: 'Actiones Nostras', category: PrayerCategory.ACTIVITIES,
           text: `Direct, we beg you, O Lord, our actions by your holy inspirations,\nand carry them on by your gracious assistance,\nthat every prayer and work of ours may begin always with you,\nand through you be happily ended. Amen.`,
-          text_es: `Te rogamos, Señor, que prevengas nuestras acciones con tu inspiración\ny las acompañes con tu ayuda,\npara que toda nuestra oración y trabajo comience siempre en Ti,\ny por Ti concluya felizmente. Amén.`
+          text_es: `Te rogamos, Señor, que prevengas nuestras acciones con tu inspiración\ny las acompañes con tu ayuda,\npara que toda nuestra oración y trabajo comience siempre en Ti,\ny por Ti concluya felizmente. Amén.`,
+          text_la: `Actiones nostras, quaesumus, Domine, aspirando praeveni et adiuvando prosequere:\nut cuncta nostra oratio et operatio a te semper incipiat, et per te coepta finiatur.\nPer Christum Dominum nostrum. Amen.`
         },
         {
           id: 'workout', title: 'Prayer Before Working Out', title_es: 'Oración Antes del Ejercicio', latinTitle: 'Oratio ante Exercitium', category: PrayerCategory.ACTIVITIES,
           text: `Lord, I offer you this workout as a prayer of the body.\nStrengthen my muscles that I may serve You better.\nGrant me endurance to run the race set before me,\nand discipline to honor the temple of the Holy Spirit.\nMay my sweat be a sacrifice, and my effort a hymn of praise.\nThrough Christ our Lord. Amen.`,
-          text_es: `Señor, te ofrezco este ejercicio como una oración del cuerpo.\nFortalece mis músculos para que pueda servirte mejor.\nDame resistencia para correr la carrera que tengo por delante,\ny disciplina para honrar el templo del Espíritu Santo.\nQue mi sudor sea un sacrificio y mi esfuerzo un himno de alabanza.\nPor Jesucristo nuestro Señor. Amén.`
+          text_es: `Señor, te ofrezco este ejercicio como una oración del cuerpo.\nFortalece mis músculos para que pueda servirte mejor.\nDame resistencia para correr la carrera que tengo por delante,\ny disciplina para honrar el templo del Espíritu Santo.\nQue mi sudor sea un sacrificio y mi esfuerzo un himno de alabanza.\nPor Jesucristo nuestro Señor. Amén.`,
+          text_la: `Domine, hoc exercitium tibi offero velut orationem corporis.\nConfirma musculos meos ut tibi melius serviam.\nDa mihi patientiam ad currendum stadium propositum,\net disciplinam ad honorandum templum Spiritus Sancti.\nSit sudor meus sacrificium, et nisus meus hymnus laudis.\nPer Christum Dominum nostrum. Amen.`
         },
         {
           id: 'night-prayer', title: 'Prayer Before Sleep', title_es: 'Oración de la Noche', latinTitle: 'Oratio Nocturna', category: PrayerCategory.ACTIVITIES,
           text: `Protect us, Lord, as we stay awake; watch over us as we sleep,\nthat awake, we may keep watch with Christ, and asleep, rest in his peace.\nLord, now you let your servant go in peace; your word has been fulfilled:\nmy own eyes have seen the salvation which you have prepared in the sight of every people:\na light to reveal you to the nations and the glory of your people Israel.\nGlory to the Father, and to the Son, and to the Holy Spirit:\nas it was in the beginning, is now, and will be for ever. Amen.`,
-          text_es: `Protégenos, Señor, mientras velamos; acompáñanos mientras dormimos,\npara que velemos con Cristo y descansemos en su paz.\nAhora, Señor, según tu promesa, puedes dejar a tu siervo irse en paz.\nPorque mis ojos han visto a tu Salvador,\na quien has presentado ante todos los pueblos:\nluz para alumbrar a las naciones y gloria de tu pueblo Israel.\nGloria al Padre, y al Hijo, y al Espíritu Santo.\nComo era en el principio, ahora y siempre, por los siglos de los siglos. Amén.`
+          text_es: `Protégenos, Señor, mientras velamos; acompáñanos mientras dormimos,\npara que velemos con Cristo y descansemos en su paz.\nAhora, Señor, según tu promesa, puedes dejar a tu siervo irse en paz.\nPorque mis ojos han visto a tu Salvador,\na quien has presentado ante todos los pueblos:\nluz para alumbrar a las naciones y gloria de tu pueblo Israel.\nGloria al Padre, y al Hijo, y al Espíritu Santo.\nComo era en el principio, ahora y siempre, por los siglos de los siglos. Amén.`,
+          text_la: `Salva nos, Domine, vigilantes, custodi nos dormientes;\nut vigilemus cum Christo, et requiescamus in pace.\nNunc dimittis servum tuum, Domine, secundum verbum tuum in pace:\nQuia viderunt oculi mei salutare tuum,\nQuod parasti ante faciem omnium populorum:\nLumen ad revelationem gentium, et gloriam plebis tuae Israel.\nGloria Patri, et Filio, et Spiritui Sancto:\nSicut erat in principio, et nunc, et semper, et in saecula saeculorum. Amen.`
         },
         {
           id: 'serenity-prayer', title: 'Serenity Prayer', title_es: 'Oración de la Serenidad', latinTitle: 'Oratio Serenitatis', category: PrayerCategory.ACTIVITIES,
           text: `God, grant me the serenity to accept the things I cannot change,\ncourage to change the things I can,\nand wisdom to know the difference.`,
-          text_es: `Dios, concédeme la serenidad para aceptar las cosas que no puedo cambiar,\nvalor para cambiar las cosas que puedo,\ny sabiduría para reconocer la diferencia.`
+          text_es: `Dios, concédeme la serenidad para aceptar las cosas que no puedo cambiar,\nvalor para cambiar las cosas que puedo,\ny sabiduría para reconocer la diferencia.`,
+          text_la: `Deus, dona mihi serenitatem accipiendi quae mutare non possum,\nfortitudinem mutandi quae possum,\net sapientiam ad discernendum unum ab altero.`
         },
         {
           id: 'morning-offering', title: 'Morning Offering', title_es: 'Ofrecimiento de Obras', latinTitle: 'Oblatio Matutina', category: PrayerCategory.ACTIVITIES,
           text: `O Jesus, through the Immaculate Heart of Mary,\nI offer you my prayers, works, joys, and sufferings of this day\nfor all the intentions of your Sacred Heart,\nin union with the Holy Sacrifice of the Mass throughout the world,\nfor the salvation of souls, the reparation of sins, the reunion of all Christians,\nand in particular for the intentions of the Holy Father this month. Amen.`,
-          text_es: `Oh Jesús, a través del Inmaculado Corazón de María,\nte ofrezco mis oraciones, obras, alegrías y sufrimientos de este día,\npor todas las intenciones de tu Sagrado Corazón,\nen unión con el Santo Sacrificio de la Misa por todo el mundo,\npor la salvación de las almas, la reparación de los pecados, la reunión de todos los cristianos,\ny en particular por las intenciones del Santo Padre para este mes. Amén.`
+          text_es: `Oh Jesús, a través del Inmaculado Corazón de María,\nte ofrezco mis oraciones, obras, alegrías y sufrimientos de este día,\npor todas las intenciones de tu Sagrado Corazón,\nen unión con el Santo Sacrificio de la Misa por todo el mundo,\npor la salvación de las almas, la reparación de los pecados, la reunión de todos los cristianos,\ny en particular por las intenciones del Santo Padre para este mes. Amén.`,
+          text_la: `O Iesu, per Immaculatum Cor Mariae,\noffero tibi preces, opera, gaudia et dolores huius diei,\npro omnibus intentionibus Sacratissimi Cordis tui,\nin unione cum Sancto Sacrificio Missae in toto mundo,\npro salute animarum, reparatione peccatorum, adunatione omnium Christianorum,\net praecipue pro intentionibus Summi Pontificis in hoc mense. Amen.`
         },
+        // --- Divine Mercy ---
         // --- Divine Mercy ---
         {
           id: 'dm-opening', title: 'Opening Prayer', category: PrayerCategory.DIVINE_MERCY,
           text: `You expired, Jesus, but the source of life gushed forth for souls,\nand the ocean of mercy opened up for the whole world.\nO Fount of Life, unfathomable Divine Mercy,\nenvelop the whole world and empty Yourself out upon us.`,
-          text_es: `Expiraste, Jesús, pero la fuente de vida brotó para las almas,\ny el océano de misericordia se abrió para el mundo entero.\nOh, Fuente de Vida, insondable Misericordia Divina,\nenvuelve al mundo entero y derrámate sobre nosotros.`
+          text_es: `Expiraste, Jesús, pero la fuente de vida brotó para las almas,\ny el océano de misericordia se abrió para el mundo entero.\nOh, Fuente de Vida, insondable Misericordia Divina,\nenvuelve al mundo entero y derrámate sobre nosotros.`,
+          text_la: `Exspirasti, Iesu, sed fons vitae pro animabus emicuit,\net oceanus misericordiae pro toto mundo adapertus est.\nO Fons Vitae, ininvestigabilis Divina Misericordia,\ninvolve totum mundum et te ipsum super nos effunde.`
         },
         {
           id: 'dm-blood-water', title: 'O Blood and Water', category: PrayerCategory.DIVINE_MERCY,
           text: `O Blood and Water, which gushed forth from the Heart of Jesus as a fountain of Mercy for us, I trust in You!`,
-          text_es: `¡Oh, Sangre y Agua, que brotaste del Corazón de Jesús como una Fuente de Misericordia para nosotros, en Ti confío!`
+          text_es: `¡Oh, Sangre y Agua, que brotaste del Corazón de Jesús como una Fuente de Misericordia para nosotros, en Ti confío!`,
+          text_la: `O Sanguis et Aqua, quae ex Corde Iesu ut fons Misericordiae pro nobis effudisti, in Te confido!`
         },
         {
           id: 'dm-eternal-father', title: 'Eternal Father', category: PrayerCategory.DIVINE_MERCY,
           text: `Eternal Father, I offer you the Body and Blood, Soul and Divinity of Your Dearly Beloved Son, Our Lord, Jesus Christ, in atonement for our sins and those of the whole world.`,
-          text_es: `Padre Eterno, te ofrezco el Cuerpo y la Sangre, el Alma y la Divinidad de Tu Amadísimo Hijo, nuestro Señor Jesucristo, como propiciación de nuestros pecados y los del mundo entero.`
+          text_es: `Padre Eterno, te ofrezco el Cuerpo y la Sangre, el Alma y la Divinidad de Tu Amadísimo Hijo, nuestro Señor Jesucristo, como propiciación de nuestros pecados y los del mundo entero.`,
+          text_la: `Pater aeterne, offero tibi Corpus et Sanguinem, Animam et Divinitatem dilectissimi Filii tui, Domini nostri, Iesu Christi, in propitiatione pro peccatis nostris et totius mundi.`
         },
         {
           id: 'dm-passion', title: 'For the Sake of His Sorrowful Passion', category: PrayerCategory.DIVINE_MERCY,
           text: `For the sake of His sorrowful Passion, have mercy on us and on the whole world.`,
-          text_es: `Por Su dolorosa Pasión, ten misericordia de nosotros y del mundo entero.`
+          text_es: `Por Su dolorosa Pasión, ten misericordia de nosotros y del mundo entero.`,
+          text_la: `Pro dolorosa Eius passione, miserere nobis et totius mundi.`
         },
         {
           id: 'dm-holy-god', title: 'Holy God', category: PrayerCategory.DIVINE_MERCY,
           text: `Holy God, Holy Mighty One, Holy Immortal One, have mercy on us and on the whole world.`,
-          text_es: `Santo Dios, Santo Fuerte, Santo Inmortal, ten piedad de nosotros y del mundo entero.`
+          text_es: `Santo Dios, Santo Fuerte, Santo Inmortal, ten piedad de nosotros y del mundo entero.`,
+          text_la: `Sanctus Deus, Sanctus Fortis, Sanctus Immortalis, miserere nobis et totius mundi.`
         },
         {
           id: 'dm-closing', title: 'Closing Prayer', category: PrayerCategory.DIVINE_MERCY,
           text: `Eternal God, in whom mercy is endless and the treasury of compassion — inexhaustible, look kindly upon us and increase Your mercy in us, that in difficult moments we might not despair nor become despondent, but with great confidence submit ourselves to Your holy will, which is Love and Mercy itself.`,
-          text_es: `Oh Dios Eterno, en quien la misericordia es infinita y el tesoro de compasión inagotable, vuelve a nosotros Tu mirada bondadosa y aumenta Tu misericordia en nosotros, para que en momentos difíciles no nos desesperemos ni nos desalentemos, sino que, con gran confianza, nos sometamos a Tu santa voluntad, que es el Amor y la Misericordia mismos.`
+          text_es: `Oh Dios Eterno, en quien la misericordia es infinita y el tesoro de compasión inagotable, vuelve a nosotros Tu mirada bondadosa y aumenta Tu misericordia en nosotros, para que en momentos difíciles no nos desesperemos ni nos desalentemos, sino que, con gran confianza, nos sometamos a Tu santa voluntad, que es el Amor y la Misericordia mismos.`,
+          text_la: `Deus aeterne, in quo misericordia est infinita et thesaurus compassionis inexhaustus, respice in nos propitius et auge in nobis misericordiam tuam, ut in difficultatibus non desperemus nec despondeamus, sed cum magna fiducia nos subiciamus sanctae voluntati tuae, quae est ipse Amor et Misericordia.`
         },
+        // --- Meal Prayers ---
         // --- Meal Prayers ---
         {
           id: 'grace-before', title: 'Grace Before Meals', title_es: 'Bendición de los Alimentos', latinTitle: 'Benedictio Mensae', category: PrayerCategory.MEAL,
           text: `Bless us, O Lord, and these thy gifts,\nwhich we are about to receive from thy bounty,\nthrough Christ our Lord. Amen.`,
-          text_es: `Bendícenos, Señor, y bendice estos alimentos\nque por tu bondad vamos a recibir.\nPor Jesucristo nuestro Señor. Amén.`
+          text_es: `Bendícenos, Señor, y bendice estos alimentos\nque por tu bondad vamos a recibir.\nPor Jesucristo nuestro Señor. Amén.`,
+          text_la: `Benedic, Domine, nos et haec tua dona,\nquae de tua largitate sumus sumpturi.\nPer Christum Dominum nostrum. Amen.`
         },
         {
           id: 'grace-after', title: 'Grace After Meals', title_es: 'Acción de Gracias', latinTitle: 'Agimus Tibi Gratias', category: PrayerCategory.MEAL,
           text: `We give thee thanks, for all thy benefits,\nalmighty God, who livest and reignest world without end. Amen.\nMay the souls of the faithful departed,\nthrough the mercy of God, rest in peace. Amen.`,
-          text_es: `Te damos gracias, Señor, por todos tus beneficios,\na ti que vives y reinas por los siglos de los siglos. Amén.\nQue las almas de los fieles difuntos,\npor la misericordia de Dios, descansen en paz. Amén.`
+          text_es: `Te damos gracias, Señor, por todos tus beneficios,\na ti que vives y reinas por los siglos de los siglos. Amén.\nQue las almas de los fieles difuntos,\npor la misericordia de Dios, descansen en paz. Amén.`,
+          text_la: `Agimus tibi gratias, omnipotens Deus, pro universis beneficiis tuis,\nqui vivis et regnas in saecula saeculorum. Amen.\nFidelium animae per misericordiam Dei requiescant in pace. Amen.`
         },
         // --- Acts ---
         {
           id: 'act-faith', title: 'Act of Faith', title_es: 'Acto de Fe', latinTitle: 'Actus Fidei', category: PrayerCategory.ACTS,
           text: `O my God, I firmly believe that you are one God in three divine Persons, Father, Son, and Holy Spirit.\nI believe that your divine Son became man and died for our sins and that he will come to judge the living and the dead.\nI believe these and all the truths which the Holy Catholic Church teaches because you have revealed them who are eternal truth and wisdom, who can neither deceive nor be deceived.\nIn this faith I intend to live and die. Amen.`,
-          text_es: `Dios mío, creo firmemente que eres un solo Dios en tres Personas divinas: Padre, Hijo y Espíritu Santo;\ncreo que tu Hijo divino se hizo hombre y murió por nuestros pecados, y que vendrá a juzgar a los vivos y a los muertos.\nCreo estas y todas las verdades que enseña la Santa Iglesia Católica, porque tú las has revelado, que eres la verdad y la sabiduría eternas, que ni se engaña ni puede engañarnos.\nEn esta fe quiero vivir y morir. Amén.`
+          text_es: `Dios mío, creo firmemente que eres un solo Dios en tres Personas divinas: Padre, Hijo y Espíritu Santo;\ncreo que tu Hijo divino se hizo hombre y murió por nuestros pecados, y que vendrá a juzgar a los vivos y a los muertos.\nCreo estas y todas las verdades que enseña la Santa Iglesia Católica, porque tú las has revelado, que eres la verdad y la sabiduría eternas, que ni se engaña ni puede engañarnos.\nEn esta fe quiero vivir y morir. Amén.`,
+          text_la: `Domine Deus, firma fide credo et confiteor omnia et singula quae sancta ecclesia Catholica proponit, quia tu, Deus, ea omnia revelasti, qui es aeterna veritas et sapientia quae nec fallere nec falli potest. In hac fide vivere et mori statuo. Amen.`
         },
         {
           id: 'act-hope', title: 'Act of Hope', title_es: 'Acto de Esperanza', latinTitle: 'Actus Spei', category: PrayerCategory.ACTS,
           text: `O my God, relying on your infinite goodness and promises,\nI hope to obtain pardon of my sins, the help of your grace and life everlasting,\nthrough the merits of Jesus Christ, my Lord and Redeemer. Amen.`,
-          text_es: `Dios mío, apoyado en tu infinita bondad y en tus promesas,\nespero obtener el perdón de mis pecados, la ayuda de tu gracia y la vida eterna,\npor los méritos de Jesucristo, mi Señor y Redentor. Amén.`
+          text_es: `Dios mío, apoyado en tu infinita bondad y en tus promesas,\nespero obtener el perdón de mis pecados, la ayuda de tu gracia y la vida eterna,\npor los méritos de Jesucristo, mi Señor y Redentor. Amén.`,
+          text_la: `Domine Deus, spero per gratiam tuam remissionem omnium peccatorum, et post hanc vitam aeternam felicitatem me esse consecuturum: quia tu promisisti, qui es infinite potens, fidelis, benignus, et misericors. In hac spe vivere et mori statuo. Amen.`
         },
         {
           id: 'act-love', title: 'Act of Love', title_es: 'Acto de Caridad', latinTitle: 'Actus Caritatis', category: PrayerCategory.ACTS,
           text: `O my God, I love you above all things, with my whole heart and soul,\nbecause you are all good and worthy of all love.\nI love my neighbor as myself for the love of you.\nI forgive all who have injured me, and I ask pardon of all whom I have injured. Amen.`,
-          text_es: `Dios mío, te amo sobre todas las cosas, con todo mi corazón y con toda mi alma,\nporque eres infinitamente bueno y digno de ser amado.\nAmo a mi prójimo como a mí mismo por amor a ti.\nPerdono a todos los que me han ofendido y pido perdón a todos los que he ofendido. Amén.`
+          text_es: `Dios mío, te amo sobre todas las cosas, con todo mi corazón y con toda mi alma,\nporque eres infinitamente bueno y digno de ser amado.\nAmo a mi prójimo como a mí mismo por amor a ti.\nPerdono a todos los que me han ofendido y pido perdón a todos los que he offended. Amén.`,
+          text_la: `Domine Deus, amo te super omnia et ex toto corde meo, quia es infinite bonus, infinite amabilis, et infinite dignus omni amore. Et propter te amo proximum meum sicut meipsum, illique omnes offensas dimitto. In hac caritate vivere et mori statuo. Amen.`
         },
         // --- Novenas ---
         {
@@ -635,8 +632,284 @@
           id: 'divine-mercy-novena', title: 'Divine Mercy Novena', title_es: 'Novena de la Divina Misericordia', latinTitle: 'Novendialis Divinae Misericordiae', category: PrayerCategory.NOVENAS,
           text: `Day 1:\nToday bring to Me ALL MANKIND, ESPECIALLY ALL SINNERS, and immerse them in the ocean of My mercy.\n\nMost Merciful Jesus, whose very nature it is to have compassion on us and to forgive us, do not look upon our sins but upon our trust which we place in Your infinite goodness. Receive us all into the abode of Your Most Compassionate Heart, and never let us escape from It. We beg this of You by Your love which unites You to the Father and the Holy Spirit.\n\n(Followed by the Chaplet of Divine Mercy)\n\nDay 2:\nToday bring to Me THE SOULS OF PRIESTS AND RELIGIOUS, and immerse them in My unfathomable mercy.\n\nMost Merciful Jesus, from whom comes all that is good, increase Your grace in men and women consecrated to Your service, that they may perform worthy works of mercy; and that all who see them may glorify the Father of Mercy who is in heaven.\n\n(Followed by the Chaplet of Divine Mercy)\n\nDay 3:\nToday bring to Me ALL DEVOUT AND FAITHFUL SOULS, and immerse them in the ocean of My mercy.\n\nMost Merciful Jesus, from the treasury of Your mercy, You impart Your graces in great abundance to each and all. Receive us into the abode of Your Most Compassionate Heart and never let us escape from It. We beg this grace of You by that most wondrous love for the heavenly Father with which Your Heart burns so fiercely.\n\n(Followed by the Chaplet of Divine Mercy)\n\nDay 4:\nToday bring to Me THOSE WHO DO NOT BELIEVE IN GOD AND THOSE WHO DO NOT YET KNOW ME.\n\nMost compassionate Jesus, You are the Light of the whole world. Receive into the abode of Your Most Compassionate Heart the souls of those who do not believe in God and of those who as yet do not know You. Let the rays of Your grace enlighten them that they, too, together with us, may extol Your wonderful mercy; and do not let them escape from the abode which is Your Most Compassionate Heart.\n\n(Followed by the Chaplet of Divine Mercy)\n\nDay 5:\nToday bring to Me THE SOULS OF THOSE WHO HAVE SEPARATED THEMSELVES FROM MY CHURCH.\n\nMost Merciful Jesus, Goodness Itself, You do not refuse light to those who seek it of You. Receive into the abode of Your Most Compassionate Heart the souls of those who have separated themselves from Your Church. Draw them by Your light into the unity of the Church, and do not let them escape from the abode of Your Most Compassionate Heart; but bring it about that they, too, come to glorify the generosity of Your mercy.\n\n(Followed by the Chaplet of Divine Mercy)\n\nDay 6:\nToday bring to Me THE MEEK AND HUMBLE SOULS AND THE SOULS OF LITTLE CHILDREN, and immerse them in My mercy.\n\nMost Merciful Jesus, You yourself have said, "Learn from Me for I am meek and humble of heart." Receive into the abode of Your Most Compassionate Heart all meek and humble souls and the souls of little children. These souls send all heaven into ecstasy and they are the heavenly Father's favorites.\n\n(Followed by the Chaplet of Divine Mercy)\n\nDay 7:\nToday bring to Me THE SOULS WHO ESPECIALLY VENERATE AND GLORIFY MY MERCY, and immerse them in My mercy.\n\nMost Merciful Jesus, whose Heart is Love Itself, receive into the abode of Your Most Compassionate Heart the souls of those who particularly extol and venerate the greatness of Your mercy. These souls are mighty with the very power of God Himself. In the midst of all afflictions and adversities they go forward, confident of Your mercy; and united to You, O Jesus, they carry all mankind on their shoulders.\n\n(Followed by the Chaplet of Divine Mercy)\n\nDay 8:\nToday bring to Me THE SOULS WHO ARE DETAINED IN PURGATORY, and immerse them in the abyss of My mercy.\n\nMost Merciful Jesus, You Yourself have said that You desire mercy; so I bring into the abode of Your Most Compassionate Heart the souls in Purgatory, souls who are very dear to You, and yet, who must make retribution to Your justice. May the streams of Blood and Water which gushed forth from Your Heart put out the flames of Purgatory, that there, too, the power of Your mercy may be celebrated.\n\n(Followed by the Chaplet of Divine Mercy)\n\nDay 9:\nToday bring to Me SOULS WHO HAVE BECOME LUKEWARM, and immerse them in the abyss of My mercy.\n\nMost compassionate Jesus, You are Compassion Itself. I bring lukewarm souls into the abode of Your Most Compassionate Heart. In this fire of Your pure love, let these tepid souls, who, like corpses, filled You with such deep loathing, be once again set aflame. O Most Compassionate Jesus, exercise the omnipotence of Your mercy and draw them into the very ardor of Your love, and bestow upon them the gift of holy love, for nothing is beyond Your power.\n\n(Followed by the Chaplet of Divine Mercy)`,
           text_es: `Día 1:\nHoy, tráeme a TODA LA HUMANIDAD, ESPECIALMENTE A TODOS LOS PECADORES, y sumérgelos en el océano de Mi misericordia.\n\nJesús Misericordiosísimo, cuya naturaleza es la de tener compasión de nosotros y de perdonarnos, no mires nuestros pecados, sino la confianza que depositamos en Tu bondad infinita. Acógenos a todos en la morada de Tu Corazón Misericordiosísimo y no permitas que salgamos jamás de él. Te lo suplicamos por Tu amor que Te une al Padre y al Espíritu Santo.\n\n(Seguido de la Coronilla a la Divina Misericordia)\n\nDía 2:\nHoy, tráeme a LAS ALMAS DE LOS SACERDOTES Y RELIGIOSOS, y sumérgelos en Mi misericordia insondable.\n\nJesús Misericordiosísimo, de quien procede todo lo que es bueno, aumenta Tu gracia en los hombres y mujeres consagrados a Tu servicio, para que realicen dignas obras de misericordia, y todos los que los vean glorifiquen al Padre de Misericordia que está en el cielo.\n\n(Seguido de la Coronilla a la Divina Misericordia)\n\nDía 3:\nHoy, tráeme a TODAS LAS ALMAS DEVOTAS Y FIELES, y sumérgelas en el océano de Mi misericordia.\n\nJesús Misericordiosísimo, del tesoro de Tu misericordia concedes Tus gracias en gran abundancia a todos y cada uno. Acógenos en la morada de Tu Corazón Misericordiosísimo y no permitas que salgamos jamás de él. Te suplicamos esta gracia por ese amor maravilloso hacia el Padre celestial con el que arde tan intensamente Tu Corazón.\n\n(Seguido de la Coronilla a la Divina Misericordia)\n\nDía 4:\nHoy, tráeme a LOS QUE NO CREEN EN DIOS Y A LOS QUE TODAVÍA NO ME CONOCEN.\n\nJesús Compasivísimo, Tú eres la Luz del mundo entero. Acoge en la morada de Tu Corazón Misericordiosísimo las almas de aquellos que no creen en Dios y de aquellos que todavía no Te conocen. Que los rayos de Tu gracia los iluminen para que también ellos, unidos a nosotros, ensalcen Tu maravillosa misericordia, y no los dejes salir de la morada de Tu Corazón Misericordiosísimo.\n\n(Seguido de la Coronilla a la Divina Misericordia)\n\nDía 5:\nHoy, tráeme a LAS ALMAS DE LOS QUE SE HAN SEPARADO DE MI IGLESIA.\n\nJesús Misericordiosísimo, Bondad misma, Tú no niegas la luz a quienes Te la piden. Acoge en la morada de Tu Corazón Misericordiosísimo las almas de aquellos que se han separado de Tu Iglesia. Atráelos con Tu luz a la unidad de la Iglesia, y no los dejes salir de la morada de Tu Corazón Misericordiosísimo, sino haz que también ellos lleguen a glorificar la generosidad de Tu misericordia.\n\n(Seguido de la Coronilla a la Divina Misericordia)\n\nDía 6:\nHoy, tráeme a LAS ALMAS MANSAS Y HUMILDES, Y A LAS ALMAS DE LOS NIÑOS PEQUEÑOS, y sumérgelas en Mi misericordia.\n\nJesús Misericordiosísimo, Tú mismo has dicho: "Aprended de Mí, que soy manso y humilde de corazón". Acoge en la morada de Tu Corazón Misericordiosísimo a todas las almas mansas y humildes y a las almas de los niños pequeños. Estas almas envían al cielo entero al éxtasis y son las favoritas del Padre celestial.\n\n(Seguido de la Coronilla a la Divina Misericordia)\n\nDía 7:\nHoy, tráeme a LAS ALMAS QUE ESPECIALMENTE VENERAN Y GLORIFICAN MI MISERICORDIA, y sumérgelas en Mi misericordia.\n\nJesús Misericordiosísimo, cuyo Corazón es el Amor mismo, acoge en la morada de Tu Corazón Misericordiosísimo a las almas de aquellos que particularmente ensalzan y veneran la grandeza de Tu misericordia. Estas almas son fuertes con el poder de Dios mismo. En medio de todas las aflicciones y adversidades siguen adelante, confiando en Tu misericordia; y unidas a Ti, oh Jesús, llevan a toda la humanidad sobre sus hombros.\n\n(Seguido de la Coronilla a la Divina Misericordia)\n\nDía 8:\nHoy, tráeme a LAS ALMAS QUE ESTÁN DETENIDAS EN EL PURGATORIO, y sumérgelas en el abismo de Mi misericordia.\n\nJesús Misericordiosísimo, Tú mismo has dicho que deseas misericordia; por eso llevo a la morada de Tu Corazón Misericordiosísimo a las almas del Purgatorio, almas que Te son muy queridas, y que, sin embargo, deben pagar su retribución a Tu justicia. Que los torrentes de Sangre y Agua que brotaron de Tu Corazón apaguen las llamas del Purgatorio, para que también allí se celebre el poder de Tu misericordia.\n\n(Seguido de la Coronilla a la Divina Misericordia)\n\nDía 9:\nHoy, tráeme a LAS ALMAS QUE SE HAN VUELTO TIBIAS, y sumérgelas en el abismo de Mi misericordia.\n\nJesús Compasivísimo, Tú eres la Compasión misma. Llevo a las almas tibias a la morada de Tu Corazón Misericordiosísimo. En este fuego de Tu amor puro, que estas almas tibias, que como cadáveres Te llenan de tan profunda repugnancia, vuelvan a encenderse. Oh Jesús Compasivísimo, ejerce la omnipotencia de Tu misericordia y atráelas al mismo ardor de Tu amor, y concédeles el don del amor santo, porque nada está más allá de Tu poder.\n\n(Seguido de la Coronilla a la Divina Misericordia)`
+        },
+        // --- Litanies ---
+        {
+          id: 'litany-humility', title: 'Litany of Humility', title_es: 'Letanías de la Humildad', category: PrayerCategory.LITANIES,
+          text: `V. O Jesus! meek and humble of heart,
+R. Hear me.
+V. From the desire of being esteemed,
+R. Deliver me, Jesus.
+V. From the desire of being loved,
+R. Deliver me, Jesus.
+V. From the desire of being extolled,
+R. Deliver me, Jesus.
+V. From the desire of being honored,
+R. Deliver me, Jesus.
+V. From the desire of being praised,
+R. Deliver me, Jesus.
+V. From the desire of being preferred to others,
+R. Deliver me, Jesus.
+V. From the desire of being consulted,
+R. Deliver me, Jesus.
+V. From the desire of being approved,
+R. Deliver me, Jesus.
+V. From the fear of being humiliated,
+R. Deliver me, Jesus.
+V. From the fear of being despised,
+R. Deliver me, Jesus.
+V. From the fear of suffering rebukes,
+R. Deliver me, Jesus.
+V. From the fear of being calumniated,
+R. Deliver me, Jesus.
+V. From the fear of being forgotten,
+R. Deliver me, Jesus.
+V. From the fear of being ridiculed,
+R. Deliver me, Jesus.
+V. From the fear of being wronged,
+R. Deliver me, Jesus.
+V. From the fear of being suspected,
+R. Deliver me, Jesus.
+V. That others may be loved more than I,
+R. Jesus, grant me the grace to desire it.
+V. That others may be esteemed more than I,
+R. Jesus, grant me the grace to desire it.
+V. That, in the opinion of the world, others may increase and I may decrease,
+R. Jesus, grant me the grace to desire it.
+V. That others may be chosen and I set aside,
+R. Jesus, grant me the grace to desire it.
+V. That others may be praised and I unnoticed,
+R. Jesus, grant me the grace to desire it.
+V. That others may be preferred to me in everything,
+R. Jesus, grant me the grace to desire it.
+V. That others may become holier than I, provided that I may become as holy as I should,
+R. Jesus, grant me the grace to desire it.`,
+          text_es: `V. ¡Oh Jesús! manso y humilde de corazón,
+R. Escúchame.
+V. Del deseo de ser estimado,
+R. Líbrame, Jesús.
+V. Del deseo de ser amado,
+R. Líbrame, Jesús.
+V. Del deseo de ser ensalzado,
+R. Líbrame, Jesús.
+V. Del deseo de ser honrado,
+R. Líbrame, Jesús.
+V. Del deseo de ser alabado,
+R. Líbrame, Jesús.
+V. Del deseo de ser preferido a otros,
+R. Líbrame, Jesús.
+V. Del deseo de ser consultado,
+R. Líbrame, Jesús.
+V. Del deseo de ser aprobado,
+R. Líbrame, Jesús.
+V. Del temor de ser humillado,
+R. Líbrame, Jesús.
+V. Del temor de ser despreciado,
+R. Líbrame, Jesús.
+V. Del temor de sufrir reprensiones,
+R. Líbrame, Jesús.
+V. Del temor de ser calumniado,
+R. Líbrame, Jesús.
+V. Del temor de ser olvidado,
+R. Líbrame, Jesús.
+V. Del temor de ser ridiculizado,
+R. Líbrame, Jesús.
+V. Del temor de ser ofendido,
+R. Líbrame, Jesús.
+V. Del temor de ser sospechado,
+R. Líbrame, Jesús.
+V. Que otros sean más amados que yo,
+R. Jesús, dame la gracia de desearlo.
+V. Que otros sean más estimados que yo,
+R. Jesús, dame la gracia de desearlo.
+V. Que en la opinión del mundo, otros crezcan y yo disminuya,
+R. Jesús, dame la gracia de desearlo.
+V. Que otros sean elegidos y yo dejado de lado,
+R. Jesús, dame la gracia de desearlo.
+V. Que otros sean alabados y yo pase desapercibido,
+R. Jesús, dame la gracia de desearlo.
+V. Que otros sean preferidos a mí en todo,
+R. Jesús, dame la gracia de desearlo.
+V. Que otros lleguen a ser más santos que yo, con tal que yo llegue a ser lo santo que debo,
+R. Jesús, dame la gracia de desearlo.`
+        },
+        {
+          id: 'litany-loreto', title: 'Litany of Loreto', title_es: 'Letanías Lauretanas', category: PrayerCategory.LITANIES,
+          text: `V. Lord, have mercy.
+R. Lord, have mercy.
+V. Christ, have mercy.
+R. Christ, have mercy.
+V. Lord, have mercy.
+R. Lord, have mercy.
+V. God the Father of heaven,
+R. Have mercy on us.
+V. God the Son, Redeemer of the world,
+R. Have mercy on us.
+V. God the Holy Spirit,
+R. Have mercy on us.
+V. Holy Trinity, one God,
+R. Have mercy on us.
+V. Holy Mary,
+R. Pray for us.
+V. Holy Mother of God,
+R. Pray for us.
+V. Holy Virgin of virgins,
+R. Pray for us.
+V. Mother of Christ,
+R. Pray for us.
+V. Mother of the Church,
+R. Pray for us.
+V. Mother of divine grace,
+R. Pray for us.
+V. Mother most pure,
+R. Pray for us.
+V. Virgin most merciful,
+R. Pray for us.
+V. Virgin most faithful,
+R. Pray for us.
+V. Mirror of justice,
+R. Pray for us.
+V. Seat of wisdom,
+R. Pray for us.
+V. Cause of our joy,
+R. Pray for us.
+V. Mystical rose,
+R. Pray for us.
+V. Tower of David,
+R. Pray for us.
+V. Ark of the covenant,
+R. Pray for us.
+V. Gate of heaven,
+R. Pray for us.
+V. Morning star,
+R. Pray for us.
+V. Health of the sick,
+R. Pray for us.
+V. Refuge of sinners,
+R. Pray for us.
+V. Comforter of the afflicted,
+R. Pray for us.
+V. Help of Christians,
+R. Pray for us.
+V. Queen of Angels,
+R. Pray for us.
+V. Queen of Patriarchs,
+R. Pray for us.
+V. Queen of Apostles,
+R. Pray for us.
+V. Queen of Martyrs,
+R. Pray for us.
+V. Queen of all Saints,
+R. Pray for us.
+V. Queen conceived without original sin,
+R. Pray for us.
+V. Queen assumed into heaven,
+R. Pray for us.
+V. Queen of the most holy Rosary,
+R. Pray for us.
+V. Queen of families,
+R. Pray for us.
+V. Queen of peace,
+R. Pray for us.
+V. Lamb of God, who takes away the sins of the world,
+R. Spare us, O Lord.
+V. Lamb of God, who takes away the sins of the world,
+R. Graciously hear us, O Lord.
+V. Lamb of God, who takes away the sins of the world,
+R. Have mercy on us.
+V. Pray for us, O holy Mother of God.
+R. That we may be made worthy of the promises of Christ.`,
+          text_es: `V. Señor, ten piedad.
+R. Señor, ten piedad.
+V. Cristo, ten piedad.
+R. Cristo, ten piedad.
+V. Señor, ten piedad.
+R. Señor, ten piedad.
+V. Dios Padre celestial,
+R. Ten piedad de nosotros.
+V. Dios Hijo, Redentor del mundo,
+R. Ten piedad de nosotros.
+V. Dios Espíritu Santo,
+R. Ten piedad de nosotros.
+V. Santísima Trinidad, un solo Dios,
+R. Ten piedad de nosotros.
+V. Santa María,
+R. Ruega por nosotros.
+V. Santa Madre de Dios,
+R. Ruega por nosotros.
+V. Santa Virgen de las vírgenes,
+R. Ruega por nosotros.
+V. Madre de Cristo,
+R. Ruega por nosotros.
+V. Madre de la Iglesia,
+R. Ruega por nosotros.
+V. Madre de la divina gracia,
+R. Ruega por nosotros.
+V. Madre purísima,
+R. Ruega por nosotros.
+V. Virgen clementísima,
+R. Ruega por nosotros.
+V. Virgen fiel,
+R. Ruega por nosotros.
+V. Espejo de justicia,
+R. Ruega por nosotros.
+V. Trono de la sabiduría,
+R. Ruega por nosotros.
+V. Causa de nuestra alegría,
+R. Ruega por nosotros.
+V. Rosa mística,
+R. Ruega por nosotros.
+V. Torre de David,
+R. Ruega por nosotros.
+V. Arca de la alianza,
+R. Ruega por nosotros.
+V. Puerta del cielo,
+R. Ruega por nosotros.
+V. Estrella de la mañana,
+R. Ruega por nosotros.
+V. Salud de los enfermos,
+R. Ruega por nosotros.
+V. Refugio de los pecadores,
+R. Ruega por nosotros.
+V. Consoladora de los afligidos,
+R. Ruega por nosotros.
+V. Auxilio de los cristianos,
+R. Ruega por nosotros.
+V. Reina de los Ángeles,
+R. Ruega por nosotros.
+V. Reina de los Patriarcas,
+R. Ruega por nosotros.
+V. Reina de los Apóstoles,
+R. Ruega por nosotros.
+V. Reina de los Mártires,
+R. Ruega por nosotros.
+V. Reina de todos los Santos,
+R. Ruega por nosotros.
+V. Reina concebida sin pecado original,
+R. Ruega por nosotros.
+V. Reina asunta a los Cielos,
+R. Ruega por nosotros.
+V. Reina del Santísimo Rosario,
+R. Ruega por nosotros.
+V. Reina de las familias,
+R. Ruega por nosotros.
+V. Reina de la paz,
+R. Ruega por nosotros.
+V. Cordero de Dios, que quitas el pecado del mundo,
+R. Perdónanos, Señor.
+V. Cordero de Dios, que quitas el pecado del mundo,
+R. Escúchanos, Señor.
+V. Cordero de Dios, que quitas el pecado del mundo,
+R. Ten misericordia de nosotros.
+V. Ruega por nosotros, Santa Madre de Dios.
+(Followed by the Chaplet of Divine Mercy)`
         }
       ];
+    </script>
+
+    <!-- Main React Components -->
+    <script type="text/babel">
+      const { useState, useEffect, useRef, useMemo, Fragment } = React;
 
       // --- UTILS ---
       const getPrayerText = (prayer, lang) => {
@@ -706,11 +979,11 @@
       }
 
       // Updated Segmented Language Control
-      const HeaderControls = ({ lang, setLang, className }) => (
+      const HeaderControls = ({ lang, setLang, className, hideLatin }) => (
           <div className={className || "absolute top-6 right-6 z-50 flex items-center gap-1 bg-black/40 backdrop-blur-md border border-white/10 rounded-full p-1 shadow-lg"}>
             <button onClick={() => setLang(Lang.EN)} className={`px-4 py-1.5 rounded-full text-xs font-bold font-display transition-all ${lang === Lang.EN ? 'bg-gold-500 text-church-950 shadow-sm' : 'text-slate-400 hover:text-white'}`}>EN</button>
             <button onClick={() => setLang(Lang.ES)} className={`px-4 py-1.5 rounded-full text-xs font-bold font-display transition-all ${lang === Lang.ES ? 'bg-gold-500 text-church-950 shadow-sm' : 'text-slate-400 hover:text-white'}`}>ES</button>
-            <button onClick={() => setLang(Lang.LA)} className={`px-4 py-1.5 rounded-full text-xs font-bold font-display transition-all ${lang === Lang.LA ? 'bg-gold-500 text-church-950 shadow-sm' : 'text-slate-400 hover:text-white'}`}>LA</button>
+            {!hideLatin && <button onClick={() => setLang(Lang.LA)} className={`px-4 py-1.5 rounded-full text-xs font-bold font-display transition-all ${lang === Lang.LA ? 'bg-gold-500 text-church-950 shadow-sm' : 'text-slate-400 hover:text-white'}`}>LA</button>}
           </div>
       );
 
@@ -903,21 +1176,16 @@
           </div>
       );
 
-      const PrayerCard = ({ title, text, highlight, onMemorize }) => (
+      const PrayerCard = ({ title, text, highlight }) => (
           <div className={`p-6 rounded-xl border ${highlight ? 'bg-gold-500/5 border-gold-500/30' : 'bg-white/5 border-white/5'} backdrop-blur-sm relative group`}>
               <div className="flex justify-between items-start mb-3">
                   <h4 className={`font-display font-bold ${highlight ? 'text-gold-300' : 'text-slate-200'}`}>{title}</h4>
-                  {onMemorize && (
-                      <button onClick={onMemorize} className="text-slate-400 hover:text-gold-400 transition-colors p-1.5 bg-black/20 rounded-md border border-white/10 hover:border-gold-500/50" title={highlight ? "Memorize" : "Memorize"}>
-                          <Icons.Brain className="w-4 h-4" />
-                      </button>
-                  )}
               </div>
               <p className="font-serif text-slate-300 leading-relaxed text-lg whitespace-pre-line">{text}</p>
           </div>
       );
 
-      const DecadeCard = ({ title, text, count, onMemorize }) => {
+      const DecadeCard = ({ title, text, count }) => {
           const [beads, setBeads] = useState(Array(count).fill(false));
           const toggleBead = (idx) => {
               const newBeads = [...beads];
@@ -931,11 +1199,6 @@
                     <div className="flex justify-between items-baseline mb-4">
                         <div className="flex items-center gap-3">
                             <h4 className="font-display font-bold text-blue-200">{title}</h4>
-                            {onMemorize && (
-                                <button onClick={onMemorize} className="text-blue-300/70 hover:text-blue-200 transition-colors p-1.5 bg-black/20 rounded-md border border-white/5 hover:border-blue-400/30" title="Memorize">
-                                    <Icons.Brain className="w-4 h-4" />
-                                </button>
-                            )}
                         </div>
                         <span className="text-xs font-bold bg-blue-500/20 text-blue-300 px-2 py-1 rounded border border-blue-500/30">x{count}</span>
                     </div>
@@ -999,9 +1262,6 @@
                                           <div className="h-px bg-gold-500/30 flex-1"></div>
                                           <div className="flex items-center gap-3">
                                               <h3 className="font-display font-bold text-gold-500 uppercase tracking-widest text-sm text-center">{title}</h3>
-                                              <button onClick={() => onMemorize(prayer.id)} className="text-slate-400 hover:text-gold-400 transition-colors p-1.5 bg-black/20 rounded-md border border-white/10 hover:border-gold-500/50" title="Memorize">
-                                                  <Icons.Brain className="w-4 h-4" />
-                                              </button>
                                           </div>
                                           <div className="h-px bg-gold-500/30 flex-1"></div>
                                       </div>
@@ -1158,6 +1418,16 @@
           );
       }
 
+      const LITANY_LINKS = [
+        'https://www.ewtn.com/catholicism/devotions/litany-of-loreto-246',
+        'https://www.ewtn.com/catholicism/devotions/litany-of-the-sacred-heart-of-jesus-250',
+        'https://www.ewtn.com/catholicism/devotions/litany-of-st-joseph-247',
+        'https://www.ewtn.com/catholicism/devotions/litany-of-the-holy-name-of-jesus-248',
+        'https://www.ewtn.com/catholicism/devotions/litany-of-the-most-precious-blood-of-jesus-249',
+        'https://www.ewtn.com/catholicism/devotions/litany-of-the-saints-251',
+        'https://www.ewtn.com/catholicism/devotions/litany-of-humility-245'
+      ];
+
       function App() {
         const [view, setView] = useState(ViewMode.HOME);
         const [selectedCategory, setSelectedCategory] = useState(null);
@@ -1220,15 +1490,6 @@
                 } catch (err) {
                     console.error("Error saving progress:", err);
                 }
-            }
-        };
-
-        const handleMemorize = (prayerId, category) => {
-            const prayer = PRAYERS.find(p => p.id === prayerId);
-            if (prayer) {
-                setSelectedPrayer(prayer);
-                setSelectedCategory(category);
-                setView(ViewMode.PRAYER_DETAIL);
             }
         };
 
@@ -1296,69 +1557,40 @@
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-fade-in">
                       {Object.values(PrayerCategory).map((cat, i) => (
-                        <button key={cat} onClick={() => { 
-                            setSelectedCategory(cat); 
-                            if (cat === PrayerCategory.ROSARY) setView(ViewMode.ROSARY_FULL);
-                            else if (cat === PrayerCategory.MASS_RESPONSES) setView(ViewMode.MASS_FULL);
-                            else if (cat === PrayerCategory.DIVINE_MERCY) setView(ViewMode.DIVINE_MERCY_FULL);
-                            else setView(ViewMode.CATEGORY);
-                        }} className="group relative overflow-hidden bg-white/5 hover:bg-white/10 backdrop-blur-md border border-white/10 hover:border-gold-500/50 p-8 rounded-2xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(234,179,8,0.1)] hover:-translate-y-1 text-left flex items-center justify-between glass-panel active:scale-[0.98]" style={{ animationDelay: `${i * 50}ms` }}>
-                          <div className="relative z-10">
-                            <h3 className="font-display text-2xl font-bold text-slate-100 group-hover:text-gold-300 transition-colors">{getCategoryTitle(cat, lang)}</h3>
-                            <p className="text-slate-400 font-serif text-sm mt-2 flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-gold-500/50"></span>{cat === PrayerCategory.ROSARY ? 20 : PRAYERS.filter(p => p.category === cat).length} {lang === Lang.ES ? 'Oraciones' : lang === Lang.LA ? 'Orationes' : 'Prayers'}</p>
-                          </div>
-                          <div className="text-white/20 group-hover:text-gold-400/80 transition-all transform group-hover:translate-x-1"><Icons.ChevronRight /></div>
-                        </button>
-                      ))}
-                    </div>
-                )}
-              </main>
-              <footer className="relative z-10 py-6 text-center text-slate-600 text-xs font-serif">AMDG • Ad Majorem Dei Gloriam</footer>
-            </div>
-          );
-        }
-
-        if (view === ViewMode.ROSARY_FULL) {
-            return <RosaryFullView lang={lang} setLang={setLang} onBack={() => setView(ViewMode.HOME)} onMemorize={(id) => handleMemorize(id, PrayerCategory.ROSARY)} />;
-        }
-
-        if (view === ViewMode.MASS_FULL) {
-            return <MassFullView lang={lang} setLang={setLang} onBack={() => setView(ViewMode.HOME)} onMemorize={(id) => handleMemorize(id, PrayerCategory.MASS_RESPONSES)} />;
-        }
-
-        if (view === ViewMode.DIVINE_MERCY_FULL) {
-            return <DivineMercyFullView lang={lang} setLang={setLang} onBack={() => setView(ViewMode.HOME)} onMemorize={(id) => handleMemorize(id, PrayerCategory.DIVINE_MERCY)} />;
-        }
-
-        if (view === ViewMode.CATEGORY && selectedCategory) {
-          const categoryPrayers = PRAYERS.filter(p => p.category === selectedCategory);
-          return (
-            <div className="min-h-screen text-slate-100 relative">
-              <Background />
-              <header className="relative z-10 pt-8 pb-4 px-6 max-w-4xl mx-auto flex flex-col md:flex-row md:items-center gap-6 justify-between">
-                <div className="flex items-center gap-6">
-                    <button onClick={() => { setView(ViewMode.HOME); }} className="p-3 bg-white/5 hover:bg-white/10 rounded-full border border-white/10 text-slate-300 hover:text-white transition-all hover:scale-105 active:scale-95"><Icons.Back /></button>
-                    <div><span className="text-gold-500 text-xs font-bold tracking-widest uppercase mb-1 block">Category</span><h1 className="font-display text-3xl font-bold text-white shadow-black drop-shadow-lg">{getCategoryTitle(selectedCategory, lang)}</h1></div>
-                </div>
-                <div className="hidden md:block">
-                  <HeaderControls lang={lang} setLang={setLang} className="flex items-center" />
-                </div>
-              </header>
-              <div className="md:hidden mt-2 flex justify-center w-full relative z-20">
-                  <HeaderControls lang={lang} setLang={setLang} className="flex items-center" />
-              </div>
-              <main className="relative z-10 max-w-4xl mx-auto px-6 mt-8 pb-20">
-                <div className="grid gap-4 animate-slide-up">
-                  {categoryPrayers.map((prayer, i) => (
-                    <button key={prayer.id} onClick={() => { setSelectedPrayer(prayer); setView(ViewMode.PRAYER_DETAIL); }} className="group bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/10 hover:border-gold-500/30 p-6 rounded-xl transition-all duration-300 text-left hover:shadow-lg flex items-center justify-between glass-panel active:scale-[0.99]" style={{ animationDelay: `${i * 30}ms` }}>
-                      <div>
-                          <h3 className="font-display text-xl font-bold text-slate-100 group-hover:text-gold-200">{getPrayerTitle(prayer, lang)}</h3>
-                          {prayer.latinTitle && lang !== Lang.LA && <p className="font-serif italic text-sm text-gold-500/70 mt-1">{prayer.latinTitle}</p>}
+                    <button key={cat} onClick={() => { 
+                        if (cat === PrayerCategory.LITANIES) {
+                            const randomLitany = LITANY_LINKS[Math.floor(Math.random() * LITANY_LINKS.length)];
+                            window.open(randomLitany, '_blank');
+                            return;
+                        }
+                        if (cat === PrayerCategory.SAINTS) {
+                            window.open('https://www.franciscanmedia.org/saint-of-the-day/', '_blank');
+                            return;
+                        }
+                        setSelectedCategory(cat); 
+                        if (cat === PrayerCategory.ROSARY) setView(ViewMode.ROSARY_FULL);
+                        else if (cat === PrayerCategory.MASS_RESPONSES) setView(ViewMode.MASS_FULL);
+                        else if (cat === PrayerCategory.DIVINE_MERCY) setView(ViewMode.DIVINE_MERCY_FULL);
+                        else setView(ViewMode.CATEGORY);
+                    }} className="group relative overflow-hidden bg-white/5 hover:bg-white/10 backdrop-blur-md border border-white/10 hover:border-gold-500/50 p-8 rounded-2xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(234,179,8,0.1)] hover:-translate-y-1 text-left flex items-center justify-between glass-panel active:scale-[0.98]" style={{ animationDelay: `${i * 50}ms` }}>
+                      <div className="relative z-10">
+                        <h3 className="font-display text-2xl font-bold text-slate-100 group-hover:text-gold-300 transition-colors">{getCategoryTitle(cat, lang)}</h3>
+                        <p className="text-slate-400 font-serif text-sm mt-2 flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-gold-500/50"></span>
+                            {cat === PrayerCategory.ROSARY ? 20 : 
+                             cat === PrayerCategory.LITANIES ? (lang === Lang.ES ? 'Letanía Aleatoria' : lang === Lang.LA ? 'Litania Fortuita' : 'Random Litany') : 
+                             cat === PrayerCategory.SAINTS ? (lang === Lang.ES ? 'Santo del Día' : lang === Lang.LA ? 'Sanctus Diei' : 'Saint of the Day') :
+                             PRAYERS.filter(p => p.category === cat).length} 
+                            {cat !== PrayerCategory.LITANIES && cat !== PrayerCategory.SAINTS && (lang === Lang.ES ? ' Oraciones' : lang === Lang.LA ? ' Orationes' : ' Prayers')}
+                        </p>
                       </div>
-                      <div className="opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300 text-gold-400"><Icons.ChevronRight /></div>
+                      <div className="text-white/20 group-hover:text-gold-400/80 transition-all transform group-hover:translate-x-1">
+                          {cat === PrayerCategory.LITANIES || cat === PrayerCategory.SAINTS ? <Icons.Globe /> : <Icons.ChevronRight />}
+                      </div>
                     </button>
                   ))}
                 </div>
+                )}
               </main>
             </div>
           );
@@ -1380,14 +1612,54 @@
           return <PrayerDetail prayer={selectedPrayer} lang={lang} onBack={handleBack} Background={Background} setLang={setLang} onPrev={prevPrayer ? () => { setSelectedPrayer(prevPrayer); } : null} onNext={nextPrayer ? () => { setSelectedPrayer(nextPrayer); } : null} currentIndex={currentIndex} total={categoryPrayers.length} novenaProgress={novenaProgress} setNovenaProgress={handleSetNovenaProgress} />;
         }
         
+        if (view === ViewMode.CATEGORY) {
+            const categoryPrayers = PRAYERS.filter(p => p.category === selectedCategory);
+            return (
+                <div className="min-h-screen text-slate-100 relative overflow-hidden flex flex-col">
+                    <Background />
+                    <HeaderControls lang={lang} setLang={setLang} />
+                    <header className="relative z-20 px-4 py-4 backdrop-blur-xl border-b border-white/5 sticky top-0 bg-church-950/80 shadow-lg">
+                      <div className="max-w-4xl mx-auto flex items-center justify-between">
+                          <button onClick={() => setView(ViewMode.HOME)} className="p-2 hover:bg-white/10 rounded-full transition-colors text-slate-300 hover:text-white"><Icons.Back /></button>
+                          <h1 className="font-display text-xl font-bold text-white">{getCategoryTitle(selectedCategory, lang)}</h1>
+                          <div className="w-8"></div>
+                      </div>
+                    </header>
+                    <main className="relative z-10 max-w-3xl mx-auto px-6 py-8 w-full flex-1">
+                        <div className="grid gap-4 animate-fade-in">
+                            {categoryPrayers.map((prayer, i) => (
+                                <button key={prayer.id} onClick={() => { setSelectedPrayer(prayer); setView(ViewMode.PRAYER_DETAIL); }} className="group bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/10 hover:border-gold-500/30 p-6 rounded-xl transition-all duration-300 text-left hover:shadow-lg flex items-center justify-between glass-panel active:scale-[0.99]" style={{ animationDelay: `${(i % 10) * 30}ms` }}>
+                                  <div>
+                                      <h3 className="font-display text-xl font-bold text-slate-100 group-hover:text-gold-200">{getPrayerTitle(prayer, lang)}</h3>
+                                      {prayer.latinTitle && lang !== Lang.LA && <p className="font-serif text-sm text-gold-500/70 mt-1">{prayer.latinTitle}</p>}
+                                  </div>
+                                  <div className="opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300 text-gold-400"><Icons.ChevronRight /></div>
+                                </button>
+                            ))}
+                        </div>
+                    </main>
+                </div>
+            );
+        }
+
+        if (view === ViewMode.ROSARY_FULL) return <RosaryFullView lang={lang} setLang={setLang} onBack={() => setView(ViewMode.HOME)} />;
+        if (view === ViewMode.MASS_FULL) return <MassFullView lang={lang} setLang={setLang} onBack={() => setView(ViewMode.HOME)} />;
+        if (view === ViewMode.DIVINE_MERCY_FULL) return <DivineMercyFullView lang={lang} setLang={setLang} onBack={() => setView(ViewMode.HOME)} />;
+
         return null;
       }
 
       function PrayerDetail({ prayer, lang, onBack, Background, setLang, onPrev, onNext, currentIndex, total, novenaProgress, setNovenaProgress }) {
-        const [activeTab, setActiveTab] = useState('read');
-        const [gameMode, setGameMode] = useState(GameType.NONE);
         const topRef = useRef(null);
-        useEffect(() => { setGameMode(GameType.NONE); setActiveTab('read'); window.scrollTo({ top: 0, behavior: 'smooth' }); }, [prayer]);
+        useEffect(() => { window.scrollTo({ top: 0, behavior: 'smooth' }); }, [prayer]);
+        
+        const hasLatin = Boolean(prayer.text_la);
+
+        useEffect(() => {
+            if (!hasLatin && lang === Lang.LA) {
+                setLang(Lang.EN);
+            }
+        }, [hasLatin, lang, setLang]);
         
         const title = getPrayerTitle(prayer, lang);
         const fullText = getPrayerText(prayer, lang);
@@ -1420,25 +1692,14 @@
                     </div>
                   </div>
                   <div className="flex items-center gap-4 justify-between md:justify-end w-full md:w-auto">
-                      <div className="hidden md:block"><HeaderControls lang={lang} setLang={setLang} className="flex items-center" /></div>
-                      <div className="hidden md:flex bg-black/20 p-1 rounded-full border border-white/5">
-                          <TabButton active={activeTab === 'read'} onClick={() => { setActiveTab('read'); setGameMode(GameType.NONE); }} icon={<Icons.Book />} label={lang === Lang.ES ? "Leer" : lang === Lang.LA ? "Legere" : "Read"} />
-                          <TabButton active={activeTab === 'games'} onClick={() => { setActiveTab('games'); setGameMode(GameType.NONE); }} icon={<Icons.Puzzle />} label={lang === Lang.ES ? "Memorizar" : lang === Lang.LA ? "Memorare" : "Memorize"} />
-                      </div>
+                      <div className="hidden md:block"><HeaderControls lang={lang} setLang={setLang} hideLatin={!hasLatin} className="flex items-center" /></div>
                   </div>
               </div>
             </header>
             <div className="md:hidden mt-2 flex justify-center w-full relative z-20">
-                <HeaderControls lang={lang} setLang={setLang} className="flex items-center" />
-            </div>
-            <div className="md:hidden relative z-20 px-4 py-2 mt-2 bg-church-950/40 border-y border-white/5 backdrop-blur-md">
-                <div className="flex justify-between gap-2">
-                  <TabButton mobile active={activeTab === 'read'} onClick={() => { setActiveTab('read'); setGameMode(GameType.NONE); }} icon={<Icons.Book />} label={lang === Lang.ES ? "Leer" : lang === Lang.LA ? "Legere" : "Read"} />
-                  <TabButton mobile active={activeTab === 'games'} onClick={() => { setActiveTab('games'); setGameMode(GameType.NONE); }} icon={<Icons.Puzzle />} label={lang === Lang.ES ? "Memorizar" : lang === Lang.LA ? "Memorare" : "Memorize"} />
-                </div>
+                <HeaderControls lang={lang} setLang={setLang} hideLatin={!hasLatin} className="flex items-center" />
             </div>
             <main className="relative z-10 flex-1 max-w-3xl mx-auto w-full p-4 md:p-8 pb-32">
-              {activeTab === 'read' && (
                 <div className="animate-fade-in glass-panel p-8 md:p-12 rounded-2xl border border-white/10 shadow-2xl">
                     {isNovena && (
                         <div className="mb-10 flex flex-col items-center border-b border-white/10 pb-8">
@@ -1473,23 +1734,6 @@
                     ))}
                     </div>
                 </div>
-              )}
-              {activeTab === 'games' && gameMode === GameType.NONE && (
-                <div className="grid gap-4 mt-2 animate-slide-up grid-cols-1 md:grid-cols-2">
-                  <GameCard title={lang === Lang.ES ? "Completa la Frase" : "Fill in the Blanks"} desc={lang === Lang.ES ? "Completa la oración" : "Complete the prayer"} icon={<Icons.Puzzle />} onClick={() => { setGameMode(GameType.FILL_BLANKS); }} />
-                  <GameCard title={lang === Lang.ES ? "¿Qué Sigue?" : "What Comes Next?"} desc={lang === Lang.ES ? "Identifica la siguiente línea" : "Identify next line"} icon={<Icons.Brain />} onClick={() => { setGameMode(GameType.QUIZ); }} />
-                  <GameCard title={lang === Lang.ES ? "Ordena las Líneas" : "Order the Lines"} desc={lang === Lang.ES ? "Reensambla línea por línea" : "Reassemble line by line"} icon={<Icons.Puzzle />} onClick={() => { setGameMode(GameType.ORDER_LINES); }} />
-                  <GameCard title={lang === Lang.ES ? "Método de Primera Letra" : "First Letter Method"} desc={lang === Lang.ES ? "Solo primeras letras" : "First letters only"} icon={<Icons.Book />} onClick={() => { setGameMode(GameType.FIRST_LETTERS); }} />
-                </div>
-              )}
-              {activeTab === 'games' && gameMode !== GameType.NONE && (
-                  <div className="bg-black/20 border border-white/5 rounded-2xl p-6 backdrop-blur-md animate-fade-in min-h-[50vh]">
-                      {gameMode === GameType.FILL_BLANKS && <FillBlanksGame structure={structure} lang={lang} />}
-                      {gameMode === GameType.ORDER_LINES && <OrderLinesGame structure={structure} lang={lang} />}
-                      {gameMode === GameType.FIRST_LETTERS && <FirstLettersGame structure={structure} lang={lang} />}
-                      {gameMode === GameType.QUIZ && <QuizGame structure={structure} lang={lang} />}
-                  </div>
-              )}
             </main>
             <div className="fixed bottom-0 left-0 right-0 z-30 p-4 bg-church-950/90 backdrop-blur-xl border-t border-white/10 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] transition-transform duration-300">
               <div className="max-w-3xl mx-auto flex items-center justify-between">
@@ -1504,90 +1748,6 @@
             </div>
           </div>
         );
-      }
-
-      function TabButton({ active, onClick, icon, label, mobile }) {
-        return ( <button onClick={onClick} className={`flex items-center justify-center gap-2 px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 active:scale-95 ${mobile ? 'flex-1' : ''} ${active ? 'bg-gold-500 text-church-950 shadow-[0_0_15px_rgba(245,158,11,0.4)]' : 'text-slate-400 hover:text-slate-100 hover:bg-white/5'}`}><span className="w-4 h-4">{icon}</span>{!mobile && label}{mobile && <span className="text-xs">{label}</span>}</button> );
-      }
-      function GameCard({ title, desc, onClick, icon }) {
-        return ( <button onClick={onClick} className="group bg-gradient-to-br from-white/5 to-transparent hover:from-white/10 p-6 rounded-xl border border-white/10 hover:border-gold-500/40 transition-all duration-300 text-left hover:shadow-lg hover:-translate-y-0.5 active:scale-[0.98] h-full"><div className="flex flex-col gap-3"><div className="w-12 h-12 rounded-full bg-gold-500/10 flex items-center justify-center text-gold-400 group-hover:bg-gold-500 group-hover:text-church-950 transition-all duration-300">{icon || <Icons.Puzzle />}</div><div><h3 className="font-display text-lg font-bold text-slate-100 group-hover:text-gold-200">{title}</h3><p className="text-slate-400 text-sm mt-1">{desc}</p></div></div></button> );
-      }
-
-      // -- Mini Games Components --
-      function FillBlanksGame({ structure, lang }) {
-        const [segments, setSegments] = useState([]);
-        const [options, setOptions] = useState([]);
-        const [currentIndex, setCurrentIndex] = useState(-1);
-        const [completed, setCompleted] = useState(false);
-        
-        useEffect(() => {
-          const newSegments = []; const hiddenWords = []; let hiddenCount = 0;
-          structure.forEach(seg => {
-            if (seg.role === Role.PEOPLE) {
-                 const tokens = [];
-                 seg.text.split(/([a-zA-Z0-9À-ÿ]+)/g).forEach(s => {
-                    if (!s) return;
-                    const isWord = /^[a-zA-Z0-9À-ÿ]+$/.test(s);
-                    const shouldHide = isWord && s.length > 2 && Math.random() < 0.3;
-                    if (shouldHide) { tokens.push({ word: s, type: 'word', hidden: true, filled: false, globalIndex: hiddenCount }); hiddenWords.push(s); hiddenCount++; } 
-                    else { tokens.push({ word: s, type: isWord ? 'word' : 'punct', hidden: false, filled: true }); }
-                 });
-                 newSegments.push({ ...seg, tokens, isInteractive: true });
-            } else { newSegments.push({ ...seg, isInteractive: false }); }
-          });
-          setSegments(newSegments); setOptions(hiddenWords.sort(() => Math.random() - 0.5)); setCurrentIndex(0); setCompleted(hiddenWords.length === 0);
-        }, [structure]);
-
-        const handleSelectWord = (word, optionIndex) => {
-          let targetSegmentIdx = -1, targetTokenIdx = -1;
-          for (let s=0; s<segments.length; s++) {
-             if (!segments[s].isInteractive) continue;
-             const idx = segments[s].tokens.findIndex(t => t.hidden && t.globalIndex === currentIndex);
-             if (idx !== -1) { targetSegmentIdx = s; targetTokenIdx = idx; break; }
-          }
-          if (targetSegmentIdx === -1) return;
-          if (segments[targetSegmentIdx].tokens[targetTokenIdx].word === word) {
-            const newSegments = [...segments]; newSegments[targetSegmentIdx].tokens[targetTokenIdx].hidden = false; newSegments[targetSegmentIdx].tokens[targetTokenIdx].filled = true; setSegments(newSegments);
-            const newOptions = [...options]; newOptions.splice(optionIndex, 1); setOptions(newOptions);
-            if (newOptions.length === 0) { setCompleted(true); } else { setCurrentIndex(currentIndex + 1); }
-          }
-        };
-
-        return ( <div className="flex flex-col h-full"><div className="bg-black/30 p-4 rounded-xl mb-4 font-serif text-lg leading-loose min-h-[100px] max-h-[40vh] overflow-y-auto">{segments.map((seg, i) => (!seg.isInteractive ? <div key={i} className="mb-2 text-slate-500 text-sm">{seg.text}</div> : <div key={i} className="mb-2 text-slate-300">{seg.tokens.map((t, k) => !t.hidden ? <span key={k} className={t.filled && t.globalIndex !== undefined ? "text-gold-400" : ""}>{t.word}</span> : <span key={k} className={`inline-block min-w-[3rem] border-b-2 mx-1 text-center ${t.globalIndex === currentIndex ? 'border-gold-500 bg-gold-500/10' : 'border-slate-700'}`}>&nbsp;</span>)}</div>))}</div>{!completed && <div className="flex flex-wrap gap-2 justify-center">{options.map((word, i) => <button key={i} onClick={() => handleSelectWord(word, i)} className="px-3 py-1 bg-church-800 border border-white/10 rounded hover:bg-gold-500 hover:text-black transition-colors">{word}</button>)}</div>}{completed && <div className="text-center text-green-400 font-bold mt-4">Completed!</div>}</div> );
-      }
-      
-      function FirstLettersGame({ structure }) {
-        const [showFull, setShowFull] = useState(false);
-        const convert = (text) => text.split(/([a-zA-Z0-9À-ÿ]+)/g).map(t => /^[a-zA-Z0-9À-ÿ]+$/.test(t) ? t.charAt(0) : t).join('');
-        return ( <div><div className="flex justify-end mb-4"><button onMouseDown={()=>setShowFull(true)} onMouseUp={()=>setShowFull(false)} onMouseLeave={()=>setShowFull(false)} onTouchStart={()=>setShowFull(true)} onTouchEnd={()=>setShowFull(false)} className="text-xs bg-gold-500/20 text-gold-300 border border-gold-500/30 px-3 py-1 rounded-full uppercase font-bold transition-colors hover:bg-gold-500/40">Hold to Peek</button></div><div className="text-center space-y-4">{structure.map((seg, i) => <p key={i} className={`font-serif text-xl leading-loose transition-all duration-300 ${showFull ? 'text-slate-200' : 'text-gold-200 font-bold'}`}>{showFull ? seg.text : convert(seg.text)}</p>)}</div></div> );
-      }
-
-      function OrderLinesGame({ structure, lang }) {
-        const [lines, setLines] = useState([]); const [shuffled, setShuffled] = useState([]); const [currentLineIdx, setCurrentLineIdx] = useState(0);
-        useEffect(() => { const l = structure.filter(s => s.role === Role.PEOPLE).flatMap(s => breakTextIntoChunks(s.text)).filter(l=>l.length>0); setLines(l); setShuffled([...l].sort(()=>Math.random()-0.5)); setCurrentLineIdx(0); }, [structure]);
-        const handleLineClick = (line, idx) => { if (line === lines[currentLineIdx]) { const n = [...shuffled]; n.splice(idx, 1); setShuffled(n); setCurrentLineIdx(p=>p+1); } };
-        return ( <div><div className="bg-black/30 p-4 rounded mb-4 min-h-[100px] flex flex-col items-center">{lines.slice(0, currentLineIdx).map((l, i)=><p key={i} className="text-gold-300 mb-2 text-center w-full border-b border-white/5 pb-1">{l}</p>)}</div><div className="space-y-2">{shuffled.map((l, i)=><button key={i} onClick={()=>handleLineClick(l, i)} className="w-full p-3 bg-white/5 border border-white/10 rounded text-center text-sm hover:bg-white/10 transition-colors">{l}</button>)}</div></div> );
-      }
-
-      function QuizGame({ structure, lang }) {
-         const [q, setQ] = useState(null); const [finished, setFinished] = useState(false);
-         useEffect(() => {
-             const units = structure.flatMap(s => breakTextIntoChunks(s.text));
-             if(units.length < 2) { setFinished(true); return; }
-             const qs = [];
-             for(let i=0; i<units.length-1; i++) {
-                 const others = units.filter(u => u !== units[i+1] && u !== units[i]);
-                 const dist = others.sort(()=>0.5-Math.random()).slice(0,3);
-                 qs.push({ prompt: units[i], correct: units[i+1], options: [...dist, units[i+1]].sort(()=>0.5-Math.random()) });
-             }
-             if(qs.length > 0) setQ({ list: qs, idx: 0 }); else setFinished(true);
-         }, [structure]);
-         const handleGuess = (opt) => {
-             if(opt === q.list[q.idx].correct) { if(q.idx < q.list.length-1) setQ({ ...q, idx: q.idx+1 }); else setFinished(true); } 
-         };
-         if(finished || !q) return <div className="text-center font-bold text-green-400 mt-10">Quiz Complete!</div>;
-         const curr = q.list[q.idx];
-         return ( <div><div className="bg-black/30 p-6 rounded mb-6 text-center"><p className="text-xs uppercase text-slate-500 mb-2">After this...</p><p className="font-serif text-xl">"{curr.prompt}"</p></div><div className="grid gap-2">{curr.options.map((o, i)=><button key={i} onClick={()=>handleGuess(o)} className="p-4 bg-white/5 border border-white/10 rounded hover:bg-white/10 text-left transition-colors">{o}</button>)}</div></div> );
       }
 
       const rootElement = document.getElementById('root');
