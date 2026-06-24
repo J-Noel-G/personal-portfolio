@@ -1,0 +1,522 @@
+[
+  {
+    "id": "mass-greeting",
+    "category": "Mass Responses",
+    "title": "The Greeting",
+    "title_es": "El Saludo",
+    "title_la": "Ritus Initiales",
+    "text": "Priest: The Lord be with you.\nPeople: And with your spirit.",
+    "text_es": "Sacerdote: El Señor esté con vosotros.\nPueblo: Y con tu espíritu.",
+    "text_la": "Sacerdos: Dominus vobiscum.\nPopulus: Et cum spiritu tuo."
+  },
+  {
+    "id": "mass-kyrie",
+    "category": "Mass Responses",
+    "title": "Kyrie Eleison",
+    "title_es": "Señor, Ten Piedad",
+    "title_la": "Kyrie",
+    "text": "Priest: Lord, have mercy.\nPeople: Lord, have mercy.\n\nPriest: Christ, have mercy.\nPeople: Christ, have mercy.\n\nPriest: Lord, have mercy.\nPeople: Lord, have mercy.",
+    "text_es": "Sacerdote: Señor, ten piedad.\nPueblo: Señor, ten piedad.\n\nSacerdote: Cristo, ten piedad.\nPueblo: Cristo, ten piedad.\n\nSacerdote: Señor, ten piedad.\nPueblo: Señor, ten piedad.",
+    "text_la": "Sacerdos: Kyrie, eleison.\nPopulus: Kyrie, eleison.\n\nSacerdos: Christe, eleison.\nPopulus: Christe, eleison.\n\nSacerdos: Kyrie, eleison.\nPopulus: Kyrie, eleison."
+  },
+  {
+    "id": "mass-resp-act-contrition",
+    "category": "Mass Responses",
+    "title": "Act of Contrition",
+    "title_es": "Acto de Contrición",
+    "title_la": "Actus Contritionis",
+    "text": "O my God, I am heartily sorry for having offended Thee,\nand I detest all my sins because of thy just punishments,\nbut most of all because they offend Thee, my God,\nwho art all good and deserving of all my love.\nI firmly resolve with the help of Thy grace\nto sin no more and to avoid the near occasion of sin. Amen.",
+    "text_es": "Señor mío Jesucristo, Dios y Hombre verdadero,\nCreador, Padre y Redentor mío;\npor ser Vos quien sois, Bondad infinita,\ny porque os amo sobre todas las cosas,\nme pesa de todo corazón haberos ofendido;\ntambién me pesa porque podéis castigarme con las penas del infierno.\nAyudado de vuestra divina gracia,\npropongo firmemente nunca más pecar,\nconfesarme y cumplir la penitencia que me fuere impuesta. Amén.",
+    "text_la": "Deus meus, ex toto corde paenitet me omnium meorum peccatorum,\neaque detestor, quia peccando,\nnon solum poenas a te iuste statutas promeritus sum,\nsed praesertim quia offendi te,\nsummum bonum, ac dignum qui super omnia diligaris.\nIdeo firmiter propono,\nadiuvante gratia tua,\nde cetero me non peccaturum peccandique occasiones proximas fugiturum. Amen."
+  },
+  {
+    "id": "mass-resp-confiteor",
+    "category": "Mass Responses",
+    "title": "I Confess",
+    "title_es": "Yo Confieso",
+    "title_la": "Confiteor",
+    "text": "I confess to almighty God\nand to you, my brothers and sisters,\nthat I have greatly sinned,\nin my thoughts and in my words,\nin what I have done and in what I have failed to do,\nthrough my fault, through my fault,\nthrough my most grievous fault;\ntherefore I ask blessed Mary ever-Virgin,\nall the Angels and Saints,\nand you, my brothers and sisters,\nto pray for me to the Lord our God.",
+    "text_es": "Yo confieso ante Dios todopoderoso\ny ante ustedes, hermanos,\nque he pecado mucho\nde pensamiento, palabra, obra y omisión.\nPor mi culpa, por mi culpa, por mi gran culpa.\nPor eso ruego a santa María, siempre Virgen,\na los ángeles, a los santos\ny a ustedes, hermanos,\nque intercedan por mí ante Dios, nuestro Señor.",
+    "text_la": "Confiteor Deo omnipotenti\net vobis, fratres,\nquia peccavi nimis\ncogitatione, verbo,\nopere et omissione:\nmea culpa, mea culpa,\nmea maxima culpa.\nIdeo precor beatam Mariam semper Virginem,\nomnes Angelos et Sanctos,\net vos, fratres,\norare pro me ad Dominum Deum nostrum."
+  },
+  {
+    "id": "mass-resp-gloria",
+    "category": "Mass Responses",
+    "title": "Glory to God",
+    "title_es": "Gloria",
+    "title_la": "Gloria in Excelsis",
+    "text": "Glory to God in the highest,\nand on earth peace to people of good will.\nWe praise you,\nwe bless you,\nwe adore you,\nwe glorify you,\nwe give you thanks for your great glory,\nLord God, heavenly King,\nO God, almighty Father.\nLord Jesus Christ, Only Begotten Son,\nLord God, Lamb of God, Son of the Father,\nyou take away the sins of the world, have mercy on us;\nyou take away the sins of the world, receive our prayer;\nyou are seated at the right hand of the Father, have mercy on us.\nFor you alone are the Holy One,\nyou alone are the Lord,\nyou alone are the Most High,\nJesus Christ,\nwith the Holy Spirit,\nin the glory of God the Father. Amen.",
+    "text_es": "Gloria a Dios en el cielo,\ny en la tierra paz a los hombres que ama el Señor.\nPor tu inmensa gloria te alabamos,\nte bendecimos,\nte adoramos,\nte glorificamos,\nte damos gracias,\nSeñor Dios, Rey celestial,\nDios Padre todopoderoso.\nSeñor, Hijo único, Jesucristo;\nSeñor Dios, Cordero de Dios, Hijo del Padre;\ntú que quitas el pecado del mundo, ten piedad de nosotros;\ntú que quitas el pecado del mundo, atiende nuestra súplica;\ntú que estás sentado a la derecha del Padre, ten piedad de nosotros;\nporque sólo tú eres Santo,\nsólo tú Señor,\nsólo tú Altísimo, Jesucristo,\ncon el Espíritu Santo\nen la gloria de Dios Padre. Amén.",
+    "text_la": "Gloria in excelsis Deo\net in terra pax hominibus bonae voluntatis.\nLaudamus te,\nbenedicimus te,\nadoramus te,\nglorificamus te,\ngratias agimus tibi propter magnam gloriam tuam,\nDomine Deus, Rex caelestis,\nDeus Pater omnipotens.\nDomine Fili unigenite, Iesu Christe,\nDomine Deus, Agnus Dei, Filius Patris,\nqui tollis peccata mundi, miserere nobis;\nqui tollis peccata mundi, suscipe deprecationem nostram.\nQui sedes ad dexteram Patris, miserere nobis.\nQuoniam tu solus Sanctus,\ntu solus Dominus,\ntu solus Altissimus,\nIesu Christe,\ncum Sancto Spiritu:\nin gloria Dei Patris. Amen."
+  },
+  {
+    "id": "mass-readings",
+    "category": "Mass Responses",
+    "title": "Responses to the Word",
+    "title_es": "Liturgia de la Palabra",
+    "title_la": "Liturgia Verbi",
+    "text": "(At the end of the Readings)\nLector: The Word of the Lord.\nPeople: Thanks be to God.\n\n(Before the Gospel)\nPriest: A reading from the holy Gospel according to N.\nPeople: Glory to you, O Lord.\n\n(After the Gospel)\nPriest: The Gospel of the Lord.\nPeople: Praise to you, Lord Jesus Christ.",
+    "text_es": "(Al final de las Lecturas)\nLector: Palabra de Dios.\nPueblo: Te alabamos, Señor.\n\n(Antes del Evangelio)\nSacerdote: Lectura del santo Evangelio según San N.\nPueblo: Gloria a Ti, Señor.\n\n(Después del Evangelio)\nSacerdote: Palabra del Señor.\nPueblo: Gloria a Ti, Señor Jesús.",
+    "text_la": "(In fine lectionum)\nLector: Verbum Domini.\nPopulus: Deo gratias.\n\n(Ante Evangelium)\nSacerdos: Lectio sancti Evangelii secundum N.\nPopulus: Gloria tibi, Domine.\n\n(Post Evangelium)\nSacerdos: Verbum Domini.\nPopulus: Laus tibi, Christe."
+  },
+  {
+    "id": "mass-resp-creed",
+    "category": "Mass Responses",
+    "title": "Nicene Creed",
+    "title_es": "Credo Niceno",
+    "title_la": "Credo",
+    "text": "I believe in one God,\nthe Father almighty,\nmaker of heaven and earth,\nof all things visible and invisible.\nI believe in one Lord Jesus Christ,\nthe Only Begotten Son of God,\nborn of the Father before all ages.\nGod from God, Light from Light,\ntrue God from true God,\nbegotten, not made, consubstantial with the Father;\nthrough him all things were made.\nFor us men and for our salvation\nhe came down from heaven,\nand by the Holy Spirit was incarnate of the Virgin Mary,\nand became man.\nFor our sake he was crucified under Pontius Pilate,\nhe suffered death and was buried,\nand rose again on the third day\nin accordance with the Scriptures.\nHe ascended into heaven\nand is seated at the right hand of the Father.\nHe will come again in glory\nto judge the living and the dead\nand his kingdom will have no end.\nI believe in the Holy Spirit, the Lord, the giver of life,\nwho proceeds from the Father and the Son,\nwho with the Father and the Son is adored and glorified,\nwho has spoken through the prophets.\nI believe in one, holy, catholic and apostolic Church.\nI confess one Baptism for the forgiveness of sins\nand I look forward to the resurrection of the dead\nand the life of the world to come. Amen.",
+    "text_es": "Creo en un solo Dios,\nPadre todopoderoso,\nCreador del cielo y de la tierra,\nde todo lo visible y lo invisible.\nCreo en un solo Señor, Jesucristo,\nHijo único de Dios,\nnacido del Padre antes de todos los siglos:\nDios de Dios, Luz de Luz,\nDios verdadero de Dios verdadero,\nengendrado, no creado,\nde la misma naturaleza del Padre,\npor quien todo fue hecho;\nque por nosotros, los hombres,\ny por nuestra salvación bajó del cielo,\ny por obra del Espíritu Santo\nse encarnó de María, la Virgen, y se hizo hombre;\ny por nuestra causa fue crucificado\nen tiempos de Poncio Pilato;\npadeció y fue sepultado,\ny resucitó al tercer día, según las Escrituras,\ny subió al cielo,\ny está sentado a la derecha de Dios, Padre todopoderoso.\nDesde allí ha de venir a juzgar a vivos y muertos.\nCreo en el Espíritu Santo,\nla santa Iglesia católica,\nla comunión de los santos,\nel perdón de los pecados,\nla resurrección de la carne\ny la vida eterna. Amén.",
+    "text_la": "Credo in unum Deum,\nPatrem omnipotentem,\nfactorem caeli et terrae,\nvisibilium omnium et invisibilium.\nEt in unum Dominum Iesum Christum,\nFilium Dei unigenitum,\net ex Patre natum ante omnia saecula.\nDeum de Deo, lumen de lumine,\nDeum verum de Deo vero,\ngenitum, not factum, consubstantialem Patri:\nper quem omnia facta sunt.\nQui propter nos homines et propter nostram salutem\ndescendit de caelis.\nEt incarnatus est de Spiritu Sancto\nex Maria Virgine, et homo factus est.\nCrucifixus etiam pro nobis sub Pontio Pilato;\npassus et sepultus est,\net resurrexit tertia die, secundum Scripturas,\net ascendit in caelum,\nsedet ad dexteram Patri.\nEt iterum venturus est cum gloria,\niudicare vivos et mortuos,\ncuius regni non erit finis.\nEt in Spiritum Sanctum, Dominum et vivificantem:\nqui ex Patre Filioque procedit.\nQui cum Patre et Filio simul adoratur et conglorificatur:\nqui locutus est per prophetas.\nEt unam, sanctam, catholicam et apostolicam Ecclesiam.\nConfiteor unum baptisma in remissionem peccatorum.\nEt exspecto resurrectionem mortuorum,\net vitam venturi saeculi. Amen."
+  },
+  {
+    "id": "mass-resp-offertory",
+    "category": "Mass Responses",
+    "title": "Offertory Response",
+    "title_es": "Respuesta del Ofertorio",
+    "title_la": "Oratio super Oblata",
+    "text": "Priest: Pray, brethren (brothers and sisters), that my sacrifice and yours may be acceptable to God, the almighty Father.\nPeople: May the Lord accept the sacrifice at your hands for the praise and glory of his name, for our good and the good of all his holy Church.",
+    "text_es": "Sacerdote: Orad, hermanos, para que este sacrificio, mío y vuestro, sea agradable a Dios, Padre todopoderoso.\nPueblo: El Señor reciba de tus manos este sacrificio, para alabanza y gloria de su nombre, para nuestro bien y el de toda su santa Iglesia.",
+    "text_la": "Sacerdos: Orate, fratres, ut meum ac vestrum sacrificium acceptabile fiat apud Deum Patrem omnipotentem.\nPopulus: Suscipiat Dominus sacrificium de manibus tuis ad laudem et gloriam nominis sui, ad utilitatem quoque nostram totiusque Ecclesiae suae sanctae."
+  },
+  {
+    "id": "preface-dialogue",
+    "category": "Mass Responses",
+    "title": "Preface Dialogue",
+    "title_es": "Diálogo del Prefacio",
+    "title_la": "Dialogus Praefationis",
+    "text": "Priest: The Lord be with you.\nPeople: And with your spirit.\n\nPriest: Lift up your hearts.\nPeople: We lift them up to the Lord.\n\nPriest: Let us give thanks to the Lord our God.\nPeople: It is right and just.",
+    "text_es": "Sacerdote: El Señor esté con vosotros.\nPueblo: Y con tu espíritu.\n\nSacerdote: Levantemos el corazón.\nPueblo: Lo tenemos levantado hacia el Señor.\n\nSacerdote: Demos gracias al Señor nuestro Dios.\nPueblo: Es justo y necesario.",
+    "text_la": "Sacerdos: Dominus vobiscum.\nPopulus: Et cum spiritu tuo.\n\nSacerdos: Sursum corda.\nPopulus: Habemus ad Dominum.\n\nSacerdos: Gratias agamus Domino Deo nostro.\nPopulus: Dignum et iustum est."
+  },
+  {
+    "id": "mass-resp-sanctus",
+    "category": "Mass Responses",
+    "title": "Holy, Holy, Holy",
+    "title_es": "Santo, Santo, Santo",
+    "title_la": "Sanctus",
+    "text": "Holy, Holy, Holy Lord God of hosts.\nHaven and earth are full of your glory.\nHosanna in the highest.\nBlessed is he who comes in the name of the Lord.\nHosanna in the highest.",
+    "text_es": "Santo, Santo, Santo es el Señor, Dios del Universo.\nLlenos están el cielo y la tierra de tu gloria.\nHosanna en el cielo.\nBendito el que viene en nombre del Señor.\nHosanna en el cielo.",
+    "text_la": "Sanctus, Sanctus, Sanctus Dominus Deus Sabaoth.\nPleni sunt caeli et terra gloria tua.\nHosanna in excelsis.\nBenedictus qui venit in nomine Domini.\nHosanna in excelsis."
+  },
+  {
+    "id": "mystery-faith",
+    "category": "Mass Responses",
+    "title": "The Mystery of Faith",
+    "title_es": "Misterio de la Fe",
+    "title_la": "Mysterium Fidei",
+    "text": "Priest: The mystery of faith.\nPeople: We proclaim your Death, O Lord, and profess your Resurrection until you come again.",
+    "text_es": "Sacerdote: Éste es el Misterio de la fe.\nPueblo: Anunciamos tu muerte, proclamamos tu resurrección. ¡Ven, Señor Jesús!",
+    "text_la": "Sacerdos: Mysterium fidei.\nPopulus: Mortem tuam annuntiamus, Domine, et tuam resurrectionem confitemur, donec venias."
+  },
+  {
+    "id": "mass-resp-our-father",
+    "category": "Mass Responses",
+    "title": "The Lord's Prayer",
+    "title_es": "Padre Nuestro",
+    "title_la": "Pater Noster",
+    "text": "Our Father, who art in heaven,\nhallowed be thy name;\nthy kingdom come;\nthy will be done on earth as it is in heaven.\nGive us this day our daily bread;\nand forgive us our trespasses\nas we forgive those who trespass against us;\nand lead us not into temptation,\nbut deliver us from evil. Amen.",
+    "text_es": "Padre nuestro, que estás en el cielo,\nsantificado sea tu Nombre;\nvenga a nosotros tu reino;\nhágase tu voluntad en la tierra como en el cielo.\nDanos hoy nuestro pan de cada día;\nperdona nuestras ofensas,\ncomo también nosotros perdonamos a los que nos ofenden;\nno nos dejes caer en la tentación,\ny líbranos del mal. Amén.",
+    "text_la": "Pater noster, qui es in caelis,\nsanctificetur nomen tuum.\nAdveniat regnum tuum.\nFiat voluntas tua, sicut in caelo et in terra.\nPanem nostrum cotidianum da nobis hodie,\net dimitte nobis debita nostra\nsicut et nos dimittimus debitoribus nostris.\nEt ne nos inducas in tentationem,\nsed libera nos a malo. Amen."
+  },
+  {
+    "id": "mass-resp-peace",
+    "category": "Mass Responses",
+    "title": "Sign of Peace",
+    "title_es": "Rito de la Paz",
+    "title_la": "Ritus Pacis",
+    "text": "Priest: The peace of the Lord be with you always.\nPeople: And with your spirit.\n\n(Then, if appropriate, the Deacon or Priest adds: \"Let us offer each other the sign of peace.\")",
+    "text_es": "Sacerdote: La paz del Señor esté siempre con vosotros.\nPueblo: Y con tu espíritu.\n\n(Luego, si es oportuno, se añade: \"Daos fraternalmente la paz.\")",
+    "text_la": "Sacerdos: Pax Domini sit semper vobiscum.\nPopulus: Et cum spiritu tuo.\n\n(Deinde, pro opportunitate, Diaconus vel Sacerdos addit: \"Offerte vobis pacem.\")"
+  },
+  {
+    "id": "mass-resp-agnus-dei",
+    "category": "Mass Responses",
+    "title": "Lamb of God",
+    "title_es": "Cordero de Dios",
+    "title_la": "Agnus Dei",
+    "text": "Lamb of God, you take away the sins of the world,\nhave mercy on us.\nLamb of God, you take away the sins of the world,\nhave mercy on us.\nLamb of God, you take away the sins of the world,\ngrant us peace.",
+    "text_es": "Cordero de Dios, que quitas el pecado del mundo,\nten piedad de nosotros.\nCordero de Dios, que quitas el pecado del mundo,\nten piedad de nosotros.\nCordero de Dios, que quitas el pecado del mundo,\ndanos la paz.",
+    "text_la": "Agnus Dei, qui tollis peccata mundi,\nmiserere nobis.\nAgnus Dei, qui tollis peccata mundi,\nmiserere nobis.\nAgnus Dei, qui tollis peccata mundi,\ndona nobis pacem."
+  },
+  {
+    "id": "communion-invite",
+    "category": "Mass Responses",
+    "title": "Invitation to Communion",
+    "title_es": "Invitación a la Comunión",
+    "title_la": "Ecce Agnus Dei",
+    "text": "Priest: Behold the Lamb of God, behold him who takes away the sins of the world. Blessed are those called to the supper of the Lamb.\n\nAll: Lord, I am not worthy that you should enter under my roof, but only say the word and my soul shall be healed.",
+    "text_es": "Sacerdote: Éste es el Cordero de Dios, que quita el pecado del mundo. Dichosos los invitados a la cena del Señor.\n\nTodos: Señor, no soy digno de que entres en mi casa, pero una palabra tuya bastará para sanarme.",
+    "text_la": "Sacerdos: Ecce Agnus Dei, ecce qui tollit peccata mundi. Beati qui ad cenam Agni vocati sunt.\n\nPopulus: Domine, non sum dignus, ut intres sub tectum meum, sed tantum dic verbo et sanabitur anima mea."
+  },
+  {
+    "id": "dismissal",
+    "category": "Mass Responses",
+    "title": "The Dismissal",
+    "title_es": "Despedida",
+    "title_la": "Ite, Missa Est",
+    "text": "Priest: Go forth, the Mass is ended.\nPeople: Thanks be to God.",
+    "text_es": "Sacerdote: Podéis ir en paz.\nPueblo: Demos gracias a Dios.",
+    "text_la": "Sacerdos: Ite, missa est.\nPopulus: Deo gratias."
+  },
+  {
+    "id": "apostles-creed",
+    "category": "Basic Prayers",
+    "title": "Apostles' Creed",
+    "title_es": "Credo de los Apóstoles",
+    "title_la": "Symbolum Apostolorum",
+    "text": "I believe in God,\nthe Father almighty,\nCreator of heaven and earth,\nand in Jesus Christ, his only Son, our Lord,\nwho was conceived by the Holy Spirit,\nborn of the Virgin Mary,\nsuffered under Pontius Pilate,\nwas crucified, died and was buried;\nhe descended into hell;\non the third day he rose again from the dead;\nhe ascended into heaven,\nand is seated at the right hand of God the Father almighty;\nfrom there he will come to judge the living and the dead.\nI believe in the Holy Spirit,\nthe holy catholic Church,\nthe communion of saints,\nthe forgiveness of sins,\nthe resurrection of the body,\nand life everlasting. Amen.",
+    "text_es": "Creo en Dios, Padre todopoderoso,\nCreador del cielo y de la tierra.\nCreo en Jesucristo, su único Hijo, nuestro Señor,\nque fue concebido por obra y gracia del Espíritu Santo,\nnació de Santa María Virgen,\npadeció bajo el poder de Poncio Pilato,\nfue crucificado, muerto y sepultado,\ndescendió a los infiernos,\nal tercer día resucitó de entre los muertos,\nsubió a los cielos\ny está sentado a la derecha de Dios, Padre todopoderoso.\nDesde allí ha de venir a juzgar a vivos y muertos.\nCreo en el Espíritu Santo,\nla santa Iglesia católica,\nla comunión de los santos,\nel perdón de los pecados,\nla resurrección de la carne\ny la vida eterna. Amén.",
+    "text_la": "Credo in Deum Patrem omnipotentem,\nCreatorem caeli et terrae.\nEt in Iesum Christum, Filium eius unicum, Dominum nostrum,\nqui conceptus est de Spiritu Sancto,\nnatus ex Maria Virgine,\npassus sub Pontio Pilato,\ncrucifixus, mortuus, et sepultus,\ndescendit ad inferos,\ntertia die resurrexit a mortuis,\nascendit ad caelos,\nsedet ad dexteram Dei Patris omnipotentis,\ninde venturus est iudicare vivos et mortuos.\nCredo in Spiritum Sanctum,\nsanctam Ecclesiam catholicam,\nsanctorum communionem,\nremissionem peccatorum,\ncarnis resurrectionem,\nvitam aeternam. Amen."
+  },
+  {
+    "id": "our-father",
+    "category": "Basic Prayers",
+    "title": "Our Father",
+    "title_es": "Padre Nuestro",
+    "title_la": "Pater Noster",
+    "text": "Our Father, who art in heaven,\nhallowed be thy name;\nthy kingdom come;\nthy will be done on earth as it is in heaven.\nGive us this day our daily bread;\nand forgive us our trespasses\nas we forgive those who trespass against us;\nand lead us not into temptation,\nbut deliver us from evil. Amen.",
+    "text_es": "Padre nuestro, que estás en el cielo,\nsantificado sea tu Nombre;\nvenga a nosotros tu reino;\nhágase tu voluntad en la tierra como en el cielo.\nDanos hoy nuestro pan de cada día;\nperdona nuestras ofensas,\ncomo también nosotros perdonamos a los que nos ofenden;\nno nos dejes caer en la tentación,\ny líbranos del mal. Amén.",
+    "text_la": "Pater noster, qui es in caelis,\nsanctificetur nomen tuum.\nAdveniat regnum tuum.\nFiat voluntas tua, sicut in caelo et in terra.\nPanem nostrum cotidianum da nobis hodie,\net dimitte nobis debita nostra\nsicut et nos dimittimus debitoribus nostris.\nEt ne nos inducas in tentationem,\nsed libera nos a malo. Amen."
+  },
+  {
+    "id": "hail-mary",
+    "category": "Basic Prayers",
+    "title": "Hail Mary",
+    "title_es": "Ave María",
+    "title_la": "Ave Maria",
+    "text": "Hail, Mary, full of grace, the Lord is with thee.\nBlessed art thou among women\nand blessed is the fruit of thy womb, Jesus.\nHoly Mary, Mother of God,\npray for us sinners,\nnow and at the hour of our death. Amen.",
+    "text_es": "Dios te salve, María, llena eres de gracia,\nel Señor es contigo.\nBendita tú eres entre todas las mujeres,\ny bendito es el fruto de tu vientre, Jesús.\nSanta María, Madre de Dios,\nruega por nosotros, pecadores,\nahora y en la hora de nuestra muerte. Amén.",
+    "text_la": "Ave Maria, gratia plena, Dominus tecum.\nBenedicta tu in mulieribus,\net benedictus fructus ventris tui, Iesus.\nSancta Maria, Mater Dei,\nora pro nobis peccatoribus,\nnunc, et in hora mortis nostrae. Amen."
+  },
+  {
+    "id": "glory-be",
+    "category": "Basic Prayers",
+    "title": "Glory Be",
+    "title_es": "Gloria",
+    "title_la": "Gloria Patri",
+    "text": "Glory be to the Father,\nand to the Son,\nand to the Holy Spirit.\nAs it was in the beginning, is now, and ever shall be,\nworld without end. Amen.",
+    "text_es": "Gloria al Padre,\ny al Hijo,\ny al Espíritu Santo.\nComo era en el principio, ahora y siempre,\npor los siglos de los siglos. Amén.",
+    "text_la": "Gloria Patri, et Filio, et Spiritui Sancto.\nSicut erat in principio, et nunc, et semper,\net in saecula saeculorum. Amen."
+  },
+  {
+    "id": "hail-holy-queen",
+    "category": "Holy Rosary",
+    "title": "Hail Holy Queen",
+    "title_es": "La Salve",
+    "title_la": "Salve Regina",
+    "text": "Hail, holy Queen, Mother of mercy,\nhail, our life, our sweetness and our hope.\nTo thee do we cry, poor banished children of Eve:\nto thee do we send up our sighs,\nmourning and weeping in this valley of tears.\nTurn then, most gracious Advocate,\nthine eyes of mercy toward us,\nand after this our exile,\nshow unto us the blessed fruit of thy womb, Jesus.\nO clement, O loving, O sweet Virgin Mary.\n\nV. Pray for us, O holy Mother of God.\nR. That we may be made worthy of the promises of Christ.",
+    "text_es": "Dios te salve, Reina y Madre de misericordia,\nvida, dulzura y esperanza nuestra; Dios te salve.\nA ti llamamos los desterrados hijos de Eva;\na ti suspiramos, gimiendo y llorando, en este valle de lágrimas.\nEa, pues, Señora, abogada nuestra,\nvuelve a nosotros esos tus ojos misericordiosos;\ny después de este destierro muéstranos a Jesús, fruto bendito de tu vientre.\n¡Oh clemente, oh piadosa, oh dulce Virgen María!\n\nV. Ruega por nosotros, Santa Madre de Dios.\nR. Para que seamos dignos de alcanzar las promesas de Nuestro Señor Jesucristo.",
+    "text_la": "Salve, Regina, mater misericordiae,\nvita, dulcedo, et spes nostra, salve.\nAd te clamamus exsules filii Hevae,\nad te suspiramus, gementes et flentes in hac lacrimarum valle.\nEia, ergo, advocata nostra, illos tuos misericordes oculos ad nos converte;\net Iesum, benedictum fructum ventris tui, nobis post hoc exsilium ostende.\nO clemens, O pia, O dulcis Virgo Maria.\n\nV. Ora pro nobis, sancta Dei Genetrix.\nR. Ut digni efficiamur promissionibus Christi."
+  },
+  {
+    "id": "rosary-closing",
+    "category": "Holy Rosary",
+    "title": "Closing Prayer",
+    "title_es": "Oración Final",
+    "title_la": "Oremus",
+    "text": "Let us pray.\nO God, whose only begotten Son,\nby His life, death, and resurrection,\nhas purchased for us the rewards of eternal life,\ngrant, we beseech Thee,\nthat meditating upon these mysteries\nof the Most Holy Rosary of the Blessed Virgin Mary,\nwe may imitate what they contain\nand obtain what they promise,\nthrough the same Christ our Lord. Amen.",
+    "text_es": "Oremos.\nOh Dios, cuyo Unigénito Hijo,\ncon su vida, muerte y resurrección,\nnos ha comprado la recompensa de la vida eterna;\nconcédenos, te rogamos,\nque meditando estos misterios\ndel Santísimo Rosario de la Bienaventurada Virgen María,\nimitemos lo que contienen\ny alcancemos lo que prometen.\nPor el mismo Jesucristo, nuestro Señor. Amén.",
+    "text_la": "Oremus.\nDeus, cuius Unigenitus\nper vitam, mortem et resurrectionem suam\nnobis salutis aeternae praemia comparavit,\nconcede, quaesumus:\nut haec mysteria sacratissimo beatae Mariae Virginis Rosario recolentes,\net imitemur quod continent,\net quod promittunt assequamur.\nPer eundem Christum Dominum nostrum. Amen."
+  },
+  {
+    "id": "anima-christi",
+    "category": "Basic Prayers",
+    "title": "Anima Christi",
+    "title_es": "Alma de Cristo",
+    "title_la": "Anima Christi",
+    "text": "Soul of Christ, sanctify me.\nBody of Christ, save me.\nBlood of Christ, inebriate me.\nWater from the side of Christ, wash me.\nPassion of Christ, strengthen me.\nO good Jesus, hear me.\nWithin Thy wounds hide me.\nSuffer me not to be separated from Thee.\nFrom the malignant enemy defend me.\nIn the hour of my death call me.\nAnd bid me come unto Thee,\nThat with Thy saints I may praise Thee.\nForever and ever. Amen.",
+    "text_es": "Alma de Cristo, santifícame.\nCuerpo de Cristo, sálvame.\nSangre de Cristo, embriágame.\nAgua del costado de Cristo, lávame.\nPasión de Cristo, confórtame.\n¡Oh, buen Jesús!, óyeme.\nDentro de tus llagas, escóndeme.\nNo permitas que me aparte de Ti.\nDel maligno enemigo, defiéndeme.\nEn la hora de mi muerte, llámame.\nY mándame ir a Ti.\nPara que con tus santos te alabe.\nPor los siglos de los siglos. Amén.",
+    "text_la": "Anima Christi, sanctifica me.\nCorpus Christi, salva me.\nSanguis Christi, inebria me.\nAqua lateris Christi, lava me.\nPassio Christi, conforta me.\nO bone Iesu, exaudi me.\nIntra tua vulnera absconde me.\nNe permittas me separari a te.\nAb hoste maligno defende me.\nIn hora mortis meae voca me.\nEt iube me venire ad te,\nUt cum Sanctis tuis laudem te.\nIn saecula saeculorum. Amen."
+  },
+  {
+    "id": "memorare",
+    "category": "Basic Prayers",
+    "title": "The Memorare",
+    "title_es": "Acordaos",
+    "title_la": "Memorare",
+    "text": "Remember, O most gracious Virgin Mary,\nthat never was it known that anyone who fled to thy protection,\nimplored thy help, or sought thy intercession was left unaided.\nInspired by this confidence,\nI fly unto thee, O Virgin of virgins, my mother;\nto thee do I come, before thee I stand, sinful and sorrowful.\nO Mother of the Word Incarnate, despise not my petitions,\nbut in thy mercy hear and answer me. Amen.",
+    "text_es": "Acordaos, oh piadosísima Virgen María,\nque jamás se ha oído decir\nque ninguno de los que han acudido a vuestra protección,\nimplorando vuestra asistencia y reclamando vuestro socorro,\nhaya sido desamparado.\nAnimado por esta confianza, a Vos también acudo,\noh Madre, Virgen de las vírgenes,\ny gimiendo bajo el peso de mis pecados\nme atrevo a comparecer ante vuestra presencia soberana.\nOh Madre de Dios, no desechéis mis súplicas,\nantes bien, escuchadlas y acogedlas benignamente. Amén.",
+    "text_la": "Memorare, O piissima Virgo Maria,\nnon esse auditum a saeculo, quemquam ad tua currentem praesidia,\ntua implorantem auxilia, tua petentem suffragia, esse derelictum.\nEgo tali animatus confidentia,\nad te, Virgo Virginum, Mater, curro,\nad te venio, coram te gemens peccator adsisto.\nNoli, Mater Verbi, verba mea despicere;\nsed audi propitia et exaudi. Amen."
+  },
+  {
+    "id": "angelus",
+    "category": "Basic Prayers",
+    "title": "The Angelus",
+    "title_es": "El Ángelus",
+    "title_la": "Angelus Domini",
+    "text": "The Angel of the Lord declared to Mary:\nAnd she conceived of the Holy Spirit.\n\nHail, Mary, full of grace, the Lord is with thee; blessed art thou among women and blessed is the fruit of thy womb, Jesus. Holy Mary, Mother of God, pray for us sinners, now and at the hour of our death. Amen.\n\nBehold the handmaid of the Lord:\nBe it done unto me according to Thy word.\n\nHail, Mary, full of grace...\n\nAnd the Word was made Flesh:\nAnd dwelt among us.\n\nHail, Mary, full of grace...\n\nPray for us, O Holy Mother of God,\nthat we may be made worthy of the promises of Christ.\n\nLet us pray:\nPour forth, we beseech Thee, O Lord, Thy grace into our hearts; that we, to whom the incarnation of Christ, Thy Son, was made known by the message of an angel, may by His Passion and Cross be brought to the glory of His Resurrection, through the same Christ Our Lord. Amen.",
+    "text_es": "El Ángel del Señor anunció a María.\nY concibió por obra y gracia del Espíritu Santo.\n\nDios te salve, María, llena eres de gracia...\n\nHe aquí la esclava del Señor.\nHágase en mí según tu palabra.\n\nDios te salve, María...\n\nY el Verbo se hizo carne.\nY habitó entre nosotros.\n\nDios te salve, María...\n\nRuega por nosotros, Santa Madre de Dios.\nPara que seamos dignos de las promesas de Cristo.\n\nOremos:\nInfunde, Señor, tu gracia en nuestros corazones; para que, habiendo conocido por la voz del ángel el misterio de la Encarnación de tu Hijo Jesucristo, lleguemos por los méritos de su Pasión y de su Cruz a la gloria de la Resurrección. Por el mismo Jesucristo Nuestro Señor. Amén.",
+    "text_la": "Angelus Domini nuntiavit Mariae.\nEt concepit de Spiritu Sancto.\n\nAve Maria, gratia plena...\n\nEcce ancilla Domini.\nFiat mihi secundum verbum tuum.\n\nAve Maria, gratia plena...\n\nEt Verbum caro factum est.\nEt habitavit in nobis.\n\nAve Maria, gratia plena...\n\nOra pro nobis, sancta Dei Genetrix.\nUt digni efficiamur promissionibus Christi.\n\nOremus:\nGratiam tuam, quaesumus, Domine, mentibus nostris infunde; ut qui, Angelo nuntiante, Christi Filii tui incarnationem cognovimus, per passionem eius et crucem, ad resurrectionis gloriam perducamur. Per eundem Christum Dominum nostrum. Amen."
+  },
+  {
+    "id": "magnificat",
+    "category": "Basic Prayers",
+    "title": "The Magnificat",
+    "title_es": "El Magníficat",
+    "title_la": "Magnificat",
+    "text": "My soul proclaims the greatness of the Lord,\nmy spirit rejoices in God my Savior,\nfor he has looked with favor on his lowly servant.\nFrom this day all generations will call me blessed:\nthe Almighty has done great things for me,\nand holy is his Name.\nHe has mercy on those who fear him\nin every generation.\nHe has shown the strength of his arm,\nhe has scattered the proud in their conceit.\nHe has cast down the mighty from their thrones,\nand has lifted up the lowly.\nHe has filled the hungry with good things,\nand the rich he has sent away empty.\nHe has come to the help of his servant Israel\nfor he has remembered his promise of mercy,\nthe promise he made to our fathers,\nto Abraham and his children for ever.",
+    "text_es": "Proclama mi alma la grandeza del Señor,\nse alegra mi espíritu en Dios, mi salvador;\nporque ha mirado la humillación de su esclava.\nDesde ahora me felicitarán todas las generaciones,\nporque el Poderoso ha hecho obras grandes por mí:\nsu nombre es santo,\ny su misericordia llega a sus fieles\nde generación en generación.\nÉl hace proezas con su brazo:\ndispersa a los soberbios de corazón,\nderriba del trono a los poderosos\ny enaltece a los humildes,\na los hambrientos los colma de bienes\ny a los ricos los despide vacíos.\nAuxilia a Israel, su siervo,\nacordándose de la misericordia\n—como lo había prometido a nuestros padres—\nen favor de Abrahán y su descendencia por siempre.",
+    "text_la": "Magnificat anima mea Dominum,\net exsultavit spiritus meus in Deo salutari meo,\nquia respexit humilitatem ancillae suae.\nEcce enim ex hoc beatam me dicent omnes generationes,\nquia fecit mihi magna, qui potens est,\net sanctum nomen eius,\net misericordia eius in progenies et progenies\ntimentibus eum.\nFecit potentiam in brachio suo,\ndispersit superbos mente cordis sui;\ndeposuit potentes de sede\net exaltavit humiles;\nesurientes implevit bonis\net divites dimisit inanes.\nSuscepit Israel puerum suum,\nrecordatus misericordiae,\nsicut locutus est ad patres nostros,\nAbraham et semini eius in saecula."
+  },
+  {
+    "id": "st-michael",
+    "category": "Basic Prayers",
+    "title": "St. Michael the Archangel",
+    "title_es": "San Miguel Arcángel",
+    "title_la": "Sancte Michael Archangele",
+    "text": "St. Michael the Archangel, defend us in battle.\nBe our defense against the wickedness and snares of the Devil.\nMay God rebuke him, we humbly pray,\nand do thou, O Prince of the heavenly hosts,\nby the power of God,\nthrust into hell Satan, and all the evil spirits,\nwho prowl about the world seeking the ruin of souls. Amen.",
+    "text_es": "San Miguel Arcángel, defiéndenos en la batalla.\nSé nuestro amparo contra la perversidad y acechanzas del demonio.\n¡Reprímale Dios!, pedimos suplicantes,\ny tú, oh Príncipe de la Milicia Celestial,\narroja al infierno con el divino poder\na Satanás y a los otros espíritus malignos\nque andan dispersos por el mundo\npara la perdición de las almas. Amén.",
+    "text_la": "Sancte Michael Archangele, defende nos in proelio,\ncontra nequitiam et insidias diaboli esto praesidium.\nImperet illi Deus, supplices deprecamur:\ntuque, Princeps militiae caelestis,\nSatanam aliosque spiritus malignos,\nqui ad perditionem animarum pervagantur in mundo,\ndivina virtute, in infernum detrude. Amen."
+  },
+  {
+    "id": "guardian-angel",
+    "category": "Basic Prayers",
+    "title": "Guardian Angel",
+    "title_es": "Ángel de la Guarda",
+    "title_la": "Angele Dei",
+    "text": "Angel of God,\nmy guardian dear,\nto whom God's love commits me here,\never this day be at my side,\nto light and guard, to rule and guide. Amen.",
+    "text_es": "Ángel de mi guarda,\ndulce compañía,\nno me desampares\nni de noche ni de día.\nNo me dejes solo\nque me perdería. Amén.",
+    "text_la": "Angele Dei,\nqui custos es mei,\nme, tibi commissum pietate superna,\nillumina, custodi,\nrege et guberna. Amen."
+  },
+  {
+    "id": "driving",
+    "category": "Daily Activities",
+    "title": "Prayer Before Driving",
+    "title_es": "Oración del Conductor",
+    "title_la": "Oratio pro Itinere",
+    "text": "Grant me, O Lord, a steady hand and watchful eye,\nthat no one shall be hurt as I pass by.\nYou gave life, I pray no act of mine\nmay take away or mar that gift of Thine.\nShelter those, dear Lord, who bear me company,\nfrom the evils of fire and all calamity.\nTeach me, to use my car for others need;\nnor miss through love of undue speed\nthe beauty of the world; that thus I may\nwith joy and courtesy go on my way. Amen.",
+    "text_es": "Dame, Dios mío, mano firme y mirada vigilante,\npara que a mi paso no cause daño a nadie.\nTú diste la vida, y ruego que ningún acto mío\npueda quitar o dañar ese don Tuyo.\nProtege, querido Señor, a quienes me acompañan,\nde los males del fuego y de toda calamidad.\nEnséñame a usar mi coche para la necesidad de otros;\ny que no pierda, por amor a la velocidad excesiva,\nla belleza del mundo; para que así pueda\nseguir mi camino con alegría y cortesía. Amén.",
+    "text_la": "Concede mihi, Domine, manum firmam et oculum vigilem,\nne quis a me laedatur dum transeo.\nTu vitam dedisti; precor ne ullum actum meum\ntollat aut vitiet illud donum tuum.\nProtege, bone Domine, eos qui mecum iter faciunt\na malis ignis et omni calamitate.\nDoce me vehiculo meo pro aliorum necessitatibus uti;\nnec propter nimiam celeritatem amittere\npulchritudinem mundi; ut sic\ncum gaudio et urbanitate in via mea pergam. Amen."
+  },
+  {
+    "id": "study",
+    "category": "Daily Activities",
+    "title": "Prayer Before Study",
+    "title_es": "Antes del Estudio",
+    "title_la": "Oratio ante Studium",
+    "text": "Come, Holy Spirit, Divine Creator, true source of light and fountain of wisdom!\nPour forth your brilliance upon my dense intellect,\ndissipate the darkness which covers me, that of sin and of ignorance.\nGrant me a penetrating mind to understand, a retentive memory, method and ease in learning,\nthe lucidity to comprehend, and abundant grace in expressing myself.\nGuide the beginning of my work, direct its progress, and bring it to successful completion.\nThis I ask through Jesus Christ, true God and true man,\nliving and reigning with You and the Father, forever and ever. Amen.",
+    "text_es": "¡Oh inefable Creador nuestro, fuente verdadera de luz y sabiduría!\nDignate infundir el rayo de tu claridad en las tinieblas de mi inteligencia,\nremoviendo la doble oscuridad con que nací: la del pecado y la de la ignorancia.\nDame agudeza para entender, capacidad para retener, método y facilidad para aprender,\nsutileza para interpretar y gracia para hablar.\nDanos acierto al empezar, dirección al progresar y perfección al acabar.\nTú que eres verdadero Dios y verdadero Hombre,\nque vives y reinas por los siglos de los siglos. Amén.",
+    "text_la": "Creator ineffabilis, qui de thesauris sapientiae tuae tres Angelorum hierarchias designasti...\nTu, inquam, qui verus fons luminis et sapientiae diceris atque supereminens principium, infundere digneris super intellectus mei tenebras tuae radium claritatis, duplicem, in qua natus sum, a me removens ignorantiam et peccatum.\nTu, qui qui linguas infantium facis disertas, linguam meam erudias atque in labiis meis gratiam tuae benedictionis infundas.\nDa mihi intelligendi acumen, retinendi capacitatem, addiscendi modum et facilitatem, interpretandi subtilitatem, loquendi gratiam copiosam.\nIngressum instruas, progressum dirigas, egressum compleas.\nTu, qui es verus Deus et homo, qui vivis et regnas in saecula saeculorum. Amen."
+  },
+  {
+    "id": "work",
+    "category": "Daily Activities",
+    "title": "Prayer Before Work",
+    "title_es": "Oración Antes del Trabajo",
+    "title_la": "Actiones Nostras",
+    "text": "Direct, we beg you, O Lord, our actions by your holy inspirations,\nand carry them on by your gracious assistance,\nthat every prayer and work of ours may begin always with you,\nand through you be happily ended. Amen.",
+    "text_es": "Te rogamos, Señor, que prevengas nuestras acciones con tu inspiración\ny las acompañes con tu ayuda,\npara que toda nuestra oración y trabajo comience siempre en Ti,\ny por Ti concluya felizmente. Amén.",
+    "text_la": "Actiones nostras, quaesumus, Domine, aspirando praeveni et adiuvando prosequere:\nut cuncta nostra oratio et operatio a te semper incipiat, et per te coepta finiatur.\nPer Christum Dominum nostrum. Amen."
+  },
+  {
+    "id": "workout",
+    "category": "Daily Activities",
+    "title": "Prayer Before Working Out",
+    "title_es": "Oración Antes del Ejercicio",
+    "title_la": "Oratio ante Exercitium",
+    "text": "Lord, I offer you this workout as a prayer of the body.\nStrengthen my muscles that I may serve You better.\nGrant me endurance to run the race set before me,\nand discipline to honor the temple of the Holy Spirit.\nMay my sweat be a sacrifice, and my effort a hymn of praise.\nThrough Christ our Lord. Amen.",
+    "text_es": "Señor, te ofrezco este ejercicio como una oración del cuerpo.\nFortalece mis músculos para que pueda servirte mejor.\nDame resistencia para correr la carrera que tengo por delante,\ny disciplina para honrar el templo del Espíritu Santo.\nQue mi sudor sea un sacrificio y mi esfuerzo un himno de alabanza.\nPor Jesucristo nuestro Señor. Amén.",
+    "text_la": "Domine, hoc exercitium tibi offero velut orationem corporis.\nConfirma musculos meos ut tibi melius serviam.\nDa mihi patientiam ad currendum stadium propositum,\net disciplinam ad honorandum templum Spiritus Sancti.\nSit sudor meus sacrificium, et nisus meus hymnus laudis.\nPer Christum Dominum nostrum. Amen."
+  },
+  {
+    "id": "night-prayer",
+    "category": "Daily Activities",
+    "title": "Prayer Before Sleep",
+    "title_es": "Oración de la Noche",
+    "title_la": "Oratio Nocturna",
+    "text": "Protect us, Lord, as we stay awake; watch over us as we sleep,\nthat awake, we may keep watch with Christ, and asleep, rest in his peace.\nLord, now you let your servant go in peace; your word has been fulfilled:\nmy own eyes have seen the salvation which you have prepared in the sight of every people:\na light to reveal you to the nations and the glory of your people Israel.\nGlory to the Father, and to the Son, and to the Holy Spirit:\nas it was in the beginning, is now, and will be for ever. Amen.",
+    "text_es": "Protégenos, Señor, mientras velamos; acompáñanos mientras dormimos,\npara que velemos con Cristo y descansemos en su paz.\nAhora, Señor, según tu promesa, puedes dejar a tu siervo irse en paz.\nPorque mis ojos han visto a tu Salvador,\na quien has presentado ante todos los pueblos:\nluz para alumbrar a las naciones y gloria de tu pueblo Israel.\nGlory al Padre, y al Hijo, y al Espíritu Santo.\nComo era en el principio, ahora y siempre, por los siglos de los siglos. Amén.",
+    "text_la": "Salva nos, Domine, vigilantes, custodi nos dormientes;\nut vigilemus cum Christo, et requiescamus in pace.\nNunc dimittis servum tuum, Domine, secundum verbum tuum in pace:\nQuia viderunt oculi mei salutare tuum,\nQuod parasti ante faciem omnium populorum:\nLumen ad revelationem gentium, et gloriam plebis tuae Israel.\nGloria Patri, et Filio, et Spiritui Sancto:\nSicut erat in principio, et nunc, et semper, et in saecula saeculorum. Amen."
+  },
+  {
+    "id": "serenity-prayer",
+    "category": "Daily Activities",
+    "title": "Serenity Prayer",
+    "title_es": "Oración de la Serenidad",
+    "title_la": "Oratio Serenitatis",
+    "text": "God, grant me the serenity to accept the things I cannot change,\ncourage to change the things I can,\nand wisdom to know the difference.",
+    "text_es": "Dios, concédeme la serenidad para aceptar las cosas que no puedo cambiar,\nvalor para cambiar las cosas que puedo,\ny sabiduría para reconocer la diferencia.",
+    "text_la": "Deus, dona mihi serenitatem accipiendi quae mutare non possum,\nfortitudinem mutandi quae possum,\net sapientiam ad discernendum unum ab altero."
+  },
+  {
+    "id": "morning-offering",
+    "category": "Daily Activities",
+    "title": "Morning Offering",
+    "title_es": "Ofrecimiento de Obras",
+    "title_la": "Oblatio Matutina",
+    "text": "O Jesus, through the Immaculate Heart of Mary,\nI offer you my prayers, works, joys, and sufferings of this day\nfor all the intentions of your Sacred Heart,\nin union with the Holy Sacrifice of the Mass throughout the world,\nfor the salvation of souls, the reparation of sins, the reunion of all Christians,\nand in particular for the intentions of the Holy Father this month. Amen.",
+    "text_es": "Oh Jesús, a través del Inmaculado Corazón de María,\nte ofrezco mis oraciones, obras, alegrías y sufrimientos de este día,\npor todas las intenciones de tu Sagrado Corazón,\nen unión con el Santo Sacrificio de la Misa por todo el mundo,\npor la salvación de las almas, la reparación de los pecados, la reunión de todos los cristianos,\ny en particular por las intenciones del Santo Padre para este mes. Amén.",
+    "text_la": "O Iesu, per Immaculatum Cor Mariae,\noffero tibi preces, opera, gaudia et dolores huius diei,\npro omnibus intentionibus Sacratissimi Cordis tui,\nin unione cum Sancto Sacrificio Missae in toto mundo,\npro salute animarum, reparatione peccatorum, adunatione omnium Christianorum,\net praecipue pro intentionibus Summi Pontificis in hoc mense. Amen."
+  },
+  {
+    "id": "dm-opening",
+    "category": "Divine Mercy",
+    "title": "Opening Prayer",
+    "title_es": "Opening Prayer",
+    "title_la": "Opening Prayer",
+    "text": "You expired, Jesus, but the source of life gushed forth for souls,\nand the ocean of mercy opened up for the whole world.\nO Fount of Life, unfathomable Divine Mercy,\nenvelop the whole world and empty Yourself out upon us.",
+    "text_es": "Expiraste, Jesús, pero la fuente de vida brotó para las almas,\ny el océano de misericordia se abrió para el mundo entero.\nOh, Fuente de Vida, insondable Misericordia Divina,\nenvuelve al mundo entero y derrámate sobre nosotros.",
+    "text_la": "Exspirasti, Iesu, sed fons vitae pro animabus emicuit,\net oceanus misericordiae pro toto mundo adapertus est.\nO Fons Vitae, ininvestigabilis Divina Misericordia,\ninvolve totum mundum et te ipsum super nos effunde."
+  },
+  {
+    "id": "dm-blood-water",
+    "category": "Divine Mercy",
+    "title": "O Blood and Water",
+    "title_es": "O Blood and Water",
+    "title_la": "",
+    "text": "O Blood and Water, which gushed forth from the Heart of Jesus as a fountain of Mercy for us, I trust in You!",
+    "text_es": "¡Oh, Sangre y Agua, que brotaste del Corazón de Jesús como una Fuente de Misericordia para nosotros, en Ti confío!",
+    "text_la": "O Sanguis et Aqua, quae ex Corde Iesu ut fons Misericordiae pro nobis effudisti, in Te confido!"
+  },
+  {
+    "id": "dm-eternal-father",
+    "category": "Divine Mercy",
+    "title": "Eternal Father",
+    "title_es": "Eternal Father",
+    "title_la": "",
+    "text": "Eternal Father, I offer you the Body and Blood, Soul and Divinity of Your Dearly Beloved Son, Our Lord, Jesus Christ, in atonement for our sins and those of the whole world.",
+    "text_es": "Padre Eterno, te ofrezco el Cuerpo y la Sangre, el Alma y la Divinidad de Tu Amadísimo Hijo, nuestro Señor Jesucristo, como propiciación de nuestros pecados y los del mundo entero.",
+    "text_la": "Pater aeterne, offero tibi Corpus et Sanguinem, Animam et Divinitatem dilectissimi Filii tui, Domini nostri, Iesu Christi, in propitiatione pro peccatis nostris et totius mundi."
+  },
+  {
+    "id": "dm-passion",
+    "category": "Divine Mercy",
+    "title": "For the Sake of His Sorrowful Passion",
+    "title_es": "For the Sake of His Sorrowful Passion",
+    "title_la": "",
+    "text": "For the sake of His sorrowful Passion, have mercy on us and on the whole world.",
+    "text_es": "Por Su dolorosa Pasión, ten misericordia de nosotros y del mundo entero.",
+    "text_la": "Pro dolorosa Eius passione, miserere nobis et totius mundi."
+  },
+  {
+    "id": "dm-holy-god",
+    "category": "Divine Mercy",
+    "title": "Holy God",
+    "title_es": "Holy God",
+    "title_la": "",
+    "text": "Holy God, Holy Mighty One, Holy Immortal One, have mercy on us and on the whole world.",
+    "text_es": "Santo Dios, Santo Fuerte, Santo Inmortal, ten piedad de nosotros y del mundo entero.",
+    "text_la": "Sanctus Deus, Sanctus Fortis, Sanctus Immortalis, miserere nobis et totius mundi."
+  },
+  {
+    "id": "dm-closing",
+    "category": "Divine Mercy",
+    "title": "Closing Prayer",
+    "title_es": "Closing Prayer",
+    "title_la": "Closing Prayer",
+    "text": "Eternal God, in whom mercy is endless and the treasury of compassion — inexhaustible, look kindly upon us and increase Your mercy in us, that in difficult moments we might not despair nor become despondent, but with great confidence submit ourselves to Your holy will, which is Love and Mercy itself.",
+    "text_es": "Oh Dios Eterno, en quien la misericordia es infinita y el tesoro de compasión inagotable, vuelve a nosotros Tu mirada bondadosa y aumenta Tu misericordia en nosotros, para que en momentos difíciles no nos desesperemos ni nos desalentemos, sino que, con gran confianza, nos sometamos a Tu santa voluntad, que es el Amor y la Misericordia mismos.",
+    "text_la": "Deus aeterne, in quo misericordia est infinita et thesaurus compassionis inexhaustus, respice in nos propitius et auge in nobis misericordiam tuam, ut in difficultatibus non desperemus nec despondeamus, sed cum magna fiducia nos subiciamus sanctae voluntati quae, quae est ipse Amor et Misericordia."
+  },
+  {
+    "id": "grace-before",
+    "category": "Meal Prayers",
+    "title": "Grace Before Meals",
+    "title_es": "Bendición de los Alimentos",
+    "title_la": "Benedictio Mensae",
+    "text": "Bless us, O Lord, and these thy gifts,\nwhich we are about to receive from thy bounty,\nthrough Christ our Lord. Amen.",
+    "text_es": "Bendícenos, Señor, y bendice estos alimentos\nque por tu bondad vamos a recibir.\nPor Jesucristo nuestro Señor. Amén.",
+    "text_la": "Benedic, Domine, nos et haec tua dona,\nquae de tua largitate sumus sumpturi.\nPer Christum Dominum nostrum. Amen."
+  },
+  {
+    "id": "grace-after",
+    "category": "Meal Prayers",
+    "title": "Grace After Meals",
+    "title_es": "Acción de Gracias",
+    "title_la": "Agimus Tibi Gratias",
+    "text": "We give thee thanks, for all thy benefits,\nalmighty God, who livest and reignest world without end. Amen.\nMay the souls of the faithful departed,\nthrough the mercy of God, rest in peace. Amen.",
+    "text_es": "Te damos gracias, Señor, por todos tus beneficios,\na ti que vives y reinas por los siglos de los siglos. Amén.\nQue las almas de los fieles difuntos,\npor la misericordia de Dios, descansen en paz. Amén.",
+    "text_la": "Agimus tibi gratias, omnipotens Deus, pro universis beneficiis tuis,\nqui vivis et regnas in saecula saeculorum. Amen.\nFidelium animae per misericordiam Dei requiescant in pace. Amen."
+  },
+  {
+    "id": "act-faith",
+    "category": "Acts of Faith, Hope, Love",
+    "title": "Act of Faith",
+    "title_es": "Acto de Fe",
+    "title_la": "Actus Fidei",
+    "text": "O my God, I firmly believe that you are one God in three divine Persons, Father, Son, and Holy Spirit.\nI believe that your divine Son became man and died for our sins and that he will come to judge the living and the dead.\nI believe these and all the truths which the Holy Catholic Church teaches because you have revealed them who are eternal truth and wisdom, who can neither deceive nor be deceived.\nIn this faith I intend to live and die. Amen.",
+    "text_es": "Dios mío, creo firmemente que eres un solo Dios en tres Personas divinas: Padre, Hijo y Espíritu Santo;\ncreo que tu Hijo divino se hizo hombre y murió por nuestros pecados, y que vendrá a juzgar a los vivos y a los muertos.\nCreo estas y todas las verdades que enseña la Santa Iglesia Católica, porque tú las has revelado, que eres la verdad y la sabiduría eternas, que ni se engaña ni puede engañarnos.\nEn esta fe quiero vivir y morir. Amén.",
+    "text_la": "Domine Deus, firma fide credo et confiteor omnia et singula quae sancta ecclesia Catholica proponit, quia tu, Deus, ea omnia revelasti, qui es aeterna veritas et sapientia quae nec fallere nec falli potest. In hac fide vivere et mori statuo. Amen."
+  },
+  {
+    "id": "act-hope",
+    "category": "Acts of Faith, Hope, Love",
+    "title": "Act of Hope",
+    "title_es": "Acto de Esperanza",
+    "title_la": "Actus Spei",
+    "text": "O my God, relying on your infinite goodness and promises,\nI hope to obtain pardon of my sins, the help of your grace and life everlasting,\nthrough the merits of Jesus Christ, my Lord and Redeemer. Amen.",
+    "text_es": "Dios mío, apoyado en tu infinita bondad y en tus promesas,\nespero obtener el perdón de mis pecados, la ayuda de tu gracia y la vida eterna,\npor los méritos de Jesucristo, mi Señor y Redentor. Amén.",
+    "text_la": "Domine Deus, spero per gratiam tuam remissionem omnium peccatorum, et post hanc vitam aeternam felicitatem me esse consecuturum: quia tu promisisti, qui es infinite potens, fidelis, benignus, et misericors. In hac spe vivere et mori statuo. Amen."
+  },
+  {
+    "id": "act-love",
+    "category": "Acts of Faith, Hope, Love",
+    "title": "Act of Love",
+    "title_es": "Acto de Caridad",
+    "title_la": "Actus Caritatis",
+    "text": "O my God, I love you above all things, with my whole heart and soul,\nbecause you are all good and worthy of all love.\nI love my neighbor as myself for the love of you.\nI forgive all who have injured me, and I ask pardon of all whom I have injured. Amen.",
+    "text_es": "Dios mío, te amo sobre todas las cosas, con todo mi corazón y con toda mi alma,\nporque eres infinitamente bueno y digno de ser amado.\nAmo a mi prójimo como a mí mismo por amor a ti.\nPerdono a todos los que me han ofendido y pido perdón a todos los que he ofendido. Amén.",
+    "text_la": "Domine Deus, amo te super omnia et ex toto corde meo, quia es infinite bonus, infinite amabilis, et infinite dignus omni amore. Et propter te amo proximum meum sicut meipsum, illique omnes offensas dimitto. In hac caritate vivere et mori statuo. Amen."
+  },
+  {
+    "id": "surrender-novena",
+    "category": "Novenas",
+    "title": "Surrender Novena",
+    "title_es": "Novena del Abandono",
+    "title_la": "Novendialis Deditionis",
+    "text": "Day 1:\nWhy do you confuse yourselves by worrying? Leave the care of your affairs to me and everything will be peaceful. I say to you in truth that every act of true, blind, complete surrender to me produces the effect that you desire and resolves all difficult situations.\n\nO Jesus, I surrender myself to you, take care of everything! (10 times)\n\nDay 2:\nSurrender to me does not mean to fret, to be upset, or to lose hope, nor does it mean offering to me a worried prayer asking me to follow you and change your worry into prayer. It is against this surrender, deeply against it, to worry, to be nervous and to desire to think about the consequences of anything.\n\nO Jesus, I surrender myself to you, take care of everything! (10 times)\n\nDay 3:\nHow many things I do when the soul, in so much spiritual and material need turns to me, looks at me and says to me; \"You take care of it,\" then close its eyes and rests. In pain you pray for me to act, but that I act in the way you want. You do not turn to me, instead, you want me to adapt to your ideas.\n\nO Jesus, I surrender myself to you, take care of everything! (10 times)\n\nDay 4:\nYou see evil growing instead of weakening? Do not worry, close your eyes and say to me with faith: \"Thy will be done, You take care of it.\" I say to you that I will take care of it, and that I will intervene as does a doctor and I will accomplish miracles when they are needed.\n\nO Jesus, I surrender myself to you, take care of everything! (10 times)\n\nDay 5:\nAnd when I must lead you on a path different from the one you see, I will prepare you; I will carry you in my arms; I will let you find yourselves, like children who have fallen asleep in their mother's arms, on the other bank of the river. What troubles you and hurts you immensely are your reason, your thoughts and worry, and your desire at all costs to deal with what afflicts you.\n\nO Jesus, I surrender myself to you, take care of everything! (10 times)\n\nDay 6:\nYou are sleepless; you want to judge everything, direct everything and see to everything and you surrender to human strength, or worse - to men themselves, trusting in their intervention - this is what hinders my words and my views. Oh how much I wish from you this surrender, to help you and how I suffer when I see you so agitated!\n\nO Jesus, I surrender myself to you, take care of everything! (10 times)\n\nDay 7:\nWhat defeats you is wanting to provide for yourselves. Do not be afraid, I will take care of things. You will see it. I say this to you: I will take care of things.\n\nO Jesus, I surrender myself to you, take care of everything! (10 times)\n\nDay 8:\nClose your eyes and let yourself be carried away on the flowing current of my grace; close your eyes and do not think of the present, turning your thoughts away from the future just as you would from temptation. Repose in me, believing in my goodness, and I promise you by my love that if you say \"You take care of it,\" I will take care of it all; I will console you, liberate you and guide you.\n\nO Jesus, I surrender myself to you, take care of everything! (10 times)\n\nDay 9:\nPray always in readiness to surrender, and you will receive from it great peace and great rewards, even when I confer on you the grace of immolation, of repentance and of love. Then what does suffering matter? It seems impossible to you? Close your eyes and say with all your soul, \"Jesus, you take care of it.\" Do not be afraid, I will take care of things and you will bless my name by humbling yourself. A thousand prayers cannot equal one single act of surrender, remember this well. There is no novena more effective than this:\n\nO Jesus, I surrender myself to you, take care of everything! (10 times)",
+    "text_es": "Día 1:\n¿Por qué os confundís preocupándoos? Dejadme el cuidado de vuestros asuntos y todo será paz. Os digo en verdad que todo acto de verdadero, ciego y completo abandono en Mí, produce el efecto que deseáis y resuelve las situaciones difíciles.\n\n¡Oh Jesús, me abandono en Ti, haz Tú todo! (10 veces)\n\nDía 2:\nAbandonarse en Mí no significa frustrarse, alterarse o perder la esperanza, ni significa ofrecerme una oración preocupada para que Yo os siga y transforme vuestra preocupación en oración. Es contra este abandono, profundamente en contra, preocuparse, estar nervioso y desear pensar en las consecuencias de cualquier cosa.\n\n¡Oh Jesús, me abandono en Ti, haz Tú todo! (10 veces)\n\nDía 3:\n¡Cuántas cosas obro cuando el alma, en tantas necesidades espirituales y materiales, se vuelve a Mí, me mira y me dice: \"Ocúpate Tú\", luego cierra los ojos y descansa! En el dolor oráis para que Yo actúe, pero para que actúe de la manera que vosotros queréis. No os volvéis a Mí, sino que queréis que Yo me adapte a vuestras ideas.\n\n¡Oh Jesús, me abandono en Ti, haz Tú todo! (10 veces)\n\nDía 4:\n¿Veis que el mal crece en vez de debilitarse? No os preocupéis, cerrad los ojos y decidme con fe: \"Hágase tu voluntad, ocúpate Tú\". Os digo que me ocuparé, y que intervendré como un médico, y haré milagros cuando sean necesarios.\n\n¡Oh Jesús, me abandono en Ti, haz Tú todo! (10 veces)\n\nDía 5:\nY cuando os deba llevar por un camino distinto del que vosotros veis, os prepararé; os llevaré en mis brazos; haré que os encontréis, como niños que se han dormido en los brazos de su madre, en la otra orilla del río. Lo que os turba y os duele inmensamente es vuestra razón, vuestros pensamientos y preocupaciones, y vuestro deseo a toda costa de resolver lo que os aflige.\n\n¡Oh Jesús, me abandono en Ti, haz Tú todo! (10 veces)\n\nDía 6:\nPasáis noches en vela; queréis juzgarlo todo, dirigirlo todo y velar por todo, y os abandonáis a las fuerzas humanas, o peor, a los hombres mismos, confiando en su intervención; esto es lo que obstaculiza mis palabras y mis planes. ¡Oh, cuánto deseo de vosotros este abandono, para ayudaros, y cómo sufro al veros tan agitados!\n\n¡Oh Jesús, me abandono en Ti, haz Tú todo! (10 veces)\n\nDía 7:\nLo que os deshace es el querer proveer vosotros mismos. No tengáis miedo, Yo me ocuparé de las cosas. Lo veréis. Os digo esto: Yo me ocuparé de las cosas.\n\n¡Oh Jesús, me abandono en Ti, haz Tú todo! (10 veces)\n\nDía 8:\nCerrad los ojos y dejaos llevar por la corriente de Mi gracia; cerrad los ojos y no penséis en el presente, apartando vuestros pensamientos del futuro como lo haríais de la tentación. Reposad en Mí, creyendo en Mi bondad, y os prometo por Mi amor que si decís \"Ocúpate Tú\", me ocuparé de todo; os consolaré, os liberaré y os guiaré.\n\n¡Oh Jesús, me abandono en Ti, haz Tú todo! (10 veces)\n\nDía 9:\nOrad siempre dispuestos a abandonaros, y recibiréis de ello gran paz y grandes recompensas, incluso cuando os conceda la gracia de la inmolación, del arrepentimiento y del amor. Entonces, ¿qué importa el sufrimiento? ¿Os parece imposible? Cerrad los ojos y decid con toda el alma: \"Jesús, ocúpate Tú\". No tengáis miedo, Yo me ocuparé de todo y bendeciréis Mi nombre humillándoos. Mil oraciones no pueden igualar un solo acto de abandono, recordadlo bien. No hay novena más eficaz que esta:\n\n¡Oh Jesús, me abandono en Ti, haz Tú todo! (10 veces)",
+    "text_la": "Dies I:\nQuare vos ipsos sollicitando confunditis? Curam rerum vestrarum mihi relinquite et omnia pacata erunt. Dico vobis in veritate, omnem actum verae, caecae, completae deditionis in me producere effectum quem desideratis et resolvere omnes situationes difficiles.\n\nO Iesu, me tibi dedo, tu in te recipe omnia! (10 decies)\n\nDies II:\nDedere mihi non significat vexari, perturbari, aut spem amittere, nec significat offerre mihi orationem sollicitam rogans me ut te sequar et sollicitudinem tuam in orationem mutem. Contra hanc deditionem est, valde contra eam, sollicitari, turbari et velle cogitare de consequentiis cuiusvis rei.\n\nO Iesu, me tibi dedo, tu in te recipe omnia! (10 decies)\n\nDies III:\nQuam multa facio cum anima, in tanta necessitate spirituali et materiali, ad me vertit, me respicit et mihi dicit: \"Tu in te recipe,\" deinde oculos claudit et requiescit. In dolore oras ut ego agam, sed ut agam eo modo quo tu vis. Non ad me te vertis, sed vis me ad ideas tuas accommodare.\n\nO Iesu, me tibi dedo, tu in te recipe omnia! (10 decies)\n\nDies IV:\nVidesne malum crescere pro minui? Noli sollicitari, claude oculos et dic mihi cum fide: \"Fiat voluntas tua, Tu in te recipe.\" Dico tibi me in me recepturum, et me interventurum sicut medicus, et miracula facturum cum opus sint.\n\nO Iesu, me tibi dedo, tu in te recipe omnia! (10 decies)\n\nDies V:\nEt cum te ducere debeo per viam aliam ab ea quam tu vides, te praeparabo; in brachiis meis te portabo; faciam ut vos inveniatis, sicut parvuli qui in brachiis matris dormiverunt, in altera ripa fluminis. Quod te turbat et immensum laedit est ratio tua, cogitationes tuae et sollicitudo, et desiderium tuum omni pretio tractandi id quod te affligit.\n\nO Iesu, me tibi dedo, tu in te recipe omnia! (10 decies)\n\nDies VI:\nInsomnis es; omnia iudicare, omnia dirigere et omnia curare vis, et te humanis viribus dedis, aut peius - ipsis hominibus, in eorum interventu confidens - hoc est quod verba et consilia mea impedit. O quam multum a te hanc deditionem desidero, ut te adiuvem, et quam patior cum te tam agitatum video!\n\nO Iesu, me tibi dedo, tu in te recipe omnia! (10 decies)\n\nDies VII:\nQuod te vincit est velle tibi ipsi providere. Noli timere, ego rerum curam suscipiam. Videbis. Hoc tibi dico: Ego rerum curam suscipiam.\n\nO Iesu, me tibi dedo, tu in te recipe omnia! (10 decies)\n\nDies VIII:\nClaude oculos tuos et sine te auferri in flumine gratiae meae; claude oculos et noli de praesenti cogitare, cogitationes tuas a futuro avertens sicut a tentatione. Requiesce in me, in bonitatem meam credens, et promitto tibi per amorem meum, si dicas \"Tu in te recipe,\" me omnia in me recepturum; te consolabor, te liberabo et te ducam.\n\nO Iesu, me tibi dedo, tu in te recipe omnia! (10 decies)\n\nDies IX:\nOra semper in promptitudine ad deditionem, et ex ea magnam pacem et magna praemia accipies, etiam cum tibi gratiam immolationis, paenitentiae et amoris confero. Tunc quid refert passio? Impossibile tibi videtur? Claude oculos et dic ex tota anima tua, \"Iesu, tu in te recipe.\" Noli timere, ego rerum curam suscipiam et nomen meum benedices te humiliando. Mille orationes non aequant unum actum deditionis, hoc bene memento. Nulla novendialis hac efficacior est:\n\nO Iesu, me tibi dedo, tu in te recipe omnia! (10 decies)"
+  },
+  {
+    "id": "holy-spirit-novena",
+    "category": "Novenas",
+    "title": "Novena to the Holy Spirit",
+    "title_es": "Novena al Espíritu Santo",
+    "title_la": "Novendialis ad Spiritum Sanctum",
+    "text": "O Holy Spirit, Divine Consoler, I adore You as my true God, with God the Father and God the Son. I adore You and unite myself to the adoration You receive from the angels and saints.\n\nI give You my heart and I offer my ardent thanksgiving for all the grace which You never cease to bestow on me.\n\nO Giver of all supernatural gifts, who filled the soul of the Blessed Virgin Mary, Mother of God, with such immense favors, I beg You to visit me with Your grace and Your love and to grant me the favor I so earnestly seek in this novena...\n\n[State your request here]\n\nO Holy Spirit, Spirit of Truth, come into our hearts.",
+    "text_es": "Oh Espíritu Santo, Divino Consolador, te adoro como mi Dios verdadero, junto con Dios Padre y Dios Hijo. Te adoro y me uno a la adoración que recibes de los ángeles y los santos.\n\nTe entrego mi corazón y te ofrezco mi ardiente acción de gracias por toda la gracia que nunca cesas de derramar sobre mí.\n\nOh Dador de todos los dones sobrenaturales, que llenaste el alma de la Santísima Virgen María, Madre de Dios, con favores tan inmensos, te ruego que me visites con tu gracia y tu amor y me concedas el favor que tan ardientemente busco en esta novena...\n\n[Menciona tu petición aquí]\n\nOh Espíritu Santo, Espíritu de Verdad, ven a nuestros corazones.",
+    "text_la": "O Spiritus Sancte, Divine Consolator, adoro te ut verum Deum meum, cum Deo Patre et Deo Filio. Adoro te et unio me adorationi quam accipis ab angelis et sanctis.\n\nDo tibi cor meum et offero meam ardentem gratiarum actionem pro omni gratia quam nunquam cessas in me effundere.\n\nO Dator omnium donorum supernaturalium, qui animam Beatae Mariae Virginis, Matris Dei, tam immensis favoribus replesti, rogo te ut me visites cum gratia tua et amore tuo et concedas mihi favorem quem tam ardenter in hac novendiali quaero...\n\n[Dic petitionem tuam hic]\n\nO Spiritus Sancte, Spiritus Veritatis, veni in corda nostra."
+  },
+  {
+    "id": "sacred-heart-novena",
+    "category": "Novenas",
+    "title": "Novena to the Sacred Heart",
+    "title_es": "Novena al Sagrado Corazón",
+    "title_la": "Novendialis ad Sacratissimum Cor",
+    "text": "O my Jesus, you have said: \"Truly I say to you, ask and you will receive, seek and you will find, knock and it will be opened to you.\" Behold I knock, I seek and ask for the grace of...\n[State your request]\n\nOur Father... Hail Mary... Glory Be...\nSacred Heart of Jesus, I place all my trust in you.\n\nO my Jesus, you have said: \"Truly I say to you, if you ask anything of the Father in my name, he will give it to you.\" Behold, in your name, I ask the Father for the grace of...\n[State your request]\n\nOur Father... Hail Mary... Glory Be...\nSacred Heart of Jesus, I place all my trust in you.\n\nO my Jesus, you have said: \"Truly I say to you, heaven and earth will pass away, but my words will not pass away.\" Encouraged by your infallible words I now ask for the grace of...\n[State your request]\n\nOur Father... Hail Mary... Glory Be...\nSacred Heart of Jesus, I place all my trust in you.\n\nO Sacred Heart of Jesus, for whom it is impossible not to have compassion on the afflicted, have pity on us miserable sinners and grant us the grace which we ask of you, through the Sorrowful and Immaculate Heart of Mary, your tender Mother and ours.\n\nHail Holy Queen...\nSt. Joseph, foster father of Jesus, pray for us.",
+    "text_es": "Oh Jesús mío, que dijiste: \"En verdad os digo, pedid y se os dará, buscad y hallaréis, llamad y se os abrirá\". He aquí que llamo, busco y pido la gracia de...\n[Menciona tu petición]\n\nPadre Nuestro... Ave María... Gloria...\nSagrado Corazón de Jesús, en Ti confío.\n\nOh Jesús mío, que dijiste: \"En verdad os digo, todo lo que pidáis al Padre en mi nombre, os lo concederá\". He aquí que, en Tu nombre, pido al Padre la gracia de...\n[Menciona tu petición]\n\nPadre Nuestro... Ave María... Gloria...\nSagrado Corazón de Jesús, en Ti confío.\n\nOh Jesús mío, que dijiste: \"En verdad os digo, el cielo y la tierra pasarán, pero mis palabras no pasarán\". Animado por Tus infalibles palabras, ahora pido la gracia de...\n[Menciona tu petición]\n\nPadre Nuestro... Ave María... Gloria...\nSagrado Corazón de Jesús, en Ti confío.\n\nOh Sagrado Corazón de Jesús, a quien es imposible no compadecerse de los afligidos, ten piedad de nosotros, miserables pecadores, y concédenos la gracia que Te pedimos, por medio del Corazón Doloroso e Inmaculado de María, Tu tierna Madre y la nuestra.\n\nDios te salve, Reina y Madre...\nSan José, padre adoptivo de Jesús, ruega por nosotros.",
+    "text_la": ""
+  },
+  {
+    "id": "divine-mercy-novena",
+    "category": "Novenas",
+    "title": "Divine Mercy Novena",
+    "title_es": "Novena de la Divina Misericordia",
+    "title_la": "Novendialis Divinae Misericordiae",
+    "text": "Day 1:\nToday bring to Me ALL MANKIND, ESPECIALLY ALL SINNERS, and immerse them in the ocean of My mercy.\n\nMost Merciful Jesus, whose very nature it is to have compassion on us and to forgive us, do not look upon our sins but upon our trust which we place in Your infinite goodness. Receive us all into the abode of Your Most Compassionate Heart, and never let us escape from It. We beg this of You by Your love which unites You to the Father and the Holy Spirit.\n\n(Followed by the Chaplet of Divine Mercy)\n\nDay 2:\nToday bring to Me THE SOULS OF PRIESTS AND RELIGIOUS, and immerse them in My unfathomable mercy.\n\nMost Merciful Jesus, from whom comes all that is good, increase Your grace in men and women consecrated to Your service, that they may perform worthy works of mercy; and that all who see them may glorify the Father of Mercy who is in heaven.\n\n(Followed by the Chaplet of Divine Mercy)\n\nDay 3:\nToday bring to Me ALL DEVOUT AND FAITHFUL SOULS, and immerse them in the ocean of My mercy.\n\nMost Merciful Jesus, from the treasury of Your mercy, You impart Your graces in great abundance to each and all. Receive us into the abode of Your Most Compassionate Heart and never let us escape from It. We beg this grace of You by that most wondrous love for the heavenly Father with which Your Heart burns so fiercely.\n\n(Followed by the Chaplet of Divine Mercy)\n\nDay 4:\nToday bring to Me THOSE WHO DO NOT BELIEVE IN GOD AND THOSE WHO DO NOT YET KNOW ME.\n\nMost compassionate Jesus, You are the Light of the whole world. Receive into the abode of Your Most Compassionate Heart the souls of those who do not believe in God and of those who as yet do not know You. Let the rays of Your grace enlighten them that they, too, together with us, may extol Your wonderful mercy; and do not let them escape from the abode which is Your Most Compassionate Heart.\n\n(Followed by the Chaplet of Divine Mercy)\n\nDay 5:\nToday bring to Me THE SOULS OF THOSE WHO HAVE SEPARATED THEMSELVES FROM MY CHURCH.\n\nMost Merciful Jesus, Goodness Itself, You do not refuse light to those who seek it of You. Receive into the abode of Your Most Compassionate Heart the souls of those who have separated themselves from Your Church. Draw them by Your light into the unity of the Church, and do not let them escape from the abode of Your Most Compassionate Heart; but bring it about that they, too, come to glorify the generosity of Your mercy.\n\n(Followed by the Chaplet of Divine Mercy)\n\nDay 6:\nToday bring to Me THE MEEK AND HUMBLE SOULS AND THE SOULS OF LITTLE CHILDREN, and immerse them in My mercy.\n\nMost Merciful Jesus, You yourself have said, \"Learn from Me for I am meek and humble of heart.\" Receive into the abode of Your Most Compassionate Heart all meek and humble souls and the souls of little children. These souls send all heaven into ecstasy and they are the heavenly Father's favorites.\n\n(Followed by the Chaplet of Divine Mercy)\n\nDay 7:\nToday bring to Me THE SOULS WHO ESPECIALLY VENERATE AND GLORIFY MY MERCY, and immerse them in My mercy.\n\nMost Merciful Jesus, whose Heart is Love Itself, receive into the abode of Your Most Compassionate Heart the souls of those who particularly extol and venerate the greatness of Your mercy. These souls are mighty with the very power of God Himself. In the midst of all afflictions and adversities they go forward, confident of Your mercy; and united to You, O Jesus, they carry all mankind on their shoulders.\n\n(Followed by the Chaplet of Divine Mercy)\n\nDay 8:\nToday bring to Me THE SOULS WHO ARE DETAINED IN PURGATORY, and immerse them in the abyss of My mercy.\n\nMost Merciful Jesus, You Yourself have said that You desire mercy; so I bring into the abode of Your Most Compassionate Heart the souls in Purgatory, souls who are very dear to You, and yet, who must make retribution to Your justice. May the streams of Blood and Water which gushed forth from Your Heart put out the flames of Purgatory, that there, too, the power of Your mercy may be celebrated.\n\n(Followed by the Chaplet of Divine Mercy)\n\nDay 9:\nToday bring to Me SOULS WHO HAVE BECOME LUKEWARM, and immerse them in the abyss of My mercy.\n\nMost compassionate Jesus, You are Compassion Itself. I bring lukewarm souls into the abode of Your Most Compassionate Heart. In this fire of Your pure love, let these tepid souls, who, like corpses, filled You with such deep loathing, be once again set aflame. O Most Compassionate Jesus, exercise the omnipotence of Your mercy and draw them into the very ardor of Your love, and bestow upon them the gift of holy love, for nothing is beyond Your power.\n\n(Followed by the Chaplet of Divine Mercy)",
+    "text_es": "Día 1:\nHoy, tráeme a TODA LA HUMANIDAD, ESPECIALMENTE A TODOS LOS PECADORES, y sumérgelos en el océano de Mi misericordia.\n\nJesús Misericordiosísimo, cuya naturaleza es la de tener compasión de nosotros y de perdonarnos, no mires nuestros pecados, sino la confianza que depositamos en Tu bondad infinita. Acógenos a todos en la morada de Tu Corazón Misericordiosísimo y no permitas que salgamos jamás de él. Te lo suplicamos por Tu amor que Te une al Padre y al Espíritu Santo.\n\n(Seguido de la Coronilla a la Divina Misericordia)\n\nDía 2:\nHoy, tráeme a LAS ALMAS DE LOS SACERDOTES Y RELIGIOSOS, y sumérgelos en Mi misericordia insondable.\n\nJesús Misericordiosísimo, de quien procede todo lo que es bueno, aumenta Tu gracia en los hombres y mujeres consagrados a Tu servicio, para que realicen dignas obras de misericordia, y todos los que los vean glorifiquen al Padre de Misericordia que está en el cielo.\n\n(Seguido de la Coronilla a la Divina Misericordia)\n\nDía 3:\nHoy, tráeme a TODAS LAS ALMAS DEVOTAS Y FIELES, y sumérgelas en el océano de Mi misericordia.\n\nJesús Misericordiosísimo, del tesoro de Tu misericordia concedes Tus gracias en gran abundancia a todos y cada uno. Acógenos en la morada de Tu Corazón Misericordiosísimo y no permitas que salgamos jamás de él. Te suplicamos esta gracia por ese amor maravilloso hacia el Padre celestial con el que arde tan intensamente Tu Corazón.\n\n(Seguido de la Coronilla a la Divina Misericordia)\n\nDía 4:\nHoy, tráeme a LOS QUE NO CREEN EN DIOS Y A LOS QUE TODAVÍA NO ME CONOCEN.\n\nJesús Compasivísimo, Tú eres la Luz del mundo entero. Acoge en la morada de Tu Corazón Misericordiosísimo las almas de aquellos que no creen en Dios y de aquellos que todavía no Te conocen. Que los rayos de Tu gracia los iluminen para que también ellos, unidos a nosotros, ensalcen Tu maravillosa misericordia, y no los dejes salir de la morada de Tu Corazón Misericordiosísimo.\n\n(Seguido de la Coronilla a la Divina Misericordia)\n\nDía 5:\nHoy, tráeme a LAS ALMAS DE LOS QUE SE HAN SEPARADO DE MI IGLESIA.\n\nJesús Misericordiosísimo, Bondad misma, Tú no niegas la luz a quienes Te la piden. Acoge en la morada de Tu Corazón Misericordiosísimo las almas de aquellos que se han separado de Tu Iglesia. Atráelos con Tu luz a la unidad de la Iglesia, y no los dejes salir de la morada de Tu Corazón Misericordiosísimo, sino haz que también ellos lleguen a glorificar la generosidad de Tu misericordia.\n\n(Seguido de la Coronilla a la Divina Misericordia)\n\nDía 6:\nHoy, tráeme a LAS ALMAS MANSAS Y HUMILDES, Y A LAS ALMAS DE LOS NIÑOS PEQUEÑOS, y sumérgelas en Mi misericordia.\n\nJesús Misericordiosísimo, Tú mismo has dicho: \"Aprended de Mí, que soy manso y humilde de corazón\". Acoge en la morada de Tu Corazón Misericordiosísimo a todas las almas mansas y humildes y a las almas de los niños pequeños. Estas almas envían al cielo entero al éxtasis y son las favoritas del Padre celestial.\n\n(Seguido de la Coronilla a la Divina Misericordia)\n\nDía 7:\nHoy, tráeme a LAS ALMAS QUE ESPECIALMENTE VENERAN Y GLORIFICAN MI MISERICORDIA, y sumérgelas en Mi misericordia.\n\nJesús Misericordiosísimo, cuyo Corazón es el Amor mismo, acoge en la morada de Tu Corazón Misericordiosísimo a las almas de aquellos que particularmente ensalzan y veneran la grandeza de Tu misericordia. Estas almas son fuertes con el poder de Dios mismo. En medio de todas las aflicciones y adversidades siguen adelante, confiando en Tu misericordia; y unidas a Ti, oh Jesús, llevan a toda la humanidad sobre sus hombros.\n\n(Seguido de la Coronilla a la Divina Misericordia)\n\nDía 8:\nHoy, tráeme a LAS ALMAS QUE ESTÁN DETENIDAS EN EL PURGATORIO, y sumérgelas en el abismo de Mi misericordia.\n\nJesús Misericordiosísimo, Tú mismo has dicho que deseas misericordia; por eso llevo a la morada de Tu Corazón Misericordiosísimo a las almas del Purgatorio, almas que Te son muy queridas, y que, sin embargo, deben pagar su retribución a Tu justicia. Que los torrentes de Sangre y Agua que brotaron de Tu Corazón apaguen las llamas del Purgatorio, para que también allí se celebre el poder de Tu misericordia.\n\n(Seguido de la Coronilla a la Divina Misericordia)\n\nDía 9:\nHoy, tráeme a LAS ALMAS QUE SE HAN VUELTO TIBIAS, y sumérgelas en el abismo de Mi misericordia.\n\nJesús Compasivísimo, Tú eres la Compasión misma. Llevo a las almas tibias a la morada de Tu Corazón Misericordiosísimo. En este fuego de Tu amor puro, que estas almas tibias, que como cadáveres Te llenan de tan profunda repugnancia, vuelvan a encenderse. Oh Jesús Compasivísimo, ejerce la omnipotencia de Tu misericordia y atráelas al mismo ardor de Tu amor, y concédeles el don del amor santo, porque nada está más allá de Tu poder.\n\n(Seguido de la Coronilla a la Divina Misericordia)",
+    "text_la": ""
+  },
+  {
+    "id": "litany-humility",
+    "category": "Litanies",
+    "title": "Litany of Humility",
+    "title_es": "Letanías de la Humildad",
+    "title_la": "",
+    "text": "V. O Jesus! meek and humble of heart,\nR. Hear me.\nV. From the desire of being esteemed,\nR. Deliver me, Jesus.\nV. From the desire of being loved,\nR. Deliver me, Jesus.\nV. From the desire of being excelled,\nR. Deliver me, Jesus.\nV. From the desire of being honored,\nR. Deliver me, Jesus.\nV. From the desire of being praised,\nR. Deliver me, Jesus.\nV. From the desire of being preferred to others,\nR. Deliver me, Jesus.\nV. From the desire of being consulted,\nR. Deliver me, Jesus.\nV. From the desire of being approved,\nR. Deliver me, Jesus.\nV. From the fear of being humiliated,\nR. Deliver me, Jesus.\nV. From the fear of being despised,\nR. Deliver me, Jesus.\nV. From the fear of suffering rebukes,\nR. Deliver me, Jesus.\nV. From the fear of being calumniated,\nR. Deliver me, Jesus.\nV. From the fear of being forgotten,\nR. Deliver me, Jesus.\nV. From the fear of being ridiculed,\nR. Deliver me, Jesus.\nV. From the fear of being wronged,\nR. Deliver me, Jesus.\nV. From the fear of being suspected,\nR. Deliver me, Jesus.\nV. That others may be loved more than I,\nR. Jesus, grant me the grace to desire it.\nV. That others may be esteemed more than I,\nR. Jesus, grant me the grace to desire it.\nV. That, in the opinion of the world, others may increase and I may decrease,\nR. Jesus, grant me the grace to desire it.\nV. That others may be chosen and I set aside,\nR. Jesus, grant me the grace to desire it.\nV. That others may be praised and I unnoticed,\nR. Jesus, grant me the grace to desire it.\nV. That others may be preferred to me in everything,\nR. Jesus, grant me the grace to desire it.\nV. That others may become holier than I, provided that I may become as holy as I should,\nR. Jesus, grant me the grace to desire it.",
+    "text_es": "V. ¡Oh Jesús! manso y humilde de corazón,\nR. Escúchame.\nV. Del deseo de ser estimado,\nR. Líbrame, Jesús.\nV. Del deseo de ser amado,\nR. Líbrame, Jesús.\nV. Del deseo de ser ensalzado,\nR. Líbrame, Jesús.\nV. Del deseo de ser honrado,\nR. Líbrame, Jesús.\nV. Del deseo de ser alabado,\nR. Líbrame, Jesús.\nV. Del deseo de ser preferido a otros,\nR. Líbrame, Jesús.\nV. Del deseo de ser consultado,\nR. Líbrame, Jesús.\nV. Del deseo de ser aprobado,\nR. Líbrame, Jesús.\nV. Del temor de ser humillado,\nR. Líbrame, Jesús.\nV. Del temor de ser despreciado,\nR. Líbrame, Jesús.\nV. Del temor de sufrir reprensiones,\nR. Líbrame, Jesús.\nV. Del temor de ser calumniado,\nR. Líbrame, Jesús.\nV. Del temor de ser olvidado,\nR. Líbrame, Jesús.\nV. Del temor de ser ridiculizado,\nR. Líbrame, Jesús.\nV. Del temor de ser ofendido,\nR. Líbrame, Jesús.\nV. Del temor de ser sospechado,\nR. Líbrame, Jesús.\nV. Que otros sean más amados que yo,\nR. Jesús, dame la gracia de desearlo.\nV. Que otros sean más estimados que yo,\nR. Jesús, dame la gracia de desearlo.\nV. Que en la opinión del mundo, otros crezcan y yo disminuya,\nR. Jesús, dame la gracia de desearlo.\nV. Que otros sean elegidos y yo dejado de lado,\nR. Jesús, dame la gracia de desearlo.\nV. Que otros sean alabados y yo pase desapercibido,\nR. Jesús, dame la gracia de desearlo.\nV. Que otros sean preferidos a mí en todo,\nR. Jesús, dame la gracia de desearlo.\nV. Que otros lleguen a ser más santos que yo, con tal que yo llegue a ser lo santo que debo,\nR. Jesús, dame la gracia de desearlo.",
+    "text_la": ""
+  },
+  {
+    "id": "litany-loreto",
+    "category": "Litanies",
+    "title": "Litany of Loreto",
+    "title_es": "Letanías Lauretanas",
+    "title_la": "",
+    "text": "V. Lord, have mercy.\nR. Lord, have mercy.\nV. Christ, have mercy.\nR. Christ, have mercy.\nV. Lord, have mercy.\nR. Lord, have mercy.\nV. God the Father of heaven,\nR. Have mercy on us.\nV. God the Son, Redeemer of the world,\nR. Have mercy on us.\nV. God the Holy Spirit,\nR. Have mercy on us.\nV. Holy Trinity, one God,\nR. Have mercy on us.\nV. Holy Mary,\nR. Pray for us.\nV. Holy Mother of God,\nR. Pray for us.\nV. Holy Virgin of virgins,\nR. Pray for us.\nV. Mother of Christ,\nR. Pray for us.\nV. Mother of the Church,\nR. Pray for us.\nV. Mother of divine grace,\nR. Pray for us.\nV. Mother most pure,\nR. Pray for us.\nV. Virgin most merciful,\nR. Pray for us.\nV. Virgin most faithful,\nR. Pray for us.\nV. Mirror of justice,\nR. Pray for us.\nV. Seat of wisdom,\nR. Pray for us.\nV. Cause of our joy,\nR. Pray for us.\nV. Mystical rose,\nR. Pray for us.\nV. Tower of David,\nR. Pray for us.\nV. Ark of the covenant,\nR. Pray for us.\nV. Gate of heaven,\nR. Pray for us.\nV. Morning star,\nR. Pray for us.\nV. Health of the sick,\nR. Pray for us.\nV. Refuge of sinners,\nR. Pray for us.\nV. Comforter of the afflicted,\nR. Pray for us.\nV. Help of Christians,\nR. Pray for us.\nV. Queen of Angels,\nR. Pray for us.\nV. Queen of Patriarchs,\nR. Pray for us.\nV. Queen of Apostles,\nR. Pray for us.\nV. Queen of Martyrs,\nR. Pray for us.\nV. Queen of all Saints,\nR. Pray for us.\nV. Queen conceived without original sin,\nR. Pray for us.\nV. Queen assumed into heaven,\nR. Pray for us.\nV. Queen of the most holy Rosary,\nR. Pray for us.\nV. Queen of families,\nR. Pray for us.\nV. Queen of peace,\nR. Pray for us.\nV. Lamb of God, who takes away the sins of the world,\nR. Spare us, O Lord.\nV. Lamb of God, who takes away the sins of the world,\nR. Graciously hear us, O Lord.\nV. Lamb of God, who takes away the sins of the world,\nR. Have mercy on us.\nV. Pray for us, O holy Mother of God.\nR. That we may be made worthy of the promises of Christ.",
+    "text_es": "V. Señor, ten piedad.\nR. Señor, ten piedad.\nV. Cristo, ten piedad.\nR. Cristo, ten piedad.\nV. Señor, ten piedad.\nR. Señor, ten piedad.\nV. Dios Padre celestial,\nR. Ten piedad de nosotros.\nV. Dios Hijo, Redentor del mundo,\nR. Ten piedad de nosotros.\nV. Dios Espíritu Santo,\nR. Ten piedad de nosotros.\nV. Santísima Trinidad, un solo Dios,\nR. Ten piedad de nosotros.\nV. Santa María,\nR. Ruega por nosotros.\nV. Santa Madre de Dios,\nR. Ruega por nosotros.\nV. Santa Virgen de las vírgenes,\nR. Ruega por nosotros.\nV. Madre de Cristo,\nR. Ruega por nosotros.\nV. Madre de la Iglesia,\nR. Ruega por nosotros.\nV. Madre de la divina gracia,\nR. Ruega por nosotros.\nV. Madre purísima,\nR. Ruega por nosotros.\nV. Virgen clementísima,\nR. Ruega por nosotros.\nV. Virgen fiel,\nR. Ruega por nosotros.\nV. Espejo de justicia,\nR. Ruega por nosotros.\nV. Trono de la sabiduría,\nR. Ruega por nosotros.\nV. Causa de nuestra alegría,\nR. Ruega por nosotros.\nV. Rosa mística,\nR. Ruega por nosotros.\nV. Torre de David,\nR. Ruega por nosotros.\nV. Arca de la alianza,\nR. Ruega por nosotros.\nV. Puerta del cielo,\nR. Ruega por nosotros.\nV. Estrella de la mañana,\nR. Ruega por nosotros.\nV. Salud de los enfermos,\nR. Ruega por nosotros.\nV. Refugio de los pecadores,\nR. Ruega por nosotros.\nV. Consoladora de los aflijidos,\nR. Ruega por nosotros. (Followed by the Chaplet of Divine Mercy)",
+    "text_la": ""
+  }
+]
