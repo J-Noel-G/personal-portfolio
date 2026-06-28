@@ -44,17 +44,51 @@
         -webkit-tap-highlight-color: transparent;
       }
       body { overscroll-behavior-y: none; }
-      .glass-panel {
-        background: rgba(10, 10, 15, 0.6);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      
+      .snap-container {
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
       }
+
+      /* Fluid Card Sizing */
+      .fluid-card {
+        width: 92%;
+        max-width: 680px;
+        height: auto;
+        max-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: clamp(1.25rem, 3.5vh, 2.5rem);
+        border-radius: 1.5rem;
+      }
+
+      /* Fluid Typography scaling with screen height */
+      .fluid-text {
+        font-size: clamp(0.95rem, 2.2vh, 1.15rem);
+        line-height: clamp(1.6, 2.8vh, 1.9);
+      }
+
+      .fluid-title {
+        font-size: clamp(1.1rem, 3vh, 1.5rem);
+      }
+
+      .glass-panel {
+        background: rgba(10, 10, 15, 0.65);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      }
+      
       .bg-noise {
         background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWCAAAAGFBMVEUAAAAAAAACAgIBAQEAAAAAAAABAQEAAAB2XFmnAAAACHRSTlMAz8+WlpmZlpvF688AAAABYktHRACIBR1IAAAAJ0lEQVQ4y2NgQQ0wMHCwM2ARY2RgYGARZ2BgYBFnYGBgEWdgYGARZwA5OAGx9K0x4gAAAABJRU5ErkJggg==");
         opacity: 0.025;
       }
+
+      .card-scroll::-webkit-scrollbar { width: 4px; }
+      .card-scroll::-webkit-scrollbar-track { background: transparent; }
+      .card-scroll::-webkit-scrollbar-thumb { background: rgba(59, 130, 246, 0.3); border-radius: 2px; }
     </style>
   </head>
   <body class="bg-church-950 text-slate-100 antialiased overflow-x-hidden min-h-screen">
@@ -72,11 +106,12 @@
     <script>
       // --- APP STATE ---
       let currentLang = 'en'; 
-      let currentView = 'LOADING'; // Initial view
+      let currentView = 'LOADING'; 
       let selectedCategory = null;
       let selectedPrayer = null;
+      let selectedMysteryGroup = 'JOYFUL'; 
       let searchQuery = '';
-      let PRAYERS_DATA = []; // Populated via Fetch
+      let PRAYERS_DATA = []; 
       let loadError = null;
 
       const PrayerCategory = {
@@ -100,7 +135,7 @@
         [PrayerCategory.SAINTS]: { es: 'Oraciones a los Santos', la: 'Orationes ad Sanctos' },
         [PrayerCategory.DIVINE_MERCY]: { es: 'Divina Misericordia', la: 'Divina Misericordia' },
         [PrayerCategory.ACTIVITIES]: { es: 'Actividades Diarias', la: 'Actus Cotidiani' },
-        [PrayerCategory.MEAL]: { es: 'Oraciones para las Comidas', la: 'Orationes pro Mensa' },
+        [PrayerCategory.MEAL]: { es: 'Oraciones para las Comidas', la: 'Orationes pro Mesa' },
         [PrayerCategory.ACTS]: { es: 'Actos de Fe, Esperanza y Caridad', la: 'Actus Fidei, Spei, Caritatis' },
         [PrayerCategory.LITANIES]: { es: 'Letanías', la: 'Litaniae' },
       };
@@ -115,10 +150,61 @@
         'https://www.ewtn.com/catholicism/devotions/litany-of-humility-245'
       ];
 
+      const COMMON_PRAYERS = {
+        SIGN_CROSS: { 
+            en: "By the sign of the holy cross,\ndeliver us from our enemies, O Lord our God.\nIn the name of the Father, and of the Son, and of the Holy Spirit. Amen.", 
+            es: "Por la señal de la Santa Cruz,\nde nuestros enemigos líbranos Señor, Dios nuestro.\nEn el nombre del Padre, y del Hijo, y del Espíritu Santo. Amén.",
+            la: "Per signum Crucis\nde inimicis nostris libera nos, Deus noster.\nIn nomine Patris, et Filii, et Spiritus Sancti. Amen."
+        },
+        COME_HS: { 
+            title: "Come, Holy Spirit", title_es: "Ven, Espíritu Santo", title_la: "Veni Sancte Spiritus",
+            en: "Come, Holy Spirit,\nfill the hearts of Thy faithful\nand enkindle in them the fire of Thy love.\nSend forth Thy Spirit and they shall be created.\nAnd Thou shalt renew the face of the earth.", 
+            es: "Ven, Espíritu Santo,\nllena los corazones de tus fieles\ny enciende en ellos el fuego de tu amor.\nEnvía tu Espíritu y serán creados.\nY renovarás la faz de la tierra.",
+            la: "Veni, Sancte Spiritus,\nreple tuorum corda fidelium\net tui amoris in eis ignem accende.\nEmitte Spiritum tuum et creabuntur.\nEt renovabis faciem terrae."
+        },
+        FATIMA: { 
+            en: "O my Jesus, forgive us our sins,\nsave us from the fires of hell,\nlead all souls to Heaven,\nespecially those in most need of Thy mercy.", 
+            es: "Oh Jesús mío, perdona nuestros pecados,\nlíbranos del fuego del infierno,\nlleva al cielo a todas las almas,\nespecialmente a las más necesitadas de tu misericordia.",
+            la: "Domine Iesu, dimitte nobis debita nostra,\nsalva nos ab igne inferiori,\nperduc in caelum omnes animas,\npraesertim eas, quae misericordiae tuae maxime indigent."
+        }
+      };
+
+      const MYSTERIES = {
+        JOYFUL: [
+          { t: "The Annunciation", t_es: "La Encarnación", t_la: "Annuntiatio", s: "Luke 1:38", fruit_en: "Humility", fruit_es: "Humildad", m_en: "The Angel Gabriel announces to Mary that she will be the Mother of God. She responds with a humble 'Fiat': 'Behold the handmaid of the Lord.'", m_es: "El Ángel Gabriel le anuncia a María que será la Madre de Dios. Ella responde con un humilde 'Fiat': 'He aquí la esclava del Señor'." },
+          { t: "The Visitation", t_es: "La Visitación", t_la: "Visitatio", s: "Luke 1:42", fruit_en: "Love of Neighbor", fruit_es: "Amor al Prójimo", m_en: "Mary hastens to the hill country to help her cousin Elizabeth. John the Baptist leaps for joy in Elizabeth's womb at the presence of the Savior.", m_es: "María se apresura a la montaña para ayudar a su prima Isabel. Juan el Bautista salta de gozo en el vientre de Isabel ante la presencia del Salvador." },
+          { t: "The Nativity", t_es: "El Nacimiento", t_la: "Nativitas", s: "Luke 2:11", fruit_en: "Poverty of Spirit", fruit_es: "Pobreza de Espíritu", m_en: "Jesus is born in a stable in Bethlehem. The King of Kings enters the world in poverty, teaching us to detach our hearts from material things.", m_es: "Jesús nace en un establo en Belén. El Rey de Reyes entra al mundo en pobreza, enseñándonos a despegar nuestros corazones." },
+          { t: "The Presentation", t_es: "La Presentación", t_la: "Praesentatio", s: "Luke 2:22", fruit_en: "Obedience", fruit_es: "Obediencia", m_en: "Mary and Joseph present Jesus in the Temple. Simeon prophesies that Jesus will be a light to the nations and that a sword of sorrow will pierce Mary's soul.", m_es: "María y José presentan a Jesús en el Templo. Simeón profetiza que Jesús será luz para las naciones." },
+          { t: "The Finding in the Temple", t_es: "El Niño Perdido y Hallado", t_la: "Inventio in Templo", s: "Luke 2:46", fruit_en: "Joy in finding Jesus", fruit_es: "Gozo de buscar a Jesús", m_en: "After three days of anxious searching, Mary and Joseph find Jesus in the Temple, teaching the elders. We pray to always find Jesus in our lives.", m_es: "Después de tres días de búsqueda angustiosa, María y José encuentran a Jesús en el Templo." }
+        ],
+        SORROWFUL: [
+          { t: "The Agony in the Garden", t_es: "La Oración en el Huerto", t_la: "Agonia in Horto", s: "Luke 22:42", fruit_en: "Sorrow for Sin", fruit_es: "Dolor por los Pecados", m_en: "Jesus prays in Gethsemane, seeing the sins of the world. He sweats drops of blood but submits to the Father's will: 'Not my will, but yours be done.'", m_es: "Jesús ora en Getsemaní, viendo los pecados del mundo. Suda gotas de sangre pero se somete a la voluntad del Padre." },
+          { t: "The Scourging at the Pillar", t_es: "La Flagelación", t_la: "Flagellatio", s: "John 19:1", fruit_en: "Purity", fruit_es: "Pureza", m_en: "Jesus is stripped and bound to a pillar, cruelly scourged by soldiers. He accepts this pain to atone for our sins of the flesh.", m_es: "Jesús es desnudado y atado a una columna, cruelmente azotado por los soldados." },
+          { t: "The Crowning with Thorns", t_es: "La Coronación de Espinas", t_la: "Coronatio Spinis", s: "Matt 27:29", fruit_en: "Moral Courage", fruit_es: "Valentía Moral", m_en: "Soldiers mock Jesus' kingship by crowning Him with thorns. He endures the mockery in silence, teaching us to bear humiliation with grace.", m_es: "Los soldados se burlan de la realeza de Jesús coronándolo de espinas." },
+          { t: "The Carrying of the Cross", t_es: "El Camino al Calvario", t_la: "Baiulatio Crucis", s: "John 19:17", fruit_en: "Patience", fruit_es: "Paciencia", m_en: "Jesus carries the heavy cross to Calvary. Despite his exhaustion and falls, He perseveres for our salvation. We pray for patience in our own trials.", m_es: "Jesús carga la pesada cruz hacia el Calvario. A pesar de su agotamiento y caídas, persevera por nuestra salvación." },
+          { t: "The Crucifixion", t_es: "La Crucifixión", t_la: "Crucifixio", s: "Luke 23:46", fruit_en: "Salvation", fruit_es: "Salvación", m_en: "Jesus is nailed to the cross and dies after three hours of agony. He forgives His enemies and commends His spirit to the Father.", m_es: "Jesús es clavado en la cruz y muere tras tres horas de agonía. Perdona a sus enemigos." }
+        ],
+        GLORIOUS: [
+          { t: "The Resurrection", t_es: "La Resurrección", t_la: "Resurrectio", s: "Matt 28:6", fruit_en: "Faith", fruit_es: "Fe", m_en: "On the third day, Jesus rises from the dead, conquering sin and death. His victory gives us the promise of eternal life.", m_es: "Al tercer día, Jesús resucita de entre los muertos, venciendo al pecado y la muerte. Su victoria nos da la promesa de la vida eterna." },
+          { t: "The Ascension", t_es: "La Ascensión", t_la: "Ascensio", s: "Acts 1:9", fruit_en: "Hope", fruit_es: "Esperanza", m_en: "Jesus ascends into heaven to take His place at the right hand of the Father. We place our hope in heaven, our true home.", m_es: "Jesús asciende al cielo para tomar su lugar a la derecha del Padre. Ponemos nuestra esperanza en el cielo." },
+          { t: "The Descent of the Holy Spirit", t_es: "La Venida del Espíritu Santo", t_la: "Descensus Spiritus Sancti", s: "Acts 2:3", fruit_en: "Love of God", fruit_es: "Amor a Dios", m_en: "The Holy Spirit descends upon the Apostles and Mary as tongues of fire, filling them with courage and zeal to spread the Gospel.", m_es: "El Espíritu Santo desciende sobre los Apóstoles y María como lenguas de fuego." },
+          { t: "The Assumption", t_es: "La Asunción", t_la: "Assumptio", s: "Judith 15:9", fruit_en: "Grace of a Happy Death", fruit_es: "Gracia de una Buena Muerte", m_en: "The Virgin Mary is taken up body and soul into heavenly glory, preserved from the corruption of the grave as the Mother of God.", m_es: "La Virgen María es llevada en cuerpo y alma a la gloria celestial, preservada de la corrupción." },
+          { t: "The Coronation", t_es: "La Coronación", t_la: "Coronatio", s: "Rev 12:1", fruit_en: "Trust in Mary's Intercession", fruit_es: "Confianza en María", m_en: "Mary is crowned Queen of Heaven and Earth by her Son. She reigns in glory and intercedes for us as our powerful advocate.", m_es: "María es coronada Reina del Cielo y de la Tierra por su Hijo. Ella reina en gloria e intercede." }
+        ],
+        LUMINOUS: [
+          { t: "The Baptism in the Jordan", t_es: "El Bautismo", t_la: "Baptismus in Iordane", s: "Matt 3:17", fruit_en: "Openness to the Holy Spirit", fruit_es: "Apertura al Espíritu Santo", m_en: "Jesus is baptized by John. The heavens open and the Father proclaims: 'This is my beloved Son.' We pray for fidelity to our own baptismal promises.", m_es: "Jesús es bautizado por Juan. Los cielos se abren y el Padre proclama: 'Este es mi Hijo amado'." },
+          { t: "The Wedding at Cana", t_es: "Las Bodas de Caná", t_la: "Nuptiae in Cana", s: "John 2:5", fruit_en: "To Jesus through Mary", fruit_es: "A Jesús por María", m_en: "At Mary's request, Jesus performs His first miracle, turning water into wine. We learn to trust in Mary's intercession: 'Do whatever He tells you.'", m_es: "A petición de María, Jesús realiza su primer milagro, convirtiendo el agua en vino." },
+          { t: "The Proclamation of the Kingdom", t_es: "El Anuncio del Reino", t_la: "Proclamatio Regni", s: "Mark 1:15", fruit_en: "Repentance", fruit_es: "Arrepentimiento", m_en: "Jesus preaches the Gospel, calls for conversion, and forgives sins. We pray for a heart open to His word and the grace of true repentance.", m_es: "Jesús predica el Evangelio, llama a la conversión y perdona los pecados." },
+          { t: "The Transfiguration", t_es: "La Transfiguración", t_la: "Transfiguratio", s: "Matt 17:2", fruit_en: "Desire for Holiness", fruit_es: "Deseo de Santidad", m_en: "Jesus is revealed in glory to Peter, James, and John. We contemplate His divinity and pray that our lives may reflect His light.", m_es: "Jesús se revela en gloria a Pedro, Santiago y Juan." },
+          { t: "The Institution of the Eucharist", t_es: "La Institución de la Eucaristía", t_la: "Institutio Eucharistiae", s: "Matt 26:26", fruit_en: "Eucharistic Adoration", fruit_es: "Adoración Eucarística", m_en: "At the Last Supper, Jesus gives us His Body and Blood. He remains with us always in the Holy Eucharist.", m_es: "En la Última Cena, Jesús nos da su Cuerpo y Sangre." }
+        ]
+      };
+
       // --- ASYNC DATABASE FETCH ---
       async function fetchPrayers() {
+        render(); 
         try {
-          const response = await fetch('prayers.json');
+          const response = await fetch('prayers.json?v=' + Date.now());
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
@@ -140,6 +226,10 @@
         return cat;
       }
 
+      function getPrayerById(id) {
+        return PRAYERS_DATA.find(p => p.id === id) || { title: id, text: "Prayer text missing in json" };
+      }
+
       function getPrayerTitle(prayer, lang) {
         if (lang === 'es' && prayer.title_es) return prayer.title_es;
         if (lang === 'la' && prayer.title_la) return prayer.title_la;
@@ -152,14 +242,37 @@
         return prayer.text;
       }
 
+      // Updated to persist scroll position on rerender safely across repaint ticks
       function setLang(lang) {
         currentLang = lang;
+        
+        const container = document.getElementById('slideshow-container');
+        const savedScroll = container ? container.scrollTop : null;
+        
         render();
+        
+        if (savedScroll !== null) {
+          requestAnimationFrame(() => {
+            const newContainer = document.getElementById('slideshow-container');
+            if (newContainer) {
+              newContainer.scrollTop = savedScroll;
+            }
+          });
+        }
       }
 
       function handleSearch(val) {
         searchQuery = val;
         render();
+      }
+
+      // Fetch dynamic traditional mystery based on day of the week
+      function getTraditionalMystery() {
+        const day = new Date().getDay(); // 0 = Sunday, 1 = Monday...
+        if (day === 0 || day === 3) return 'GLORIOUS'; // Sunday, Wed
+        if (day === 1 || day === 6) return 'JOYFUL';    // Monday, Sat
+        if (day === 2 || day === 5) return 'SORROWFUL'; // Tuesday, Fri
+        return 'LUMINOUS';                              // Thursday
       }
 
       function selectCategory(cat) {
@@ -172,9 +285,26 @@
           window.open('https://www.franciscanmedia.org/saint-of-the-day/', '_blank');
           return;
         }
-        
-        selectedCategory = cat;
-        currentView = 'CATEGORY';
+        if (cat === PrayerCategory.ROSARY) {
+          selectedMysteryGroup = getTraditionalMystery();
+          currentView = 'ROSARY_LAUNCH';
+        } else if (cat === PrayerCategory.DIVINE_MERCY) {
+          currentView = 'DIVINE_MERCY_LAUNCH';
+        } else {
+          selectedCategory = cat;
+          currentView = 'CATEGORY';
+        }
+        render();
+      }
+
+      function startRosary(mysteryGroup) {
+        selectedMysteryGroup = mysteryGroup;
+        currentView = 'ROSARY_FULL';
+        render();
+      }
+
+      function startDivineMercy() {
+        currentView = 'DIVINE_MERCY_FULL';
         render();
       }
 
@@ -184,9 +314,35 @@
         render();
       }
 
+      function goBackFromDetail() {
+        if (selectedCategory) {
+          setView('CATEGORY');
+        } else {
+          setView('HOME');
+        }
+      }
+
+      window.toggleBead = (btn) => {
+        btn.classList.toggle('bg-gold-500');
+        btn.classList.toggle('border-gold-400');
+        btn.classList.toggle('scale-110');
+        btn.classList.toggle('shadow-[0_0_15px_rgba(234,179,8,0.5)]');
+      };
+
+      window.handleSlideshowScroll = (container) => {
+        const progress = (container.scrollTop / (container.scrollHeight - container.clientHeight)) * 100;
+        const bar = document.getElementById('slideshow-progress-bar');
+        if (bar) bar.style.width = `${progress}%`;
+      };
+
       // --- RENDER ENGINE ---
       function render() {
         const root = document.getElementById('root');
+        if (!root) return;
+
+        if (currentView !== 'ROSARY_FULL' && currentView !== 'DIVINE_MERCY_FULL') {
+          window.scrollTo(0, 0);
+        }
 
         if (currentView === 'LOADING') {
           root.innerHTML = `
@@ -203,11 +359,8 @@
             <div class="flex flex-col items-center justify-center min-h-screen text-center px-6">
               <div class="text-red-500 text-5xl mb-4">⚠</div>
               <h1 class="font-display text-3xl text-gold-500 mb-2">Failed to Load Prayers</h1>
-              <p class="font-serif text-slate-400 mb-6 max-w-md">Please ensure your prayers.json file exists and is correctly placed in the root directory.</p>
-              <p class="text-xs text-red-400 font-mono bg-black/40 p-3 rounded border border-white/5 max-w-sm overflow-auto mb-6">${loadError}</p>
-              <button onclick="fetchPrayers()" class="px-6 py-2.5 bg-gold-500 text-church-950 font-display font-bold rounded-full hover:bg-gold-400 transition-colors">
-                Retry Connection
-              </button>
+              <p class="font-serif text-slate-400 mb-6 max-w-md">Please ensure prayers.json exists in the root directory.</p>
+              <button onclick="fetchPrayers()" class="px-6 py-2.5 bg-gold-500 text-church-950 font-display font-bold rounded-full hover:bg-gold-400 transition-colors">Retry Connection</button>
             </div>
           `;
           return;
@@ -307,7 +460,7 @@
                   <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                     <path d="m15 18-6-6 6-6"></path>
                   </svg>
-                  <span>${currentLang === 'es' ? 'Volver' : currentLang === 'la' ? 'Retro' : 'Back'}</span>
+                  <span>${currentLang === 'es' ? 'Volver' : 'Back'}</span>
                 </button>
                 <h1 class="font-display text-xl font-bold text-white">${getCategoryTitle(selectedCategory, currentLang)}</h1>
                 <div class="w-8"></div>
@@ -316,18 +469,87 @@
 
             <main class="relative z-10 max-w-3xl mx-auto px-6 py-8 w-full flex-1">
               <div class="grid gap-4 animate-fade-in">
-                ${categoryPrayers.length > 0 ? categoryPrayers.map(prayer => `
+                ${categoryPrayers.map(prayer => `
                   <button onclick="viewPrayer('${prayer.id}')" class="group bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/10 hover:border-gold-500/30 p-6 rounded-xl transition-all duration-300 text-left flex items-center justify-between glass-panel active:scale-[0.99]">
                     <div>
                       <h3 class="font-display text-xl font-bold text-slate-100 group-hover:text-gold-200">${getPrayerTitle(prayer, currentLang)}</h3>
                     </div>
                     <div class="opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300 text-gold-400">→</div>
                   </button>
-                `).join('') : `
-                  <div class="glass-panel p-12 rounded-2xl border border-white/10 text-center animate-fade-in">
-                    <p class="font-serif italic text-slate-400">No prayers found in this category.</p>
-                  </div>
-                `}
+                `).join('')}
+              </div>
+            </main>
+          `;
+        } else if (currentView === 'ROSARY_LAUNCH') {
+          // --- DIRECT ROSARY SETUP PAGE ---
+          const recommended = getTraditionalMystery();
+          const recTitles = { JOYFUL: 'Joyful', SORROWFUL: 'Sorrowful', GLORIOUS: 'Glorious', LUMINOUS: 'Luminous' };
+
+          root.innerHTML = `
+            <header class="relative z-20 px-4 py-4 backdrop-blur-xl border-b border-white/5 sticky top-0 bg-church-950/80 shadow-lg animate-fade-in">
+              <div class="max-w-4xl mx-auto flex items-center justify-between">
+                <button onclick="setView('HOME')" class="p-2 hover:bg-white/10 rounded-full transition-colors text-slate-300 hover:text-white flex items-center gap-1">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <path d="m15 18-6-6 6-6"></path>
+                  </svg>
+                  <span>Back</span>
+                </button>
+                <h1 class="font-display text-xl font-bold text-white">Sanctum Rosarium</h1>
+                <div class="w-8"></div>
+              </div>
+            </header>
+
+            <main class="relative z-10 max-w-lg mx-auto px-6 py-12 w-full flex-1 animate-fade-in">
+              <div class="glass-panel p-8 md:p-10 rounded-3xl border border-blue-500/20 text-center bg-gradient-to-b from-blue-500/10 to-transparent">
+                <div class="text-blue-300 font-display text-xs uppercase tracking-widest mb-2">Mystery of the Day</div>
+                <h2 class="font-display text-4xl font-extrabold text-white mb-6">${recTitles[recommended]}</h2>
+                <p class="font-serif italic text-slate-400 text-sm leading-relaxed mb-8">
+                  Traditionally prayed on this day of the week. You can begin with this group or choose another mystery option below.
+                </p>
+
+                <div class="h-px bg-blue-500/20 w-full mb-8"></div>
+
+                <div class="grid grid-cols-2 gap-3 mb-10">
+                  ${Object.keys(MYSTERIES).map(group => `
+                    <button onclick="startRosary('${group}')" class="px-4 py-3 rounded-2xl border transition-all text-xs font-bold uppercase tracking-wider ${group === recommended ? 'bg-blue-500 text-white border-blue-400 shadow-md scale-105' : 'bg-white/5 border-white/10 text-slate-300 hover:border-blue-500/40'}">
+                      ${recTitles[group]}
+                    </button>
+                  `).join('')}
+                </div>
+
+                <button onclick="startRosary('${recommended}')" class="w-full py-4 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-display font-bold text-xs hover:from-blue-400 hover:to-indigo-500 transition-all shadow-[0_0_20px_rgba(59,130,246,0.3)] border border-blue-400/30">
+                  Begin Traditional Rosary
+                </button>
+              </div>
+            </main>
+          `;
+        } else if (currentView === 'DIVINE_MERCY_LAUNCH') {
+          // --- DIRECT DIVINE MERCY SETUP PAGE ---
+          root.innerHTML = `
+            <header class="relative z-20 px-4 py-4 backdrop-blur-xl border-b border-white/5 sticky top-0 bg-church-950/80 shadow-lg animate-fade-in">
+              <div class="max-w-4xl mx-auto flex items-center justify-between">
+                <button onclick="setView('HOME')" class="p-2 hover:bg-white/10 rounded-full transition-colors text-slate-300 hover:text-white flex items-center gap-1">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <path d="m15 18-6-6 6-6"></path>
+                  </svg>
+                  <span>Back</span>
+                </button>
+                <h1 class="font-display text-xl font-bold text-white">Divine Mercy</h1>
+                <div class="w-8"></div>
+              </div>
+            </header>
+
+            <main class="relative z-10 max-w-lg mx-auto px-6 py-12 w-full flex-1 animate-fade-in">
+              <div class="glass-panel p-8 md:p-10 rounded-3xl border border-blue-500/20 text-center bg-gradient-to-b from-blue-500/10 to-transparent">
+                <div class="text-blue-300 font-display text-xs uppercase tracking-widest mb-2">Chaplet Mode</div>
+                <h2 class="font-display text-4xl font-extrabold text-white mb-6">Divine Mercy</h2>
+                <p class="font-serif italic text-slate-400 text-sm leading-relaxed mb-10">
+                  "For the sake of His sorrowful Passion, have mercy on us and on the whole world."
+                </p>
+
+                <button onclick="startDivineMercy()" class="w-full py-4 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-display font-black text-sm uppercase tracking-widest hover:scale-105 transition-all shadow-[0_0_20px_rgba(59,130,246,0.3)] border border-blue-400/30">
+                  Begin Chaplet
+                </button>
               </div>
             </main>
           `;
@@ -337,7 +559,7 @@
           root.innerHTML = `
             <header class="relative z-20 px-4 py-4 backdrop-blur-xl border-b border-white/5 sticky top-0 bg-church-950/80 shadow-lg">
               <div class="max-w-4xl mx-auto flex items-center justify-between">
-                <button onclick="setView('CATEGORY')" class="p-2 hover:bg-white/10 rounded-full transition-colors text-slate-300 hover:text-white flex items-center gap-1">
+                <button onclick="goBackFromDetail()" class="p-2 hover:bg-white/10 rounded-full transition-colors text-slate-300 hover:text-white flex items-center gap-1">
                   <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                     <path d="m15 18-6-6 6-6"></path>
                   </svg>
@@ -361,16 +583,244 @@
               </div>
             </main>
           `;
+        } else if (currentView === 'ROSARY_FULL') {
+          // --- FULL SCROLL ROSARY SLIDESHOW ---
+          const mysteries = MYSTERIES[selectedMysteryGroup];
+          const mysteryTitles = {
+              JOYFUL: { en: "Joyful Mysteries", es: "Misterios Gozosos" },
+              SORROWFUL: { en: "Sorrowful Mysteries", es: "Misterios Dolorosos" },
+              GLORIOUS: { en: "Glorious Mysteries", es: "Misterios Gloriosos" },
+              LUMINOUS: { en: "Luminous Mysteries", es: "Misterios Luminosos" }
+          };
+
+          const signCross = COMMON_PRAYERS.SIGN_CROSS[currentLang];
+          const comeHS = COMMON_PRAYERS.COME_HS[currentLang];
+          const fatima = COMMON_PRAYERS.FATIMA[currentLang];
+          const creed = getPrayerText(getPrayerById('apostles-creed'), currentLang);
+          const pater = getPrayerText(getPrayerById('our-father'), currentLang);
+          const ave = getPrayerText(getPrayerById('hail-mary'), currentLang);
+          const gloria = getPrayerText(getPrayerById('glory-be'), currentLang);
+          const salve = getPrayerText(getPrayerById('hail-holy-queen'), currentLang);
+          const closing = getPrayerText(getPrayerById('rosary-closing'), currentLang);
+
+          let slidesHTML = '';
+
+          // Intro slide
+          slidesHTML += makeSnapSlide(mysteryTitles[selectedMysteryGroup][currentLang] || mysteryTitles[selectedMysteryGroup].en, `
+            <div class="text-center">
+              <p class="font-serif text-blue-300/80 mb-6 italic">Prepare to enter contemplation...</p>
+              <div class="flex flex-col items-center justify-center animate-pulse gap-2 text-slate-500">
+                <span class="text-xs uppercase tracking-widest">Swipe up to pray</span>
+                <span class="text-xl">↓</span>
+              </div>
+            </div>
+          `);
+
+          // Initial Prayers
+          slidesHTML += makeSnapSlide('Sign of the Cross', `<p class="font-serif text-center">${signCross}</p>`);
+          slidesHTML += makeSnapSlide('Opening Prayer', `<p class="font-serif text-center">${comeHS}</p>`);
+          slidesHTML += makeSnapSlide('Apostles\' Creed', `<p class="font-serif">${creed}</p>`);
+          
+          // Faith, Hope, Charity decade
+          slidesHTML += makeSnapSlide('Our Father', `<p class="font-serif">${pater}</p>`);
+          slidesHTML += makeSnapDecade('Hail Mary (x3)', ave, 3);
+          slidesHTML += makeSnapSlide('Glory Be', `<p class="font-serif">${gloria}</p>`);
+
+          // Mystery Slides
+          mysteries.forEach((m, idx) => {
+            const mTitle = currentLang === 'es' ? m.t_es : m.t;
+            const mMeditation = currentLang === 'es' ? m.m_es : m.m_en;
+            const mFruit = currentLang === 'es' ? m.fruit_es : m.fruit_en;
+
+            slidesHTML += makeSnapSlide(`Decade ${idx + 1}`, `
+              <div class="text-center">
+                <h3 class="font-display text-2xl font-bold text-blue-300 mb-2">${mTitle}</h3>
+                <span class="text-xs text-slate-500 font-mono tracking-widest block mb-6">${m.s}</span>
+                <p class="font-serif text-slate-300 max-w-lg mx-auto mb-6 leading-relaxed">${mMeditation}</p>
+                <div class="h-px bg-blue-500/20 max-w-xs mx-auto mb-4"></div>
+                <p class="text-xs uppercase tracking-wider text-slate-400 font-sans">Fruit of the Mystery: <span class="text-blue-300 font-bold">${mFruit}</span></p>
+              </div>
+            `);
+
+            slidesHTML += makeSnapSlide('Our Father', `<p class="font-serif">${pater}</p>`);
+            slidesHTML += makeSnapDecade('Hail Mary', ave, 10);
+            slidesHTML += makeSnapSlide('Glory Be', `<p class="font-serif">${gloria}</p>`);
+            slidesHTML += makeSnapSlide('Fatima Prayer', `<p class="font-serif text-center">${fatima}</p>`);
+          });
+
+          // Concluding Slides
+          slidesHTML += makeSnapSlide('Hail Holy Queen', `<p class="font-serif">${salve}</p>`);
+          slidesHTML += makeSnapSlide('Closing Prayer', `<p class="font-serif">${closing}</p>`);
+          slidesHTML += makeSnapSlide('Conclusion', `
+            <div class="text-center">
+              <p class="font-serif mb-10 text-center">${signCross}</p>
+              <h3 class="font-display text-2xl font-bold text-blue-300">Rosary Complete</h3>
+              <p class="text-slate-500 text-xs font-serif italic mt-2">Go in peace.</p>
+            </div>
+          `);
+
+          // Combined root render with controllers completely detached from the snap scroll container
+          root.innerHTML = `
+            <!-- Fixed progress bar pinned outside container -->
+            <div class="fixed top-0 left-0 right-0 h-1 bg-white/5 z-50">
+              <div id="slideshow-progress-bar" class="h-full bg-gradient-to-r from-blue-500 to-indigo-500 w-0 transition-all duration-300 shadow-[0_0_10px_rgba(59,130,246,0.5)]"></div>
+            </div>
+
+            <!-- Absolute Pinned Close Button (Fixed Top-Left, outside overlays) -->
+            <button onclick="setView('HOME')" class="fixed top-6 left-6 z-50 px-4 py-2 rounded-full glass-panel text-xs font-bold text-slate-300 hover:text-white transition-all duration-200 active:scale-95 shadow-lg">✕ Close</button>
+            
+            <!-- Absolute Pinned Language Switcher (Fixed Top-Right, outside overlays) -->
+            <div class="fixed top-6 right-6 z-50 flex items-center gap-1 bg-black/40 backdrop-blur-md border border-white/10 rounded-full p-1 shadow-lg">
+              <button onclick="setLang('en')" class="px-3 py-1 rounded-full text-xs font-bold transition-all ${currentLang === 'en' ? 'bg-blue-500 text-white shadow-sm' : 'text-slate-400 hover:text-white'}">EN</button>
+              <button onclick="setLang('es')" class="px-3 py-1 rounded-full text-xs font-bold transition-all ${currentLang === 'es' ? 'bg-blue-500 text-white shadow-sm' : 'text-slate-400 hover:text-white'}">ES</button>
+              <button onclick="setLang('la')" class="px-3 py-1 rounded-full text-xs font-bold transition-all ${currentLang === 'la' ? 'bg-blue-500 text-white shadow-sm' : 'text-slate-400 hover:text-white'}">LA</button>
+            </div>
+
+            <div id="slideshow-container" onscroll="handleSlideshowScroll(this)" class="snap-container h-[100dvh] overflow-y-auto snap-y snap-mandatory scroll-smooth relative bg-church-950">
+              ${slidesHTML}
+            </div>
+          `;
+        } else if (currentView === 'DIVINE_MERCY_FULL') {
+          // --- FULL SCROLL DIVINE MERCY CHAPLET ---
+          const signCross = COMMON_PRAYERS.SIGN_CROSS[currentLang];
+          const opening = getPrayerText(getPrayerById('dm-opening'), currentLang);
+          const bloodWater = getPrayerText(getPrayerById('dm-blood-water'), currentLang);
+          const pater = getPrayerText(getPrayerById('our-father'), currentLang);
+          const ave = getPrayerText(getPrayerById('hail-mary'), currentLang);
+          const creed = getPrayerText(getPrayerById('apostles-creed'), currentLang);
+          const eternalPater = getPrayerText(getPrayerById('dm-eternal-father'), currentLang);
+          const sorrowPassion = getPrayerText(getPrayerById('dm-passion'), currentLang);
+          const holyGod = getPrayerText(getPrayerById('dm-holy-god'), currentLang);
+          const closing = getPrayerText(getPrayerById('dm-closing'), currentLang);
+
+          let slidesHTML = '';
+
+          // Intro slide
+          slidesHTML += makeSnapSlide('Divine Mercy Chaplet', `
+            <div class="text-center">
+              <p class="font-serif text-blue-300/80 mb-6 italic">"Jesus, I trust in You."</p>
+              <div class="flex flex-col items-center justify-center animate-pulse gap-2 text-slate-500">
+                <span class="text-xs uppercase tracking-widest">Swipe up to pray</span>
+                <span class="text-xl">↓</span>
+              </div>
+            </div>
+          `);
+
+          // Initial Prayers
+          slidesHTML += makeSnapSlide('Sign of the Cross', `<p class="font-serif text-center">${signCross}</p>`);
+          slidesHTML += makeSnapSlide('Opening Prayer', `<p class="font-serif">${opening}</p>`);
+          slidesHTML += makeSnapSlide('O Blood & Water', `<p class="font-serif text-center text-gold-300">${bloodWater}</p>`);
+          slidesHTML += makeSnapSlide('Our Father', `<p class="font-serif">${pater}</p>`);
+          slidesHTML += makeSnapSlide('Hail Mary', `<p class="font-serif">${ave}</p>`);
+          slidesHTML += makeSnapSlide('Apostles\' Creed', `<p class="font-serif">${creed}</p>`);
+
+          // Decades
+          for (let idx = 1; idx <= 5; idx++) {
+            slidesHTML += makeSnapSlide(`Decade ${idx} - Eternal Father`, `<p class="font-serif text-center text-gold-400">${eternalPater}</p>`);
+            slidesHTML += makeSnapDecade(`Decade ${idx}`, sorrowPassion, 10);
+          }
+
+          // Conclusion
+          slidesHTML += makeSnapDecade(`Holy God (x3)`, holyGod, 3);
+          slidesHTML += makeSnapSlide('Closing Prayer', `<p class="font-serif">${closing}</p>`);
+          slidesHTML += makeSnapSlide('Conclusion', `
+            <div class="text-center">
+              <p class="font-serif mb-10 text-center">${signCross}</p>
+              <h3 class="font-display text-2xl font-bold text-blue-300">Chaplet Complete</h3>
+            </div>
+          `);
+
+          // Combined root render with controllers completely detached from the snap scroll container
+          root.innerHTML = `
+            <!-- Fixed progress bar pinned outside container -->
+            <div class="fixed top-0 left-0 right-0 h-1 bg-white/5 z-50">
+              <div id="slideshow-progress-bar" class="h-full bg-gradient-to-r from-blue-500 to-indigo-500 w-0 transition-all duration-300 shadow-[0_0_10px_rgba(59,130,246,0.5)]"></div>
+            </div>
+
+            <!-- Absolute Pinned Close Button (Fixed Top-Left, outside overlays) -->
+            <button onclick="setView('HOME')" class="fixed top-6 left-6 z-50 px-4 py-2 rounded-full glass-panel text-xs font-bold text-slate-300 hover:text-white transition-all duration-200 active:scale-95 shadow-lg">✕ Close</button>
+            
+            <!-- Absolute Pinned Language Switcher (Fixed Top-Right, outside overlays) -->
+            <div class="fixed top-6 right-6 z-50 flex items-center gap-1 bg-black/40 backdrop-blur-md border border-white/10 rounded-full p-1 shadow-lg">
+              <button onclick="setLang('en')" class="px-3 py-1 rounded-full text-xs font-bold transition-all ${currentLang === 'en' ? 'bg-blue-500 text-white shadow-sm' : 'text-slate-400 hover:text-white'}">EN</button>
+              <button onclick="setLang('es')" class="px-3 py-1 rounded-full text-xs font-bold transition-all ${currentLang === 'es' ? 'bg-blue-500 text-white shadow-sm' : 'text-slate-400 hover:text-white'}">ES</button>
+              <button onclick="setLang('la')" class="px-3 py-1 rounded-full text-xs font-bold transition-all ${currentLang === 'la' ? 'bg-blue-500 text-white shadow-sm' : 'text-slate-400 hover:text-white'}">LA</button>
+            </div>
+
+            <div id="slideshow-container" onscroll="handleSlideshowScroll(this)" class="snap-container h-[100dvh] overflow-y-auto snap-y snap-mandatory scroll-smooth relative bg-church-950">
+              ${slidesHTML}
+            </div>
+          `;
         }
       }
 
-      window.setView = (view) => {
-        currentView = view;
-        render();
-      };
+      // --- UNIVERSAL MARIAN BLUE SLIDE BUILDER ENGINE ---
+      function makeSnapSlide(title, innerHTML) {
+        return `
+          <div class="snap-start min-h-[100dvh] w-full flex flex-col justify-center items-center px-6 relative">
+            <div class="fluid-card glass-panel border border-blue-500/20 bg-gradient-to-b from-blue-500/10 to-transparent animate-fade-in">
+              <div class="w-full flex items-center justify-center gap-4 mb-4">
+                <div class="h-px bg-blue-500/20 flex-1 max-w-[3rem]"></div>
+                <span class="font-display text-blue-300 text-xs uppercase tracking-widest text-center leading-tight">${title}</span>
+                <div class="h-px bg-blue-500/20 flex-1 max-w-[3rem]"></div>
+              </div>
+              <div class="w-full flex-1 overflow-y-auto card-scroll pr-1 my-2">
+                <div class="font-serif fluid-text text-slate-200 whitespace-pre-line leading-relaxed">
+                  ${innerHTML}
+                </div>
+              </div>
+            </div>
+            <div class="absolute bottom-6 left-1/2 -translate-x-1/2 opacity-30 animate-bounce flex flex-col items-center pointer-events-none">
+              <span class="text-xs uppercase tracking-widest font-display text-gold-500">↓</span>
+            </div>
+          </div>
+        `;
+      }
+
+      function makeSnapDecade(title, text, beadCount) {
+        let beadsHTML = '';
+        for (let i = 0; i < beadCount; i++) {
+          beadsHTML += `
+            <button onclick="toggleBead(this)" class="w-8 h-8 rounded-full border-2 border-blue-400/30 bg-transparent transition-all duration-300 ease-out active:scale-95" aria-label="Bead ${i+1}"></button>
+          `;
+        }
+
+        return `
+          <div class="snap-start min-h-[100dvh] w-full flex flex-col justify-center items-center px-6 relative">
+            <div class="fluid-card glass-panel border border-blue-500/20 bg-gradient-to-b from-blue-500/10 to-transparent animate-fade-in">
+              <div class="w-full flex items-center justify-center gap-4 mb-4">
+                <div class="h-px bg-blue-500/20 flex-1 max-w-[3rem]"></div>
+                <span class="font-display text-blue-300 text-xs uppercase tracking-widest text-center leading-tight">${title}</span>
+                <div class="h-px bg-blue-500/20 flex-1 max-w-[3rem]"></div>
+              </div>
+              
+              <div class="w-full flex-1 overflow-y-auto card-scroll pr-1 my-2">
+                <p class="font-serif fluid-text text-slate-200 whitespace-pre-line leading-relaxed">${text}</p>
+              </div>
+              
+              <!-- Decade beads -->
+              <div class="flex flex-wrap justify-center gap-2 pt-4 border-t border-white/10 mt-2">
+                ${beadsHTML}
+              </div>
+              <p class="text-center text-[10px] text-slate-500 mt-2 font-serif italic">Tap beads to count your prayers</p>
+            </div>
+            <div class="absolute bottom-6 left-1/2 -translate-x-1/2 opacity-30 animate-bounce flex flex-col items-center pointer-events-none">
+              <span class="text-xs uppercase tracking-widest font-display text-gold-500">↓</span>
+            </div>
+          </div>
+        `;
+      }
 
       // --- RUN APP ---
-      window.onload = fetchPrayers;
+      function goBackFromDetail() {
+        if (selectedCategory) {
+          setView('CATEGORY');
+        } else {
+          setView('HOME');
+        }
+      }
+
+      fetchPrayers();
     </script>
   </body>
 </html>
