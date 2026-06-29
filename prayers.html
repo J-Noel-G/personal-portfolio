@@ -50,7 +50,7 @@
         -webkit-overflow-scrolling: touch;
       }
 
-      /* Fluid Card Sizing */
+      /* Screen-Adaptive Fluid Card Sizing */
       .fluid-card {
         width: 92%;
         max-width: 680px;
@@ -112,7 +112,6 @@
       let selectedMysteryGroup = 'JOYFUL'; 
       let searchQuery = '';
       let PRAYERS_DATA = []; 
-      let loadError = null;
 
       const PrayerCategory = {
         MASS_RESPONSES: 'Mass Responses',
@@ -135,7 +134,7 @@
         [PrayerCategory.SAINTS]: { es: 'Oraciones a los Santos', la: 'Orationes ad Sanctos' },
         [PrayerCategory.DIVINE_MERCY]: { es: 'Divina Misericordia', la: 'Divina Misericordia' },
         [PrayerCategory.ACTIVITIES]: { es: 'Actividades Diarias', la: 'Actus Cotidiani' },
-        [PrayerCategory.MEAL]: { es: 'Oraciones para las Comidas', la: 'Orationes pro Mesa' },
+        [PrayerCategory.MEAL]: { es: 'Oraciones para las Comidas', la: 'Orationes pro Mensa' },
         [PrayerCategory.ACTS]: { es: 'Actos de Fe, Esperanza y Caridad', la: 'Actus Fidei, Spei, Caritatis' },
         [PrayerCategory.LITANIES]: { es: 'Letanías', la: 'Litaniae' },
       };
@@ -196,7 +195,7 @@
           { t: "The Wedding at Cana", t_es: "Las Bodas de Caná", t_la: "Nuptiae in Cana", s: "John 2:5", fruit_en: "To Jesus through Mary", fruit_es: "A Jesús por María", m_en: "At Mary's request, Jesus performs His first miracle, turning water into wine. We learn to trust in Mary's intercession: 'Do whatever He tells you.'", m_es: "A petición de María, Jesús realiza su primer milagro, convirtiendo el agua en vino." },
           { t: "The Proclamation of the Kingdom", t_es: "El Anuncio del Reino", t_la: "Proclamatio Regni", s: "Mark 1:15", fruit_en: "Repentance", fruit_es: "Arrepentimiento", m_en: "Jesus preaches the Gospel, calls for conversion, and forgives sins. We pray for a heart open to His word and the grace of true repentance.", m_es: "Jesús predica el Evangelio, llama a la conversión y perdona los pecados." },
           { t: "The Transfiguration", t_es: "La Transfiguración", t_la: "Transfiguratio", s: "Matt 17:2", fruit_en: "Desire for Holiness", fruit_es: "Deseo de Santidad", m_en: "Jesus is revealed in glory to Peter, James, and John. We contemplate His divinity and pray that our lives may reflect His light.", m_es: "Jesús se revela en gloria a Pedro, Santiago y Juan." },
-          { t: "The Institution of the Eucharist", t_es: "La Institución de la Eucaristía", t_la: "Institutio Eucharistiae", s: "Matt 26:26", fruit_en: "Eucharistic Adoration", fruit_es: "Adoración Eucarística", m_en: "At the Last Supper, Jesus gives us His Body and Blood. He remains with us always in the Holy Eucharist.", m_es: "En la Última Cena, Jesús nos da su Cuerpo y Sangre." }
+          { t: "The Institution of the Eucharist", t_es: "La Institución de la Eucaristía", t_la: "Institutio Eucharistiae", s: "Matt 26:26", fruit_en: "Eucharistic Adoration", fruit_es: "Adoración Eucarística", m_en: "At the Last Supper, Jesus gives us His Body and Blood. He remains with us always in the Holy Eucharist.", m_es: "En la Última Cena, Jesús nos da su Cuerpo y Sanguis." }
         ]
       };
 
@@ -205,16 +204,17 @@
         render(); 
         try {
           const response = await fetch('prayers.json?v=' + Date.now());
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+          if (response.ok) {
+            PRAYERS_DATA = await response.json();
+          } else {
+            console.warn(`Database fetch returned status ${response.status}. Falling back to clean shell mode.`);
           }
-          PRAYERS_DATA = await response.json();
-          currentView = 'HOME';
         } catch (err) {
-          console.error("Could not load prayers:", err);
-          loadError = err.message;
-          currentView = 'ERROR';
+          console.warn("Offline or missing prayers.json. Loading clean shell mode gracefully:", err);
         }
+        
+        // ALWAYS launch dashboard successfully without showing error screens
+        currentView = 'HOME';
         render();
       }
 
@@ -226,8 +226,23 @@
         return cat;
       }
 
+      // Helper to generate dynamic title case text
+      function formatIDToTitle(id) {
+        return id
+          .split('-')
+          .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(' ');
+      }
+
+      // Safe retrieval with smart placeholder backup
       function getPrayerById(id) {
-        return PRAYERS_DATA.find(p => p.id === id) || { title: id, text: "Prayer text missing in json" };
+        const found = PRAYERS_DATA.find(p => p.id === id);
+        if (found) return found;
+        return {
+          id: id,
+          title: formatIDToTitle(id),
+          text: `[${formatIDToTitle(id)} prayer text placeholder. Populate prayers.json to load your dataset.]`
+        };
       }
 
       function getPrayerTitle(prayer, lang) {
@@ -242,8 +257,22 @@
         return prayer.text;
       }
 
-      // Updated to persist scroll position on rerender safely across repaint ticks
-      function setLang(lang) {
+      // Fetch dynamic traditional mystery based on day of the week
+      function getTraditionalMystery() {
+        const day = new Date().getDay(); // 0 = Sunday, 1 = Monday...
+        if (day === 0 || day === 3) return 'GLORIOUS'; // Sunday, Wed
+        if (day === 1 || day === 6) return 'JOYFUL';    // Monday, Sat
+        if (day === 2 || day === 5) return 'SORROWFUL'; // Tuesday, Fri
+        return 'LUMINOUS';                              // Thursday
+      }
+
+      // --- 100% BULLETPROOF WINDOW SCOPED NAVIGATION ENGINE ---
+      window.setView = function(view) {
+        currentView = view;
+        render();
+      };
+
+      window.setLang = function(lang) {
         currentLang = lang;
         
         const container = document.getElementById('slideshow-container');
@@ -259,23 +288,14 @@
             }
           });
         }
-      }
+      };
 
-      function handleSearch(val) {
+      window.handleSearch = function(val) {
         searchQuery = val;
         render();
-      }
+      };
 
-      // Fetch dynamic traditional mystery based on day of the week
-      function getTraditionalMystery() {
-        const day = new Date().getDay(); // 0 = Sunday, 1 = Monday...
-        if (day === 0 || day === 3) return 'GLORIOUS'; // Sunday, Wed
-        if (day === 1 || day === 6) return 'JOYFUL';    // Monday, Sat
-        if (day === 2 || day === 5) return 'SORROWFUL'; // Tuesday, Fri
-        return 'LUMINOUS';                              // Thursday
-      }
-
-      function selectCategory(cat) {
+      window.selectCategory = function(cat) {
         if (cat === PrayerCategory.LITANIES) {
           const randomLitany = LITANY_LINKS[Math.floor(Math.random() * LITANY_LINKS.length)];
           window.open(randomLitany, '_blank');
@@ -287,40 +307,36 @@
         }
         if (cat === PrayerCategory.ROSARY) {
           selectedMysteryGroup = getTraditionalMystery();
-          currentView = 'ROSARY_LAUNCH';
+          window.setView('ROSARY_LAUNCH');
         } else if (cat === PrayerCategory.DIVINE_MERCY) {
-          currentView = 'DIVINE_MERCY_LAUNCH';
+          window.setView('DIVINE_MERCY_LAUNCH');
         } else {
           selectedCategory = cat;
-          currentView = 'CATEGORY';
+          window.setView('CATEGORY');
         }
-        render();
-      }
+      };
 
-      function startRosary(mysteryGroup) {
+      window.startRosary = function(mysteryGroup) {
         selectedMysteryGroup = mysteryGroup;
-        currentView = 'ROSARY_FULL';
-        render();
-      }
+        window.setView('ROSARY_FULL');
+      };
 
-      function startDivineMercy() {
-        currentView = 'DIVINE_MERCY_FULL';
-        render();
-      }
+      window.startDivineMercy = function() {
+        window.setView('DIVINE_MERCY_FULL');
+      };
 
-      function viewPrayer(prayerId) {
-        selectedPrayer = PRAYERS_DATA.find(p => p.id === prayerId);
-        currentView = 'PRAYER_DETAIL';
-        render();
-      }
+      window.viewPrayer = function(prayerId) {
+        selectedPrayer = PRAYERS_DATA.find(p => p.id === prayerId) || getPrayerById(prayerId);
+        window.setView('PRAYER_DETAIL');
+      };
 
-      function goBackFromDetail() {
+      window.goBackFromDetail = function() {
         if (selectedCategory) {
-          setView('CATEGORY');
+          window.setView('CATEGORY');
         } else {
-          setView('HOME');
+          window.setView('HOME');
         }
-      }
+      };
 
       window.toggleBead = (btn) => {
         btn.classList.toggle('bg-gold-500');
@@ -349,18 +365,6 @@
             <div class="flex flex-col items-center justify-center min-h-screen gap-6">
               <div class="w-16 h-16 border-4 border-gold-500/10 border-t-gold-500 rounded-full animate-spin"></div>
               <div class="text-gold-500 font-display text-2xl tracking-widest animate-pulse">SANCTUS</div>
-            </div>
-          `;
-          return;
-        }
-
-        if (currentView === 'ERROR') {
-          root.innerHTML = `
-            <div class="flex flex-col items-center justify-center min-h-screen text-center px-6">
-              <div class="text-red-500 text-5xl mb-4">⚠</div>
-              <h1 class="font-display text-3xl text-gold-500 mb-2">Failed to Load Prayers</h1>
-              <p class="font-serif text-slate-400 mb-6 max-w-md">Please ensure prayers.json exists in the root directory.</p>
-              <button onclick="fetchPrayers()" class="px-6 py-2.5 bg-gold-500 text-church-950 font-display font-bold rounded-full hover:bg-gold-400 transition-colors">Retry Connection</button>
             </div>
           `;
           return;
@@ -469,14 +473,18 @@
 
             <main class="relative z-10 max-w-3xl mx-auto px-6 py-8 w-full flex-1">
               <div class="grid gap-4 animate-fade-in">
-                ${categoryPrayers.map(prayer => `
+                ${categoryPrayers.length > 0 ? categoryPrayers.map(prayer => `
                   <button onclick="viewPrayer('${prayer.id}')" class="group bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/10 hover:border-gold-500/30 p-6 rounded-xl transition-all duration-300 text-left flex items-center justify-between glass-panel active:scale-[0.99]">
                     <div>
                       <h3 class="font-display text-xl font-bold text-slate-100 group-hover:text-gold-200">${getPrayerTitle(prayer, currentLang)}</h3>
                     </div>
                     <div class="opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300 text-gold-400">→</div>
                   </button>
-                `).join('')}
+                `).join('') : `
+                  <div class="glass-panel p-12 rounded-2xl border border-white/10 text-center animate-fade-in">
+                    <p class="font-serif italic text-slate-400">No prayers found in this category.</p>
+                  </div>
+                `}
               </div>
             </main>
           `;
@@ -659,24 +667,22 @@
             </div>
           `);
 
-          // Combined root render with controllers completely detached from the snap scroll container
+          // Render UI Elements without full-screen overlays (Preventing click interception)
           root.innerHTML = `
-            <!-- Fixed progress bar pinned outside container -->
             <div class="fixed top-0 left-0 right-0 h-1 bg-white/5 z-50">
               <div id="slideshow-progress-bar" class="h-full bg-gradient-to-r from-blue-500 to-indigo-500 w-0 transition-all duration-300 shadow-[0_0_10px_rgba(59,130,246,0.5)]"></div>
             </div>
 
-            <!-- Absolute Pinned Close Button (Fixed Top-Left, outside overlays) -->
-            <button onclick="setView('HOME')" class="fixed top-6 left-6 z-50 px-4 py-2 rounded-full glass-panel text-xs font-bold text-slate-300 hover:text-white transition-all duration-200 active:scale-95 shadow-lg">✕ Close</button>
+            <!-- Independent Fixed elements with direct global window targets -->
+            <button onclick="window.setView('HOME')" class="fixed top-6 left-6 z-50 px-4 py-2 rounded-full glass-panel text-xs font-bold text-slate-300 hover:text-white transition-all duration-200 active:scale-95 shadow-lg">✕ Close</button>
             
-            <!-- Absolute Pinned Language Switcher (Fixed Top-Right, outside overlays) -->
             <div class="fixed top-6 right-6 z-50 flex items-center gap-1 bg-black/40 backdrop-blur-md border border-white/10 rounded-full p-1 shadow-lg">
-              <button onclick="setLang('en')" class="px-3 py-1 rounded-full text-xs font-bold transition-all ${currentLang === 'en' ? 'bg-blue-500 text-white shadow-sm' : 'text-slate-400 hover:text-white'}">EN</button>
-              <button onclick="setLang('es')" class="px-3 py-1 rounded-full text-xs font-bold transition-all ${currentLang === 'es' ? 'bg-blue-500 text-white shadow-sm' : 'text-slate-400 hover:text-white'}">ES</button>
-              <button onclick="setLang('la')" class="px-3 py-1 rounded-full text-xs font-bold transition-all ${currentLang === 'la' ? 'bg-blue-500 text-white shadow-sm' : 'text-slate-400 hover:text-white'}">LA</button>
+              <button onclick="window.setLang('en')" class="px-3 py-1 rounded-full text-xs font-bold transition-all ${currentLang === 'en' ? 'bg-blue-500 text-white shadow-sm' : 'text-slate-400 hover:text-white'}">EN</button>
+              <button onclick="window.setLang('es')" class="px-3 py-1 rounded-full text-xs font-bold transition-all ${currentLang === 'es' ? 'bg-blue-500 text-white shadow-sm' : 'text-slate-400 hover:text-white'}">ES</button>
+              <button onclick="window.setLang('la')" class="px-3 py-1 rounded-full text-xs font-bold transition-all ${currentLang === 'la' ? 'bg-blue-500 text-white shadow-sm' : 'text-slate-400 hover:text-white'}">LA</button>
             </div>
 
-            <div id="slideshow-container" onscroll="handleSlideshowScroll(this)" class="snap-container h-[100dvh] overflow-y-auto snap-y snap-mandatory scroll-smooth relative bg-church-950">
+            <div id="slideshow-container" onscroll="window.handleSlideshowScroll(this)" class="snap-container h-[100dvh] overflow-y-auto snap-y snap-mandatory scroll-smooth relative bg-church-950">
               ${slidesHTML}
             </div>
           `;
@@ -732,22 +738,20 @@
 
           // Combined root render with controllers completely detached from the snap scroll container
           root.innerHTML = `
-            <!-- Fixed progress bar pinned outside container -->
             <div class="fixed top-0 left-0 right-0 h-1 bg-white/5 z-50">
               <div id="slideshow-progress-bar" class="h-full bg-gradient-to-r from-blue-500 to-indigo-500 w-0 transition-all duration-300 shadow-[0_0_10px_rgba(59,130,246,0.5)]"></div>
             </div>
 
-            <!-- Absolute Pinned Close Button (Fixed Top-Left, outside overlays) -->
-            <button onclick="setView('HOME')" class="fixed top-6 left-6 z-50 px-4 py-2 rounded-full glass-panel text-xs font-bold text-slate-300 hover:text-white transition-all duration-200 active:scale-95 shadow-lg">✕ Close</button>
+            <!-- Independent Fixed elements with direct global window targets -->
+            <button onclick="window.setView('HOME')" class="fixed top-6 left-6 z-50 px-4 py-2 rounded-full glass-panel text-xs font-bold text-slate-300 hover:text-white transition-all duration-200 active:scale-95 shadow-lg">✕ Close</button>
             
-            <!-- Absolute Pinned Language Switcher (Fixed Top-Right, outside overlays) -->
             <div class="fixed top-6 right-6 z-50 flex items-center gap-1 bg-black/40 backdrop-blur-md border border-white/10 rounded-full p-1 shadow-lg">
-              <button onclick="setLang('en')" class="px-3 py-1 rounded-full text-xs font-bold transition-all ${currentLang === 'en' ? 'bg-blue-500 text-white shadow-sm' : 'text-slate-400 hover:text-white'}">EN</button>
-              <button onclick="setLang('es')" class="px-3 py-1 rounded-full text-xs font-bold transition-all ${currentLang === 'es' ? 'bg-blue-500 text-white shadow-sm' : 'text-slate-400 hover:text-white'}">ES</button>
-              <button onclick="setLang('la')" class="px-3 py-1 rounded-full text-xs font-bold transition-all ${currentLang === 'la' ? 'bg-blue-500 text-white shadow-sm' : 'text-slate-400 hover:text-white'}">LA</button>
+              <button onclick="window.setLang('en')" class="px-3 py-1 rounded-full text-xs font-bold transition-all ${currentLang === 'en' ? 'bg-blue-500 text-white shadow-sm' : 'text-slate-400 hover:text-white'}">EN</button>
+              <button onclick="window.setLang('es')" class="px-3 py-1 rounded-full text-xs font-bold transition-all ${currentLang === 'es' ? 'bg-blue-500 text-white shadow-sm' : 'text-slate-400 hover:text-white'}">ES</button>
+              <button onclick="window.setLang('la')" class="px-3 py-1 rounded-full text-xs font-bold transition-all ${currentLang === 'la' ? 'bg-blue-500 text-white shadow-sm' : 'text-slate-400 hover:text-white'}">LA</button>
             </div>
 
-            <div id="slideshow-container" onscroll="handleSlideshowScroll(this)" class="snap-container h-[100dvh] overflow-y-auto snap-y snap-mandatory scroll-smooth relative bg-church-950">
+            <div id="slideshow-container" onscroll="window.handleSlideshowScroll(this)" class="snap-container h-[100dvh] overflow-y-auto snap-y snap-mandatory scroll-smooth relative bg-church-950">
               ${slidesHTML}
             </div>
           `;
@@ -781,7 +785,7 @@
         let beadsHTML = '';
         for (let i = 0; i < beadCount; i++) {
           beadsHTML += `
-            <button onclick="toggleBead(this)" class="w-8 h-8 rounded-full border-2 border-blue-400/30 bg-transparent transition-all duration-300 ease-out active:scale-95" aria-label="Bead ${i+1}"></button>
+            <button onclick="window.toggleBead(this)" class="w-8 h-8 rounded-full border-2 border-blue-400/30 bg-transparent transition-all duration-300 ease-out active:scale-95" aria-label="Bead ${i+1}"></button>
           `;
         }
 
@@ -812,14 +816,6 @@
       }
 
       // --- RUN APP ---
-      function goBackFromDetail() {
-        if (selectedCategory) {
-          setView('CATEGORY');
-        } else {
-          setView('HOME');
-        }
-      }
-
       fetchPrayers();
     </script>
   </body>
